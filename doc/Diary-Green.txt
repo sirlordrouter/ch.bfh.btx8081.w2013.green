@@ -1,13 +1,12 @@
 Projekt Diary der Gruppe Green
 
 Gruppenmitglieder:
-Esma Dagdas X??
-Meryam Medini X??
-Vinzenz Messerli X3R
+Esma Dagdas
+Meryam Medini
+Vinzenz Messerli
 Jan Wiebe van der Sluis X3R
-Corina von Känel X3?
+Corina von Känel
 
 
 18-09-2013
 Init des Projekts sowie Repos.
-Vielen Dank f�rs erstellen!
