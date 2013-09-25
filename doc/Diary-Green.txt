@@ -11,3 +11,6 @@ Corina von Kaenel X3A
 
 18-09-2013
 Init des Projekts sowie Repos.
+
+25-09-2013
+Warten auf weitere Aufgaben (Test Commit)
