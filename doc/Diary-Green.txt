@@ -9,6 +9,22 @@ Jan Wiebe van der Sluis X3R
 Corina von Kaenel X3A
 
 
+Tasks / Contents
+project tasks, status (open, work in progress, done), responsibilities meetings (date, time, purpose, results)
+use a plain text document format (e.g., diary.txt or diary.html)
+
 18-09-2013
 Init des Projekts sowie Repos.
 
+25-09-2013, 18:30
+Task1, done
+Wir haben uns mit der Aufgabe vertraut gemacht und die Beschreibung der Aufgaben der Software studiert, wie sie vom
+Arbeitsgeber vorgegeben wurden. Wir haben dabei die bedienenden User identifiziert, benötigte Features aufgelistet sowie 
+Critical Success Factors festgelegt. Diese definieren Inhalte der Software, ohne die die Software nicht gekauft würde. 
+Am Schluss haben wir noch mögliche Programmkomponenten aufgelistet sowie eine grobe Architektur festgelegt. 
+Die Ergebnisse haben wir im Dokument (File => *) abgelegt.
+
+Task2, work in progress
+Bei diesem Task haben wir uns für eine Entwicklungsmethode für unser Projekt entschieden. Wir werden das Projekt 
+mittels incremental Development durchführen. 
+Der nächste Schritt beinhaltet nun die Definition der einzelnen Schritte sowie deren Inhalt, Resultat und involvierte Personen. 
