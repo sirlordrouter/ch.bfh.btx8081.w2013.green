@@ -1,20 +1,12 @@
 Projekt Diary der Gruppe Green
 
 Gruppenmitglieder:
-<<<<<<< HEAD
-Esma Dagdas
-Meryam Medini
-Vinzenz Messerli (testtest)
-Jan Wiebe van der Sluis
-Corina von Känel
-=======
 Johannes Gnaegi X3A
 Esma Dagdas X3A
 Meryam Medini X3A
 Vinzenz Messerli X3R
 Jan Wiebe van der Sluis X3R
 Corina von Kaenel X3A
->>>>>>> branch 'master' of https://github.com/sirlordrouter/ch.bfh.btx8081.w2013.green.git
 
 
 Tasks / Contents
