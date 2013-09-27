@@ -1,25 +1,23 @@
 Projekt Diary der Gruppe Green
 
 Gruppenmitglieder:
-<<<<<<< HEAD
-Esma Dagdas
-Meryam Medini
-Vinzenz Messerli (testtest)
-Jan Wiebe van der Sluis
-Corina von Känel
-=======
 Johannes Gnaegi X3A
 Esma Dagdas X3A
 Meryam Medini X3A
 Vinzenz Messerli X3R
 Jan Wiebe van der Sluis X3R
 Corina von Kaenel X3A
->>>>>>> branch 'master' of https://github.com/sirlordrouter/ch.bfh.btx8081.w2013.green.git
 
 
 Tasks / Contents
 project tasks, status (open, work in progress, done), responsibilities meetings (date, time, purpose, results)
 use a plain text document format (e.g., diary.txt or diary.html)
+
+/**********************************************************************************/
+Protokoll: Jan Wiebe van der Sluis
+Powerpoint: Vinzenz Messerli
+Präsentation: Vinzenz Messerli, Johannes Gnägi
+Diary: Johannes Gnägi
 
 18-09-2013
 Init des Projekts sowie Repos.
@@ -35,4 +33,6 @@ Die Ergebnisse haben wir im Dokument (File => *) abgelegt.
 Task2, work in progress
 Bei diesem Task haben wir uns für eine Entwicklungsmethode für unser Projekt entschieden. Wir werden das Projekt 
 mittels incremental Development durchführen. 
-Der nächste Schritt beinhaltet nun die Definition der einzelnen Schritte sowie deren Inhalt, Resultat und involvierte Personen. 
+Der nächste Schritt beinhaltet nun die Definition der einzelnen Schritte sowie deren Inhalt, Resultat und involvierte Personen.
+/**********************************************************************************/
+
