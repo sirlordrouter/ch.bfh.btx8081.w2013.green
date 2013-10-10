@@ -1,0 +1,96 @@
+/***** Styling for the Diary **********/
+
+body {
+	margin: 0;
+	padding: 0;
+	background:#85734A;
+}
+
+h1 {
+	font-size: 400%;
+	font-family: 'Autour One', cursive;
+}
+
+h1, h2 {
+	text-align: center;
+	color: #9AB36B;
+	margin-bottom: -20px;
+}
+
+h3, h4,h5, p {
+	text-align: center;
+	color: black;
+}
+
+h3 {
+	text-align: left;
+}
+
+a:link {
+	color: #4B6B48;
+}
+
+#entries p {
+	text-align:justify;
+	
+}
+
+
+
+
+.container {
+	position: absolute;
+	left:0px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+#header {
+	clear: both;
+	height: 200px;
+	background:#4B6B48;
+	float: left;
+	width: 100%;
+}
+
+#main {
+	float: left;
+	width: 100%;
+	background:#EBF0BD;
+	margin: 0;
+}
+
+#group {
+	margin: 0 auto;
+	width: 500px;
+}
+
+#grouptitle {
+	float: left;
+	width: 150px;
+}
+
+#groupmembers {
+		float: left;
+		width: 250px;
+}
+
+#diary {
+	float: left;
+	height: auto;
+	width: 100%;
+	background:#E8DEAC;
+	margin: 0;
+}
+
+#entries {
+	margin: 0 auto;
+	width: 500px;
+}
+
+#footer {
+	float: left;
+	width: 100%;
+	height: 400px;
+	background:#85734A;
+}
