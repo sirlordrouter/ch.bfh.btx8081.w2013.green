@@ -1,4 +1,4 @@
-package foo;
+package ch.bfh.btx8081.w2013.green;
 
 import javax.servlet.annotation.WebServlet;
 
