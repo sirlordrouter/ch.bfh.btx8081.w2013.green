@@ -7,13 +7,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 @Theme("mytheme")
 @SuppressWarnings("serial")
@@ -26,47 +20,23 @@ public class MyVaadinUI extends UI
     public static class Servlet extends VaadinServlet {
     }
 
+    public static Navigator navigator;
+    protected static final String HELPVIEW = "help";
+    protected static final String SKILLVIEW = "skill";
+    protected static final String MEDICVIEW = "medic";
+    protected static final String SETTINGSVIEW = "sett";
+
     @Override
     protected void init(VaadinRequest request) {
-    	
+        getPage().setTitle("Navigation Example");
+        
+        // Create a navigator to control the views
+        navigator = new Navigator(this, this);
+        
+        // Create and register the views
+        navigator.addView("", new StartView());
+        navigator.addView(HELPVIEW, new MainView());
+    } 
 
-        final VerticalLayout layout = new VerticalLayout();
-        layout.setMargin(true);
-        setContent(layout);
-        
-        
-        Button btnHelp = new Button("HELP");
-        btnHelp.addClickListener(new Button.ClickListener() {
-            public void buttonClick(ClickEvent event) {
-                layout.addComponent(new Label("Thank you for clicking"));
-            }
-        });
-        
-        Button btnSkills = new Button("SKILLS");
-        btnSkills.addClickListener(new Button.ClickListener() {
-            public void buttonClick(ClickEvent event) {
-                layout.addComponent(new Label("Thank you for clicking"));
-            }
-        });
-        
-        Button btnMedication = new Button("MEDICATION");
-        btnMedication.addClickListener(new Button.ClickListener() {
-            public void buttonClick(ClickEvent event) {
-                Notification.show("You shoud now take your Medication XY");
-            }
-        });
-        
-        Button btnSettings = new Button("SETTINGS");
-        btnSettings.addClickListener(new Button.ClickListener() {
-            public void buttonClick(ClickEvent event) {
-                layout.addComponent(new Label("Thank you for clicking"));
-            }
-        });
-        
-        layout.addComponent(btnHelp);
-        layout.addComponent(btnSkills);
-        layout.addComponent(btnMedication);
-        layout.addComponent(btnSettings);
-    }
 
 }
