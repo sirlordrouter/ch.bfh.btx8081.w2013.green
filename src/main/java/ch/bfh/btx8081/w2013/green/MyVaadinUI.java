@@ -35,7 +35,8 @@ public class MyVaadinUI extends UI
         
         // Create and register the views
         navigator.addView("", new StartView());
-        navigator.addView(HELPVIEW, new MainView());
+        navigator.addView(HELPVIEW, new HelpView());
+        navigator.addView(SKILLVIEW, new SkillsView());
     } 
 
 

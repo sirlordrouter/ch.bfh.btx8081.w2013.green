@@ -15,7 +15,8 @@ public class StartView extends VerticalLayout implements View {
 	private static final long serialVersionUID = -1105303206323973784L;
 
 	public StartView() {
-        setSizeFull();
+		setWidth("240px");
+		setHeight("420px");
 
         
         Button buttonHelp = new Button("HELP",
