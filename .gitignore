@@ -14,10 +14,13 @@
 .settings
 bin/
 target/
-#src/main/webapp/*
-#!src/main/webapp/VAADIN/
-#src/main/webapp/VAADIN/*
-#!src/main/webapp/VAADIN/themes/
+src/main/webapp/*
+!src/main/webapp/VAADIN/
+!src/main/webapp/META-INF/
+src/main/webapp/VAADIN/*
+!src/main/webapp/VAADIN/themes/
+
+
 
 # Packages #
 ############
