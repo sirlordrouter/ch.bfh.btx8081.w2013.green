@@ -6,13 +6,20 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.VerticalLayout;
 
-public class SkillsView extends VerticalLayout implements View{
+public class SkillsView extends VerticalLayout 
+	implements View, com.vaadin.event.Action.Listener {
 
 	private static final long serialVersionUID = 1L;
 	private ListSelect listSelectSkills;
+	private Model model;
+	private SkillsController c;
 	
 
 	public SkillsView () {	
+		
+		model = new Model();
+		c = new SkillsController(this, model);
+		
 		setWidth("240px");
 		setHeight("420px");
 
@@ -46,6 +53,13 @@ public class SkillsView extends VerticalLayout implements View{
 	
 	@Override
 	public void enter(ViewChangeEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void handleAction(Object sender, Object target) {
 		// TODO Auto-generated method stub
 		
 	}
