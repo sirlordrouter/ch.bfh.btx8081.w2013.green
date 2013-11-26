@@ -1,26 +1,29 @@
 package ch.bfh.btx8081.w2013.green;
 
-import com.vaadin.event.Action;
-import com.vaadin.event.Action.Listener;
-import com.vaadin.navigator.View;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Model implements Listener {
+public class Model{
 
-	public Action f5;
+	private List<String> skills;
 	
 	public Model() {
+		skills = new ArrayList<String>();
+		
+		for (int i = 0; i < 10; i++) {
+			skills.add("My own Skill " + i);
+		}
 		
 	}
 
-	f5 = new Action("f5") {
-		
+	public List<String> getSkills() {
+		return skills;
 	}
-	
-	@Override
-	public void handleAction(Object sender, Object target) {
-		// TODO Auto-generated method stub
-		
+
+	public void setSkills(List<String> skills) {
+		this.skills = skills;
 	}
+
 	
 	
 }

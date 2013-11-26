@@ -33,10 +33,14 @@ public class MyVaadinUI extends UI
         // Create a navigator to control the views
         navigator = new Navigator(this, this);
         
+        Model model = new Model();
+        SkillsView skillsView = new SkillsView();
+        new SkillsPresenter(skillsView, model);
+        
         // Create and register the views
         navigator.addView("", new StartView());
         navigator.addView(HELPVIEW, new HelpView());
-        navigator.addView(SKILLVIEW, new SkillsView());
+        navigator.addView(SKILLVIEW, skillsView);
     } 
 
 
