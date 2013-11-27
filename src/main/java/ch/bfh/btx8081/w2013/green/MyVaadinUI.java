@@ -37,7 +37,7 @@ public class MyVaadinUI extends UI
 
     public void authenticate( String login, String password) throws Exception
     {
-        if (  "user".equals ( login ) && "querty".equals( password ) ) 
+        if (  "pat".equals(login) && "pat".equals(password)) 
         {
             loadProtectedResources();
             return;
@@ -47,7 +47,7 @@ public class MyVaadinUI extends UI
 
     }
 
-    private void loadProtectedResources ()
+    private void loadProtectedResources()
     {
     	navigator.addView("Start", new StartView());
     	

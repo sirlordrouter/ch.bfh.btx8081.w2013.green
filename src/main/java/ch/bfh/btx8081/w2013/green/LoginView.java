@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.w2013.green;
 
-import com.vaadin.client.ui.layout.MayScrollChildren;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
@@ -16,14 +15,17 @@ public class LoginView extends VerticalLayout implements View {
 	private Button btnLogin = new Button("Login");
     private TextField login = new TextField ("Username");
     private PasswordField password = new PasswordField ( "Password");
-	
+    private VerticalLayout vertical = new VerticalLayout();
+    
 	public LoginView() {
 		setWidth("240px");
 		setHeight("420px");
 		
 		btnLogin.addClickListener ( new Button.ClickListener()
         {
-            public void buttonClick ( Button.ClickEvent event )
+			private static final long serialVersionUID = -3802341930269958858L;
+
+			public void buttonClick ( Button.ClickEvent event )
             {
                 try
                 {
@@ -41,11 +43,12 @@ public class LoginView extends VerticalLayout implements View {
 	}
     
 	private void initLogin() {
-		addComponent ( new Label("Please login in order to use the application") );
-        addComponent ( new Label() );
-        addComponent ( login );
-        addComponent ( password );
-        addComponent ( btnLogin );
+		vertical.addComponent ( new Label("Please Log in!") );
+		vertical.addComponent ( new Label() );
+		vertical.addComponent ( login );
+		vertical.addComponent ( password );
+		vertical.addComponent ( btnLogin );
+		addComponent(vertical);
 	}
 	
 	
