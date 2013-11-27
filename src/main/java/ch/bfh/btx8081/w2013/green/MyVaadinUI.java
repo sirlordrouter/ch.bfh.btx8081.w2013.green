@@ -31,17 +31,34 @@ public class MyVaadinUI extends UI
         getPage().setTitle("Navigation Example");
         
         // Create a navigator to control the views
-        navigator = new Navigator(this, this);
-        
+        navigator = new Navigator(this, this);      
+        navigator.addView("", new LoginView());
+    } 
+
+    public void authenticate( String login, String password) throws Exception
+    {
+        if (  "user".equals ( login ) && "querty".equals( password ) ) 
+        {
+            loadProtectedResources();
+            return;
+        }
+       
+       throw new Exception("Login failed!");
+
+    }
+
+    private void loadProtectedResources ()
+    {
+    	navigator.addView("Start", new StartView());
+    	
         Model model = new Model();
         SkillsView skillsView = new SkillsView();
         new SkillsPresenter(skillsView, model);
-        
-        // Create and register the views
-        navigator.addView("", new StartView());
+    	
         navigator.addView(HELPVIEW, new HelpView());
         navigator.addView(SKILLVIEW, skillsView);
-    } 
-
+        
+        navigator.navigateTo("Start");
+    }
 
 }
