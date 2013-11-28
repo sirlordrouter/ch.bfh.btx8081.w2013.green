@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2013.green;
+package ch.bfh.btx8081.w2013.green.ui.skills;
 
 import java.util.List;
 

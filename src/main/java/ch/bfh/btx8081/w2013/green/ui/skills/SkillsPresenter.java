@@ -1,6 +1,7 @@
-package ch.bfh.btx8081.w2013.green;
+package ch.bfh.btx8081.w2013.green.ui.skills;
 
-import ch.bfh.btx8081.w2013.green.ISkillView.ISkillViewListener;
+import ch.bfh.btx8081.w2013.green.Model;
+import ch.bfh.btx8081.w2013.green.ui.skills.ISkillView.ISkillViewListener;
 
 public class SkillsPresenter implements ISkillViewListener {
 

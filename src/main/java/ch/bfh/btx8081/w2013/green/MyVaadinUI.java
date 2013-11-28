@@ -4,10 +4,14 @@ import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 
 @Theme("mytheme")
 @SuppressWarnings("serial")
@@ -20,45 +24,47 @@ public class MyVaadinUI extends UI
     public static class Servlet extends VaadinServlet {
     }
 
-    public static Navigator navigator;
-    protected static final String HELPVIEW = "help";
-    protected static final String SKILLVIEW = "skill";
-    protected static final String MEDICVIEW = "medic";
-    protected static final String SETTINGSVIEW = "sett";
-
     @Override
     protected void init(VaadinRequest request) {
-        getPage().setTitle("Navigation Example");
-        
-        // Create a navigator to control the views
-        navigator = new Navigator(this, this);      
-        navigator.addView("", new LoginView());
-    } 
-
-    public void authenticate( String login, String password) throws Exception
-    {
-        if (  "pat".equals(login) && "pat".equals(password)) 
-        {
-            loadProtectedResources();
-            return;
-        }
-       
-       throw new Exception("Login failed!");
-
-    }
-
-    private void loadProtectedResources()
-    {
-    	navigator.addView("Start", new StartView());
     	
-        Model model = new Model();
-        SkillsView skillsView = new SkillsView();
-        new SkillsPresenter(skillsView, model);
-    	
-        navigator.addView(HELPVIEW, new HelpView());
-        navigator.addView(SKILLVIEW, skillsView);
+
+        final VerticalLayout layout = new VerticalLayout();
+        layout.setMargin(true);
+        setContent(layout);
         
-        navigator.navigateTo("Start");
+        
+        Button btnHelp = new Button("HELP");
+        btnHelp.addClickListener(new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+                layout.addComponent(new Label("Thank you for clicking"));
+            }
+        });
+        
+        Button btnSkills = new Button("SKILLS");
+        btnSkills.addClickListener(new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+                layout.addComponent(new Label("Thank you for clicking"));
+            }
+        });
+        
+        Button btnMedication = new Button("MEDICATION");
+        btnMedication.addClickListener(new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+                Notification.show("You shoud now take your Medication XY");
+            }
+        });
+        
+        Button btnSettings = new Button("SETTINGS");
+        btnSettings.addClickListener(new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+                layout.addComponent(new Label("Thank you for clicking"));
+            }
+        });
+        
+        layout.addComponent(btnHelp);
+        layout.addComponent(btnSkills);
+        layout.addComponent(btnMedication);
+        layout.addComponent(btnSettings);
     }
 
 }
