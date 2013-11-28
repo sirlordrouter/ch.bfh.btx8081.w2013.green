@@ -3,7 +3,7 @@ package ch.bfh.btx8081.w2013.green.ui.skills;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.bfh.btx8081.w2013.green.MyVaadinUI;
+import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -45,7 +45,7 @@ public class SkillsView extends CustomComponent
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
 				// TODO Auto-generated method stub
-				MyVaadinUI.navigator.navigateTo("");
+				MyVaadinUI.navigator.navigateTo("Start");
 			}
 		}));
 	

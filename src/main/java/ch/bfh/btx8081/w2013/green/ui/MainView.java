@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui;
 
-import ch.bfh.btx8081.w2013.green.MyVaadinUI;
+
+import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;

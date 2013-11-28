@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2013.green.ui;
+package ch.bfh.btx8081.w2013.green.ui.start;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -6,7 +6,6 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-import ch.bfh.btx8081.w2013.green.MyVaadinUI;
 
 /** A start view for navigating to the other views */
 public class StartView extends VerticalLayout implements View {

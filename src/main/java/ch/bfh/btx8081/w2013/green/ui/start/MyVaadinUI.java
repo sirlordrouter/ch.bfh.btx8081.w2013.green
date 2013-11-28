@@ -1,10 +1,9 @@
-package ch.bfh.btx8081.w2013.green;
+package ch.bfh.btx8081.w2013.green.ui.start;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.ui.HelpView;
-import ch.bfh.btx8081.w2013.green.ui.LoginView;
-import ch.bfh.btx8081.w2013.green.ui.StartView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 
