@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.green.ui.start;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.ui.HelpView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
@@ -10,14 +11,11 @@ import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 @Theme("mytheme")
 @SuppressWarnings("serial")
@@ -41,20 +39,46 @@ public class MyVaadinUI extends UI
         getPage().setTitle("Navigation Example");
         
         // Create a navigator to control the views
-        navigator = new Navigator(this, this);      
+        navigator = new Navigator(this, this);   
         navigator.addView("", new LoginView());
+        navigator.setErrorView(LoginView.class);
     } 
 
     public void authenticate( String login, String password) throws Exception
     {
-        if (  "pat".equals(login) && "pat".equals(password)) 
+    	LoginManager loginManager = new LoginManager(login, password);
+    	
+        if (loginManager.getCurrentUser().getHasAccess()) 
         {
+        	if (loginManager.getCurrentUser().isPatient()) {
+				loadProtectedUserResources();
+			} else {
+				loadProtectedStaffResources();
+			}
+        	
             loadProtectedResources();
             return;
         }
        
        throw new Exception("Login failed!");
 
+    }
+   
+
+	private void loadProtectedUserResources() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+    private void loadProtectedStaffResources() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void logout() {
+    	destroyProtectedResources();
+    	
+    	Notification.show("You have been logged out!");
     }
 
     private void loadProtectedResources()
@@ -70,5 +94,14 @@ public class MyVaadinUI extends UI
         
         navigator.navigateTo("Start");
     }
+    
+    private void destroyProtectedResources() {
+    	navigator.removeView("Start");
+    	navigator.removeView(SKILLVIEW);
+    	navigator.removeView(HELPVIEW);
+    	navigator.removeView(MEDICVIEW);
+    }
+    
+    
 
 }

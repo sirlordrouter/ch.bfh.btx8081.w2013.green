@@ -54,6 +54,16 @@ public class StartView extends VerticalLayout implements View {
 				       MyVaadinUI.navigator.navigateTo(MyVaadinUI.SETTINGSVIEW);	
 					}
 				});
+        Button buttonLogout = new Button("Logout",
+                new Button.ClickListener() {
+					private static final long serialVersionUID = -1096188732209266611L;
+
+					@Override
+					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
+				       MyVaadinUI.navigator.navigateTo("");	
+				       ((MyVaadinUI)MyVaadinUI.getCurrent()).logout();
+					}
+				});
         
         addComponent(buttonHelp);
         setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
@@ -66,6 +76,9 @@ public class StartView extends VerticalLayout implements View {
         
         addComponent(buttonSettings);
         setComponentAlignment(buttonSettings, Alignment.MIDDLE_CENTER);
+        
+        addComponent(buttonLogout);
+        setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
         
     }        
         
