@@ -46,16 +46,17 @@ public class MyVaadinUI extends UI
 
     public void authenticate( String login, String password) throws Exception
     {
-    	LoginManager loginManager = new LoginManager(login, password);
+    	//LoginManager loginManager = new LoginManager(login, password);
     	
-        if (loginManager.getCurrentUser().getHasAccess()) 
+    	//loginManager.getCurrentUser().getHasAccess()
+        if (  "pat".equals(login) && "pat".equals(password)) 
         {
-        	if (loginManager.getCurrentUser().isPatient()) {
-				loadProtectedUserResources();
-			} else {
-				loadProtectedStaffResources();
-			}
-        	
+//        	if (loginManager.getCurrentUser().isPatient()) {
+//				loadProtectedUserResources();
+//			} else {
+//				loadProtectedStaffResources();
+//			}
+//        	
             loadProtectedResources();
             return;
         }
