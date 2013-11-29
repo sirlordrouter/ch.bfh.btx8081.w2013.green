@@ -7,6 +7,7 @@ public class Model{
 
 	private List<String> skills;
 	
+	
 	public Model() {
 		skills = new ArrayList<String>();
 		

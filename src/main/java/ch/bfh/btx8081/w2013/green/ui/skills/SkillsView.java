@@ -44,7 +44,7 @@ public class SkillsView extends CustomComponent
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				// TODO Auto-generated method stub
+
 				MyVaadinUI.navigator.navigateTo("Start");
 			}
 		}));
