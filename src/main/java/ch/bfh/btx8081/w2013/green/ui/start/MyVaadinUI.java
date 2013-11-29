@@ -12,13 +12,12 @@ import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
-@Theme("mytheme")
+@Theme("dashboard")
 @SuppressWarnings("serial")
 public class MyVaadinUI extends UI
 {
@@ -64,7 +63,7 @@ public class MyVaadinUI extends UI
         }
        
        throw new Exception("Login failed!");
-
+       
     }
    
 
