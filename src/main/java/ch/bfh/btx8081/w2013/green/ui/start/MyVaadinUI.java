@@ -4,6 +4,7 @@ import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
 import ch.bfh.btx8081.w2013.green.data.Model;
+import ch.bfh.btx8081.w2013.green.data.User;
 import ch.bfh.btx8081.w2013.green.ui.HelpView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
@@ -21,7 +22,6 @@ import com.vaadin.ui.UI;
 @SuppressWarnings("serial")
 public class MyVaadinUI extends UI
 {
-	
 	public static Navigator navigator;
     public static final String HELPVIEW = "help";
     public static final String SKILLVIEW = "skill";
@@ -36,9 +36,11 @@ public class MyVaadinUI extends UI
     	
     @Override
     protected void init(VaadinRequest request) {
-        getPage().setTitle("Navigation Example");
+    	
+        getPage().setTitle("MyMentalHealth");
+		setWidth("240px");
+		setHeight("420px");
         
-        // Create a navigator to control the views
         navigator = new Navigator(this, this);   
         navigator.addView("", new LoginView());
         navigator.setErrorView(LoginView.class);
@@ -46,10 +48,10 @@ public class MyVaadinUI extends UI
 
     public void authenticate( String login, String password) throws Exception
     {
-    	//LoginManager loginManager = new LoginManager(login, password);
-    	
-    	//loginManager.getCurrentUser().getHasAccess()
-        if (  "pat".equals(login) && "pat".equals(password)) 
+    	LoginManager loginManager 
+    		= new LoginManager(new User(login, password));
+    	   	
+        if (loginManager.getCurrentUser().getHasAccess()) 
         {
 //        	if (loginManager.getCurrentUser().isPatient()) {
 //				loadProtectedUserResources();
@@ -96,6 +98,10 @@ public class MyVaadinUI extends UI
         navigator.navigateTo("Start");
     }
     
+    /**
+     * The views must be removed due to security issues. Otherwise
+     * information is accessible through the url. 
+     */
     private void destroyProtectedResources() {
     	navigator.removeView("Start");
     	navigator.removeView(SKILLVIEW);

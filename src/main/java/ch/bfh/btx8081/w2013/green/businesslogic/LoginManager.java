@@ -20,15 +20,16 @@ public class LoginManager {
 		this.currentUser = currentUser;
 	}
 
-	public LoginManager (String username, String password) {
-		currentUser = new User(username, password);
+	public LoginManager (User newUser) {
+		currentUser = newUser;
 		
 		authenticateUser();
 	}
 
 	private void authenticateUser() {
-		boolean isCorrectUserPassword = false;
-		// TODO Auto-generated method stub
+		//TODO: Change default value to false to enable user checking!!!!
+		boolean isCorrectUserPassword = true;
+		//TODO: Auto-generated method stub
 		//DataAccess get User(username,pw)
 		//set Patient true/false
 		//falls gefunden => true
