@@ -29,7 +29,7 @@ public class LoginManager {
 	private void authenticateUser() {
 		//TODO: Change default value to false to enable user checking!!!!
 		boolean isCorrectUserPassword = true;
-		//TODO: Auto-generated method stub
+
 		//DataAccess get User(username,pw)
 		//set Patient true/false
 		//falls gefunden => true

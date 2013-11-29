@@ -31,7 +31,7 @@ public class HelpView extends VerticalLayout implements View {
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				// TODO Auto-generated method stub
+
 				MyVaadinUI.navigator.navigateTo("");
 			}
 		}));

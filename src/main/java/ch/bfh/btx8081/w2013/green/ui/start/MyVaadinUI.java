@@ -3,6 +3,7 @@ package ch.bfh.btx8081.w2013.green.ui.start;
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
+import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.data.User;
 import ch.bfh.btx8081.w2013.green.ui.HelpView;
@@ -17,7 +18,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
-@Theme("dashboard")
+@Theme("mytheme")
 @SuppressWarnings("serial")
 public class MyVaadinUI extends UI
 {
@@ -47,26 +48,50 @@ public class MyVaadinUI extends UI
 
     public void authenticate( String login, String password) throws Exception
     {
+    	
+    	User currentUser = new User(login, password);
     	LoginManager loginManager 
-    		= new LoginManager(new User(login, password));
+    		= new LoginManager(currentUser);
     	   	
         if (loginManager.getCurrentUser().getHasAccess()) 
-        {
-//        	if (loginManager.getCurrentUser().isPatient()) {
-//				loadProtectedUserResources();
-//			} else {
-//				loadProtectedStaffResources();
-//			}
-//        	
-            loadProtectedResources();
+        {     	
+            loadProtectedResources(currentUser);
             return;
         }
        
        throw new Exception("Login failed!");
        
     }
-   
 
+	public void logout() {
+    	destroyProtectedResources();
+    	
+    	Notification.show("You have been logged out!");
+    }
+
+    private void loadProtectedResources(User currentUser)
+    {
+    	UserDataManager.getSingleton().setCurrentUser(currentUser);
+    	navigator.addView("Start", new StartView());
+        Model model = new Model();
+        
+        
+//    	if (loginManager.getCurrentUser().isPatient()) {
+			loadProtectedUserResources();
+//		} else {
+			loadProtectedStaffResources();
+//		}
+//
+        
+        SkillsView skillsView = new SkillsView();
+        new SkillsPresenter(skillsView, model);
+    	
+        navigator.addView(HELPVIEW, new HelpView());
+        navigator.addView(SKILLVIEW, skillsView);
+        
+        navigator.navigateTo("Start");
+    }
+    
 	private void loadProtectedUserResources() {
 		// TODO Auto-generated method stub
 		
@@ -76,26 +101,6 @@ public class MyVaadinUI extends UI
 		// TODO Auto-generated method stub
 		
 	}
-
-	public void logout() {
-    	destroyProtectedResources();
-    	
-    	Notification.show("You have been logged out!");
-    }
-
-    private void loadProtectedResources()
-    {
-    	navigator.addView("Start", new StartView());
-    	
-        Model model = new Model();
-        SkillsView skillsView = new SkillsView();
-        new SkillsPresenter(skillsView, model);
-    	
-        navigator.addView(HELPVIEW, new HelpView());
-        navigator.addView(SKILLVIEW, skillsView);
-        
-        navigator.navigateTo("Start");
-    }
     
     /**
      * The views must be removed due to security issues. Otherwise

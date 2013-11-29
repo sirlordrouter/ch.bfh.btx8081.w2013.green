@@ -58,7 +58,7 @@ public class LoginView extends VerticalLayout implements View {
 	
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
+
 		Notification.show("Welcome to the Mental Health App\nPlease log in!");
 	}
 
