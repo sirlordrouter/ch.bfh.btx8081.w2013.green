@@ -1,3 +1,12 @@
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author group_green, Johannes Gnaegi
+ * @version 29-11-2013
+ */
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +27,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
-@Theme("mytheme")
+@Theme("dashboard")
 @SuppressWarnings("serial")
 public class MyVaadinUI extends UI
 {
@@ -30,7 +39,7 @@ public class MyVaadinUI extends UI
 
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false, 
-    	ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.green.AppWidgetSet")
+    	ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.green.ui.AppWidgetSet")
     public static class Servlet extends VaadinServlet {
     }
     	
