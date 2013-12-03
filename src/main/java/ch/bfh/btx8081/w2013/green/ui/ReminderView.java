@@ -1,7 +1,10 @@
 package ch.bfh.btx8081.w2013.green.ui;
 
+import java.security.AccessControlContext;
 import java.util.ArrayList;
 import java.util.List;
+
+import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
 import com.vaadin.navigator.View;
 import com.vaadin.ui.CustomComponent;
@@ -27,17 +30,15 @@ public class ReminderView extends VerticalLayout implements IReminderView{
 	public ReminderView () {
 		
 	}
-
-
 	
 	@Override
 	public void showReminder(String medicationName) {
-		synchronized(ReminderView.this) {
-			MessageBox mb = MessageBox.showPlain(
-					Icon.INFO, 
-					"Medication", "Please Take Medication " + medicationName,
-					mbListener, ButtonId.NO, ButtonId.IGNORE, ButtonId.YES).setWidth("220px");
-		}
+		
+		MessageBox mb = MessageBox.showPlain(
+				Icon.INFO, 
+				"Medication", "Please Take Medication " + medicationName,
+				mbListener, ButtonId.NO, ButtonId.IGNORE, ButtonId.YES).setWidth("220px");
+		MyVaadinUI.getCurrent().push();
 
 	}
 

@@ -1,12 +1,4 @@
-/**
- * Berner Fachhochschule</br>
- * Medizininformatik BSc</br>
- * 
- *<p>Class Description</p>
- *
- * @author group_green
- * @version 29-11-2013
- */
+
 package ch.bfh.btx8081.w2013.green.data;
 
 import java.util.ArrayList;
@@ -15,6 +7,16 @@ import java.util.List;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.Medication;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 02-12-2013
+ */
 public class Model{
 
 	private List<String> skills;
@@ -28,11 +30,10 @@ public class Model{
 		for (int i = 0; i < 10; i++) {
 			skills.add("My own Skill " + i);
 		}
-		
-		
+				
 		medications = new ArrayList<Medication>();
 		//medications.add(new Medication("Dafalgan", new int[]{1,1,0}));
-		medications.add(new Medication("Psychopharmaka 1", new int[]{1,1,1}));
+		medications.add(new Medication("Psychopharmaka 1", new int[]{0,1,0}));
 		//medications.add(new Medication("Anti-Bipolar", new int[]{0,1,0}));
 		setDueMedications(new ArrayList<Medication>());
 	}
@@ -79,8 +80,7 @@ public class Model{
 	public void setDueMedication(Medication dueMedication) {
 		synchronized (Model.this) {
 			this.dueMedications.add(dueMedication);
-		}
-		
+		}	
 	}
 
 	/**

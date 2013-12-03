@@ -8,10 +8,6 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
-import de.steinwedel.messagebox.ButtonId;
-import de.steinwedel.messagebox.Icon;
-import de.steinwedel.messagebox.MessageBox;
-import de.steinwedel.messagebox.MessageBoxListener;
 
 /**
  * Berner Fachhochschule</br>

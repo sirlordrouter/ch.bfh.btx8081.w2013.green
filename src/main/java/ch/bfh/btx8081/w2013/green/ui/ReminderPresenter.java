@@ -10,10 +10,10 @@ import de.steinwedel.messagebox.MessageBoxListener;
 public class ReminderPresenter implements 
 	MessageBoxListener, IReminderComponentListener, IReminderListener {
 
-	private IReminderView view;
+	protected IReminderView view;
 	private Model model;
 	private String currentMedication;
-	private ReminderComponent reminder;
+	protected ReminderComponent reminder;
 	
 	public ReminderPresenter(IReminderView v, Model m, ReminderComponent rm) {
 		this.view = v;
@@ -32,13 +32,13 @@ public class ReminderPresenter implements
 		synchronized(this) {
 			switch (buttonId) {
 			case YES:
-				
+				//TODO: Happy Congratulations you took your drugs!
 				break;
 			case NO:
-				
+				//TODO: Bad habit, please change it! You have to take your drugs!
 				break;
 			case IGNORE:
-				
+				//TODO: Later is better hmmmm?
 				break;
 			default:
 				break;
@@ -48,9 +48,12 @@ public class ReminderPresenter implements
 
 	@Override
 	public void showAlert(String medicationName) {
-		synchronized (this) {
+		synchronized (ReminderPresenter.this) {
 			this.currentMedication = medicationName;
 			this.view.showReminder(medicationName);
+			
+			//TODO: Remove
+			System.out.println("Medication set!");
 		}
 			
 	}

@@ -26,13 +26,13 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 
 	private final static long ONCE_PER_DAY = 1000 * 60 * 60 * 24;
 	private final static int ZERO_MINUTES = 0;
-	private final static int FIVE_MINUTES = 5;
-	private final static int BREAKFAST = 9;
+	private final static long FIVE_MINUTES = 1000*60*5;
+	private final static int BREAKFAST = 7;
 	private final static int LUNCHTIME = 12;
 	private final static int DINNER = 19;
 	private final static int[] DUETIMES = {BREAKFAST, LUNCHTIME, DINNER};
 	
-	private List<IReminderComponentListener> listener = new ArrayList<IReminderComponentListener>();
+	private List<IReminderComponentListener> listeners = new ArrayList<IReminderComponentListener>();
 	
      Timer timer = null;
 
@@ -44,7 +44,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
      private Date getTaskStartTime(int hour) {
 
     	 GregorianCalendar cal = new GregorianCalendar(TimeZone.getTimeZone("Europe/Zurich"),  Locale.GERMANY);
-    	 cal.set(GregorianCalendar.MINUTE, 40);
+    	 cal.set(GregorianCalendar.MINUTE, 59);
     	 cal.set(GregorianCalendar.HOUR_OF_DAY, hour);	 
     	 return cal.getTime();
      }
@@ -67,7 +67,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 	@Override
 	public void showAlert(String medicationName) {
 		synchronized (ReminderComponent.this) {
-			for (IReminderComponentListener l : listener) {
+			for (IReminderComponentListener l : listeners) {
 				l.showAlert(medicationName);
 			}
 		}
@@ -77,8 +77,13 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 
 	@Override
 	public void addListener(IReminderComponentListener l) {
-		listener.add(l);
-		
+		listeners.add(l);
+	}
+
+	@Override
+	public void removeListener(IReminderComponentListener l) {
+		// TODO Auto-generated method stub
+		listeners.remove(l);
 	}
      
 //     public void addShortTimer(Medication medication, IReminderComponent listener) {
