@@ -9,17 +9,14 @@
  */
 package ch.bfh.btx8081.w2013.green.ui.start;
 
-import ch.bfh.btx8081.w2013.green.ui.ReminderView;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
 /** A start view for navigating to the other views */
-public class StartView extends ReminderView implements View {
+public class StartView extends VerticalLayout implements View {
    
 	private static final String buttonWidth = "120px";
 
@@ -28,12 +25,9 @@ public class StartView extends ReminderView implements View {
 	public StartView() {
 
 		super();
-		synchronized (this) {
-			
-		
-		
-		setWidth("240px");
-		setHeight("420px");
+
+		setWidth(MyVaadinUI.APPWIDTH);
+		setHeight(MyVaadinUI.APPHIGHT);
         
         Button buttonHelp = new Button("HELP",
                 new Button.ClickListener() {
@@ -106,7 +100,7 @@ public class StartView extends ReminderView implements View {
         buttonLogout.setWidth(buttonWidth);
         addComponent(buttonLogout);
         setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
-		}
+		
     }        
         
 	
@@ -114,12 +108,6 @@ public class StartView extends ReminderView implements View {
 	
     @Override
     public void enter(ViewChangeEvent event) {
-        //Notification.show("Welcome");
-        if (event.getNewView() instanceof StartView) {
-        	Notification.show("Welcome");
-        	
-		} else {
-			Notification.show("Goodbye");
-		}
+
     }
 }

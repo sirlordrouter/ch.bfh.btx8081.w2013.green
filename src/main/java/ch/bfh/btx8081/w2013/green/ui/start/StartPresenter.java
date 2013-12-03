@@ -7,12 +7,32 @@ import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.ui.IReminderView;
 import ch.bfh.btx8081.w2013.green.ui.ReminderPresenter;
 
-public class StartPresenter extends ReminderPresenter implements ViewChangeListener {
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 03-12-2013
+ */
+public class StartPresenter implements ViewChangeListener {
 
-	public StartPresenter(IReminderView v, Model m, ReminderComponent rm) {
-		super(v, m, rm);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Model model;
+	//TODO: add Interface for View
+	private StartView view;
+	
+	public StartPresenter(StartView v, Model m) {
+		this.model = m;
+		this.view = v;
 	}
-
+	
 	@Override
 	public void afterViewChange(ViewChangeEvent event) {
 		// TODO Auto-generated method stub
@@ -23,12 +43,6 @@ public class StartPresenter extends ReminderPresenter implements ViewChangeListe
 	
 	@Override
 	public boolean beforeViewChange(ViewChangeEvent event) {
-		
-		if (event.getOldView() instanceof StartView) {
-			reminder.removeListener(this);
-		} else if (event.getNewView() instanceof StartView) {
-			reminder.addListener(this);
-		}
 		
 		return true;
 	}

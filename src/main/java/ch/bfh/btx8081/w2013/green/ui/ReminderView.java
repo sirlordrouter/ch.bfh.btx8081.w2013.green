@@ -1,13 +1,11 @@
 package ch.bfh.btx8081.w2013.green.ui;
 
-import java.security.AccessControlContext;
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
-import com.vaadin.navigator.View;
-import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.VerticalLayout;
 
 import de.steinwedel.messagebox.ButtonId;
@@ -15,6 +13,16 @@ import de.steinwedel.messagebox.Icon;
 import de.steinwedel.messagebox.MessageBox;
 import de.steinwedel.messagebox.MessageBoxListener;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 03-12-2013
+ */
 public class ReminderView extends VerticalLayout implements IReminderView{
 
 	/**
@@ -33,11 +41,13 @@ public class ReminderView extends VerticalLayout implements IReminderView{
 	
 	@Override
 	public void showReminder(String medicationName) {
-		
+			
 		MessageBox mb = MessageBox.showPlain(
 				Icon.INFO, 
 				"Medication", "Please Take Medication " + medicationName,
-				mbListener, ButtonId.NO, ButtonId.IGNORE, ButtonId.YES).setWidth("220px");
+				mbListener, ButtonId.NO, ButtonId.IGNORE, ButtonId.YES).setWidth("300px");
+		mb.setButtonWidth("90px");
+		mb.setButtonAlignment(Alignment.BOTTOM_CENTER);
 		MyVaadinUI.getCurrent().push();
 
 	}

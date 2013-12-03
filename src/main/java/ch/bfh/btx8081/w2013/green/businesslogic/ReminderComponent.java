@@ -32,7 +32,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 	private final static int DINNER = 19;
 	private final static int[] DUETIMES = {BREAKFAST, LUNCHTIME, DINNER};
 	
-	private List<IReminderComponentListener> listeners = new ArrayList<IReminderComponentListener>();
+	private IReminderComponentListener listener;
 	
      Timer timer = null;
 
@@ -44,7 +44,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
      private Date getTaskStartTime(int hour) {
 
     	 GregorianCalendar cal = new GregorianCalendar(TimeZone.getTimeZone("Europe/Zurich"),  Locale.GERMANY);
-    	 cal.set(GregorianCalendar.MINUTE, 59);
+    	 cal.set(GregorianCalendar.MINUTE, 47);
     	 cal.set(GregorianCalendar.HOUR_OF_DAY, hour);	 
     	 return cal.getTime();
      }
@@ -66,24 +66,21 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 
 	@Override
 	public void showAlert(String medicationName) {
-		synchronized (ReminderComponent.this) {
-			for (IReminderComponentListener l : listeners) {
-				l.showAlert(medicationName);
-			}
-		}
-
 		
+		synchronized (ReminderComponent.this) {
+			
+				listener.showAlert(medicationName);
+		}
 	}
 
 	@Override
 	public void addListener(IReminderComponentListener l) {
-		listeners.add(l);
+		listener = l;
 	}
 
 	@Override
 	public void removeListener(IReminderComponentListener l) {
-		// TODO Auto-generated method stub
-		listeners.remove(l);
+		listener = l;
 	}
      
 //     public void addShortTimer(Medication medication, IReminderComponent listener) {

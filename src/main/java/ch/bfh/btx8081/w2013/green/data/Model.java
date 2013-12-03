@@ -33,7 +33,7 @@ public class Model{
 				
 		medications = new ArrayList<Medication>();
 		//medications.add(new Medication("Dafalgan", new int[]{1,1,0}));
-		medications.add(new Medication("Psychopharmaka 1", new int[]{0,1,0}));
+		medications.add(new Medication("Psychopharmaka 1", new int[]{0,0,1}));
 		//medications.add(new Medication("Anti-Bipolar", new int[]{0,1,0}));
 		setDueMedications(new ArrayList<Medication>());
 	}

@@ -25,8 +25,8 @@ public class HelpView extends ReminderView implements View {
 	public HelpView() {
 		super();
 	
-		setWidth("240px");
-		setHeight("420px");
+		setWidth(MyVaadinUI.APPWIDTH);
+		setHeight(MyVaadinUI.APPHIGHT);
 		
 		VerticalLayout vertical = new VerticalLayout ();
 		TextArea area = new TextArea();

@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
 import ch.bfh.btx8081.w2013.green.businesslogic.Medication;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
-import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
 import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.data.User;
@@ -37,16 +36,22 @@ import com.vaadin.ui.UI;
 @Theme("mytheme")
 @SuppressWarnings("serial")
 @Push(PushMode.MANUAL)
-public class MyVaadinUI extends UI implements IReminderComponentListener
+public class MyVaadinUI extends UI
 {
 	public static Navigator navigator;
+	
 	public static final String STARTVIEW = "start";
     public static final String HELPVIEW = "help";
     public static final String SKILLVIEW = "skill";
     public static final String MEDICVIEW = "medic";
     public static final String SETTINGSVIEW = "sett";
     
+    public static final String APPWIDTH = "320px";
+    public static final String APPHIGHT = "480px";
+    
     private Model model;
+    private User currentUser;
+    private ReminderComponent mc;
 
     
     @WebServlet(value = "/*", asyncSupported = true)
@@ -59,8 +64,8 @@ public class MyVaadinUI extends UI implements IReminderComponentListener
     protected void init(VaadinRequest request) {
     	
         getPage().setTitle("MyMentalHealth");
-		setWidth("240px");
-		setHeight("420px");
+		setWidth(APPWIDTH);
+		setHeight(APPHIGHT);
         
         navigator = new Navigator(this, this);   
         navigator.addView("", new LoginView());
@@ -70,7 +75,7 @@ public class MyVaadinUI extends UI implements IReminderComponentListener
     public void authenticate( String login, String password) throws Exception
     {
     	
-    	User currentUser = new User(login, password);
+    	currentUser = new User(login, password);
     	LoginManager loginManager 
     		= new LoginManager(currentUser);
     	   	
@@ -93,11 +98,10 @@ public class MyVaadinUI extends UI implements IReminderComponentListener
     private void loadProtectedResources(User currentUser)
     {
     	UserDataManager.getSingleton().setCurrentUser(currentUser);
-    	
-    	
+    	  	
     	navigator.addView("Start", new StartView());
         model = new Model();
-        ReminderComponent mc = new ReminderComponent();
+        mc = new ReminderComponent();
         
         for (Medication medication : model.getMedications()) {
 			mc.addNormalTimer(medication);
@@ -110,30 +114,27 @@ public class MyVaadinUI extends UI implements IReminderComponentListener
 //		}
 //
 			
-		StartView startView = new StartView();
-		StartPresenter sp = new StartPresenter(startView, model, mc);
-		navigator.addView(STARTVIEW, startView);
-			
-        SkillsView skillsView = new SkillsView();
-        new SkillsPresenter(skillsView, model);
-        navigator.addView(SKILLVIEW, skillsView);
-        
-        HelpView helpView = new HelpView();
-        new ReminderPresenter(helpView, model, mc);
-        navigator.addView(HELPVIEW, new HelpView());
-        
-        navigator.navigateTo("Start");
-        navigator.addViewChangeListener(sp);
     }
     
 	private void loadProtectedUserResources() {
-		// TODO Auto-generated method stub
+
+		StartView startView = new StartView();
+		StartPresenter sp = new StartPresenter(startView, model);
+		navigator.addView(STARTVIEW, startView);
+		navigator.addViewChangeListener(sp);	
+		navigator.navigateTo("Start");
 		
+		SkillsView skillsView = new SkillsView();
+		new SkillsPresenter(skillsView, model);
+		navigator.addView(SKILLVIEW, skillsView);
+		
+		HelpView helpView = new HelpView();
+		new ReminderPresenter(helpView, model, mc);
+		navigator.addView(HELPVIEW, new HelpView());
 	}
 	
     private void loadProtectedStaffResources() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
     
     /**
@@ -146,14 +147,6 @@ public class MyVaadinUI extends UI implements IReminderComponentListener
     	navigator.removeView(HELPVIEW);
     	navigator.removeView(MEDICVIEW);
     }
-
-	@Override
-	public void showAlert(String medicationName) {
-		synchronized (this) {
-			this.model.setDueMedication(new Medication(medicationName, new int[]{0,0,0}));
-		}
-		
-	}
 
     
     

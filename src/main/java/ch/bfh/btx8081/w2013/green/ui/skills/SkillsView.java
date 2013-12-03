@@ -36,8 +36,8 @@ public class SkillsView extends CustomComponent
 
 	public SkillsView () {	
 		
-		setWidth("240px");
-		setHeight("420px");
+		setWidth(MyVaadinUI.APPWIDTH);
+		setHeight(MyVaadinUI.APPHIGHT);
 
 		VerticalLayout vertical = new VerticalLayout();
 		// listSelectSkills

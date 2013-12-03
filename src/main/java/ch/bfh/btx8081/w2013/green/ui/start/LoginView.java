@@ -35,8 +35,8 @@ public class LoginView extends VerticalLayout implements View {
     private VerticalLayout loginLayout;
     
 	public LoginView() {
-		setWidth("240px");
-		setHeight("420px");
+		setWidth(MyVaadinUI.APPWIDTH);
+		setHeight(MyVaadinUI.APPHIGHT);
 		addStyleName("sidebar");
 		
 		btnLogin.addClickListener ( new Button.ClickListener()

@@ -22,5 +22,5 @@
 
     <inherits name="de.steinwedel.messagebox.WidgetSet" />
 
-    <inherits name="com.github.wolfie.refresher.RefresherWidgetset" />
+    
 </module>
