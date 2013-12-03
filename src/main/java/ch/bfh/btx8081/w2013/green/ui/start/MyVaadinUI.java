@@ -1,21 +1,17 @@
-/**
- * Berner Fachhochschule</br>
- * Medizininformatik BSc</br>
- * 
- *<p>Class Description</p>
- *
- * @author group_green, Johannes Gnaegi
- * @version 29-11-2013
- */
+
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
+import ch.bfh.btx8081.w2013.green.businesslogic.Medication;
+import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
+import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
 import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.data.User;
 import ch.bfh.btx8081.w2013.green.ui.HelpView;
+import ch.bfh.btx8081.w2013.green.ui.ReminderPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 
@@ -27,16 +23,28 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author group_green, Johannes Gnaegi
+ * @version 29-11-2013
+ */
 @Theme("dashboard")
 @SuppressWarnings("serial")
-public class MyVaadinUI extends UI
+public class MyVaadinUI extends UI implements IReminderComponentListener
 {
 	public static Navigator navigator;
     public static final String HELPVIEW = "help";
     public static final String SKILLVIEW = "skill";
     public static final String MEDICVIEW = "medic";
     public static final String SETTINGSVIEW = "sett";
+    
+    private Model model;
 
+    
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false, 
     	ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.green.ui.AppWidgetSet")
@@ -82,8 +90,12 @@ public class MyVaadinUI extends UI
     {
     	UserDataManager.getSingleton().setCurrentUser(currentUser);
     	navigator.addView("Start", new StartView());
-        Model model = new Model();
+        model = new Model();
+        ReminderComponent mc = new ReminderComponent();
         
+        for (Medication medication : model.getMedications()) {
+			mc.addNormalTimer(medication);
+		}
         
 //    	if (loginManager.getCurrentUser().isPatient()) {
 			loadProtectedUserResources();
@@ -91,12 +103,14 @@ public class MyVaadinUI extends UI
 			loadProtectedStaffResources();
 //		}
 //
-        
+			
         SkillsView skillsView = new SkillsView();
         new SkillsPresenter(skillsView, model);
-    	
-        navigator.addView(HELPVIEW, new HelpView());
         navigator.addView(SKILLVIEW, skillsView);
+        
+        HelpView helpView = new HelpView();
+        new ReminderPresenter(helpView, model, mc);
+        navigator.addView(HELPVIEW, new HelpView());
         
         navigator.navigateTo("Start");
     }
@@ -121,6 +135,15 @@ public class MyVaadinUI extends UI
     	navigator.removeView(HELPVIEW);
     	navigator.removeView(MEDICVIEW);
     }
+
+	@Override
+	public void showAlert(String medicationName) {
+		synchronized (this) {
+			this.model.setDueMedication(new Medication(medicationName, new int[]{0,0,0}));
+		}
+		
+	}
+
     
     
 

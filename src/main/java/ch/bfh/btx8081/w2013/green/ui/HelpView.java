@@ -1,12 +1,3 @@
-/**
- * Berner Fachhochschule</br>
- * Medizininformatik BSc</br>
- * 
- *<p>Class Description</p>
- *
- * @author group_green
- * @version 29-11-2013
- */
 package ch.bfh.btx8081.w2013.green.ui;
 
 
@@ -17,19 +8,31 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
+import de.steinwedel.messagebox.ButtonId;
+import de.steinwedel.messagebox.Icon;
+import de.steinwedel.messagebox.MessageBox;
+import de.steinwedel.messagebox.MessageBoxListener;
 
-public class HelpView extends VerticalLayout implements View {
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author group_green
+ * @version 29-11-2013
+ */
+public class HelpView extends ReminderView implements View {
 
 	private static final long serialVersionUID = 1L;
 
-
 	public HelpView() {
+		super();
 	
 		setWidth("240px");
 		setHeight("420px");
 		
 		VerticalLayout vertical = new VerticalLayout ();
-		
 		TextArea area = new TextArea();
 		area.setWidth("240px");
 		area.setHeight("380px");
@@ -41,7 +44,7 @@ public class HelpView extends VerticalLayout implements View {
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
 
-				MyVaadinUI.navigator.navigateTo("");
+				MyVaadinUI.navigator.navigateTo("Start");
 			}
 		}));
 		
@@ -51,8 +54,8 @@ public class HelpView extends VerticalLayout implements View {
 	
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
-		
+
+		View view = event.getNewView();
 	}
 
 }

@@ -1,12 +1,3 @@
-/**
- * Berner Fachhochschule</br>
- * Medizininformatik BSc</br>
- * 
- *<p>Class Description</p>
- *
- * @author group_green, Johannes Gnaegi
- * @version 29-11-2013
- */
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import com.vaadin.event.ShortcutListener;
@@ -24,6 +15,15 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickListener;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author group_green, Johannes Gnaegi
+ * @version 29-11-2013
+ */
 public class LoginView extends VerticalLayout implements View {
 
 	private static final long serialVersionUID = 2033204732401987887L;

@@ -27,6 +27,9 @@ public class StartView extends VerticalLayout implements View {
 		setWidth("240px");
 		setHeight("420px");
 
+		synchronized (this) {
+			
+		
         
         Button buttonHelp = new Button("HELP",
                 new Button.ClickListener() {
@@ -99,7 +102,7 @@ public class StartView extends VerticalLayout implements View {
         buttonLogout.setWidth(buttonWidth);
         addComponent(buttonLogout);
         setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
-          
+		}
     }        
         
     @Override
