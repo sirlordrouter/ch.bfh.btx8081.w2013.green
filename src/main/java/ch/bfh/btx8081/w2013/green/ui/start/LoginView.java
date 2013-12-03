@@ -19,6 +19,8 @@ public class LoginView extends VerticalLayout implements View {
     private PasswordField password = new PasswordField ( "Password");
     private VerticalLayout vertical = new VerticalLayout();
     
+    //TODO: How is Login handled in multiple user Sessions???
+    
 	public LoginView() {
 		setWidth("240px");
 		setHeight("420px");
