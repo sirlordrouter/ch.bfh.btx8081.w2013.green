@@ -109,6 +109,9 @@ public class StartView extends ReminderView implements View {
 		}
     }        
         
+	
+	
+	
     @Override
     public void enter(ViewChangeEvent event) {
         //Notification.show("Welcome");

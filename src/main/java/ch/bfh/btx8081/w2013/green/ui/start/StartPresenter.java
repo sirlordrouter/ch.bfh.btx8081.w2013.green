@@ -19,6 +19,8 @@ public class StartPresenter extends ReminderPresenter implements ViewChangeListe
 		
 	}
 
+	//TODO: ViewChangeEvent in ReminderPresenter auslagern wenn möglich so, dass der Benutzer nichts tun muss
+	
 	@Override
 	public boolean beforeViewChange(ViewChangeEvent event) {
 		
