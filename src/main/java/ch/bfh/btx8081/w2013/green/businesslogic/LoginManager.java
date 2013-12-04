@@ -32,10 +32,10 @@ public class LoginManager {
 	public LoginManager (User newUser) {
 		currentUser = newUser;
 		
-		authenticateUser();
+		authenticateUserAccess();
 	}
 
-	private void authenticateUser() {
+	private void authenticateUserAccess() {
 		//TODO: Change default value to false to enable user checking!!!!
 		boolean isCorrectUserPassword = true;
 
@@ -43,7 +43,7 @@ public class LoginManager {
 		//set Patient true/false
 		//falls gefunden => true
 		if (isCorrectUserPassword) {
-			currentUser.setHasAccess(true);
+			//currentUser.setHasAccess(true);
 		}
 		
 	}
