@@ -4,8 +4,11 @@ public class User {
 
 	private String username;
 	private String password;
-	private boolean isPatient = true;
+	/* User hasAccess == true, if the entered Username and Password is registered in the DB */
 	private boolean hasAccess = false;
+	/* User isPatient == true, if Patientviews are connected with his Account*/
+	private boolean isPatient = true;
+	
 	
 	/**
 	 * @return the username
