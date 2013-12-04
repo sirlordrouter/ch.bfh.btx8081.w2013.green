@@ -52,12 +52,12 @@ public class MyVaadinUI extends UI
     	User currentUser = new User(login, password);
     	LoginManager loginManager 
     		= new LoginManager(currentUser);
+    	loadProtectedResources(currentUser);
     	   	
-        if (loginManager.getCurrentUser().getHasAccess()) 
+ /*       if (loginManager.getCurrentUser().getHasAccess()) 
         {     	
-            loadProtectedResources(currentUser);
             return;
-        }
+        } */
        
        throw new Exception("Login failed!");
        
