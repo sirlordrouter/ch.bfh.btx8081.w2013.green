@@ -4,21 +4,34 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
 /** A start view for navigating to the other views */
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author green
+ * @version 04-12-2013
+ */
 public class StartView extends VerticalLayout implements View {
    
 	private static final String buttonWidth = "120px";
 
 	private static final long serialVersionUID = -1105303206323973784L;
 
+	
 	public StartView() {
 		setWidth("240px");
 		setHeight("420px");
-
-        
+		
+		Label l = new Label();
+		
         Button buttonHelp = new Button("HELP",
                 new Button.ClickListener() {
 					private static final long serialVersionUID = -3742574718530257633L;
