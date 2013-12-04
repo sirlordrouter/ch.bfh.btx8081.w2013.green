@@ -1,11 +1,18 @@
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * 
+ *<p>Class Description</p>
+ *
+ * @author group_green, Johannes Gnaegi
+ * @version 29-11-2013
+ */
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
 /** A start view for navigating to the other views */
@@ -27,11 +34,12 @@ public class StartView extends VerticalLayout implements View {
 
 	
 	public StartView() {
-		setWidth("240px");
-		setHeight("420px");
-		
-		Label l = new Label();
-		
+
+		super();
+
+		setWidth(MyVaadinUI.APPWIDTH);
+		setHeight(MyVaadinUI.APPHIGHT);
+        
         Button buttonHelp = new Button("HELP",
                 new Button.ClickListener() {
 					private static final long serialVersionUID = -3742574718530257633L;
@@ -103,11 +111,14 @@ public class StartView extends VerticalLayout implements View {
         buttonLogout.setWidth(buttonWidth);
         addComponent(buttonLogout);
         setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
-          
+		
     }        
         
+	
+	
+	
     @Override
     public void enter(ViewChangeEvent event) {
-        Notification.show("Welcome");
+
     }
 }

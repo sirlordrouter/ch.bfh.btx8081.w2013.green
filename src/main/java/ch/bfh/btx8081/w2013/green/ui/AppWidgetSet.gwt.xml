@@ -19,4 +19,8 @@
 	<!-- <set-configuration-property name="devModeRedirectEnabled" value="true" 
 		/> -->
 
+
+    <inherits name="de.steinwedel.messagebox.WidgetSet" />
+
+    
 </module>
