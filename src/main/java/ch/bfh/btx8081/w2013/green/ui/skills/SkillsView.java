@@ -19,9 +19,15 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.VerticalLayout;
+
+import de.steinwedel.messagebox.ButtonId;
+import de.steinwedel.messagebox.Icon;
+import de.steinwedel.messagebox.MessageBox;
 
 public class SkillsView extends CustomComponent 
 	implements View, ISkillView,
@@ -43,21 +49,44 @@ public class SkillsView extends CustomComponent
 		// listSelectSkills
 		listSelectSkills = new ListSelect();
 		
-		listSelectSkills.setWidth("240px");
-		listSelectSkills.setHeight("380px");
+		listSelectSkills.setWidth("340px");
+		listSelectSkills.setHeight("400px");
 		vertical.addComponent(listSelectSkills);
 		
-		// buttonBack
-		vertical.addComponent(new Button("Back", new Button.ClickListener() {
+		HorizontalLayout buttonLayout = new HorizontalLayout();
+		buttonLayout.addComponent(
+			new Button("Back", new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
 
-				MyVaadinUI.navigator.navigateTo("Start");
+				MyVaadinUI.navigator.navigateTo(MyVaadinUI.STARTVIEW);
 			}
 		}));
+		
+		buttonLayout.addComponent(
+				new Button("Detail", new Button.ClickListener() {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
+
+					MessageBox mb = MessageBox.showPlain(
+							Icon.NONE, 
+							"Skill Description",
+							"Sit on the floor and get your \n"+
+							"Phone out of your pocket.\n" +
+							"Awwwww wait you have it already\n" +
+							"Don't you?", 
+							ButtonId.YES).setWidth("300px");
+					mb.setButtonWidth("150px");
+					mb.setButtonAlignment(Alignment.BOTTOM_CENTER);
+					
+				}
+			}));
 	
+		vertical.addComponent(buttonLayout);
 		//addComponent(vertical);
 		setCompositionRoot(vertical);
 	}
