@@ -7,18 +7,18 @@ import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComp
 public class MedicationTask extends TimerTask {
 
 	
-	private String medicationName;
+	private Medication medicationName;
 	private IReminderComponentListener reminder;
 	
-	public MedicationTask(String medicationName, IReminderComponentListener reminderComponent) {
-		this.medicationName = medicationName;
+	public MedicationTask(Medication medication, IReminderComponentListener reminderComponent) {
+		this.medicationName = medication;
 		this.reminder = reminderComponent;
 	}
 	
 	@Override
 	public void run() {
 		synchronized (this) {
-			reminder.showAlert(medicationName);
+			reminder.pushReminder(medicationName);
 		}
 		
 	}

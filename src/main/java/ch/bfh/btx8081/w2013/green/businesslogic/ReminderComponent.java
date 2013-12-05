@@ -44,7 +44,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
      private Date getTaskStartTime(int hour) {
 
     	 GregorianCalendar cal = new GregorianCalendar(TimeZone.getTimeZone("Europe/Zurich"),  Locale.GERMANY);
-    	 cal.set(GregorianCalendar.MINUTE, 47);
+    	 cal.set(GregorianCalendar.MINUTE, 40);
     	 cal.set(GregorianCalendar.HOUR_OF_DAY, hour);	 
     	 return cal.getTime();
      }
@@ -54,7 +54,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
     	 for (int i = 0; i < dueTimes.length; i++) {
 			if (dueTimes[i] == 1) {
 				 timer.scheduleAtFixedRate(
-			 				new MedicationTask(medication.getMedicationName(), this), 
+			 				new MedicationTask(medication, this), 
 			 				getTaskStartTime(DUETIMES[i]), 
 			 				FIVE_MINUTES);
 			}
@@ -65,11 +65,11 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
      }
 
 	@Override
-	public void showAlert(String medicationName) {
+	public void pushReminder(Medication medicationName) {
 		
 		synchronized (ReminderComponent.this) {
 			
-				listener.showAlert(medicationName);
+				listener.pushReminder(medicationName);
 		}
 	}
 

@@ -1,12 +1,25 @@
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ * 
+ *<p>Class describes a Medication Object. </p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 04-12-2013
+ */
 public class Medication {
 	
-	public enum DueTime {Morgen, Mittag, Abend};
-
 	private String medicationName;
 	private int[] dueTimes = new int[3];
 	
+	/**
+	 * 
+	 * @param medicationName
+	 * @param dueTimes
+	 */
 	public Medication(String medicationName, int[] dueTimes) {
 		this.setMedicationName(medicationName);
 		this.setDueTimes(dueTimes);

@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
+import ch.bfh.btx8081.w2013.green.businesslogic.Medication;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.ui.IReminderView.IReminderListener;
@@ -22,7 +23,7 @@ public class ReminderPresenter implements
 
 	protected IReminderView view;
 	private Model model;
-	private String currentMedication;
+	private Medication currentMedication;
 	protected ReminderComponent reminder;
 	
 	public ReminderPresenter(IReminderView v, Model m, ReminderComponent rm) {
@@ -57,10 +58,10 @@ public class ReminderPresenter implements
 	}
 
 	@Override
-	public void showAlert(String medicationName) {
+	public void pushReminder(Medication medicationName) {
 		synchronized (ReminderPresenter.this) {
 			this.currentMedication = medicationName;
-			this.view.showReminder(medicationName);
+			this.view.showReminder(medicationName.getMedicationName());
 			
 			//TODO: Remove
 			System.out.println("Medication set!");
