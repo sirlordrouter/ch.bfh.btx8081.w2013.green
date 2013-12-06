@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+*.iml
 
 # Project Files #
 #################
@@ -14,6 +15,7 @@
 .settings
 bin/
 target/
+.idea/
 src/main/webapp/*
 !src/main/webapp/VAADIN/
 !src/main/webapp/META-INF/
