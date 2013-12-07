@@ -15,7 +15,7 @@ import ch.bfh.btx8081.w2013.green.ui.start.StartView;
  * Modul 8081, HS2013</br>
  *
  *<p>
- * Class that which holds the components for the Authenticated state.
+ * Class that describes the authenticated state of the Application.
  * </p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
@@ -32,27 +32,21 @@ public class AuthenticatedState extends AuthenticationState {
     private Model model;
     private ReminderComponent mc;
 
+    /**
+     * Constructor for this state implementation.
+     * @param ui the UI as context for the state pattern.
+     */
     public AuthenticatedState(MyVaadinUI ui) {
         super(ui);
     }
 
+    /**
+     * loads global used components for both, patient and care staff when entering
+     * the authenticated state.
+     */
     @Override
     protected void entryState() {
-        loadProtectedResources();
-    }
 
-    @Override
-    protected void exitState() {
-        destroyProtectedResources();
-    }
-
-    @Override
-    public void handleLogout() {
-        super.context.setState(new UnauthenticatedState(context));
-    }
-
-    private void loadProtectedResources()
-    {
         super.navigator.addView(STARTVIEW, new StartView(navigator));
         super.navigator.setErrorView(StartView.class);
 
@@ -69,9 +63,29 @@ public class AuthenticatedState extends AuthenticationState {
 //		} else {
         loadProtectedStaffResources();
 //		}
-//
     }
 
+    /**
+     * Remove everything on exiting the authenticated state.
+     */
+    @Override
+    protected void exitState() {
+        cleanProtectedResources();
+    }
+
+    /**
+     * handles the correct logout and moves to the unauthenticated state.
+     */
+    @Override
+    public void handleLogout() {
+        super.context.setState(new UnauthenticatedState(context));
+    }
+
+
+
+    /**
+     * loads patient specific data and views.
+     */
     private void loadProtectedUserResources() {
 
         StartView startView = new StartView(navigator);
@@ -89,15 +103,18 @@ public class AuthenticatedState extends AuthenticationState {
         super.navigator.addView(HELPVIEW, helpView);
     }
 
+    /**
+     * loads staff specific data and views.
+     */
     private void loadProtectedStaffResources() {
         // TODO Auto-generated method stub
     }
 
     /**
      * The views must be removed due to security issues. Otherwise
-     * information is accessible through the url.
+     * information is accessible through url.
      */
-    private void destroyProtectedResources() {
+    private void cleanProtectedResources() {
         super.navigator.removeView("Start");
         super.navigator.removeView(SKILLVIEW);
         super.navigator.removeView(HELPVIEW);
