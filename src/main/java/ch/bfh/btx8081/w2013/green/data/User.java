@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2013.green.data;
 
+
 public class User {
 
 	private String username;

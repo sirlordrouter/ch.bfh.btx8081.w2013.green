@@ -31,8 +31,8 @@ public class LoginManager {
 
 	public LoginManager (User newUser) {
 		currentUser = newUser;
-		
 		authenticateUserAccess();
+
 	}
 
 	private void authenticateUserAccess() {
