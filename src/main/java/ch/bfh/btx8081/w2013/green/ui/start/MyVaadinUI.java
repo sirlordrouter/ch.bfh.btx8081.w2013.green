@@ -33,12 +33,14 @@ public class MyVaadinUI extends UI
 {
     public static final String APPWIDTH = "320px";
     public static final String APPHIGHT = "480px";
-
+    
+    //Different States of Authentication implemented using the State Pattern
     private AuthenticationState state;
 
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false,
     	ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.green.ui.AppWidgetSet")
+   
     public static class Servlet extends VaadinServlet {
     }
 
@@ -59,8 +61,8 @@ public class MyVaadinUI extends UI
 
     public void authenticate( String login, String password) throws Exception
     {
-        User currentUser     = new User(login, password);
-        LoginManager  loginManager	= new LoginManager(currentUser);
+        User currentUser = new User(login, password);
+        LoginManager loginManager = new LoginManager(currentUser);
 
         //TODO: loginManager.getCurrentUser().getHasAccess())
         if (true) {

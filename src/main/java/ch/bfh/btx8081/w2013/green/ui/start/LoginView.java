@@ -19,7 +19,7 @@ import com.vaadin.ui.Button.ClickListener;
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
  * 
- *<p>Class Description</p>
+ *<p>First View of the Application presented to User to enter his credentials</p>
  *
  * @author group_green, Johannes Gnaegi
  * @version 29-11-2013
@@ -121,7 +121,7 @@ public class LoginView extends VerticalLayout implements View {
                 try
                 {
                     ((MyVaadinUI)MyVaadinUI.getCurrent())
-                    	.authenticate((String)login.getValue (), (String)password.getValue ());     
+                    	.authenticate((String)login.getValue(), (String)password.getValue());     
                 }
                 catch ( Exception e )
                 {
