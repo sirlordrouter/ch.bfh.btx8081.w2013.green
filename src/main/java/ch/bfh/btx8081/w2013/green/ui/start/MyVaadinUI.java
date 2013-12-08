@@ -61,11 +61,14 @@ public class MyVaadinUI extends UI
 
     public void authenticate( String login, String password) throws Exception
     {
+    	
+    	boolean isAuthenticated;
         User currentUser = new User(login, password);
         LoginManager loginManager = new LoginManager(currentUser);
 
-        //TODO: loginManager.getCurrentUser().getHasAccess())
-        if (true) {
+        isAuthenticated = loginManager.authenticateUserAccess(login,password);
+ 
+        if (isAuthenticated) {
             UserDataManager.getSingleton().setCurrentUser(currentUser);
             this.state.exit();
             this.state.handleLogin();

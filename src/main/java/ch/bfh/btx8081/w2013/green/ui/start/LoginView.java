@@ -50,7 +50,7 @@ public class LoginView extends VerticalLayout implements View {
                 try
                 {
                     ((MyVaadinUI)MyVaadinUI.getCurrent())
-                    	.authenticate((String)login.getValue (), (String)password.getValue ());     
+                    	.authenticate(login.getValue(), (String)password.getValue());     
                 }
                 catch ( Exception e )
                 {
@@ -121,7 +121,7 @@ public class LoginView extends VerticalLayout implements View {
                 try
                 {
                     ((MyVaadinUI)MyVaadinUI.getCurrent())
-                    	.authenticate((String)login.getValue(), (String)password.getValue());     
+                    	.authenticate((String)username.getValue(), (String)password.getValue());     
                 }
                 catch ( Exception e )
                 {

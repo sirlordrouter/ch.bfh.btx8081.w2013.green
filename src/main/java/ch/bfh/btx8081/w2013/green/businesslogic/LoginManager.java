@@ -9,11 +9,13 @@
  */
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
+import ch.bfh.btx8081.w2013.green.data.RegisteredUserDB;
 import ch.bfh.btx8081.w2013.green.data.User;
 
 public class LoginManager {
 
 	private User currentUser;
+	private RegisteredUserDB userDB = new RegisteredUserDB();
 	
 	/**
 	 * @return the currentUser
@@ -31,20 +33,12 @@ public class LoginManager {
 
 	public LoginManager (User newUser) {
 		currentUser = newUser;
-		authenticateUserAccess();
 
 	}
 
-	private void authenticateUserAccess() {
-		//TODO: Change default value to false to enable user checking!!!!
-		boolean isCorrectUserPassword = true;
-
-		//DataAccess get User(username,pw)
-		//set Patient true/false
-		//falls gefunden => true
-		if (isCorrectUserPassword) {
-			//currentUser.setHasAccess(true);
-		}
+	public boolean authenticateUserAccess(String loginUsername, String loginPassword) {
+		boolean loginVerified = userDB.verifyLogin(loginUsername, loginPassword);
+		return loginVerified;
 		
 	}
 }
