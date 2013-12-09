@@ -9,6 +9,8 @@
  */
 package ch.bfh.btx8081.w2013.green.ui.start;
 
+import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -27,15 +29,17 @@ import com.vaadin.ui.VerticalLayout;
  * @version 04-12-2013
  */
 public class StartView extends VerticalLayout implements View {
-   
+
+    private Navigator navigator;
+
 	private static final String buttonWidth = "120px";
 
 	private static final long serialVersionUID = -1105303206323973784L;
 
 	
-	public StartView() {
+	public StartView(Navigator nav) {
 
-		super();
+        this.navigator = nav;
 
 		setWidth(MyVaadinUI.APPWIDTH);
 		setHeight(MyVaadinUI.APPHIGHT);
@@ -46,7 +50,7 @@ public class StartView extends VerticalLayout implements View {
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       MyVaadinUI.navigator.navigateTo(MyVaadinUI.HELPVIEW);	
+				       navigator.navigateTo(AuthenticatedState.HELPVIEW);
 					}
 				}
         );
@@ -61,7 +65,7 @@ public class StartView extends VerticalLayout implements View {
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       MyVaadinUI.navigator.navigateTo(MyVaadinUI.SKILLVIEW);	
+				       navigator.navigateTo(AuthenticatedState.SKILLVIEW);
 					}
 				}
         );
@@ -75,7 +79,7 @@ public class StartView extends VerticalLayout implements View {
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       MyVaadinUI.navigator.navigateTo(MyVaadinUI.MEDICVIEW);	
+				       navigator.navigateTo(AuthenticatedState.MEDICVIEW);
 					}
 				}
         );
@@ -89,7 +93,7 @@ public class StartView extends VerticalLayout implements View {
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       MyVaadinUI.navigator.navigateTo(MyVaadinUI.SETTINGSVIEW);	
+				       navigator.navigateTo(AuthenticatedState.SETTINGSVIEW);
 					}
 				}
         );
@@ -103,7 +107,7 @@ public class StartView extends VerticalLayout implements View {
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       MyVaadinUI.navigator.navigateTo("");	
+				       navigator.navigateTo("");
 				       ((MyVaadinUI)MyVaadinUI.getCurrent()).logout();
 					}
 				}
@@ -111,12 +115,9 @@ public class StartView extends VerticalLayout implements View {
         buttonLogout.setWidth(buttonWidth);
         addComponent(buttonLogout);
         setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
-		
     }        
         
-	
-	
-	
+
     @Override
     public void enter(ViewChangeEvent event) {
 

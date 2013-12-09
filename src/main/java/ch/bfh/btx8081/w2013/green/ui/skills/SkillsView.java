@@ -12,8 +12,10 @@ package ch.bfh.btx8081.w2013.green.ui.skills;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
@@ -35,15 +37,18 @@ public class SkillsView extends CustomComponent
 
 	private static final long serialVersionUID = 1L;
 	private ListSelect listSelectSkills;
+    private Navigator navigator;
 	
 	/* Only the presenter registers one listener... */
     List<ISkillViewListener> listeners =
             new ArrayList<ISkillViewListener>();
 
-	public SkillsView () {	
+	public SkillsView (Navigator nav) {
 		
 		setWidth(MyVaadinUI.APPWIDTH);
 		setHeight(MyVaadinUI.APPHIGHT);
+
+        navigator = nav;
 
 		VerticalLayout vertical = new VerticalLayout();
 		// listSelectSkills
@@ -60,8 +65,7 @@ public class SkillsView extends CustomComponent
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-
-				MyVaadinUI.navigator.navigateTo(MyVaadinUI.STARTVIEW);
+navigator.navigateTo(AuthenticatedState.STARTVIEW);
 			}
 		}));
 		
@@ -91,20 +95,16 @@ public class SkillsView extends CustomComponent
 		setCompositionRoot(vertical);
 	}
 
-	
 	@Override
 	public void enter(ViewChangeEvent event) {
 		// TODO Auto-generated method stub
-		
 	}
-
 
 	@Override
 	public void buttonClick(ClickEvent event) {
 		for (ISkillViewListener listener : listeners) {
 			listener.buttonClick(event.getButton().getCaption().charAt(0));
 		}
-		
 	}
 
 	@Override
@@ -112,15 +112,11 @@ public class SkillsView extends CustomComponent
 		for (String skill : skills) {
 			listSelectSkills.addItem(skill);
 		}
-		
 	}
 
 	@Override
 	public void addListener(ISkillViewListener l) {
 		listeners.add(l);
 	}
-
-
-
 
 }

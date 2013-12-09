@@ -3,17 +3,13 @@ package ch.bfh.btx8081.w2013.green.ui;
 
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
+import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
-
-import de.steinwedel.messagebox.ButtonId;
-import de.steinwedel.messagebox.Icon;
-import de.steinwedel.messagebox.MessageBox;
 
 /**
  * Berner Fachhochschule</br>
@@ -27,9 +23,12 @@ import de.steinwedel.messagebox.MessageBox;
 public class HelpView extends ReminderView implements View {
 
 	private static final long serialVersionUID = 1L;
+    private Navigator navigator;
 
-	public HelpView() {
+	public HelpView(Navigator nav) {
 		super();
+
+        this.navigator = nav;
 	
 		setWidth(MyVaadinUI.APPWIDTH);
 		setHeight(MyVaadinUI.APPHIGHT);
@@ -46,17 +45,14 @@ public class HelpView extends ReminderView implements View {
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-
-				MyVaadinUI.navigator.navigateTo(MyVaadinUI.STARTVIEW);
+navigator.navigateTo(AuthenticatedState.STARTVIEW);
 			}
 		}));
-		
 
 		addComponent(vertical);
 	
 	}
-	
-	
+
 	@Override
 	public void enter(ViewChangeEvent event) {
 
