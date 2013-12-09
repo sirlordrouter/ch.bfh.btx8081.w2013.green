@@ -1,12 +1,3 @@
-/**
- * Berner Fachhochschule</br>
- * Medizininformatik BSc</br>
- * 
- *<p>Class Description</p>
- *
- * @author group_green, Johannes Gnaegi
- * @version 29-11-2013
- */
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
@@ -17,18 +8,32 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
 
-/** A start view for navigating to the other views */
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  * 
- *<p>Class Description</p>
+ *<p>Describes the Startview with all the Navigation Buttons to the specific views in the App.
+ * For simplicity this class does not require a Presenter class, as it gets to complex when
+ * implementing the MVP here. Another reason is that there will be no data bound to this class.</p>
  *
- * @author green
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 04-12-2013
  */
-public class StartView extends VerticalLayout implements View {
+public class StartView extends VerticalLayout implements View{
+
+    private static final String BUTTON_HELP = "HELP";
+
+    private static final String BUTTON_SKILLS = "SKILLS";
+
+    private static final String BUTTON_MEDICATION = "MEDICATION";
+
+    private static final String BUTTON_SETTINGS = "SETTINGS";
+
+    private static final String BUTTON_LOGOUT = "LOGOUT";
 
     private Navigator navigator;
 
@@ -36,7 +41,6 @@ public class StartView extends VerticalLayout implements View {
 
 	private static final long serialVersionUID = -1105303206323973784L;
 
-	
 	public StartView(Navigator nav) {
 
         this.navigator = nav;
@@ -44,7 +48,7 @@ public class StartView extends VerticalLayout implements View {
 		setWidth(MyVaadinUI.APPWIDTH);
 		setHeight(MyVaadinUI.APPHIGHT);
         
-        Button buttonHelp = new Button("HELP",
+        Button buttonHelp = new Button(BUTTON_HELP,
                 new Button.ClickListener() {
 					private static final long serialVersionUID = -3742574718530257633L;
 
@@ -59,7 +63,7 @@ public class StartView extends VerticalLayout implements View {
         setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
         
         
-        Button buttonSkills = new Button("SKILLS",
+        Button buttonSkills = new Button(BUTTON_SKILLS,
                 new Button.ClickListener() {
 					private static final long serialVersionUID = -7539174022613115079L;
 
@@ -73,7 +77,7 @@ public class StartView extends VerticalLayout implements View {
         addComponent(buttonSkills);
         setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
         
-        Button buttonMedic = new Button("MEDICATION",
+        Button buttonMedic = new Button(BUTTON_MEDICATION,
                 new Button.ClickListener() {
 					private static final long serialVersionUID = -5170311461467440566L;
 
@@ -87,7 +91,7 @@ public class StartView extends VerticalLayout implements View {
         addComponent(buttonMedic);
         setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
                       
-        Button buttonSettings = new Button("SETTINGS",
+        Button buttonSettings = new Button(BUTTON_SETTINGS,
                 new Button.ClickListener() {
 					private static final long serialVersionUID = -1096188732209266611L;
 
@@ -101,7 +105,7 @@ public class StartView extends VerticalLayout implements View {
         addComponent(buttonSettings);
         setComponentAlignment(buttonSettings, Alignment.MIDDLE_CENTER);
         
-        Button buttonLogout = new Button("Logout",
+        Button buttonLogout = new Button(BUTTON_LOGOUT,
                 new Button.ClickListener() {
 					private static final long serialVersionUID = -1096188732209266611L;
 
@@ -116,10 +120,10 @@ public class StartView extends VerticalLayout implements View {
         addComponent(buttonLogout);
         setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
     }        
-        
 
     @Override
     public void enter(ViewChangeEvent event) {
 
     }
+
 }

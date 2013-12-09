@@ -8,7 +8,6 @@ import ch.bfh.btx8081.w2013.green.ui.ReminderPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
-import ch.bfh.btx8081.w2013.green.ui.start.StartPresenter;
 import ch.bfh.btx8081.w2013.green.ui.start.StartView;
 
 /**
@@ -25,10 +24,30 @@ import ch.bfh.btx8081.w2013.green.ui.start.StartView;
  */
 public class AuthenticatedState extends AuthenticationState {
 
+    /**
+     * Global accessible Reference for the Startview name as it is stored in
+     * the navigator.
+     */
     public static final String STARTVIEW = "";
+    /**
+     * Global accessible Reference for the Helpview name as it is stored in
+     * the navigator.
+     */
     public static final String HELPVIEW = "help";
+    /**
+     * Global accessible Reference for the Skillview name as it is stored in
+     * the navigator.
+     */
     public static final String SKILLVIEW = "skill";
+    /**
+     * Global accessible Reference for the Medicationview name as it is stored in
+     * the navigator.
+     */
     public static final String MEDICVIEW = "medic";
+    /**
+     * Global accessible Reference for the Settingsview name as it is stored in
+     * the navigator.
+     */
     public static final String SETTINGSVIEW = "sett";
 
     private Model model;
@@ -83,21 +102,17 @@ public class AuthenticatedState extends AuthenticationState {
         super.context.setState(new UnauthenticatedState(context));
     }
 
-
-
     /**
      * loads patient specific data and views.
      */
     private void loadProtectedUserResources() {
 
         StartView startView = new StartView(navigator);
-        StartPresenter sp = new StartPresenter(startView, model);
         super.navigator.addView(STARTVIEW, startView);
-        super.navigator.addViewChangeListener(sp);
         super.navigator.navigateTo(STARTVIEW);
 
-        SkillsView skillsView = new SkillsView(navigator);
-        new SkillsPresenter(skillsView, model);
+        SkillsView skillsView = new SkillsView();
+        new SkillsPresenter(skillsView, model, navigator);
         super.navigator.addView(SKILLVIEW, skillsView);
 
         HelpView helpView = new HelpView(navigator);
