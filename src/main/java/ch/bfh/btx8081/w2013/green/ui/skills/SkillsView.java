@@ -35,8 +35,7 @@ import de.steinwedel.messagebox.MessageBox;
  * @version 09-12-2013
  */
 public class SkillsView extends CustomComponent 
-	implements View, ISkillView,
-	ClickListener {
+	implements View, ISkillView {
 
     public static final String BUTTON_BACK = "Back";
 
@@ -67,7 +66,9 @@ public class SkillsView extends CustomComponent
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-                buttonClick(event);
+                for (ISkillViewListener listener : listeners) {
+                    listener.buttonClick(event.getButton().getCaption().charAt(0));
+                }
 			}
 		}));
 		
@@ -83,7 +84,7 @@ public class SkillsView extends CustomComponent
 							"Skill Description",
 							"Sit on the floor and get your \n"+
 							"Phone out of your pocket.\n" +
-							"Awwwww wait you have it already\n" +
+							"Awwwww wait you have it already in you Hands\n" +
 							"Don't you?", 
 							ButtonId.YES).setWidth("300px");
 					mb.setButtonWidth("150px");
@@ -100,13 +101,6 @@ public class SkillsView extends CustomComponent
 	@Override
 	public void enter(ViewChangeEvent event) {
 		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void buttonClick(ClickEvent event) {
-		for (ISkillViewListener listener : listeners) {
-			listener.buttonClick(event.getButton().getCaption().charAt(0));
-		}
 	}
 
 	@Override

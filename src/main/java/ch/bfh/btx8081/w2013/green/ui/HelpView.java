@@ -1,15 +1,21 @@
 package ch.bfh.btx8081.w2013.green.ui;
 
 
+import ch.bfh.btx8081.w2013.green.ui.medication.ReminderView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Berner Fachhochschule</br>
@@ -20,32 +26,41 @@ import com.vaadin.ui.VerticalLayout;
  * @author group_green
  * @version 29-11-2013
  */
-public class HelpView extends ReminderView implements View {
+public class HelpView extends VerticalLayout implements View, IHelpView {
 
 	private static final long serialVersionUID = 1L;
     private Navigator navigator;
+    private List<IHelpViewListener> listeners = new ArrayList<IHelpViewListener>();
 
 	public HelpView(Navigator nav) {
-		super();
-
         this.navigator = nav;
 	
 		setWidth(MyVaadinUI.APPWIDTH);
 		setHeight(MyVaadinUI.APPHIGHT);
 		
 		VerticalLayout vertical = new VerticalLayout ();
-		TextArea area = new TextArea();
-		area.setWidth(MyVaadinUI.APPWIDTH);
-		area.setHeight("380px");
-		vertical.addComponent(area);
-		
+
+        String contacts = "";
+
+        for (int i = 0; i <= 10; i++) {
+
+            Label l = new Label();
+            l.setContentMode(ContentMode.HTML);
+            l.setWidth("100px");
+            l.setValue("Physicologist\n" +
+                    "<a href=\"tel:5551234567\">Tel: (555)123-4567</a>\n" +
+                    "<a href=\"tel:5551234567\">Home: (555)123-4567</a>\n\n\n");
+
+           vertical.addComponent(l);
+        }
+
 		vertical.addComponent(
 			new Button("Back", new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-navigator.navigateTo(AuthenticatedState.STARTVIEW);
+                    navigator.navigateTo(AuthenticatedState.STARTVIEW);
 			}
 		}));
 
@@ -55,8 +70,16 @@ navigator.navigateTo(AuthenticatedState.STARTVIEW);
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-
 		View view = event.getNewView();
 	}
 
+    @Override
+    public void addListener(IHelpViewListener listener) {
+        listeners.add(listener);
+    }
+
+    @Override
+    public void setMedicationList() {
+
+    }
 }

@@ -3,8 +3,10 @@ package ch.bfh.btx8081.w2013.green.ui.state;
 import ch.bfh.btx8081.w2013.green.businesslogic.Medication;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
+import ch.bfh.btx8081.w2013.green.ui.HelpPresenter;
 import ch.bfh.btx8081.w2013.green.ui.HelpView;
-import ch.bfh.btx8081.w2013.green.ui.ReminderPresenter;
+import ch.bfh.btx8081.w2013.green.ui.medication.MedicationPresenter;
+import ch.bfh.btx8081.w2013.green.ui.medication.MedicationView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
@@ -19,7 +21,7 @@ import ch.bfh.btx8081.w2013.green.ui.start.StartView;
  * Class that describes the authenticated state of the Application.
  * </p>
  *
- * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @author Johannes Gnaegi, gnagj1@bfh.ch
  * @version 07-12-2013
  */
 public class AuthenticatedState extends AuthenticationState {
@@ -116,8 +118,13 @@ public class AuthenticatedState extends AuthenticationState {
         super.navigator.addView(SKILLVIEW, skillsView);
 
         HelpView helpView = new HelpView(navigator);
-        new ReminderPresenter(helpView, model, mc);
+        new HelpPresenter(helpView, model, navigator);
         super.navigator.addView(HELPVIEW, helpView);
+
+        MedicationView medView = new MedicationView();
+        new MedicationPresenter(medView, model, navigator, mc);
+        super.navigator.addView(MEDICVIEW, medView);
+
     }
 
     /**
@@ -132,7 +139,7 @@ public class AuthenticatedState extends AuthenticationState {
      * information is accessible through url.
      */
     private void cleanProtectedResources() {
-        super.navigator.removeView("Start");
+        super.navigator.removeView(STARTVIEW);
         super.navigator.removeView(SKILLVIEW);
         super.navigator.removeView(HELPVIEW);
         super.navigator.removeView(MEDICVIEW);
