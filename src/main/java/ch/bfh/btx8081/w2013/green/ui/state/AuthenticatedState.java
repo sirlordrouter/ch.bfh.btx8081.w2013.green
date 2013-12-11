@@ -8,8 +8,7 @@ import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.data.PatientDataAccess;
-import ch.bfh.btx8081.w2013.green.data.PatientModel;
-import ch.bfh.btx8081.w2013.green.data.ProfessionalDataAccess;
+import ch.bfh.btx8081.w2013.green.data.SettingsDataAccess;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetView;
@@ -127,7 +126,7 @@ public class AuthenticatedState extends AuthenticationState {
 		super.navigator.addView(START_VIEW, new StartView(navigator));
 		super.navigator.setErrorView(StartView.class);
 
-		this.model = new PatientModel();
+		this.model = new Model();
 		this.mc = new ReminderComponent();
 
 		UserDataManager manager = new PatientUserDataManager(LoginManager
@@ -165,7 +164,7 @@ public class AuthenticatedState extends AuthenticationState {
 
 		UserDataManager manager = new ProfessionalUserDataManager(LoginManager
 				.getLoginManager().getCurrentUser(),
-				new ProfessionalDataAccess());
+				new SettingsDataAccess());
 
 		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView());
 		super.navigator.setErrorView(StartSettingsView.class);

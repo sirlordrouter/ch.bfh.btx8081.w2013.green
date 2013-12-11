@@ -1,7 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
-import ch.bfh.btx8081.w2013.green.data.Medication;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import de.steinwedel.messagebox.ButtonId;

@@ -1,6 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
-import ch.bfh.btx8081.w2013.green.data.Medication;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 
 import java.util.List;
 

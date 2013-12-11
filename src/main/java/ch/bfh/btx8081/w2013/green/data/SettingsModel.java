@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2013.green.data;
 
+import ch.bfh.btx8081.w2013.green.data.entities.Patient;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +16,11 @@ import java.util.List;
  *
  * @version 11-12-2013
  */
-public class ProfessionalModel extends Model {
+public class SettingsModel extends Model {
 
     private List<Patient> patients = new ArrayList<Patient>();
 
-
-    public ProfessionalModel() {
+    public SettingsModel() {
 
     }
 

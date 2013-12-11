@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2013.green.data;
+package ch.bfh.btx8081.w2013.green.data.entities;
 
 /**
  * Berner Fachhochschule</br>

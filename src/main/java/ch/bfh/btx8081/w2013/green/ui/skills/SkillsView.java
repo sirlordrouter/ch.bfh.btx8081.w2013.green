@@ -3,7 +3,7 @@ package ch.bfh.btx8081.w2013.green.ui.skills;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.bfh.btx8081.w2013.green.data.Skill;
+import ch.bfh.btx8081.w2013.green.data.entities.Skill;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
 import com.vaadin.navigator.View;
