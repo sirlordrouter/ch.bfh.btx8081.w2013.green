@@ -1,6 +1,6 @@
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
-import ch.bfh.btx8081.w2013.green.data.DataAccess;
+import ch.bfh.btx8081.w2013.green.data.IDataAccess;
 import ch.bfh.btx8081.w2013.green.data.User;
 
 /**
@@ -14,45 +14,39 @@ import ch.bfh.btx8081.w2013.green.data.User;
  *
  * @version 11-12-2013
  */
-public class UserDataManager {
+public abstract class UserDataManager {
 
-	private static UserDataManager singleton = null;
 
-	private User currentUser = null;
+	protected User currentUser = null;
 	//TODO: Replace dataAccess with interface
-	private DataAccess dataAccess = null;
+	protected IDataAccess dataAccess = null;
 
     /**
-     * getter for the <code>UserDataManger</code> instance.
-     *
-     * @return
-     *      the instance of the <code>UserDataManager</code>
+     *  the Constructor
      */
-	public static UserDataManager getSingleton() { 
-		if (singleton == null) {
-				singleton = new UserDataManager();
-		}
-	    return singleton;
-	}
+	protected UserDataManager() {	}
 
     /**
-     *  the Constructor for this singleton
+     *  the Constructor
      */
-	private UserDataManager() {	}
+    protected UserDataManager(User currentUser, IDataAccess dataAccess) {
+
+        this.currentUser = currentUser;
+        this.dataAccess = dataAccess;
+
+    }
 
     /**
      * Gets all the Data related to this User
      */
-	public void getUserData() {
-		
-	}
+	protected void getUserData() { }
 
 	/**
      * getter for the current User.
      *
 	 * @return the currentUser
 	 */
-	public User getCurrentUser() {
+	public final User getCurrentUser() {
 		return this.currentUser;
 	}
 
@@ -61,7 +55,7 @@ public class UserDataManager {
      *
 	 * @param currentUser the currentUser to set
 	 */
-	public void setCurrentUser(User currentUser) {
+	public final void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
 

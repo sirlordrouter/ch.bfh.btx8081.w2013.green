@@ -2,7 +2,11 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
+import ch.bfh.btx8081.w2013.green.businesslogic.PatientUserDataManager;
+import ch.bfh.btx8081.w2013.green.businesslogic.ProfessionalUserDataManager;
 import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
+import ch.bfh.btx8081.w2013.green.data.PatientDataAccess;
+import ch.bfh.btx8081.w2013.green.data.ProfessionalDataAccess;
 import ch.bfh.btx8081.w2013.green.data.User;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticationState;
 import ch.bfh.btx8081.w2013.green.ui.state.UnauthenticatedState;
@@ -69,7 +73,15 @@ public class MyVaadinUI extends UI
         isAuthenticated = loginManager.authenticateUserAccess(login,password);
  
         if (true) {
-            UserDataManager.getSingleton().setCurrentUser(currentUser);
+            if (true) {
+                UserDataManager manager
+                        = new PatientUserDataManager(currentUser, new PatientDataAccess());
+
+            } else {
+                UserDataManager manager
+                        = new ProfessionalUserDataManager(currentUser, new ProfessionalDataAccess());
+            }
+
             this.state.exit();
             this.state.handleLogin();
         }

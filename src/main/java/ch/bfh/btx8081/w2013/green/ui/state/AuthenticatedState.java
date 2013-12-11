@@ -3,6 +3,7 @@ package ch.bfh.btx8081.w2013.green.ui.state;
 import ch.bfh.btx8081.w2013.green.data.Medication;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
+import ch.bfh.btx8081.w2013.green.data.PatientModel;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpView;
 import ch.bfh.btx8081.w2013.green.ui.medication.MedicationPresenter;
@@ -73,7 +74,7 @@ public class AuthenticatedState extends AuthenticationState {
         super.navigator.addView(START_VIEW, new StartView(navigator));
         super.navigator.setErrorView(StartView.class);
 
-        this.model = new Model();
+        this.model = new PatientModel();
         this.mc = new ReminderComponent();
 
         //TODO: Remove to Generator
