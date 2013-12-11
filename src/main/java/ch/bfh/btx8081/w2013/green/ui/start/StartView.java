@@ -8,9 +8,6 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
@@ -25,6 +22,8 @@ import java.util.List;
  */
 public class StartView extends VerticalLayout implements View{
 
+    private static final long serialVersionUID = -1105303206323973784L;
+
     private static final String BUTTON_HELP = "HELP";
 
     private static final String BUTTON_SKILLS = "SKILLS";
@@ -35,18 +34,17 @@ public class StartView extends VerticalLayout implements View{
 
     private static final String BUTTON_LOGOUT = "LOGOUT";
 
+    private static final String BUTTON_WIDTH = "120px";
+
     private Navigator navigator;
 
-	private static final String buttonWidth = "120px";
-
-	private static final long serialVersionUID = -1105303206323973784L;
 
 	public StartView(Navigator nav) {
 
         this.navigator = nav;
 
-		setWidth(MyVaadinUI.APPWIDTH);
-		setHeight(MyVaadinUI.APPHIGHT);
+		setWidth(MyVaadinUI.APP_WIDTH);
+		setHeight(MyVaadinUI.APP_HIGHT);
         
         Button buttonHelp = new Button(BUTTON_HELP,
                 new Button.ClickListener() {
@@ -54,11 +52,11 @@ public class StartView extends VerticalLayout implements View{
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       navigator.navigateTo(AuthenticatedState.HELPVIEW);
+				       navigator.navigateTo(AuthenticatedState.HELP_VIEW);
 					}
 				}
         );
-        buttonHelp.setWidth(buttonWidth);
+        buttonHelp.setWidth(BUTTON_WIDTH);
         addComponent(buttonHelp);
         setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
         
@@ -69,11 +67,11 @@ public class StartView extends VerticalLayout implements View{
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       navigator.navigateTo(AuthenticatedState.SKILLVIEW);
+				       navigator.navigateTo(AuthenticatedState.SKILL_VIEW);
 					}
 				}
         );
-        buttonSkills.setWidth(buttonWidth);
+        buttonSkills.setWidth(BUTTON_WIDTH);
         addComponent(buttonSkills);
         setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
         
@@ -83,11 +81,11 @@ public class StartView extends VerticalLayout implements View{
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       navigator.navigateTo(AuthenticatedState.MEDICVIEW);
+				       navigator.navigateTo(AuthenticatedState.MEDIC_VIEW);
 					}
 				}
         );
-        buttonMedic.setWidth(buttonWidth);
+        buttonMedic.setWidth(BUTTON_WIDTH);
         addComponent(buttonMedic);
         setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
                       
@@ -97,11 +95,11 @@ public class StartView extends VerticalLayout implements View{
 
 					@Override
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				       navigator.navigateTo(AuthenticatedState.SETTINGSVIEW);
+				       navigator.navigateTo(AuthenticatedState.SETTINGS_VIEW);
 					}
 				}
         );
-        buttonSettings.setWidth(buttonWidth);
+        buttonSettings.setWidth(BUTTON_WIDTH);
         addComponent(buttonSettings);
         setComponentAlignment(buttonSettings, Alignment.MIDDLE_CENTER);
         
@@ -116,7 +114,7 @@ public class StartView extends VerticalLayout implements View{
 					}
 				}
         );
-        buttonLogout.setWidth(buttonWidth);
+        buttonLogout.setWidth(BUTTON_WIDTH);
         addComponent(buttonLogout);
         setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
     }        

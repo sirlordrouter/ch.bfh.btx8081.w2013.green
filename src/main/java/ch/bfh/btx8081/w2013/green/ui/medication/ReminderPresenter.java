@@ -20,20 +20,21 @@ import de.steinwedel.messagebox.MessageBoxListener;
 public class ReminderPresenter implements 
 	MessageBoxListener, IReminderComponentListener, IReminderView.IReminderListener {
 
-	protected IReminderView view;
-	private Model model;
-	private Medication currentMedication;
-	protected ReminderComponent reminder;
+    protected ReminderComponent reminder = null;
+	protected IReminderView view = null;
+
+	private Model model = null;
+	private Medication currentMedication = null;
 	
 	public ReminderPresenter(IReminderView v, Model m, ReminderComponent rm) {
 		this.view = v;
 		this.model = m;
-		reminder = rm;
+		this.reminder = rm;
 		
 		this.view.setReminderAnswerListener(this);
 		this.view.addListener(this);
 		
-		reminder.addListener(this);
+		this.reminder.addListener(this);
 	}
 	
 	@Override
@@ -41,15 +42,15 @@ public class ReminderPresenter implements
 		synchronized(this) {
 			switch (buttonId) {
 			case YES:
-                view.showNotification("Happy Congratulations you took your drugs!");
+                this.view.showNotification("Happy Congratulations you took your drugs!");
 				//TODO: Happy Congratulations you took your drugs!
 				break;
 			case NO:
-                view.showNotification("Bad habit, please change it! You have to take your drugs!");
+                this.view.showNotification("Bad habit, please change it! You have to take your drugs!");
 				//TODO: Bad habit, please change it! You have to take your drugs!
 				break;
 			case IGNORE:
-                view.showNotification("Later is better hmmmm?");
+                this.view.showNotification("Later is better hmmmm?");
 				//TODO: Later is better hmmmm?
 				break;
 			default:

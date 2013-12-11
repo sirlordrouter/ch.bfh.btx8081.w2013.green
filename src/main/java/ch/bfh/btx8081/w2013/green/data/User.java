@@ -3,8 +3,8 @@ package ch.bfh.btx8081.w2013.green.data;
 
 public class User {
 
-	private String username;
-	private String password;
+	private String username = null;
+	private String password = null;
 	
 	// TODO get Name and FirstName from DB to display in Views
 	
@@ -44,7 +44,7 @@ public class User {
 	 * @return the password
 	 */
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	/**

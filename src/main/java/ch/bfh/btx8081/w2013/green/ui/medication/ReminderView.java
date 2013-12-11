@@ -34,7 +34,7 @@ public class ReminderView extends VerticalLayout implements IReminderView{
 	/* Only the presenter registers one listener... */
     private List<IReminderListener> listeners =
             new ArrayList<IReminderListener>();
-    private MessageBoxListener mbListener;
+    private MessageBoxListener mbListener = null;
 
 	public ReminderView () {
 		
@@ -60,11 +60,11 @@ public class ReminderView extends VerticalLayout implements IReminderView{
 
     @Override
 	public void addListener(IReminderListener l) {
-		listeners.add(l);	
+		this.listeners.add(l);
 	}
 
 	@Override
 	public void setReminderAnswerListener(MessageBoxListener l) {
-		mbListener = l;
+		this.mbListener = l;
 	}
 }

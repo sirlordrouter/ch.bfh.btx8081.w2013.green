@@ -22,9 +22,9 @@ import com.vaadin.navigator.Navigator;
  */
 public class SkillsPresenter implements ISkillViewListener {
 
-	private SkillsView view;
-	private Model model;
-    private Navigator navigator;
+	private SkillsView view = null;
+	private Model model = null;
+    private Navigator navigator = null;
 
     /**
      *
@@ -55,7 +55,7 @@ public class SkillsPresenter implements ISkillViewListener {
 
         switch (operation) {
             case 'B' :
-                navigator.navigateTo(AuthenticatedState.STARTVIEW);
+                navigator.navigateTo(AuthenticatedState.START_VIEW);
                 break;
             default:
                 break;

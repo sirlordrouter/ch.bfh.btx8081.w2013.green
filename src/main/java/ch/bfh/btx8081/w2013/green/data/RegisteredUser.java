@@ -11,49 +11,50 @@ package ch.bfh.btx8081.w2013.green.data;
  */
 public class RegisteredUser {
 	
-	private String username;
-	private String password;
-	private String firstname;
-	private String lastname;
+	private String username = null;
+	private String password = null;
+	private String firstname = null;
+	private String lastname = null;
 	
 	// @isPatient has access to 
-	private boolean isPatient;
+	private boolean isPatient = false;
 	// @isAdmin has access to settings
-	private boolean isAdmin;
+	private boolean isAdmin = false;
 
 	
 	public RegisteredUser(String username, String password, String firstname, String lastname, boolean isPatient, boolean isAdmin){
-		this.username=username;
-		this.password=password;
-		this.firstname=firstname;
-		this.lastname=lastname;
-		this.isPatient=isPatient;
-		this.isAdmin=isAdmin;
-		
+		this.username = username;
+		this.password = password;
+
+		this.firstname = firstname;
+		this.lastname = lastname;
+
+		this.isPatient = isPatient;
+		this.isAdmin = isAdmin;
 	}
 	
 	protected String getUsername(){
-		return username;
+		return this.username;
 	}
 	
 	protected String getPassword(){
-		return password;
+		return this.password;
 	}
 	
 	protected String getFirstname(){
-		return firstname;
+		return this.firstname;
 	}
 	
 	protected String getLastname(){
-		return lastname;
+		return this.lastname;
 	}
 	
 	protected boolean getIsPatient(){
-		return isPatient;
+		return this.isPatient;
 	}
 	
 	protected boolean getIsAdmin(){
-		return isAdmin;
+		return this.isAdmin;
 	}
 	
 }

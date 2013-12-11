@@ -29,12 +29,12 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 
         super();
 
-        setWidth(MyVaadinUI.APPWIDTH);
-        setHeight(MyVaadinUI.APPHIGHT);
+        this.setWidth(MyVaadinUI.APP_WIDTH);
+        this.setHeight(MyVaadinUI.APP_HIGHT);
 
         VerticalLayout vertical = new VerticalLayout ();
         TextArea area = new TextArea();
-        area.setWidth(MyVaadinUI.APPWIDTH);
+        area.setWidth(MyVaadinUI.APP_WIDTH);
         area.setHeight("380px");
         vertical.addComponent(area);
 
@@ -55,7 +55,7 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 
     @Override
     public void addListener(IMedicationViewListener listener) {
-        listeners.add(listener);
+        this.listeners.add(listener);
     }
 
     @Override

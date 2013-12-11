@@ -17,11 +17,13 @@ import com.vaadin.navigator.Navigator;
         */
 public class MedicationPresenter extends ReminderPresenter implements IMedicationView.IMedicationViewListener {
 
-    private Navigator navigator;
-    private IMedicationView view;
+    private Navigator navigator = null;
+    private IMedicationView view = null;
 
     public MedicationPresenter (ReminderView v, Model m, Navigator n, ReminderComponent rc) {
+
         super(v,m,rc);
+
         this.navigator = n;
         this.view = (IMedicationView) v;
 
@@ -33,7 +35,7 @@ public class MedicationPresenter extends ReminderPresenter implements IMedicatio
 
         switch (c) {
             case 'B' :
-                navigator.navigateTo(AuthenticatedState.STARTVIEW);
+                this.navigator.navigateTo(AuthenticatedState.START_VIEW);
                 break;
             default:
                 break;

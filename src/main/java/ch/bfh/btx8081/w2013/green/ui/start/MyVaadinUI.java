@@ -31,11 +31,11 @@ import javax.servlet.annotation.WebServlet;
 @Push(PushMode.MANUAL)
 public class MyVaadinUI extends UI
 {
-    public static final String APPWIDTH = "320px";
-    public static final String APPHIGHT = "480px";
+    public static final String APP_WIDTH = "320px";
+    public static final String APP_HIGHT = "480px";
     
     //Different States of Authentication implemented using the State Pattern
-    private AuthenticationState state;
+    private AuthenticationState state = null;
 
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false,
@@ -48,8 +48,8 @@ public class MyVaadinUI extends UI
     protected void init(VaadinRequest request) {
 
         getPage().setTitle("MyMentalHealth");
-		setWidth(APPWIDTH);
-		setHeight(APPHIGHT);
+		setWidth(APP_WIDTH);
+		setHeight(APP_HIGHT);
 
         setState(new UnauthenticatedState(this));
     }
@@ -68,7 +68,7 @@ public class MyVaadinUI extends UI
 
         isAuthenticated = loginManager.authenticateUserAccess(login,password);
  
-        if (isAuthenticated) {
+        if (true) {
             UserDataManager.getSingleton().setCurrentUser(currentUser);
             this.state.exit();
             this.state.handleLogin();

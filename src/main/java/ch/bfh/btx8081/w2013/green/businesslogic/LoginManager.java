@@ -14,7 +14,7 @@ import ch.bfh.btx8081.w2013.green.data.User;
 
 public class LoginManager {
 
-	private User currentUser;
+	private User currentUser = null;
 	private RegisteredUserDB userDB = new RegisteredUserDB();
 	
 	/**

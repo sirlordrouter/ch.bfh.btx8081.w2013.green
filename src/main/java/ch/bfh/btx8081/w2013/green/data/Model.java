@@ -19,23 +19,23 @@ import ch.bfh.btx8081.w2013.green.businesslogic.Medication;
  */
 public class Model{
 
-	private List<String> skills;
-	private List<Medication> medications;
-	private List<Medication> dueMedications;
+	private List<String> skills = null;
+	private List<Medication> medications = null;
+	private List<Medication> dueMedications = null;
 	
 	
 	public Model() {
-		skills = new ArrayList<String>();
+		this.skills = new ArrayList<String>();
 		
 		for (int i = 0; i < 10; i++) {
-			skills.add("My own Skill " + i);
+			this.skills.add("My own Skill " + i);
 		}
 				
-		medications = new ArrayList<Medication>();
+		this.medications = new ArrayList<Medication>();
 		//medications.add(new Medication("Dafalgan", new int[]{1,1,0}));
-		medications.add(new Medication("Psychopharmaka 1", new int[]{0,0,1}));
+		this.medications.add(new Medication("Psychopharmaka 1", new int[]{0,0,1}));
 		//medications.add(new Medication("Anti-Bipolar", new int[]{0,1,0}));
-		setDueMedications(new ArrayList<Medication>());
+		this.setDueMedications(new ArrayList<Medication>());
 	}
 
 	public List<String> getSkills() {
@@ -50,7 +50,7 @@ public class Model{
 	 * @return the medications
 	 */
 	public List<Medication> getMedications() {
-		return medications;
+		return this.medications;
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Model{
 	 * @return the dueMedications
 	 */
 	public synchronized List<Medication> getDueMedications() {
-		return dueMedications;
+		return this.dueMedications;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class Model{
 	}
 
 	/**
-	 * @param dueMedications the dueMedications to set
+	 *
 	 */
 	public synchronized void clearDueMedications() {
 		this.dueMedications.clear();

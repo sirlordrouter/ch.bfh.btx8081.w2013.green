@@ -12,7 +12,7 @@ package ch.bfh.btx8081.w2013.green.businesslogic;
  */
 public class Medication {
 	
-	private String medicationName;
+	private String medicationName = null;
 	private int[] dueTimes = new int[3];
 	
 	/**
@@ -29,7 +29,7 @@ public class Medication {
 	 * @return the medicationName
 	 */
 	public String getMedicationName() {
-		return medicationName;
+		return this.medicationName;
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class Medication {
 	 * @return the dueTimes
 	 */
 	public int[] getDueTimes() {
-		return dueTimes;
+		return this.dueTimes;
 	}
 
 	/**

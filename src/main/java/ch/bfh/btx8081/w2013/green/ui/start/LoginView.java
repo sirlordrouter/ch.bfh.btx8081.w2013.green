@@ -32,16 +32,16 @@ public class LoginView extends VerticalLayout implements View {
     private TextField login = new TextField ("Username");
     private PasswordField password = new PasswordField ( "Password");
     private VerticalLayout vertical = new VerticalLayout();
-    private VerticalLayout loginLayout;
+    private VerticalLayout loginLayout = null;
     
     //TODO: How is Login handled in multiple user Sessions???
     
 	public LoginView() {
-		setWidth(MyVaadinUI.APPWIDTH);
-		setHeight(MyVaadinUI.APPHIGHT);
+		setWidth(MyVaadinUI.APP_WIDTH);
+		setHeight(MyVaadinUI.APP_HIGHT);
 		addStyleName("sidebar");
 		
-		btnLogin.addClickListener ( new Button.ClickListener()
+		this.btnLogin.addClickListener ( new Button.ClickListener()
         {
 			private static final long serialVersionUID = -3802341930269958858L;
 
@@ -65,9 +65,9 @@ public class LoginView extends VerticalLayout implements View {
 	private void initLogin() {
 		addStyleName("login");
 
-        loginLayout = new VerticalLayout();
-        loginLayout.setSizeFull();
-        loginLayout.addStyleName("login-layout");
+        this.loginLayout = new VerticalLayout();
+        this.loginLayout.setSizeFull();
+        this.loginLayout.addStyleName("login-layout");
         addComponent(loginLayout);
 
         final CssLayout loginPanel = new CssLayout();
@@ -134,10 +134,10 @@ public class LoginView extends VerticalLayout implements View {
 
         loginPanel.addComponent(fields);
 
-        loginLayout.addComponent(loginPanel);
-        loginLayout.setComponentAlignment(loginPanel, Alignment.MIDDLE_CENTER);
+        this.loginLayout.addComponent(loginPanel);
+        this.loginLayout.setComponentAlignment(loginPanel, Alignment.MIDDLE_CENTER);
 		
-		addComponent(loginLayout);
+		addComponent(this.loginLayout);
 		
 		
 		

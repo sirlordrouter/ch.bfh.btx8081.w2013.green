@@ -26,16 +26,16 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 	private final static int ZERO_MINUTES = 0;
 	private final static long FIVE_MINUTES = 1000*60*5;
 	private final static int BREAKFAST = 7;
-	private final static int LUNCHTIME = 12;
+	private final static int LUNCH_TIME = 12;
 	private final static int DINNER = 19;
-	private final static int[] DUETIMES = {BREAKFAST, LUNCHTIME, DINNER};
+	private final static int[] DUETIMES = {BREAKFAST, LUNCH_TIME, DINNER};
 	
-	private IReminderComponentListener listener;
+	private IReminderComponentListener listener = null;
 	
-     Timer timer = null;
+     private Timer timer = null;
 
      public ReminderComponent() {
-    	 timer = new Timer();
+    	 this.timer = new Timer();
     	 
      }
      
@@ -51,7 +51,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
     	 int[] dueTimes = medication.getDueTimes();
     	 for (int i = 0; i < dueTimes.length; i++) {
 			if (dueTimes[i] == 1) {
-				 timer.scheduleAtFixedRate(
+				 this.timer.scheduleAtFixedRate(
 			 				new MedicationTask(medication, this), 
 			 				getTaskStartTime(DUETIMES[i]), 
 			 				FIVE_MINUTES);
@@ -67,18 +67,18 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 		
 		synchronized (ReminderComponent.this) {
 			
-				listener.pushReminder(medicationName);
+				this.listener.pushReminder(medicationName);
 		}
 	}
 
 	@Override
 	public void addListener(IReminderComponentListener l) {
-		listener = l;
+		this.listener = l;
 	}
 
 	@Override
 	public void removeListener(IReminderComponentListener l) {
-		listener = l;
+		this.listener = l;
 	}
      
 //     public void addShortTimer(Medication medication, IReminderComponent listener) {

@@ -3,15 +3,11 @@ package ch.bfh.btx8081.w2013.green.ui.skills;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
@@ -37,25 +33,26 @@ import de.steinwedel.messagebox.MessageBox;
 public class SkillsView extends CustomComponent 
 	implements View, ISkillView {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String BUTTON_BACK = "Back";
 
-	private static final long serialVersionUID = 1L;
-	private ListSelect listSelectSkills;
+	private ListSelect listSelectSkills = null;
 	
 	/* Only the presenter registers one listener... */
-    List<ISkillViewListener> listeners =
+    private List<ISkillViewListener> listeners =
             new ArrayList<ISkillViewListener>();
 
 	public SkillsView () {
 		
-		setWidth(MyVaadinUI.APPWIDTH);
-		setHeight(MyVaadinUI.APPHIGHT);
+		this.setWidth(MyVaadinUI.APP_WIDTH);
+		this.setHeight(MyVaadinUI.APP_HIGHT);
 
 		VerticalLayout vertical = new VerticalLayout();
 		// listSelectSkills
-		listSelectSkills = new ListSelect();
+		this.listSelectSkills = new ListSelect();
 		
-		listSelectSkills.setWidth("340px");
+		this.listSelectSkills.setWidth("340px");
 		listSelectSkills.setHeight("400px");
 		vertical.addComponent(listSelectSkills);
 		
@@ -106,13 +103,13 @@ public class SkillsView extends CustomComponent
 	@Override
 	public void setSkills(List<String> skills) {
 		for (String skill : skills) {
-			listSelectSkills.addItem(skill);
+			this.listSelectSkills.addItem(skill);
 		}
 	}
 
 	@Override
 	public void addListener(ISkillViewListener l) {
-		listeners.add(l);
+		this.listeners.add(l);
 	}
 
 }

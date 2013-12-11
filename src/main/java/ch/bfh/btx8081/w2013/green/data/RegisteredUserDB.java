@@ -14,6 +14,9 @@ import java.util.ArrayList;
  */
 
 public class RegisteredUserDB {
+
+    private ArrayList<RegisteredUser> registeredUserList = new ArrayList<RegisteredUser>();
+
 	// creation of default users
 	private RegisteredUser admin = new RegisteredUser("admin","Vaadmin", "admin", "admin",  true, true);	
 	private RegisteredUser dagde1 = new RegisteredUser("dagde1","dagde1", "Esma", "Dagdas", true, true);
@@ -22,24 +25,21 @@ public class RegisteredUserDB {
 	private RegisteredUser medim1 = new RegisteredUser("medim1","medim1", "Meryam", "Medini", true, true);
 	private RegisteredUser vandj2 = new RegisteredUser("vandj2","vandj2", "Jan-Wiebe", "van der Sluis", true, true);
 	private RegisteredUser vonkc2 = new RegisteredUser("vonkc2","vonkc2", "Corina", "von Kaenel", true, true);
-	
-	private ArrayList<RegisteredUser> registeredUserList = new ArrayList<RegisteredUser>();
-	
-	
+
 	 public RegisteredUserDB(){
 		 
-		 registeredUserList.add(vonkc2);
-		 registeredUserList.add(admin);
-		 registeredUserList.add(dagde1);
-		 registeredUserList.add(medim1);
-		 registeredUserList.add(messv1);
-		 registeredUserList.add(gnagj1);
-		 registeredUserList.add(vandj2);
+		 this.registeredUserList.add( vonkc2 );
+         this.registeredUserList.add( admin );
+         this.registeredUserList.add( dagde1 );
+         this.registeredUserList.add( medim1 );
+         this.registeredUserList.add( messv1 );
+         this.registeredUserList.add( gnagj1 ) ;
+         this.registeredUserList.add( vandj2 );
 	}
 	
 	 // @addRegisteredUser: add a new User to the DB-List
 	 public void addRegisteredUser(RegisteredUser rUser){
-		 registeredUserList.add(rUser);
+		 this.registeredUserList.add(rUser);
 	 }
 	 
 	 //@verifyLogin: verify if the given loginUsername and loginPassword exist in the DB
