@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
+import ch.bfh.btx8081.w2013.green.data.Medication;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 public class MedicationView extends ReminderView implements IMedicationView, View {
 
+    private TextArea area = null;
     private List<IMedicationViewListener> listeners =
             new ArrayList<IMedicationViewListener>();
 
@@ -33,7 +35,7 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         this.setHeight(MyVaadinUI.APP_HIGHT);
 
         VerticalLayout vertical = new VerticalLayout ();
-        TextArea area = new TextArea();
+        area = new TextArea();
         area.setWidth(MyVaadinUI.APP_WIDTH);
         area.setHeight("380px");
         vertical.addComponent(area);
@@ -56,6 +58,23 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
     @Override
     public void addListener(IMedicationViewListener listener) {
         this.listeners.add(listener);
+    }
+
+    @Override
+    public void setMedicationList(List<Medication> medications) {
+
+        area.setReadOnly(false);
+
+        String medlist = "";
+
+        for(Medication m : medications) {
+            medlist += m.toString() + "\n\n";
+
+        }
+
+        area.setValue(medlist);
+
+        area.setReadOnly(true);
     }
 
     @Override

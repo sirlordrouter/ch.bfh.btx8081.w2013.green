@@ -6,6 +6,7 @@ import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
 import ch.bfh.btx8081.w2013.green.data.User;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticationState;
 import ch.bfh.btx8081.w2013.green.ui.state.UnauthenticatedState;
+
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -64,13 +65,13 @@ public class MyVaadinUI extends UI
     	
     	boolean isAuthenticated;
         User currentUser = new User(login, password);
-        LoginManager loginManager = new LoginManager(currentUser);
+        LoginManager loginManager = LoginManager.getLoginManager();
 
         isAuthenticated = loginManager.authenticateUserAccess(login,password);
  
+
         if (isAuthenticated) {
-        	
-            UserDataManager.getSingleton().setCurrentUser(currentUser);
+
             this.state.exit();
             this.state.handleLogin();
         }

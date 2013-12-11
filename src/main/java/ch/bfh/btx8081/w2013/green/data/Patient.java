@@ -51,5 +51,49 @@ public class Patient {
 
     }
 
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getForename() {
+        return forename;
+    }
+
+    public void setForename(String forename) {
+        this.forename = forename;
+    }
+
+    public List<Medication> getCustomMedications() {
+        return customMedications;
+    }
+
+    public void setCustomMedications(List<Medication> customMedications) {
+        this.customMedications = customMedications;
+    }
+
+    public List<Contact> getCustomContacts() {
+        return customContacts;
+    }
+
+    public void setCustomContacts(List<Contact> customContacts) {
+        this.customContacts = customContacts;
+    }
+
+    public List<Skill> getCustomSkills() {
+        return customSkills;
+    }
+
+    public void setCustomSkills(List<Skill> customSkills) {
+        this.customSkills = customSkills;
+    }
+
 
 }
