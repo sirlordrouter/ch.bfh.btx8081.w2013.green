@@ -80,6 +80,14 @@ public class Medication {
 	public void setDueTimes(int[] dueTimes) {
 		this.dueTimes = dueTimes;
 	}
-	
-	
+
+    @Override
+    public String toString() {
+        return this.getMedicationName() + "\n"
+                +"Dosage: ?\n"
+                +"taking:  \n"
+                +"Breakfast :" + (getDueTimes()[0] == 1 ? "Yes" : "No") +"\n"
+                +"Lunch :" + (getDueTimes()[1] == 1 ? "Yes" : "No")+ "\n"
+                +"Dinner :" + (getDueTimes()[2] == 1 ? "Yes" : "No")+ "\n";
+    }
 }

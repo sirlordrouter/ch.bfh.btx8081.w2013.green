@@ -9,9 +9,26 @@
  */
 package ch.bfh.btx8081.w2013.green.data;
 
+import java.util.List;
+
 public class PatientDataAccess implements IDataAccess {
 
 	public PatientDataAccess() {
    
 	}
+
+    @Override
+    public List<Medication> getMedications() {
+        return null;
+    }
+
+    @Override
+    public List<Skill> getSkills() {
+        return null;
+    }
+
+    @Override
+    public List<Contact> getContacts() {
+        return null;
+    }
 }

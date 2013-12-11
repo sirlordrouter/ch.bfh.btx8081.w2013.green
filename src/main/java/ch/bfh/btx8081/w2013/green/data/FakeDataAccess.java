@@ -3,7 +3,7 @@ package ch.bfh.btx8081.w2013.green.data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeDataAccess implements IDataAccess {
+public class FakeDataAccess implements IProfessionalDataAccess {
 
     private List<Patient> patients = new ArrayList<Patient>();
 
@@ -81,18 +81,22 @@ public class FakeDataAccess implements IDataAccess {
         
     }
 
+    @Override
     public List<Patient> getPatients() {
         return patients;
     }
 
-    public List<Medication> getMedics() {
+    @Override
+    public List<Medication> getMedications() {
         return medics;
     }
 
+    @Override
     public List<Skill> getSkills() {
         return skills;
     }
 
+    @Override
     public List<Contact> getContacts() {
         return contacts;
     }

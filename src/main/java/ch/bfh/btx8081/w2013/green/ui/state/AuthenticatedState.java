@@ -72,9 +72,6 @@ public class AuthenticatedState extends AuthenticationState {
         super.navigator.addView(START_VIEW, new StartView(navigator));
         super.navigator.setErrorView(StartView.class);
 
-        this.model = new PatientModel();
-        this.mc = new ReminderComponent();
-
         //TODO: Remove to Generator
        // for (Medication medication : this.model.getMedications()) {
          //   this.mc.addNormalTimer(medication);
@@ -108,9 +105,15 @@ public class AuthenticatedState extends AuthenticationState {
      */
     private void loadProtectedUserResources() {
 
+        this.model = new PatientModel();
+        this.mc = new ReminderComponent();
 
         UserDataManager manager
                 = new PatientUserDataManager(LoginManager.getLoginManager().getCurrentUser(), new PatientDataAccess());
+
+        FakeDataAccess fda = new FakeDataAccess();
+        this.model.setContacts(fda.getContacts());
+        this.model.setMedications(fda.getMedications());
 
         StartView startView = new StartView(navigator);
         super.navigator.addView(START_VIEW, startView);
