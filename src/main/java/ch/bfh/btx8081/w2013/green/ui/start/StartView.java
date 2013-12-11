@@ -111,11 +111,7 @@ public class StartView extends VerticalLayout implements View {
 					@Override
 					public void buttonClick(
 							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo(AuthenticatedState.SETTINGS_VIEW); // dummy
-																				// view
-																				// will
-																				// be
-																				// replaced
+						navigator.navigateTo(AuthenticatedState.HELP_SET_VIEW);
 					}
 
 				});
