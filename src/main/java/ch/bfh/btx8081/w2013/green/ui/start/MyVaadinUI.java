@@ -68,7 +68,8 @@ public class MyVaadinUI extends UI
 
         isAuthenticated = loginManager.authenticateUserAccess(login,password);
  
-        if (true) {
+        if (isAuthenticated) {
+        	
             UserDataManager.getSingleton().setCurrentUser(currentUser);
             this.state.exit();
             this.state.handleLogin();

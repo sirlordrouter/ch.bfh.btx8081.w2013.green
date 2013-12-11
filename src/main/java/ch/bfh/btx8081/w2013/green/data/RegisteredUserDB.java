@@ -17,32 +17,41 @@ public class RegisteredUserDB {
 
     private ArrayList<RegisteredUser> registeredUserList = new ArrayList<RegisteredUser>();
 
-	// creation of default users
-	private RegisteredUser admin = new RegisteredUser("admin","Vaadmin", "admin", "admin",  true, true);	
-	private RegisteredUser dagde1 = new RegisteredUser("dagde1","dagde1", "Esma", "Dagdas", true, true);
-	private RegisteredUser gnagj1 = new RegisteredUser("gnagj1","gnagj1", "Johannes", "Gnaegi", true, true);
-	private RegisteredUser messv1 = new RegisteredUser("messv1","messv1", "Messerli", "Vinzenz", true, true);
-	private RegisteredUser medim1 = new RegisteredUser("medim1","medim1", "Meryam", "Medini", true, true);
-	private RegisteredUser vandj2 = new RegisteredUser("vandj2","vandj2", "Jan-Wiebe", "van der Sluis", true, true);
-	private RegisteredUser vonkc2 = new RegisteredUser("vonkc2","vonkc2", "Corina", "von Kaenel", true, true);
+	// creation of default users for fast login during implementation phase
+	private RegisteredUser admin = new RegisteredUser(0001,"a","a", "admin", "admin",  false);	
+	private RegisteredUser patient = new RegisteredUser(1000,"p","p", "admin", "admin",  true);	
+	// creation of users for all involved programmers
+	private RegisteredUser dagde1 = new RegisteredUser(0010, "dagde1","dagde1", "Esma", "Dagdas", false);
+	private RegisteredUser gnagj1 = new RegisteredUser(0011, "gnagj1","gnagj1", "Johannes", "Gnaegi", false);
+	private RegisteredUser messv1 = new RegisteredUser(0012, "messv1","messv1", "Messerli", "Vinzenz", false);
+	private RegisteredUser medim1 = new RegisteredUser(0013, "medim1","medim1", "Meryam", "Medini", false);
+	private RegisteredUser vandj2 = new RegisteredUser(0014, "vandj2","vandj2", "Jan-Wiebe", "van der Sluis", false);
+	private RegisteredUser vonkc2 = new RegisteredUser(0015,"vonkc2","vonkc2", "Corina", "von Kaenel", false);
 
 	 public RegisteredUserDB(){
 		 
-		 this.registeredUserList.add( vonkc2 );
+		 this.registeredUserList.add( patient);
          this.registeredUserList.add( admin );
          this.registeredUserList.add( dagde1 );
          this.registeredUserList.add( medim1 );
          this.registeredUserList.add( messv1 );
          this.registeredUserList.add( gnagj1 ) ;
          this.registeredUserList.add( vandj2 );
+         this.registeredUserList.add( vonkc2 );
 	}
 	
-	 // @addRegisteredUser: add a new User to the DB-List
+	 /*
+	  * TODO (low priority, therefore not needed yet)
+	  * @addRegisteredUser: add a new User to the DB-List
+	  */
 	 public void addRegisteredUser(RegisteredUser rUser){
 		 this.registeredUserList.add(rUser);
 	 }
 	 
-	 //@verifyLogin: verify if the given loginUsername and loginPassword exist in the DB
+	 /*
+	  * @verifyLogin: verify if the given loginUsername and loginPassword exist in the DB
+	  * return true if the loginUsername and loginPassword exist in DB
+	  */
 	 public boolean verifyLogin(String loginUsername,String loginPassword){
 		 if(registeredUserList.isEmpty() == true) { 
 		 	System.out.println("DB is empty");
