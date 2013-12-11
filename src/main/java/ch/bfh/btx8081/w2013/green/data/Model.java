@@ -2,10 +2,7 @@
 package ch.bfh.btx8081.w2013.green.data;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import ch.bfh.btx8081.w2013.green.businesslogic.Medication;
 
 /**
  * Berner Fachhochschule</br>

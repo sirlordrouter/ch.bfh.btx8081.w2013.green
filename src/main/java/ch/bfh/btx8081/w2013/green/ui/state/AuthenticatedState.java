@@ -1,6 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.state;
 
-import ch.bfh.btx8081.w2013.green.businesslogic.Medication;
+import ch.bfh.btx8081.w2013.green.data.Medication;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpPresenter;

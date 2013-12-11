@@ -3,6 +3,7 @@ package ch.bfh.btx8081.w2013.green.businesslogic;
 import java.util.TimerTask;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
+import ch.bfh.btx8081.w2013.green.data.Medication;
 
 /**
  * Berner Fachhochschule</br>

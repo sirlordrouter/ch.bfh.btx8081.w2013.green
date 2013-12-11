@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
+import ch.bfh.btx8081.w2013.green.data.Medication;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>

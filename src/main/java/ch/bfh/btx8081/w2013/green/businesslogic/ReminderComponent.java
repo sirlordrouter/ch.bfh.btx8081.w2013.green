@@ -7,6 +7,7 @@ import java.util.TimeZone;
 import java.util.Timer;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
+import ch.bfh.btx8081.w2013.green.data.Medication;
 
 /**
  * Berner Fachhochschule</br>
