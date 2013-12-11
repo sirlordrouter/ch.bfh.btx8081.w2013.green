@@ -1,9 +1,15 @@
 package ch.bfh.btx8081.w2013.green.ui.state;
 
+import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
+import ch.bfh.btx8081.w2013.green.businesslogic.PatientUserDataManager;
+import ch.bfh.btx8081.w2013.green.businesslogic.ProfessionalUserDataManager;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
-import ch.bfh.btx8081.w2013.green.data.Medication;
+import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
+import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.Model;
+import ch.bfh.btx8081.w2013.green.data.PatientDataAccess;
 import ch.bfh.btx8081.w2013.green.data.PatientModel;
+import ch.bfh.btx8081.w2013.green.data.ProfessionalDataAccess;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetView;
@@ -13,6 +19,7 @@ import ch.bfh.btx8081.w2013.green.ui.medication.MedicationView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
+import ch.bfh.btx8081.w2013.green.ui.start.StartSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.start.StartView;
 
 /**
@@ -53,6 +60,17 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	public static final String SETTINGS_VIEW = "sett";
 
+	/**
+	 * Global accessible Reference for the Startview name as it is stored in the
+	 * navigator.
+	 */
+	public static final String START_SETTINGS_VIEW = "";
+
+	/**
+	 * Global accessible Reference for the Skillview name as it is stored in the
+	 * navigator.
+	 */
+
 	public static final String HELP_SET_VIEW = "helpSet";
 	/**
 	 * Global accessible Reference for the HelpSetview name as it is stored in
@@ -77,17 +95,6 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	@Override
 	protected void entryState() {
-
-		super.navigator.addView(START_VIEW, new StartView(navigator));
-		super.navigator.setErrorView(StartView.class);
-
-		this.model = new PatientModel();
-		this.mc = new ReminderComponent();
-
-		// TODO: Remove to Generator
-		for (Medication medication : this.model.getMedications()) {
-			this.mc.addNormalTimer(medication);
-		}
 
 		// if (loginManager.getCurrentUser().isPatient()) {
 		loadProtectedUserResources();
@@ -117,6 +124,19 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	private void loadProtectedUserResources() {
 
+		super.navigator.addView(START_VIEW, new StartView(navigator));
+		super.navigator.setErrorView(StartView.class);
+
+		this.model = new PatientModel();
+		this.mc = new ReminderComponent();
+
+		UserDataManager manager = new PatientUserDataManager(LoginManager
+				.getLoginManager().getCurrentUser(), new PatientDataAccess());
+
+		FakeDataAccess fda = new FakeDataAccess();
+		this.model.setContacts(fda.getContacts());
+		this.model.setMedications(fda.getMedications());
+
 		StartView startView = new StartView(navigator);
 		super.navigator.addView(START_VIEW, startView);
 		super.navigator.navigateTo(START_VIEW);
@@ -136,14 +156,20 @@ public class AuthenticatedState extends AuthenticationState {
 		HelpSetView helpSetView = new HelpSetView(navigator);
 		new HelpSetPresenter(helpSetView, model, navigator);
 		super.navigator.addView(HELP_SET_VIEW, helpSetView);
-
 	}
 
 	/**
 	 * loads staff specific data and views.
 	 */
 	private void loadProtectedStaffResources() {
-		// TODO Auto-generated method stub
+
+		UserDataManager manager = new ProfessionalUserDataManager(LoginManager
+				.getLoginManager().getCurrentUser(),
+				new ProfessionalDataAccess());
+
+		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView());
+		super.navigator.setErrorView(StartSettingsView.class);
+
 	}
 
 	/**

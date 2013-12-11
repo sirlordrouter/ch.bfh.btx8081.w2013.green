@@ -11,4 +11,9 @@ package ch.bfh.btx8081.w2013.green.data;
  * @version 11-12-2013
  */
 public class PatientModel extends Model {
+
+    public PatientModel() {
+
+    }
+
 }

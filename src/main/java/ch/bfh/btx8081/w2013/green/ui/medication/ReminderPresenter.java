@@ -23,8 +23,8 @@ public class ReminderPresenter implements
     protected ReminderComponent reminder = null;
 	protected IReminderView view = null;
 
-	private Model model = null;
-	private Medication currentMedication = null;
+	protected Model model = null;
+	protected Medication currentMedication = null;
 	
 	public ReminderPresenter(IReminderView v, Model m, ReminderComponent rm) {
 		this.view = v;

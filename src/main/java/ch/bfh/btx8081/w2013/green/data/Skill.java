@@ -19,10 +19,6 @@ public class Skill {
         return skillId;
     }
 
-    public void setSkillId(int skillId) {
-        this.skillId = skillId;
-    }
-
     public String getName() {
         return name;
     }
