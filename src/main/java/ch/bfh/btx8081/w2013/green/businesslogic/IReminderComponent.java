@@ -20,20 +20,24 @@ public interface IReminderComponent {
 	/**
 	 * Must implement a Method to get Reminder Information.
 	 * @param medicationName
+     *      the medication to remind
 	 */
 	public void pushReminder(Medication medicationName);
 	
 	/**
 	 * Must implement a Method to add new Listener.
+     *
 	 * @param listener
+     *      the listener listening to the <code>ReminderComponent</code>
 	 */
 	public void addListener(IReminderComponentListener listener);
 	
 	/**
-	 * Must implement a Mthod to remove listener
-	 * @param llistener
+	 * Must implement a Method to remove listener
+	 * @param listener
+     *      the listener listening to the <code>ReminderComponent</code>
 	 */
-	public void removeListener(IReminderComponentListener llistener);
+	public void removeListener(IReminderComponentListener listener);
 	
 	/**
 	 * Berner Fachhochschule</br>

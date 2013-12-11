@@ -27,7 +27,7 @@ import java.util.List;
 public class HelpView extends VerticalLayout implements View, IHelpView {
 
 	private static final long serialVersionUID = 1L;
-    private Navigator navigator;
+    private Navigator navigator = null;
     private List<IHelpViewListener> listeners = new ArrayList<IHelpViewListener>();
 
 	public HelpView(Navigator nav) {
