@@ -5,6 +5,7 @@ import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
@@ -39,16 +40,20 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 //        area.setWidth(MyVaadinUI.APP_WIDTH);
 //        area.setHeight("380px");
 //        vertical.addComponent(area);
+       Label lab = new Label("Panel Containing a Label");
+        lab.setWidth("300px");
+        vertical.addComponent(new Label(optionGroup));
+       
        
        // add  optionGroup---
-        optionGroup = new OptionGroup("MyMedication");		
-        
+        optionGroup = new OptionGroup("MyMedication");	       
         optionGroup.addItem("medic");
         optionGroup.addItem("medic 1");
         optionGroup.addItem("medic 2");
         optionGroup.addItem("medic 3");
 		optionGroup.setMultiSelect(true);
 		vertical.addComponent(optionGroup);
+		
 
         vertical.addComponent(new Button("Back", new Button.ClickListener() {
                     private static final long serialVersionUID = 1L;
