@@ -1,9 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.state;
 
-import ch.bfh.btx8081.w2013.green.data.Medication;
-import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
-import ch.bfh.btx8081.w2013.green.data.Model;
-import ch.bfh.btx8081.w2013.green.data.PatientModel;
+import ch.bfh.btx8081.w2013.green.businesslogic.*;
+import ch.bfh.btx8081.w2013.green.data.*;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpView;
 import ch.bfh.btx8081.w2013.green.ui.medication.MedicationPresenter;
@@ -78,9 +76,9 @@ public class AuthenticatedState extends AuthenticationState {
         this.mc = new ReminderComponent();
 
         //TODO: Remove to Generator
-        for (Medication medication : this.model.getMedications()) {
-            this.mc.addNormalTimer(medication);
-        }
+       // for (Medication medication : this.model.getMedications()) {
+         //   this.mc.addNormalTimer(medication);
+        //}
 
 //    	if (loginManager.getCurrentUser().isPatient()) {
         loadProtectedUserResources();
@@ -110,6 +108,10 @@ public class AuthenticatedState extends AuthenticationState {
      */
     private void loadProtectedUserResources() {
 
+
+        UserDataManager manager
+                = new PatientUserDataManager(LoginManager.getLoginManager().getCurrentUser(), new PatientDataAccess());
+
         StartView startView = new StartView(navigator);
         super.navigator.addView(START_VIEW, startView);
         super.navigator.navigateTo(START_VIEW);
@@ -132,7 +134,8 @@ public class AuthenticatedState extends AuthenticationState {
      * loads staff specific data and views.
      */
     private void loadProtectedStaffResources() {
-        // TODO Auto-generated method stub
+        UserDataManager manager
+                = new ProfessionalUserDataManager(LoginManager.getLoginManager().getCurrentUser(), new ProfessionalDataAccess());
     }
 
     /**

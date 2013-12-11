@@ -68,19 +68,11 @@ public class MyVaadinUI extends UI
     	
     	boolean isAuthenticated;
         User currentUser = new User(login, password);
-        LoginManager loginManager = new LoginManager(currentUser);
+        LoginManager loginManager = LoginManager.getLoginManager();
 
         isAuthenticated = loginManager.authenticateUserAccess(login,password);
  
         if (true) {
-            if (true) {
-                UserDataManager manager
-                        = new PatientUserDataManager(currentUser, new PatientDataAccess());
-
-            } else {
-                UserDataManager manager
-                        = new ProfessionalUserDataManager(currentUser, new ProfessionalDataAccess());
-            }
 
             this.state.exit();
             this.state.handleLogin();
