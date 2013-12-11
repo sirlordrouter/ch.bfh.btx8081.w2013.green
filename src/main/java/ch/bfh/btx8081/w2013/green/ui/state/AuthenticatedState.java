@@ -9,6 +9,7 @@ import ch.bfh.btx8081.w2013.green.ui.medication.MedicationView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
+import ch.bfh.btx8081.w2013.green.ui.start.StartSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.start.StartView;
 
 /**
@@ -30,6 +31,11 @@ public class AuthenticatedState extends AuthenticationState {
      * the navigator.
      */
     public static final String START_VIEW = "";
+    /**
+     * Global accessible Reference for the Startview name as it is stored in
+     * the navigator.
+     */
+    public static final String START_SETTINGS_VIEW = "";
     /**
      * Global accessible Reference for the Helpview name as it is stored in
      * the navigator.
@@ -69,8 +75,7 @@ public class AuthenticatedState extends AuthenticationState {
     @Override
     protected void entryState() {
 
-        super.navigator.addView(START_VIEW, new StartView(navigator));
-        super.navigator.setErrorView(StartView.class);
+
 
         //TODO: Remove to Generator
        // for (Medication medication : this.model.getMedications()) {
@@ -104,6 +109,9 @@ public class AuthenticatedState extends AuthenticationState {
      * loads patient specific data and views.
      */
     private void loadProtectedUserResources() {
+    	
+        super.navigator.addView(START_VIEW, new StartView(navigator));
+        super.navigator.setErrorView(StartView.class);
 
         this.model = new PatientModel();
         this.mc = new ReminderComponent();
@@ -137,8 +145,13 @@ public class AuthenticatedState extends AuthenticationState {
      * loads staff specific data and views.
      */
     private void loadProtectedStaffResources() {
+    	
         UserDataManager manager
                 = new ProfessionalUserDataManager(LoginManager.getLoginManager().getCurrentUser(), new ProfessionalDataAccess());
+        
+        super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView());
+        super.navigator.setErrorView(StartSettingsView.class);
+        
     }
 
     /**
