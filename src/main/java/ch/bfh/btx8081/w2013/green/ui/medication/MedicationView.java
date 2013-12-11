@@ -26,6 +26,7 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 
     private List<IMedicationViewListener> listeners = new ArrayList<IMedicationViewListener>();
     private OptionGroup optionGroup;
+    
     public MedicationView() {
 
         super();
@@ -39,12 +40,13 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         area.setHeight("380px");
         vertical.addComponent(area);
         
-        optionGroup = new OptionGroup("Medication");		
+       // add  optionGroup---------------TEST.......
+        optionGroup = new OptionGroup("MyMedication");		
         optionGroup.addItem("medic");
 		optionGroup.setMultiSelect(true);
+		vertical.addComponent(optionGroup);
 		
-        vertical.addComponent(
-                new Button("Back", new Button.ClickListener() {
+        vertical.addComponent(new Button("Back", new Button.ClickListener() {
                     private static final long serialVersionUID = 1L;
 
                     @Override
