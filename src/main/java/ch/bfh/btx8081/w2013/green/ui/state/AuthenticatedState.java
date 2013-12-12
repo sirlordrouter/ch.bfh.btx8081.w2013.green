@@ -162,7 +162,7 @@ public class AuthenticatedState extends AuthenticationState {
 				.getLoginManager().getCurrentUser(),
 				new SettingsDataAccess());
 
-		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView());
+		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView(navigator));
 		super.navigator.setErrorView(StartSettingsView.class);
 
 	}
