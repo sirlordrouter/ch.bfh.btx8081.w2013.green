@@ -36,13 +36,11 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         this.setHeight(MyVaadinUI.APP_HIGHT);
 
         VerticalLayout vertical = new VerticalLayout ();
-//        TextArea area = new TextArea();
-//        area.setWidth(MyVaadinUI.APP_WIDTH);
-//        area.setHeight("380px");
-//        vertical.addComponent(area);
-       Label lab = new Label("Panel Containing a Label");
-        lab.setWidth("300px");
-        vertical.addComponent(new Label(optionGroup));
+        //TextArea area = new TextArea();
+        //area.setWidth(MyVaadinUI.APP_WIDTH);
+       // area.setHeight("380px");
+       // vertical.addComponent(area);       
+       // vertical.addComponent(new TextArea(optionGroup));
        
        
        // add  optionGroup---
