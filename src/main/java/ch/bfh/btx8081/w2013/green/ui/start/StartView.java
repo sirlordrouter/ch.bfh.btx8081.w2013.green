@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
+
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
