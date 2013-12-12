@@ -3,8 +3,9 @@ package ch.bfh.btx8081.w2013.green.data;
 
 public class User {
 
+    private int id = -1;
 	private String username = null;
-	private String password = null;
+	private boolean isPatient = true;
 	
 	// TODO get Name and FirstName from DB to display in Views
 	
@@ -18,10 +19,10 @@ public class User {
 		
 	}
 	
-	public User(String username, String password) {
+	public User(int id, String username, boolean isAdmin) {
 		this.username = username;
-		// TODO safe password only in SHA1
-		this.password = password;
+		this.id = id;
+        this.isPatient = isAdmin;
 	}
 	
 	
@@ -39,22 +40,15 @@ public class User {
 		this.username = username;
 	}
 
-	/* TODO might be nice for testing, but should be deleted for security reasons. vonkc2*/
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return this.password;
-	}
+    public int getId() {
+        return id;
+    }
 
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public boolean isPatient() {
+        return isPatient;
+    }
 
-	/**
+    /**
 	 * @return the isPatient
 	 
 	public boolean isPatient() {

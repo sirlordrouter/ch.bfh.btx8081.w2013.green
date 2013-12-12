@@ -91,11 +91,11 @@ public class AuthenticatedState extends AuthenticationState {
 	@Override
 	protected void entryState() {
 
-		// if (loginManager.getCurrentUser().isPatient()) {
-		loadProtectedUserResources();
-		// } else {
-		loadProtectedStaffResources();
-		// }
+		 if (LoginManager.getLoginManager().getCurrentUser().isPatient()) {
+		    loadProtectedUserResources();
+		 } else {
+		    loadProtectedSettingsResources();
+		 }
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class AuthenticatedState extends AuthenticationState {
 	/**
 	 * loads staff specific data and views.
 	 */
-	private void loadProtectedStaffResources() {
+	private void loadProtectedSettingsResources() {
 
 		UserDataManager manager = new ProfessionalUserDataManager(LoginManager
 				.getLoginManager().getCurrentUser(),
@@ -164,6 +164,8 @@ public class AuthenticatedState extends AuthenticationState {
 
 		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView(navigator));
 		super.navigator.setErrorView(StartSettingsView.class);
+
+        super.navigator.navigateTo(START_SETTINGS_VIEW);
 
 	}
 

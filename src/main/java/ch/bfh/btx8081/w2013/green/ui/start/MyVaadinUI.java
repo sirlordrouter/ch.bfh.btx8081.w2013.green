@@ -62,7 +62,7 @@ public class MyVaadinUI extends UI
     {
     	
     	boolean isAuthenticated;
-        User currentUser = new User(login, password);
+
         LoginManager loginManager = LoginManager.getLoginManager();
 
         isAuthenticated = loginManager.authenticateUserAccess(login,password);
