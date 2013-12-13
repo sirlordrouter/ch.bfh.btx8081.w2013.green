@@ -18,7 +18,7 @@ import java.util.List;
 public class PatientDataAccess implements IDataAccess {
 
 	public PatientDataAccess() {
-   
+
 	}
 
     @Override

@@ -18,26 +18,14 @@ import java.util.List;
  *
  * @version 11-12-2013
  */
-public class SettingsDataAccess implements ISettingsDataAccess {
+public class SettingsDataAccess extends PatientDataAccess implements ISettingsDataAccess {
 
+    public SettingsDataAccess() {
+    }
 
     @Override
     public List<Patient> getPatients() {
         return null;
     }
 
-    @Override
-    public List<Medication> getMedications() {
-        return null;
-    }
-
-    @Override
-    public List<Skill> getSkills() {
-        return null;
-    }
-
-    @Override
-    public List<Contact> getContacts() {
-        return null;
-    }
 }

@@ -119,6 +119,8 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	private void loadProtectedUserResources() {
 
+        //TODO: Wenn möglich Interfaces verwenden
+
 		super.navigator.addView(START_VIEW, new StartView(navigator));
 		super.navigator.setErrorView(StartView.class);
 
@@ -158,7 +160,7 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	private void loadProtectedSettingsResources() {
 
-		UserDataManager manager = new ProfessionalUserDataManager(LoginManager
+		UserDataManager manager = new SettingsUserDataManager(LoginManager
 				.getLoginManager().getCurrentUser(),
 				new SettingsDataAccess());
 

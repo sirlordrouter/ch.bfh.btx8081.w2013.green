@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
 import ch.bfh.btx8081.w2013.green.data.IDataAccess;
+import ch.bfh.btx8081.w2013.green.data.ISettingsDataAccess;
 import ch.bfh.btx8081.w2013.green.data.User;
 
 /**
@@ -13,9 +14,9 @@ import ch.bfh.btx8081.w2013.green.data.User;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 11-12-2013
  */
-public class ProfessionalUserDataManager extends UserDataManager {
+public class SettingsUserDataManager extends UserDataManager {
 
-    public ProfessionalUserDataManager (User currentUser, IDataAccess dataAccess) {
+    public SettingsUserDataManager(User currentUser, ISettingsDataAccess dataAccess) {
         super(currentUser, dataAccess);
     }
 }
