@@ -8,6 +8,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import ch.bfh.btx8081.w2013.green.ui.help.IHelpView;
 
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br>

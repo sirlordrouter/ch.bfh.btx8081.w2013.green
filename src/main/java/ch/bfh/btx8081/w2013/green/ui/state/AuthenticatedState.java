@@ -1,10 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.state;
 
-import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
-import ch.bfh.btx8081.w2013.green.businesslogic.PatientUserDataManager;
-import ch.bfh.btx8081.w2013.green.businesslogic.ProfessionalUserDataManager;
-import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
-import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
+import ch.bfh.btx8081.w2013.green.businesslogic.*;
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.data.PatientDataAccess;
