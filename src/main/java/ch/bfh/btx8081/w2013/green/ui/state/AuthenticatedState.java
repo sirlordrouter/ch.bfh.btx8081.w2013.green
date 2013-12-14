@@ -1,10 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.state;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.*;
-import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
-import ch.bfh.btx8081.w2013.green.data.Model;
-import ch.bfh.btx8081.w2013.green.data.PatientDataAccess;
-import ch.bfh.btx8081.w2013.green.data.SettingsDataAccess;
+import ch.bfh.btx8081.w2013.green.data.*;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetView;
@@ -67,12 +64,6 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 
 	public static final String HELP_SET_VIEW = "helpSet";
-	/**
-	 * Global accessible Reference for the HelpSetview name as it is stored in
-	 * the navigator.
-	 */
-	private Model model = null;
-	private ReminderComponent mc = null;
 
 	/**
 	 * Constructor for this state implementation.
@@ -124,34 +115,34 @@ public class AuthenticatedState extends AuthenticationState {
 		super.navigator.addView(START_VIEW, new StartView(navigator));
 		super.navigator.setErrorView(StartView.class);
 
-		this.model = new Model();
-		this.mc = new ReminderComponent();
+		Model userModel = new Model();
+		ReminderComponent mc = new ReminderComponent();
 
-		UserDataManager manager = new PatientUserDataManager(LoginManager
-				.getLoginManager().getCurrentUser(), new PatientDataAccess());
+        IDataAccess dataAccess= new PatientDataAccess();
 
 		FakeDataAccess fda = new FakeDataAccess();
-		this.model.setContacts(fda.getContacts());
-		this.model.setMedications(fda.getMedications());
+		userModel.setContacts(fda.getContacts());
+		userModel.setMedications(fda.getMedications());
+
 
 		StartView startView = new StartView(navigator);
 		super.navigator.addView(START_VIEW, startView);
 		super.navigator.navigateTo(START_VIEW);
 
 		SkillsView skillsView = new SkillsView();
-		new SkillsPresenter(skillsView, model, navigator);
+		new SkillsPresenter(skillsView, userModel, navigator);
 		super.navigator.addView(SKILL_VIEW, skillsView);
 
 		HelpView helpView = new HelpView(navigator);
-		new HelpPresenter(helpView, model, navigator);
+		new HelpPresenter(helpView, userModel, navigator);
 		super.navigator.addView(HELP_VIEW, helpView);
 
 		MedicationView medView = new MedicationView();
-		new MedicationPresenter(medView, model, navigator, mc);
+		new MedicationPresenter(medView, userModel, navigator, mc);
 		super.navigator.addView(MEDIC_VIEW, medView);
 
 		HelpSetView helpSetView = new HelpSetView(navigator);
-		new HelpSetPresenter(helpSetView, model, navigator);
+		new HelpSetPresenter(helpSetView, userModel, navigator);
 		super.navigator.addView(HELP_SET_VIEW, helpSetView);
 	}
 
@@ -160,9 +151,12 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	private void loadProtectedSettingsResources() {
 
-		UserDataManager manager = new SettingsUserDataManager(LoginManager
-				.getLoginManager().getCurrentUser(),
-				new SettingsDataAccess());
+        SettingsModel settingsModel = new SettingsModel();
+        ISettingsDataAccess dataAccess = new SettingsDataAccess();
+
+        FakeDataAccess fda = new FakeDataAccess();
+        settingsModel.setContacts(fda.getContacts());
+        settingsModel.setMedications(fda.getMedications());
 
 		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView(
 				navigator));

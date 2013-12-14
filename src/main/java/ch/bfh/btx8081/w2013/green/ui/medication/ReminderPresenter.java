@@ -5,6 +5,7 @@ import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComp
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+import com.vaadin.ui.Component;
 import de.steinwedel.messagebox.ButtonId;
 import de.steinwedel.messagebox.MessageBoxListener;
 
@@ -27,15 +28,22 @@ public class ReminderPresenter implements
 	protected Model model = null;
 	protected Medication currentMedication = null;
 	
-	public ReminderPresenter(IReminderView v, Model m, IReminderComponent rm) {
+	public ReminderPresenter(ReminderView v, Model m, ReminderComponent rm) {
 		this.view = v;
 		this.model = m;
 		this.reminder = rm;
 		
 		this.view.setReminderAnswerListener(this);
 		this.view.addListener(this);
-		
-		this.reminder.addListener(this);
+
+        for (Medication medics : this.model.getMedications()) {
+            reminder.addToSchedule(medics);
+        }
+
+        //Add the listener to the reminder after added all the medications.
+        //otherwise the events are directly fired when adding the timer.
+        this.reminder.addListener(this);
+
 	}
 	
 	@Override

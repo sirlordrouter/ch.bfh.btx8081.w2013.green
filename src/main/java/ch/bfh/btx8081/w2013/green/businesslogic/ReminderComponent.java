@@ -43,8 +43,9 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 
     	 return cal.getTime();
      }
-     
-     public void addNormalTimer(Medication medication) {
+
+    @Override
+     public void addToSchedule(Medication medication) {
     	 int[] dueTimes = medication.getDueTimes();
 
     	 for (int i = 0; i < dueTimes.length; i++) {
@@ -52,7 +53,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 				 this.timer.scheduleAtFixedRate(
 			 				new MedicationTask(medication, this), 
 			 				getTaskStartTime(DUE_TIMES[i]),
-			 				FIVE_MINUTES);
+                         FIVE_MINUTES);
 			}
 		}	
     	 
@@ -64,8 +65,9 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 	public void pushReminder(Medication medicationName) {
 		
 		synchronized (ReminderComponent.this) {
-			
+			if (this.listener != null) {
 				this.listener.pushReminder(medicationName);
+            }
 		}
 	}
 

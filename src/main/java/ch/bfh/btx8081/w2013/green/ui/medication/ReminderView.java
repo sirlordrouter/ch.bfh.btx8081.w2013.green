@@ -1,6 +1,8 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
@@ -22,7 +24,7 @@ import java.util.List;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 03-12-2013
  */
-public class ReminderView extends VerticalLayout implements IReminderView{
+public class ReminderView extends VerticalLayout implements IReminderView {
 
 	/**
 	 * 
@@ -32,6 +34,7 @@ public class ReminderView extends VerticalLayout implements IReminderView{
 	/* Only the presenter registers one listener... */
     private List<IReminderListener> listeners =
             new ArrayList<IReminderListener>();
+
     private MessageBoxListener mbListener = null;
 
 	public ReminderView () {
@@ -65,4 +68,5 @@ public class ReminderView extends VerticalLayout implements IReminderView{
 	public void setReminderAnswerListener(MessageBoxListener l) {
 		this.mbListener = l;
 	}
+
 }
