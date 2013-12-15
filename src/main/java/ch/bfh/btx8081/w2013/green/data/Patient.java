@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2013.green.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import java.util.List;
  *
  * @version 11-12-2013
  */
-public class Patient {
+
+//Done by Esma (Serializable)
+public class Patient implements Serializable {
 
     private int patientId = -1;
     private String name = null;
@@ -50,6 +53,58 @@ public class Patient {
         this.customSkills = customSkills;
 
     }
+    
+    
+    // Done by Esma
+	public int getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(int patientId) {
+		this.patientId = patientId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getForename() {
+		return forename;
+	}
+
+	public void setForename(String forename) {
+		this.forename = forename;
+	}
+
+	public List<Medication> getCustomMedications() {
+		return customMedications;
+	}
+
+	public void setCustomMedications(List<Medication> customMedications) {
+		this.customMedications = customMedications;
+	}
+
+	public List<Contact> getCustomContacts() {
+		return customContacts;
+	}
+
+	public void setCustomContacts(List<Contact> customContacts) {
+		this.customContacts = customContacts;
+	}
+
+	public List<Skill> getCustomSkills() {
+		return customSkills;
+	}
+
+	public void setCustomSkills(List<Skill> customSkills) {
+		this.customSkills = customSkills;
+	}
+    
+    
 
 
 }

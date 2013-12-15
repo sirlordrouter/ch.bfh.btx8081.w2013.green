@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.state;
 
+import ch.bfh.btx8081.w2013.green.PrototypingEsma;
 import ch.bfh.btx8081.w2013.green.data.Medication;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
@@ -125,6 +126,9 @@ public class AuthenticatedState extends AuthenticationState {
         MedicationView medView = new MedicationView();
         new MedicationPresenter(medView, model, navigator, mc);
         super.navigator.addView(MEDIC_VIEW, medView);
+        
+        PrototypingEsma proto = new PrototypingEsma();
+        super.navigator.addView("proto", proto);
 
     }
 

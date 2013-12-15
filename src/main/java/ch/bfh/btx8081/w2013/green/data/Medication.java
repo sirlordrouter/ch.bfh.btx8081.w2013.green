@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2013.green.data;
 
+import java.io.Serializable;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
@@ -13,7 +15,7 @@ package ch.bfh.btx8081.w2013.green.data;
  *
  * @version 04-12-2013
  */
-public class Medication {
+public class Medication implements Serializable {
 
     private int medicationID = -1;
 	private String medicationName = null;

@@ -1,7 +1,12 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
+import ch.bfh.btx8081.w2013.green.data.Medication;
+import ch.bfh.btx8081.w2013.green.data.Patient;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 
+import com.vaadin.data.Property;
+import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
@@ -9,6 +14,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.AbstractSelect.NewItemHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +31,20 @@ import java.util.List;
  */
 public class MedicationView extends ReminderView implements IMedicationView, View {
 
-    private List<IMedicationViewListener> listeners = new ArrayList<IMedicationViewListener>();
+	//Done by Esma
+	//private Patient selectedPatient;
+	private List<IMedicationViewListener> listeners = new ArrayList<IMedicationViewListener>();
     private OptionGroup optionGroup;
+    private BeanItemContainer<Medication> medications;
     
-    public MedicationView() {
-
-        super();
+    public MedicationView(){//(Patient selectedPatient) {
+    	super();
+    	medications = new BeanItemContainer<Medication>(Medication.class);
+    	medications.addItem(new Medication("bla", new int[]{}, 1));
+    	medications.addItem(new Medication("bla2", new int[]{}, 2));
+    	
+    //	this.selectedPatient = selectedPatient;
+    	     
 
         this.setWidth(MyVaadinUI.APP_WIDTH);
         this.setHeight(MyVaadinUI.APP_HIGHT);
@@ -44,14 +58,12 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
        
        
        // add  optionGroup---
-        optionGroup = new OptionGroup("MyMedication");	       
-        optionGroup.addItem("medic");
-        optionGroup.addItem("medic 1");
-        optionGroup.addItem("medic 2");
-        optionGroup.addItem("medic 3");
+        optionGroup = new OptionGroup("Patient name", medications);//(selectedPatient.getName());	       
+        optionGroup.setItemCaptionPropertyId("medicationName");
 		optionGroup.setMultiSelect(true);
+		// optionGroup add listener 
 		vertical.addComponent(optionGroup);
-		
+		//----End---
 
         vertical.addComponent(new Button("Back", new Button.ClickListener() {
                     private static final long serialVersionUID = 1L;
@@ -76,4 +88,12 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
     }
+  //Done by Esma
+//  	private class PatientListener implements Property.ValueChangeListener{
+//
+//  		@Override
+//  		public void valueChange(ValueChangeEvent event) {
+//  			selectedPatient = (Patient) selectPatient.getValue();
+//  			System.out.println(selectedPatient.getName());
+//    
 }
