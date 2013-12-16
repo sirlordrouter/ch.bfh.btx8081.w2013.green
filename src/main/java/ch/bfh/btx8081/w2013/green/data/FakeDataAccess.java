@@ -28,9 +28,9 @@ public class FakeDataAccess implements ISettingsDataAccess {
         patients = new ArrayList<Patient>();
 
         Patient p1 = new Patient(1, "Traurig", "Vreni");
-        Patient p2 = new Patient(1, "Sensibel", "Hans");
-        Patient p3 = new Patient(1, "Depro", "Freddy");
-        Patient p4 = new Patient(1, "Borderline", "Meieli");
+        Patient p2 = new Patient(2, "Sensibel", "Hans");
+        Patient p3 = new Patient(3, "Depro", "Freddy");
+        Patient p4 = new Patient(4, "Borderline", "Meieli");
 
         p1.setCustomContacts(generateContacts());
         p1.setCustomMedications(generateMedications());
