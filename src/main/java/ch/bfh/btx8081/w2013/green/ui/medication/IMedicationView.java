@@ -1,5 +1,9 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+
+import java.util.List;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
@@ -13,6 +17,7 @@ package ch.bfh.btx8081.w2013.green.ui.medication;
 public interface IMedicationView {
 
     void addListener(IMedicationViewListener listener);
+    void setMedicationList(List<Medication> medications);
 
     interface IMedicationViewListener {
         void buttonClick(char c);

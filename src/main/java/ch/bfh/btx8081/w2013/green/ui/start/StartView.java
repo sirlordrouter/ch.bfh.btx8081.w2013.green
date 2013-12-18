@@ -2,9 +2,8 @@ package ch.bfh.btx8081.w2013.green.ui.start;
 
 import java.util.List;
 
-import ch.bfh.btx8081.w2013.green.data.Patient;
+import ch.bfh.btx8081.w2013.green.data.entities.Patient;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
-
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.BeanItemContainer;
@@ -64,10 +63,11 @@ public class StartView extends VerticalLayout implements View {
 		 // Have a bean container to put the beans in
 	    patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
+	    
 	    // Put some example data in it
-	    patientContainer.addItem(new Patient(1, "Garcia", "Pedro"));
-	    patientContainer.addItem(new Patient(2, "Matos", "Juan"));   
-	    patientContainer.addItem(new Patient(3, "Guerra", "Carlos"));
+	    patientContainer.addItem(new Patient(1, "Mayer", "muster"));
+	    patientContainer.addItem(new Patient(2, "Meyer", "muster"));   
+	    patientContainer.addItem(new Patient(3, "maiyer", "muster"));
 	    
 	    
 	    // Create a selection component bound to the container
@@ -141,11 +141,7 @@ public class StartView extends VerticalLayout implements View {
 					@Override
 					public void buttonClick(
 							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo(AuthenticatedState.SETTINGS_VIEW); // dummy
-																				// view
-																				// will
-																				// be
-																				// replaced
+						navigator.navigateTo(AuthenticatedState.HELP_SET_VIEW);
 					}
 
 				});

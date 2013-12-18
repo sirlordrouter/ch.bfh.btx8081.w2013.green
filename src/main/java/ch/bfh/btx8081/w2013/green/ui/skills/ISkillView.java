@@ -1,6 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.skills;
 
-import ch.bfh.btx8081.w2013.green.data.Skill;
+import ch.bfh.btx8081.w2013.green.data.entities.Skill;
 
 import java.util.List;
 

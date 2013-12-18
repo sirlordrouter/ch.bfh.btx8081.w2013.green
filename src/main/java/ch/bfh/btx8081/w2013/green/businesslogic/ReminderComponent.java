@@ -1,13 +1,9 @@
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.Timer;
-
 import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
-import ch.bfh.btx8081.w2013.green.data.Medication;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+
+import java.util.*;
 
 /**
  * Berner Fachhochschule</br>

@@ -1,9 +1,10 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
+import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent;
 import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
-import ch.bfh.btx8081.w2013.green.data.Medication;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import de.steinwedel.messagebox.ButtonId;
 import de.steinwedel.messagebox.MessageBoxListener;
 
@@ -20,13 +21,13 @@ import de.steinwedel.messagebox.MessageBoxListener;
 public class ReminderPresenter implements 
 	MessageBoxListener, IReminderComponentListener, IReminderView.IReminderListener {
 
-    protected ReminderComponent reminder = null;
+    protected IReminderComponent reminder = null;
 	protected IReminderView view = null;
 
-	private Model model = null;
-	private Medication currentMedication = null;
+	protected Model model = null;
+	protected Medication currentMedication = null;
 	
-	public ReminderPresenter(IReminderView v, Model m, ReminderComponent rm) {
+	public ReminderPresenter(IReminderView v, Model m, IReminderComponent rm) {
 		this.view = v;
 		this.model = m;
 		this.reminder = rm;

@@ -1,18 +1,10 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
-import com.vaadin.event.ShortcutListener;
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.event.ShortcutListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickListener;
 
 /**
@@ -27,13 +19,8 @@ import com.vaadin.ui.Button.ClickListener;
 public class LoginView extends VerticalLayout implements View {
 
 	private static final long serialVersionUID = 2033204732401987887L;
-	private Label title = new Label("My Mental Health");
-	private Button btnLogin = new Button("Login");
-    private TextField login = new TextField ("Username");
-    private PasswordField password = new PasswordField ( "Password");
     private VerticalLayout vertical = new VerticalLayout();
-    private VerticalLayout loginLayout = null;
-    
+
     //TODO: How is Login handled in multiple user Sessions???
     
 	public LoginView() {
@@ -41,33 +28,15 @@ public class LoginView extends VerticalLayout implements View {
 		setHeight(MyVaadinUI.APP_HIGHT);
 		addStyleName("sidebar");
 		
-		this.btnLogin.addClickListener ( new Button.ClickListener()
-        {
-			private static final long serialVersionUID = -3802341930269958858L;
-
-			public void buttonClick ( Button.ClickEvent event )
-            {
-                try
-                {
-                    ((MyVaadinUI)MyVaadinUI.getCurrent())
-                    	.authenticate(login.getValue(), (String)password.getValue());     
-                }
-                catch ( Exception e )
-                {
-                    Notification.show(e.getMessage());
-                }
-            }
-        });
-		
 		this.initLogin();
 	}
     
 	private void initLogin() {
 		addStyleName("login");
 
-        this.loginLayout = new VerticalLayout();
-        this.loginLayout.setSizeFull();
-        this.loginLayout.addStyleName("login-layout");
+        VerticalLayout loginLayout = new VerticalLayout();
+        loginLayout.setSizeFull();
+        loginLayout.addStyleName("login-layout");
         addComponent(loginLayout);
 
         final CssLayout loginPanel = new CssLayout();
@@ -134,10 +103,10 @@ public class LoginView extends VerticalLayout implements View {
 
         loginPanel.addComponent(fields);
 
-        this.loginLayout.addComponent(loginPanel);
-        this.loginLayout.setComponentAlignment(loginPanel, Alignment.MIDDLE_CENTER);
+        loginLayout.addComponent(loginPanel);
+        loginLayout.setComponentAlignment(loginPanel, Alignment.MIDDLE_CENTER);
 		
-		addComponent(this.loginLayout);
+		addComponent(loginLayout);
 		
 		
 		

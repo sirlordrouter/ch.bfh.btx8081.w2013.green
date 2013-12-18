@@ -28,7 +28,9 @@ public class MedicationPresenter extends ReminderPresenter implements IMedicatio
         this.view = (IMedicationView) v;
 
         this.view.addListener(this);
+        this.view.setMedicationList(model.getMedications());
     }
+
 
     @Override
     public void buttonClick(char c) {

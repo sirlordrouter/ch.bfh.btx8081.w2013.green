@@ -21,31 +21,41 @@ import ch.bfh.btx8081.w2013.green.data.User;
  */
 public class LoginManager {
 
+    private static LoginManager loginManagerInstance = null;
+
 	private User currentUser = null;
-	private RegisteredUserDB userDB = new RegisteredUserDB();
-	
-	/**
-     * A getter for the User initiating the Session.
-     *
-	 * @return the currentUser
-     *      the User initiating the Session
-	 */
-	public User getCurrentUser() {
-		return currentUser;
-	}
+
+    public RegisteredUserDB getUserDB() {
+        return userDB;
+    }
+
+    private RegisteredUserDB userDB = new RegisteredUserDB();
+
+    public static LoginManager getLoginManager() {
+
+        if(loginManagerInstance == null) {
+            loginManagerInstance = new LoginManager();
+        }
+
+        return loginManagerInstance;
+    }
 
     /**
-     * Constructor for the LoginManager. Needs the User who
-     * initiated the Session as parameter.
+     * Constructor for the LoginManager.
      *
-     * @param newUser
-     *      A user to log in.
      */
-	public LoginManager (User newUser) {
+    private LoginManager () {
+    }
 
-		currentUser = newUser;
-
-	}
+    /**
+     * A getter for the User initiating the Session.
+     *
+     * @return the currentUser
+     *      the User initiating the Session
+     */
+    public User getCurrentUser() {
+        return currentUser;
+    }
 
     /**
      * Verifies the given credentials as valid or invalid
@@ -59,8 +69,12 @@ public class LoginManager {
      */
 	public boolean authenticateUserAccess(String loginUsername, String loginPassword) {
 
-		boolean loginVerified = userDB.verifyLogin(loginUsername, loginPassword);
+        boolean isVerified = userDB.verifyLogin(loginUsername, loginPassword);
+        if (isVerified) {
+            this.currentUser = userDB.getAuthenticatedUser(loginUsername, loginPassword);
+        }
 
-		return loginVerified;
+		return isVerified;
+
 	}
 }
