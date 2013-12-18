@@ -130,9 +130,6 @@ public class AuthenticatedState extends AuthenticationState {
 		this.model = new PatientModel();
 		this.mc = new ReminderComponent();
 
-		UserDataManager manager = new PatientUserDataManager(LoginManager
-				.getLoginManager().getCurrentUser(), new PatientDataAccess());
-
 		FakeDataAccess fda = new FakeDataAccess();
 		this.model.setContacts(fda.getContacts());
 		this.model.setMedications(fda.getMedications());
@@ -163,9 +160,6 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	private void loadProtectedStaffResources() {
 
-		UserDataManager manager = new ProfessionalUserDataManager(LoginManager
-				.getLoginManager().getCurrentUser(),
-				new ProfessionalDataAccess());
 
 		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView());
 		super.navigator.setErrorView(StartSettingsView.class);

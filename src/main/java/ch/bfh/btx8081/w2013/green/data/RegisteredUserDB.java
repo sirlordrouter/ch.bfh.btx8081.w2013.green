@@ -67,5 +67,23 @@ public class RegisteredUserDB {
 		 
 		 return false;
 	 }
+	 
+	 /*
+	  * @verifyLogin: verify if the given loginUsername and loginPassword exist in the DB
+	  * return true if the loginUsername and loginPassword exist in DB
+	  */
+	 public User assignUserAttributes(String username){
+		 User currentUser = null;
+		 for (RegisteredUser ru :registeredUserList) {
+			 String loginUsername = username;
+			 if(ru.getUsername().equals(loginUsername)) {
+				 currentUser.setId(ru.getId());
+				 currentUser.setIsPatient(ru.getIsPatient());
+				 currentUser.setFirstname(ru.getFirstname());
+				 return currentUser;
+			 }
+		 }
+		return currentUser;
+	 }
 	
 }

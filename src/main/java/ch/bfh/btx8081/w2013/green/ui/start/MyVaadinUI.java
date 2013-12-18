@@ -2,7 +2,6 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
-import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
 import ch.bfh.btx8081.w2013.green.data.User;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticationState;
 import ch.bfh.btx8081.w2013.green.ui.state.UnauthenticatedState;
@@ -37,6 +36,8 @@ public class MyVaadinUI extends UI
     
     //Different States of Authentication implemented using the State Pattern
     private AuthenticationState state = null;
+    private User currentUser = null;
+    private LoginManager loginManager = null;
 
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false,
@@ -60,18 +61,18 @@ public class MyVaadinUI extends UI
         this.state.entry();
     }
 
-    public void authenticate( String login, String password) throws Exception
+    public void authenticate(String username, String password) throws Exception
     {
     	
-    	boolean isAuthenticated;
-        User currentUser = new User(login, password);
-        LoginManager loginManager = LoginManager.getLoginManager();
-
-        isAuthenticated = loginManager.authenticateUserAccess(login,password);
+    	boolean isAuthenticated = false;
+    	
+        loginManager = LoginManager.getLoginManager();
+        isAuthenticated = loginManager.authenticateUserAccess(username,password);
  
 
         if (isAuthenticated) {
-
+        	currentUser = loginManager.getUserAttribute();
+        	
             this.state.exit();
             this.state.handleLogin();
         }
@@ -79,14 +80,18 @@ public class MyVaadinUI extends UI
             throw new Exception("Login failed!");
         }
     }
+    
+ 
 
 	public void logout() {
         this.state.exit();
     	this.state.handleLogout();
     	Notification.show("You have been logged out!");
     }
-
-
+	
+	public User getCurrentUser(){
+		return currentUser;
+	}
 
     
     
