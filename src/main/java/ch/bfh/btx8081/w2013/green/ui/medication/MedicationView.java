@@ -2,12 +2,13 @@ package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,25 +24,25 @@ import java.util.List;
  */
 public class MedicationView extends ReminderView implements IMedicationView, View {
 
-    private TextArea area = null;
-    private List<IMedicationViewListener> listeners =
-            new ArrayList<IMedicationViewListener>();
+	private List<IMedicationViewListener> listeners = new ArrayList<IMedicationViewListener>();
+	private TextArea area = null;
+    
+    
+    public MedicationView(){
+    	super();
 
-    public MedicationView() {
-
-        super();
+    	VerticalLayout vertical = new VerticalLayout ();
 
         this.setWidth(MyVaadinUI.APP_WIDTH);
         this.setHeight(MyVaadinUI.APP_HIGHT);
 
-        VerticalLayout vertical = new VerticalLayout ();
         area = new TextArea();
         area.setWidth(MyVaadinUI.APP_WIDTH);
         area.setHeight("380px");
         vertical.addComponent(area);
 
-        vertical.addComponent(
-                new Button("Back", new Button.ClickListener() {
+
+        vertical.addComponent(new Button("Back", new Button.ClickListener() {
                     private static final long serialVersionUID = 1L;
 
                     @Override
@@ -60,10 +61,16 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         this.listeners.add(listener);
     }
 
-    @Override
-    public void setMedicationList(List<Medication> medications) {
 
-        area.setReadOnly(false);
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+
+    }
+
+	@Override
+	public void setMedicationList(
+			List<ch.bfh.btx8081.w2013.green.data.entities.Medication> medications) {
+		area.setReadOnly(false);
 
         String medlist = "";
 
@@ -75,10 +82,6 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         area.setValue(medlist);
 
         area.setReadOnly(true);
-    }
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-
-    }
+		
+	}
 }

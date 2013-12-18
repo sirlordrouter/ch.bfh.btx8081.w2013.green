@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.help;
 
 import ch.bfh.btx8081.w2013.green.data.Model;
+
 import com.vaadin.navigator.Navigator;
 
 /**

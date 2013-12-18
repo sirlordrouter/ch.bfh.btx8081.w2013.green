@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2013.green.data.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +11,12 @@ import java.util.List;
  *
  *<p>Describes a Patient.</p>
  *
+ * @author Esma Dagdas, dagde1@bfh.ch
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  *
  * @version 11-12-2013
  */
-public class Patient {
+public class Patient implements Serializable {
 
     private int patientId = -1;
     private String name = null;

@@ -22,6 +22,7 @@ public class StartSettingsView extends VerticalLayout implements View {
 	private static final String BUTTON_LOGOUT = "LOGOUT";
 	private static final String BUTTON_SKILLSETTINGS = "Skill Settings";
 	private static final String BUTTON_HELPSETTINGS = "Help Settings";
+	private static final String BUTTON_MEDICPSETTINGS = "Medic Settings";
 	private static final String BUTTON_WIDTH = "120px";
 	private final Navigator navigator;
 
@@ -97,6 +98,18 @@ public class StartSettingsView extends VerticalLayout implements View {
 
 					}
 				});
+		
+		Button medicSettingsButton = new Button(BUTTON_MEDICPSETTINGS,
+				new Button.ClickListener() {
+					private static final long serialVersionUID = 7147554466396214893L;
+
+					@Override
+					public void buttonClick(ClickEvent event) {
+						// TODO Should navigate to the Skill Setting View.
+						navigator.navigateTo(AuthenticatedState.MEDIC_SET_VIEW);
+
+					}
+				});
 
 		Button logoutButton = new Button(BUTTON_LOGOUT,
 				new Button.ClickListener() {
@@ -118,11 +131,17 @@ public class StartSettingsView extends VerticalLayout implements View {
 		setComponentAlignment(helpSettingsButton, Alignment.MIDDLE_CENTER);
 		helpSettingsButton.setDescription("Set the Help options for the Patient");
 		helpSettingsButton.setWidth(BUTTON_WIDTH);
+		
+		addComponent(medicSettingsButton);
+		setComponentAlignment(medicSettingsButton, Alignment.MIDDLE_CENTER);
+		medicSettingsButton.setDescription("Set the Medication options for the Patient");
+		medicSettingsButton.setWidth(BUTTON_WIDTH);
 
 		addComponent(skillSettingsButton);
 		setComponentAlignment(skillSettingsButton, Alignment.MIDDLE_CENTER);
 		skillSettingsButton.setDescription("Set the Skill options for the Patient");
 		skillSettingsButton.setWidth(BUTTON_WIDTH);
+		
 		
 		logoutButton.setWidth(BUTTON_WIDTH);
 		addComponent(logoutButton);
