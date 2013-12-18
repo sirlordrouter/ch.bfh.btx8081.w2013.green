@@ -75,8 +75,8 @@ public class RegisteredUserDB {
 	 public User assignUserAttributes(String username){
 		 User currentUser = null;
 		 for (RegisteredUser ru :registeredUserList) {
-			 String loginUsername = username;
-			 if(ru.getUsername().equals(loginUsername)) {
+			 if(ru.getUsername().equals(username)) {
+                 currentUser = new User();
 				 currentUser.setId(ru.getId());
 				 currentUser.setIsPatient(ru.getIsPatient());
 				 currentUser.setFirstname(ru.getFirstname());
