@@ -81,7 +81,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
 		
 		
-		selectPatient.setWidth(BUTTON_WIDTH);
+		selectPatient.setWidth("200px");
 		addComponent(selectPatient);
 		setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
 
