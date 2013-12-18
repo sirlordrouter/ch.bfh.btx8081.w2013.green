@@ -37,8 +37,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	private BeanItemContainer<Patient> patientContainer;
 	private ComboBox selectPatient;
 	private Patient selectedPatient;
-	private List<IPatientChangedListener> patientChangedListeners = new
-			ArrayList();
+	private List<IPatientChangedListener> patientChangedListeners = new ArrayList();
 
 	/**
 	 * The constructor should first build the main layout, set the composition
@@ -81,7 +80,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
 		
 		
-		selectPatient.setWidth(BUTTON_WIDTH);
+		selectPatient.setWidth("200px");
 		addComponent(selectPatient);
 		setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
 
