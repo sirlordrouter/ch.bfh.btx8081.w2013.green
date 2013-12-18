@@ -1,14 +1,8 @@
 package ch.bfh.btx8081.w2013.green.ui.state;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
-import ch.bfh.btx8081.w2013.green.businesslogic.PatientUserDataManager;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
-import ch.bfh.btx8081.w2013.green.businesslogic.SettingsUserDataManager;
-import ch.bfh.btx8081.w2013.green.businesslogic.UserDataManager;
-import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
-import ch.bfh.btx8081.w2013.green.data.Model;
-import ch.bfh.btx8081.w2013.green.data.PatientDataAccess;
-import ch.bfh.btx8081.w2013.green.data.SettingsDataAccess;
+import ch.bfh.btx8081.w2013.green.data.*;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetView;
@@ -131,7 +125,6 @@ public class AuthenticatedState extends AuthenticationState {
 		userModel.setContacts(fda.getContacts());
 		userModel.setMedications(fda.getMedications());
 
-
 		StartView startView = new StartView(navigator);
 		super.navigator.addView(START_VIEW, startView);
 		super.navigator.navigateTo(START_VIEW);
@@ -166,7 +159,7 @@ public class AuthenticatedState extends AuthenticationState {
 		super.navigator.setErrorView(StartSettingsView.class);
 		
 		HelpSetView helpSetView = new HelpSetView(navigator);
-		new HelpSetPresenter(helpSetView, model, navigator);
+		new HelpSetPresenter(helpSetView, settingsModel, navigator);
 		super.navigator.addView(HELP_SET_VIEW, helpSetView);
 
 		super.navigator.navigateTo(START_SETTINGS_VIEW);

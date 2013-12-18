@@ -2,7 +2,6 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
-import ch.bfh.btx8081.w2013.green.data.User;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticationState;
 import ch.bfh.btx8081.w2013.green.ui.state.UnauthenticatedState;
 import com.vaadin.annotations.Push;
@@ -25,7 +24,7 @@ import javax.servlet.annotation.WebServlet;
  * @author group_green, Johannes Gnaegi
  * @version 29-11-2013
  */
-@Theme("mytheme")
+@Theme("dashboard")
 @SuppressWarnings("serial")
 @Push(PushMode.MANUAL)
 public class MyVaadinUI extends UI

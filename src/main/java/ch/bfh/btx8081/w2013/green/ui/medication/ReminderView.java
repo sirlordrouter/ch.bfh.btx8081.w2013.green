@@ -1,8 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;

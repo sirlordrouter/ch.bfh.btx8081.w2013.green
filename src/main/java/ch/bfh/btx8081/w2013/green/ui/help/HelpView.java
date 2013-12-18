@@ -1,11 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.help;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
-
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -13,6 +9,9 @@ import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br>
