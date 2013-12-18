@@ -1,9 +1,14 @@
 package ch.bfh.btx8081.w2013.green.data;
 
+import ch.bfh.btx8081.w2013.green.data.entities.Contact;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+import ch.bfh.btx8081.w2013.green.data.entities.Patient;
+import ch.bfh.btx8081.w2013.green.data.entities.Skill;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeDataAccess implements IProfessionalDataAccess {
+public class FakeDataAccess implements ISettingsDataAccess {
 
     private List<Patient> patients = new ArrayList<Patient>();
 
@@ -23,9 +28,9 @@ public class FakeDataAccess implements IProfessionalDataAccess {
         patients = new ArrayList<Patient>();
 
         Patient p1 = new Patient(1, "Traurig", "Vreni");
-        Patient p2 = new Patient(1, "Sensibel", "Hans");
-        Patient p3 = new Patient(1, "Depro", "Freddy");
-        Patient p4 = new Patient(1, "Borderline", "Meieli");
+        Patient p2 = new Patient(2, "Sensibel", "Hans");
+        Patient p3 = new Patient(3, "Depro", "Freddy");
+        Patient p4 = new Patient(4, "Borderline", "Meieli");
 
         p1.setCustomContacts(generateContacts());
         p1.setCustomMedications(generateMedications());

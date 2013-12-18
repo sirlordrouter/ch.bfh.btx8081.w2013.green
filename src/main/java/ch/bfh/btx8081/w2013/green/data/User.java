@@ -16,12 +16,12 @@ package ch.bfh.btx8081.w2013.green.data;
 
 public class User {
 
-	private int id = 0;
+
+	private int id = -1;
 	private boolean isPatient = false;
 	private String firstname = null;
 	private String lastname = null;
-	private String username = null;
-	
+
 	
 	// TODO get Name and FirstName from DB to display in Views
 	
@@ -65,12 +65,6 @@ public class User {
 	public void setLastname(String lastname) {
 		this.firstname = lastname;
 	}
-	/**
-	 * @param username the username to set
-	 */
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	
 	/**
 	 * @return the id
@@ -94,15 +88,4 @@ public class User {
 	public String getLastname() {
 		return lastname;
 	}
-	/**
-	 * @return the username
-	 */
-	public String getUsername() {
-		return username;
-	}
-
-	
-
-	
-
 }

@@ -53,7 +53,7 @@ public class RegisteredUserDB {
 	  * return true if the loginUsername and loginPassword exist in DB
 	  */
 	 public boolean verifyLogin(String loginUsername,String loginPassword){
-		 if(registeredUserList.isEmpty() == true) { 
+		 if(registeredUserList.isEmpty()) {
 		 	System.out.println("DB is empty");
 		 	return false;
 		 }

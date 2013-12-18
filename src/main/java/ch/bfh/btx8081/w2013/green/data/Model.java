@@ -1,6 +1,10 @@
 
 package ch.bfh.btx8081.w2013.green.data;
 
+import ch.bfh.btx8081.w2013.green.data.entities.Contact;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+import ch.bfh.btx8081.w2013.green.data.entities.Skill;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +18,14 @@ import java.util.List;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 02-12-2013
  */
-public abstract class Model{
+public class Model{
 
-    protected List<Contact> contacts = new ArrayList<Contact>();
-	protected List<Skill> skills = new ArrayList<Skill>();
-	protected List<Medication> medications = new ArrayList<Medication>();
+    private List<Contact> contacts = new ArrayList<Contact>();
+    private List<Skill> skills = new ArrayList<Skill>();
+    private List<Medication> medications = new ArrayList<Medication>();
 	
 	
-	protected Model() {
+	public Model() {
 		this.skills = new ArrayList<Skill>();
 		
 		for (int i = 0; i < 10; i++) {
@@ -54,7 +58,6 @@ public abstract class Model{
     public final void setMedications(List<Medication> medications) {
 		this.medications = medications;
 	}
-
 
     /**
      * getter for contacts

@@ -1,23 +1,16 @@
 package ch.bfh.btx8081.w2013.green.ui.skills;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ch.bfh.btx8081.w2013.green.data.Skill;
+import ch.bfh.btx8081.w2013.green.data.entities.Skill;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.ListSelect;
-import com.vaadin.ui.VerticalLayout;
-
+import com.vaadin.ui.*;
 import de.steinwedel.messagebox.ButtonId;
 import de.steinwedel.messagebox.Icon;
 import de.steinwedel.messagebox.MessageBox;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Berner Fachhochschule</br>

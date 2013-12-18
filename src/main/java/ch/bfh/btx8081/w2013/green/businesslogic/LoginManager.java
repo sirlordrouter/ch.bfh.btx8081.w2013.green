@@ -26,6 +26,11 @@ public class LoginManager {
 
 	private RegisteredUserDB userDB = new RegisteredUserDB();
 	private String loginUsername = null;
+	private User currentUser = null;
+
+    public RegisteredUserDB getUserDB() {
+        return userDB;
+    }
 
     public static LoginManager getLoginManager() {
 
@@ -66,8 +71,10 @@ public class LoginManager {
      *      state of the verification (valid = true, invalid : false)
      */
 	public boolean authenticateUserAccess(String loginUsername, String loginPassword) {
+
 		this.loginUsername = loginUsername;
 		return userDB.verifyLogin(loginUsername, loginPassword);
+
 
 	}
 }

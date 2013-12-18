@@ -1,13 +1,9 @@
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.Timer;
-
 import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComponentListener;
-import ch.bfh.btx8081.w2013.green.data.Medication;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+
+import java.util.*;
 
 /**
  * Berner Fachhochschule</br>
@@ -47,8 +43,9 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 
     	 return cal.getTime();
      }
-     
-     public void addNormalTimer(Medication medication) {
+
+    @Override
+     public void addToSchedule(Medication medication) {
     	 int[] dueTimes = medication.getDueTimes();
 
     	 for (int i = 0; i < dueTimes.length; i++) {
@@ -56,7 +53,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 				 this.timer.scheduleAtFixedRate(
 			 				new MedicationTask(medication, this), 
 			 				getTaskStartTime(DUE_TIMES[i]),
-			 				FIVE_MINUTES);
+			 				ONCE_PER_DAY);
 			}
 		}	
     	 
@@ -68,8 +65,9 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 	public void pushReminder(Medication medicationName) {
 		
 		synchronized (ReminderComponent.this) {
-			
+			if (this.listener != null) {
 				this.listener.pushReminder(medicationName);
+            }
 		}
 	}
 
