@@ -2,12 +2,9 @@ package ch.bfh.btx8081.w2013.green.ui.state;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
-import ch.bfh.btx8081.w2013.green.businesslogic.SettingsUserDataManager;
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
-import ch.bfh.btx8081.w2013.green.data.IDataAccess;
 import ch.bfh.btx8081.w2013.green.data.ISettingsDataAccess;
 import ch.bfh.btx8081.w2013.green.data.Model;
-import ch.bfh.btx8081.w2013.green.data.PatientDataAccess;
 import ch.bfh.btx8081.w2013.green.data.SettingsDataAccess;
 import ch.bfh.btx8081.w2013.green.data.SettingsModel;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpPresenter;
@@ -15,9 +12,11 @@ import ch.bfh.btx8081.w2013.green.ui.help.HelpSetPresenter;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpSetView;
 import ch.bfh.btx8081.w2013.green.ui.help.HelpView;
 import ch.bfh.btx8081.w2013.green.ui.medication.MedicationPresenter;
+import ch.bfh.btx8081.w2013.green.ui.medication.MedicationSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.medication.MedicationView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
+import ch.bfh.btx8081.w2013.green.ui.start.IStartSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import ch.bfh.btx8081.w2013.green.ui.start.StartSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.start.StartView;
@@ -74,6 +73,12 @@ public class AuthenticatedState extends AuthenticationState {
 	public static final String HELP_SET_VIEW = "helpSet";
 
 	/**
+	 * Global accessible Reference for the Medicationview name as it is stored
+	 * in the navigator.
+	 */
+	public static final String MEDIC_SET_VIEW = "medicSet";
+
+	/**
 	 * Constructor for this state implementation.
 	 * 
 	 * @param ui
@@ -118,24 +123,18 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	private void loadProtectedUserResources() {
 
-        //TODO: Wenn möglich Interfaces verwenden
-
-		super.navigator.addView(START_VIEW, new StartView(navigator));
-		super.navigator.setErrorView(StartView.class);
 
 		Model userModel = new Model();
 		ReminderComponent mc = new ReminderComponent();
-
-        IDataAccess dataAccess= new PatientDataAccess();
 
 		FakeDataAccess fda = new FakeDataAccess();
 		userModel.setContacts(fda.getContacts());
 		userModel.setMedications(fda.getMedications());
 
-
 		StartView startView = new StartView(navigator);
 		super.navigator.addView(START_VIEW, startView);
 		super.navigator.navigateTo(START_VIEW);
+		super.navigator.setErrorView(StartView.class);
 
 		SkillsView skillsView = new SkillsView();
 		new SkillsPresenter(skillsView, userModel, navigator);
@@ -148,6 +147,7 @@ public class AuthenticatedState extends AuthenticationState {
 		MedicationView medView = new MedicationView();
 		new MedicationPresenter(medView, userModel, navigator, mc);
 		super.navigator.addView(MEDIC_VIEW, medView);
+
 	}
 
 	/**
@@ -162,15 +162,22 @@ public class AuthenticatedState extends AuthenticationState {
         settingsModel.setContacts(fda.getContacts());
         settingsModel.setMedications(fda.getMedications());
 
-		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView(
-				navigator));
+        StartSettingsView ssv = new StartSettingsView(
+				navigator);
+		super.navigator.addView(START_SETTINGS_VIEW, ssv);
 		super.navigator.setErrorView(StartSettingsView.class);
 		
+		super.navigator.navigateTo(START_SETTINGS_VIEW);
+
 		HelpSetView helpSetView = new HelpSetView(navigator);
 		new HelpSetPresenter(helpSetView, settingsModel, navigator);
 		super.navigator.addView(HELP_SET_VIEW, helpSetView);
-
-		super.navigator.navigateTo(START_SETTINGS_VIEW);
+		
+		MedicationSettingsView medSetView = new MedicationSettingsView(navigator, settingsModel);
+		((IStartSettingsView)ssv).addPatientChangedListener(medSetView);
+		super.navigator.addView(MEDIC_SET_VIEW, medSetView);
+		
+		
 
 	}
 

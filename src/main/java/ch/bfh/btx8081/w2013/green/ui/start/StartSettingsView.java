@@ -1,34 +1,26 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
-import ch.bfh.btx8081.w2013.green.data.RegisteredUserDB;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 
-
-import com.vaadin.data.Item;
 import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.event.FieldEvents.BlurListener;
+import com.vaadin.data.Property;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.AbsoluteLayout;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.CustomComponent;
-
-import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
 
-public class StartSettingsView extends VerticalLayout implements View {
+public class StartSettingsView extends VerticalLayout implements View, IStartSettingsView {
 
 	/*- VaadinEditorProperties={"grid":"RegularGrid,20","showGrid":true,"snapToGrid":true,"snapToObject":true,"movingGuides":false,"snappingDistance":10} */
 
@@ -42,8 +34,11 @@ public class StartSettingsView extends VerticalLayout implements View {
 	private static final String BUTTON_MEDICPSETTINGS = "Medic Settings";
 	private static final String BUTTON_WIDTH = "120px";
 	private final Navigator navigator;
-	private static Patient currentSelectedPatient;
-	
+	private BeanItemContainer<Patient> patientContainer;
+	private ComboBox selectPatient;
+	private Patient selectedPatient;
+	private List<IPatientChangedListener> patientChangedListeners = new
+			ArrayList();
 
 	/**
 	 * The constructor should first build the main layout, set the composition
@@ -68,61 +63,35 @@ public class StartSettingsView extends VerticalLayout implements View {
 		//Combobox for selecting a patient.
 		final ComboBox patientComboBox = new ComboBox("Select Patient");
 		patientComboBox.setImmediate(true);
-		
-		
-//		//DummyList with patients displayed in the combobox. Should be replaced by a patientlist.
-//		ArrayList<String> patientList = new ArrayList<String>();
-//		patientList.add("Patient 1");
-//		patientList.add("Patient 2");
-//		patientList.add("Patient 3");
-//		patientList.add("Patient 4");
-//		
-		
-		
+
+		patientContainer = new BeanItemContainer<Patient>(Patient.class);
+
+	    
+	    // Put some example data in it
+	    patientContainer.addItem(new Patient(1, "Mayer", "muster"));
+	    patientContainer.addItem(new Patient(2, "Meyer", "muster"));   
+	    patientContainer.addItem(new Patient(3, "maiyer", "muster"));
+	    
+	    
+	    // Create a selection component bound to the container
+	    selectPatient = new ComboBox("Patients", patientContainer);
+	    // from the 'name' property of the bean
+	    selectPatient.setItemCaptionPropertyId("name");
+	    selectPatient.addValueChangeListener(new PatientListener());
+
 		
 		//Putting the patients from the patientlist in the combobox.		
-		for (int i = 0; i < patientList.size(); i++){
-			Patient p = patientList.get(i);
-			String patientIdNameForename = p.getPatientId() +" "+ p.getName() +","+ p.getForename();
-			patientComboBox.addItem(patientIdNameForename);	
+		for (int i = 0; i < patientContainer.size(); i++){
+			patientContainer.addItem(patientList.get(i));
 		}
 		
-	//	patientComboBox.addListener(selectedPatientListener);
 		
-		
-		//Adding the combobox to the settingsscreen and setting layout.
-		addComponent(patientComboBox);
-		patientComboBox.setWidth(BUTTON_WIDTH);
-		setComponentAlignment(patientComboBox, Alignment.MIDDLE_CENTER);
-		
-		patientComboBox.addValueChangeListener(new ValueChangeListener(){
-			
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 7639944818345299985L;
-			
-			@Override
-			public void valueChange(ValueChangeEvent event) {
-				// TODO Auto-generated method stub
-				
-				String patientIdNameFirstName = patientComboBox.getValue().toString();
-			//	String selectedPatient = i.toString();
-				String selectedPatientId = patientIdNameFirstName.substring(0, 1);
-				System.out.println("The current selected patient is:"+ patientIdNameFirstName
-						+ "The current selected patient has patient ID: "+selectedPatientId);
-				for(int i = 0; i < patientList.size();i++){
-					int id = patientList.get(i).getPatientId();
-					if(selectedPatientId.equals(id)){
-						currentSelectedPatient = patientList.get(i);
-					}
-					System.out.println(currentSelectedPatient.toString());
-				}
-			}
+		selectPatient.setWidth(BUTTON_WIDTH);
+		addComponent(selectPatient);
+		setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
 
-			
-		});
-	
+		
+
 		
 		
 		// Creating the 3 Buttons (Help Settings, Skill Settings and Logout)
@@ -213,5 +182,26 @@ public class StartSettingsView extends VerticalLayout implements View {
 
 	}
 	
+	//Done by Esma
+	private class PatientListener implements Property.ValueChangeListener{
+
+		@Override
+		public void valueChange(ValueChangeEvent event) {
+			Object result = ((ComboBox) event.getProperty()).getValue();
+			selectedPatient = (Patient) result;
+			
+			for (IPatientChangedListener pListener : patientChangedListeners) {
+				pListener.setSelectedPatient(selectedPatient);
+			}
+			
+		}
+		
+	}
+
+	@Override
+	public void addPatientChangedListener(IPatientChangedListener l) {
+		this.patientChangedListeners.add(l);
+		
+	}
 
 }
