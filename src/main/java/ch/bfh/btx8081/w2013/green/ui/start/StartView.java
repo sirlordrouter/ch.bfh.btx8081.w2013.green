@@ -41,6 +41,9 @@ public class StartView extends VerticalLayout implements View {
 	private static final String BUTTON_LOGOUT = "LOGOUT";
 
 	private static final String BUTTON_WIDTH = "120px";
+	
+	private static final String PATIENT = "PATIENT";
+
 
 	private final Navigator navigator;
 
@@ -48,8 +51,7 @@ public class StartView extends VerticalLayout implements View {
 		this.navigator = nav;
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
-
-
+		
 		Button buttonHelp = new Button(BUTTON_HELP, new Button.ClickListener() {
 			private static final long serialVersionUID = -3742574718530257633L;
 
@@ -126,5 +128,7 @@ public class StartView extends VerticalLayout implements View {
 	public void enter(ViewChangeEvent event) {
 
 	}
+	
+
 
 }
