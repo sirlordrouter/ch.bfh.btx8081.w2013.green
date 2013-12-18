@@ -171,7 +171,7 @@ public class AuthenticatedState extends AuthenticationState {
 		new HelpSetPresenter(helpSetView, settingsModel, navigator);
 		super.navigator.addView(HELP_SET_VIEW, helpSetView);
 		
-		MedicationSettingsView medSetView = new MedicationSettingsView(navigator);
+		MedicationSettingsView medSetView = new MedicationSettingsView(navigator, settingsModel);
 		super.navigator.addView(MEDIC_SET_VIEW, medSetView);
 
 	}
