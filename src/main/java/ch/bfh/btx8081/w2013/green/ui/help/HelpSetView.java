@@ -12,6 +12,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import ch.bfh.btx8081.w2013.green.ui.help.IHelpView;
 
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br>
@@ -84,3 +85,4 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
 	}
 
 }
+

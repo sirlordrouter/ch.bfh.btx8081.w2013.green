@@ -38,19 +38,9 @@ public class StartView extends VerticalLayout implements View {
 
 	private static final String BUTTON_MEDICATION = "MEDICATION";
 
-	private static final String BUTTON_SETTINGS = "SETTINGS";
-
-	private static final String BUTTON_HELP_SETTINGS = "HELP SETTINGS";
-
 	private static final String BUTTON_LOGOUT = "LOGOUT";
 
 	private static final String BUTTON_WIDTH = "120px";
-	
-	//done by Esma
-	private static final String PATIENT = "PATIENT";
-	private BeanItemContainer<Patient> patientContainer;
-	private Select selectPatient;
-	private Patient selectedPatient;
 
 	private final Navigator navigator;
 
@@ -58,26 +48,7 @@ public class StartView extends VerticalLayout implements View {
 		this.navigator = nav;
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
-		
-		// Done by Esma
-		 // Have a bean container to put the beans in
-	    patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
-	    
-	    // Put some example data in it
-	    patientContainer.addItem(new Patient(1, "Mayer", "muster"));
-	    patientContainer.addItem(new Patient(2, "Meyer", "muster"));   
-	    patientContainer.addItem(new Patient(3, "maiyer", "muster"));
-	    
-	    
-	    // Create a selection component bound to the container
-	    selectPatient = new Select("Patients", patientContainer);
-	    // from the 'name' property of the bean
-	    selectPatient.setItemCaptionPropertyId("name");
-	    selectPatient.addValueChangeListener(new PatientListener());		
-		addComponent(selectPatient);
-		setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
-		// End
 
 		Button buttonHelp = new Button(BUTTON_HELP, new Button.ClickListener() {
 			private static final long serialVersionUID = -3742574718530257633L;
@@ -119,35 +90,6 @@ public class StartView extends VerticalLayout implements View {
 		addComponent(buttonMedic);
 		setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
 
-		Button buttonSettings = new Button(BUTTON_SETTINGS,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = -1096188732209266611L;
-
-					@Override
-					public void buttonClick(
-							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo(AuthenticatedState.SETTINGS_VIEW);
-					}
-				});
-		buttonSettings.setWidth(BUTTON_WIDTH);
-		addComponent(buttonSettings);
-		setComponentAlignment(buttonSettings, Alignment.MIDDLE_CENTER);
-
-		// //******
-		Button buttonHelpSettings = new Button(BUTTON_HELP_SETTINGS,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = -4211158082239865950L;
-
-					@Override
-					public void buttonClick(
-							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo(AuthenticatedState.HELP_SET_VIEW);
-					}
-
-				});
-		buttonHelpSettings.setWidth(BUTTON_WIDTH);
-		addComponent(buttonHelpSettings);
-		setComponentAlignment(buttonHelpSettings, Alignment.MIDDLE_CENTER);
 
 		Button buttonLogout = new Button(BUTTON_LOGOUT,
 				new Button.ClickListener() {
@@ -183,18 +125,6 @@ public class StartView extends VerticalLayout implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 
-	}
-	
-	//Done by Esma
-	private class PatientListener implements Property.ValueChangeListener{
-
-		@Override
-		public void valueChange(ValueChangeEvent event) {
-			selectedPatient = (Patient) selectPatient.getValue();
-			System.out.println(selectedPatient.getName());
-			
-		}
-		
 	}
 
 }

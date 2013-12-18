@@ -24,7 +24,7 @@ public interface IReminderComponent {
 	 * @param medicationName
      *      the medication to remind
 	 */
-	public void pushReminder(Medication medicationName);
+	void pushReminder(Medication medicationName);
 	
 	/**
 	 * Must implement a Method to add new Listener.
@@ -32,16 +32,24 @@ public interface IReminderComponent {
 	 * @param listener
      *      the listener listening to the <code>ReminderComponent</code>
 	 */
-	public void addListener(IReminderComponentListener listener);
+	void addListener(IReminderComponentListener listener);
 	
 	/**
 	 * Must implement a Method to remove listener
 	 * @param listener
      *      the listener listening to the <code>ReminderComponent</code>
 	 */
-	public void removeListener(IReminderComponentListener listener);
-	
-	/**
+	void removeListener(IReminderComponentListener listener);
+
+
+    /**
+     * Must implement a Method vor scheduling a Timer for the given <code>Medication</code>
+     * @param medication
+     *      a medication to add to Timer
+     */
+    void addToSchedule(Medication medication);
+
+    /**
 	 * Berner Fachhochschule</br>
 	 * Medizininformatik BSc</br>
 	 * Modul 8081, HS2013</br>
