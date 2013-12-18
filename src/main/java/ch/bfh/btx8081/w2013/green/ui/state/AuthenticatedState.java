@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.green.ui.state;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
+import ch.bfh.btx8081.w2013.green.businesslogic.SettingsUserDataManager;
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.ISettingsDataAccess;
 import ch.bfh.btx8081.w2013.green.data.Model;
@@ -16,6 +17,7 @@ import ch.bfh.btx8081.w2013.green.ui.medication.MedicationSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.medication.MedicationView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
+import ch.bfh.btx8081.w2013.green.ui.start.IStartSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import ch.bfh.btx8081.w2013.green.ui.start.StartSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.start.StartView;
@@ -161,8 +163,9 @@ public class AuthenticatedState extends AuthenticationState {
         settingsModel.setContacts(fda.getContacts());
         settingsModel.setMedications(fda.getMedications());
 
-		super.navigator.addView(START_SETTINGS_VIEW, new StartSettingsView(
-				navigator));
+        StartSettingsView ssv = new StartSettingsView(
+				navigator);
+		super.navigator.addView(START_SETTINGS_VIEW, ssv);
 		super.navigator.setErrorView(StartSettingsView.class);
 		
 		super.navigator.navigateTo(START_SETTINGS_VIEW);
@@ -172,7 +175,10 @@ public class AuthenticatedState extends AuthenticationState {
 		super.navigator.addView(HELP_SET_VIEW, helpSetView);
 		
 		MedicationSettingsView medSetView = new MedicationSettingsView(navigator, settingsModel);
+		((IStartSettingsView)ssv).addPatientChangedListener(medSetView);
 		super.navigator.addView(MEDIC_SET_VIEW, medSetView);
+		
+		
 
 	}
 

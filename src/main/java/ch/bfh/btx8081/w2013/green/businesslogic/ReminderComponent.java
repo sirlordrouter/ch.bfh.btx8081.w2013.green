@@ -53,7 +53,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 				 this.timer.scheduleAtFixedRate(
 			 				new MedicationTask(medication, this), 
 			 				getTaskStartTime(DUE_TIMES[i]),
-                         FIVE_MINUTES);
+			 				ONCE_PER_DAY);
 			}
 		}	
     	 
