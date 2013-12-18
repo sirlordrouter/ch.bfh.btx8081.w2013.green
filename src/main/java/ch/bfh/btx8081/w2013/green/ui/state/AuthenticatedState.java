@@ -162,8 +162,7 @@ public class AuthenticatedState extends AuthenticationState {
         settingsModel.setContacts(fda.getContacts());
         settingsModel.setMedications(fda.getMedications());
 
-        StartSettingsView ssv = new StartSettingsView(
-				navigator);
+        StartSettingsView ssv = new StartSettingsView(navigator);
 		super.navigator.addView(START_SETTINGS_VIEW, ssv);
 		super.navigator.setErrorView(StartSettingsView.class);
 		

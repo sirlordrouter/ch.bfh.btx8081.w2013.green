@@ -21,6 +21,7 @@ public class Patient implements Serializable {
     private int patientId = -1;
     private String name = null;
     private String forename = null;
+    private String patientName = null;
 
     private List<Medication> customMedications = new ArrayList<Medication>();
     private List<Contact> customContacts = new ArrayList<Contact>();
@@ -39,6 +40,7 @@ public class Patient implements Serializable {
         this.patientId = id;
         this.name = name;
         this.forename = forename;
+        this.patientName = name + ", " + forename;
 
     }
 
@@ -98,4 +100,7 @@ public class Patient implements Serializable {
     }
 
 
+    public String getPatientName() {
+        return patientName;
+    }
 }
