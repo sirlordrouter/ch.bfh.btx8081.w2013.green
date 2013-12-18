@@ -19,8 +19,8 @@ public class RegisteredUserDB {
 
 	// creation of default users for fast login during implementation phase
 	private RegisteredUser admin = new RegisteredUser(0001,"a","a", "admin", "admin",  false);	
-	private RegisteredUser patient = new RegisteredUser(1000,"p","p", "admin", "admin",  true);	
-	// creation of users for all involved programmers
+	private RegisteredUser patient = new RegisteredUser(1000,"p","p", "Patient", "Patient",  true);	
+	// creation of admins for all involved programmers
 	private RegisteredUser dagde1 = new RegisteredUser(0010, "dagde1","dagde1", "Esma", "Dagdas", false);
 	private RegisteredUser gnagj1 = new RegisteredUser(0011, "gnagj1","gnagj1", "Johannes", "Gnaegi", false);
 	private RegisteredUser messv1 = new RegisteredUser(0012, "messv1","messv1", "Messerli", "Vinzenz", false);
@@ -73,7 +73,7 @@ public class RegisteredUserDB {
 	  * return true if the loginUsername and loginPassword exist in DB
 	  */
 	 public User assignUserAttributes(String username){
-		 User currentUser = null;
+		 User currentUser = new User();
 		 for (RegisteredUser ru :registeredUserList) {
 			 String loginUsername = username;
 			 if(ru.getUsername().equals(loginUsername)) {
