@@ -55,4 +55,12 @@ public class Contact {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return
+                "Profession: " + profession + "\n\r" +
+                "Name: " + name  + ", " + forename + "\n\r" +
+                "Phone: " + "<a href=\"tel:" + phoneNumber + "\">Tel: " + phoneNumber + "</a>\n\r";
+    }
 }
