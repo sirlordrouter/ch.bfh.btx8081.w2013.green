@@ -41,6 +41,18 @@ public class MedicationSettingsView extends VerticalLayout implements View, IPat
          optionGroup = new OptionGroup("Patient name", medications);//(selectedPatient.getName());	       
          optionGroup.setItemCaptionPropertyId("medicationName");
  		optionGroup.setMultiSelect(true);
+
+
+        optionGroup.addValueChangeListener(
+                new Property.ValueChangeListener() {
+                    @Override
+                    public void valueChange(ValueChangeEvent event) {
+                        Object item = event.getProperty().getValue();
+
+                    }
+                }
+        );
+
  		// optionGroup add listener 
  		vertical.addComponent(optionGroup);
  		
