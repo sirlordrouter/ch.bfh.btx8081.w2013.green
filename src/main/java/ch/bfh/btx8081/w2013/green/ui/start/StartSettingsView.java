@@ -22,8 +22,6 @@ import com.vaadin.ui.Button.ClickEvent;
 
 public class StartSettingsView extends VerticalLayout implements View, IStartSettingsView {
 
-	/*- VaadinEditorProperties={"grid":"RegularGrid,20","showGrid":true,"snapToGrid":true,"snapToObject":true,"movingGuides":false,"snappingDistance":10} */
-
 	/**
 	 * 
 	 */
@@ -33,13 +31,11 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	private static final String BUTTON_HELPSETTINGS = "Help Settings";
 	private static final String BUTTON_MEDICPSETTINGS = "Medic Settings";
 	private static final String BUTTON_WIDTH = "120px";
-	private final Navigator navigator;
-	private BeanItemContainer<Patient> patientContainer;
-	private ComboBox selectPatient;
-	private Patient selectedPatient;
-	private List<IPatientChangedListener> patientChangedListeners = new ArrayList();
 
-	/**
+    private ISettingsPresenter settingsPresenter = null;
+    private List<Patient> patientList = null;
+
+    /**
 	 * The constructor should first build the main layout, set the composition
 	 * root and then do any custom initialization.
 	 * 
@@ -49,25 +45,22 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	 * This settings view is meant for administrators who configure the mental
 	 * health app for the patients.
 	 */
-	public StartSettingsView(Navigator nav) {
-
-		this.navigator = nav;
+	public StartSettingsView() {
 
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
 		//Creating a fake Patientlist
 		FakeDataAccess fda = new FakeDataAccess();
-		final ArrayList<Patient> patientList = new ArrayList<Patient>(fda.getPatients());
+		ArrayList<Patient> patientList = new ArrayList<Patient>(fda.getPatients());
 		
 		//Combobox for selecting a patient.
 		final ComboBox patientComboBox = new ComboBox("Select Patient");
 		patientComboBox.setImmediate(true);
 
-		patientContainer = new BeanItemContainer<Patient>(Patient.class);
+        BeanItemContainer<Patient> patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
-	    
 	    // Create a selection component bound to the container
-	    selectPatient = new ComboBox("Patients", patientContainer);
+        ComboBox selectPatient = new ComboBox("Patients", patientContainer);
 	    // from the 'name' property of the bean
 	    selectPatient.setItemCaptionPropertyId("patientName");
 	    selectPatient.addValueChangeListener(new PatientListener());
@@ -78,16 +71,10 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 			patientContainer.addItem(p);
         }
 
-		
-		
 		selectPatient.setWidth("200px");
 		addComponent(selectPatient);
 		setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
 
-		
-
-		
-		
 		// Creating the 3 Buttons (Help Settings, Skill Settings and Logout)
 		// with a Navigator which should navigate to the corresponding view.
 		
@@ -97,8 +84,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
 					@Override
 					public void buttonClick(ClickEvent event) {
-						// TODO Should navigate to the help setting view.
-						navigator.navigateTo(AuthenticatedState.HELP_SET_VIEW);
+                        settingsPresenter.navigateToHelpSettings();
 					}
 				});
 
@@ -108,9 +94,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
 					@Override
 					public void buttonClick(ClickEvent event) {
-						// TODO Should navigate to the Skill Setting View.
-						navigator.navigateTo("SKILLSETTINGS");
-
+                        settingsPresenter.navigateToSkillSettings();
 					}
 				});
 		
@@ -120,9 +104,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
 					@Override
 					public void buttonClick(ClickEvent event) {
-						// TODO Should navigate to the Skill Setting View.
-						navigator.navigateTo(AuthenticatedState.MEDIC_SET_VIEW);
-
+                        settingsPresenter.navigateToMedicSettings();
 					}
 				});
 
@@ -133,8 +115,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 					@Override
 					public void buttonClick(
 							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo("");
-						((MyVaadinUI) MyVaadinUI.getCurrent()).logout();
+                        settingsPresenter.navigateBack();
 					}
 				});
 		
@@ -167,35 +148,33 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 		// TODO add user code here
 	}
 
-	
-
 	@Override
 	public void enter(ViewChangeEvent event) {
 		Notification.show("Welcome to the settings homescreen!");
-		// TODO Auto-generated method stub
-
 	}
-	
-	//Done by Esma
+
+
+    //Done by Esma
 	private class PatientListener implements Property.ValueChangeListener{
 
 		@Override
 		public void valueChange(ValueChangeEvent event) {
 			Object result = ((ComboBox) event.getProperty()).getValue();
-			selectedPatient = (Patient) result;
-			
-			for (IPatientChangedListener pListener : patientChangedListeners) {
-				pListener.setSelectedPatient(selectedPatient);
-			}
-			
+            Patient selectedPatient = (Patient) result;
+
+			settingsPresenter.patientChanged(selectedPatient);
 		}
-		
+
 	}
 
-	@Override
-	public void addPatientChangedListener(IPatientChangedListener l) {
-		this.patientChangedListeners.add(l);
-		
-	}
+    @Override
+    public void addSettingsPresenter(ISettingsPresenter p) {
+        this.settingsPresenter = p;
+    }
+
+    @Override
+    public void addPatients(List<Patient> patientList) {
+        this.patientList = patientList;
+    }
 
 }

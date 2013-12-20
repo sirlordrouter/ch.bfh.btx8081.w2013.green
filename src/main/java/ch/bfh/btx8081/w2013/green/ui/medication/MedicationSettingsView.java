@@ -3,10 +3,9 @@ package ch.bfh.btx8081.w2013.green.ui.medication;
 import ch.bfh.btx8081.w2013.green.data.SettingsModel;
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
-import ch.bfh.btx8081.w2013.green.ui.start.IStartSettingsView.IPatientChangedListener;
+import ch.bfh.btx8081.w2013.green.ui.start.IStartSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
-
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.BeanItemContainer;
@@ -14,11 +13,10 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.VerticalLayout;
 
-public class MedicationSettingsView extends VerticalLayout implements View, IPatientChangedListener {
+public class MedicationSettingsView extends VerticalLayout implements View, IStartSettingsView.ISettingsPresenter.IPatientChangedListener {
 
 	private OptionGroup optionGroup = null;
     private BeanItemContainer<Medication> medications = null;

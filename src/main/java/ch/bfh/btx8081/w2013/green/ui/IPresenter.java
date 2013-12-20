@@ -12,10 +12,6 @@ package ch.bfh.btx8081.w2013.green.ui;
  */
 public interface IPresenter {
 
-    void addPresenter(IPresenter p);
+    void navigateBack();
 
-    public interface IPresenter {
-
-        void btnBackClicked();
-    }
 }
