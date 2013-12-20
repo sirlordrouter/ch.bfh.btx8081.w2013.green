@@ -38,7 +38,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 
     	 GregorianCalendar cal = new GregorianCalendar(TimeZone.getTimeZone("Europe/Zurich"),  Locale.GERMANY);
 
-    	 cal.set(GregorianCalendar.MINUTE, 40);
+    	 cal.set(GregorianCalendar.MINUTE, 27);
     	 cal.set(GregorianCalendar.HOUR_OF_DAY, hour);
 
     	 return cal.getTime();

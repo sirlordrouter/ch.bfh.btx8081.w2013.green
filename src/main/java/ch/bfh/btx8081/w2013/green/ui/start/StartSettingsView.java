@@ -65,6 +65,15 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
 		patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
+
+		
+	    
+	    // Put some example data in it
+	    patientContainer.addItem(new Patient(1, "Mayer", "muster"));
+	    patientContainer.addItem(new Patient(2, "Meyer", "muster"));   
+	    patientContainer.addItem(new Patient(3, "maiyer", "muster"));
+	    
+
 	    
 	    // Create a selection component bound to the container
 	    selectPatient = new ComboBox("Patients", patientContainer);

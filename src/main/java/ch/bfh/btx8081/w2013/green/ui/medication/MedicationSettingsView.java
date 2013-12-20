@@ -41,7 +41,20 @@ public class MedicationSettingsView extends VerticalLayout implements View, IPat
          optionGroup = new OptionGroup("Patient name", medications);//(selectedPatient.getName());	       
          optionGroup.setItemCaptionPropertyId("medicationName");
  		optionGroup.setMultiSelect(true);
+
+
+        optionGroup.addValueChangeListener(
+                new Property.ValueChangeListener() {
+                    @Override
+                    public void valueChange(ValueChangeEvent event) {
+                        Object item = event.getProperty().getValue();
+
+                    }
+                }
+        );
+
  		// optionGroup add listener 
+ 	
  		vertical.addComponent(optionGroup);
  		
         vertical.addComponent(new Button("Back", new Button.ClickListener() {
@@ -70,6 +83,9 @@ public class MedicationSettingsView extends VerticalLayout implements View, IPat
 			optionGroup.setCaption("Patient: " + p.getName() + ", " + p.getForename());
 			this.markAsDirtyRecursive();
 		}
+
+		}
 		
 	}
-}
+	
+

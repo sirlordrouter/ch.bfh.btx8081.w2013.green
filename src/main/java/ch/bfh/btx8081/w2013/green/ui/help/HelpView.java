@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.help;
 
+import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
+import ch.bfh.btx8081.w2013.green.data.entities.Contact;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import com.vaadin.navigator.Navigator;
@@ -37,19 +39,18 @@ public class HelpView extends VerticalLayout implements View, IHelpView {
 
 		VerticalLayout vertical = new VerticalLayout();
 
+        FakeDataAccess fda = new FakeDataAccess();
+
 		String contacts = "";
 
-		for (int i = 0; i <= 10; i++) {
+        for (Contact c : fda.getContacts()) {
+            Label l = new Label();
+            l.setContentMode(ContentMode.HTML);
+            l.setWidth("100px");
+            l.setValue(c.toString() + "\n\r\n\r");
 
-			Label l = new Label();
-			l.setContentMode(ContentMode.HTML);
-			l.setWidth("100px");
-			l.setValue("Physicologist\n"
-					+ "<a href=\"tel:5551234567\">Tel: (555)123-4567</a>\n"
-					+ "<a href=\"tel:5551234567\">Home: (555)123-4567</a>\n\n\n");
-
-			vertical.addComponent(l);
-		}
+            vertical.addComponent(l);
+        }
 
 		vertical.addComponent(new Button("Back", new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
