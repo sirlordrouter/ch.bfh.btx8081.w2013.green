@@ -5,7 +5,6 @@ import ch.bfh.btx8081.w2013.green.businesslogic.IReminderComponent.IReminderComp
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
-import com.vaadin.ui.Component;
 import de.steinwedel.messagebox.ButtonId;
 import de.steinwedel.messagebox.MessageBoxListener;
 

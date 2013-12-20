@@ -67,20 +67,23 @@ public class RegisteredUserDB {
 		 
 		 return false;
 	 }
-
-    //TODO: ev anders lösen, irgendwie muss der aktuelle User aus der DB erstellt
-    //werden um auch zu überprüfen ob er admin ist und Namen beim Anmelden einzublenden.
-    //ev. neue Klasse VerificationResult (User, boolean) um zwe Argumente zurückzugeben.
-    public User getAuthenticatedUser(String loginUsername,String loginPassword ) {
-        if (verifyLogin(loginUsername, loginPassword)) {
-            for (RegisteredUser ru: registeredUserList) {
-                if(ru.getUsername().equals(loginUsername) && ru.getPassword().equals(loginPassword)) {
-                    return new User(ru.getId(), ru.getUsername(), ru.getIsPatient());
-                }
-            }
-        }
-
-        return null;
-    }
+	 
+	 /*
+	  * @verifyLogin: verify if the given loginUsername and loginPassword exist in the DB
+	  * return true if the loginUsername and loginPassword exist in DB
+	  */
+	 public User assignUserAttributes(String username){
+		 User currentUser = null;
+		 for (RegisteredUser ru :registeredUserList) {
+			 if(ru.getUsername().equals(username)) {
+                 currentUser = new User();
+				 currentUser.setId(ru.getId());
+				 currentUser.setIsPatient(ru.getIsPatient());
+				 currentUser.setFirstname(ru.getFirstname());
+				 return currentUser;
+			 }
+		 }
+		return currentUser;
+	 }
 	
 }

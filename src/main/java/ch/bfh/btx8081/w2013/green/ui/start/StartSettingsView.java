@@ -3,12 +3,12 @@ package ch.bfh.btx8081.w2013.green.ui.start;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
-import ch.bfh.btx8081.w2013.green.ui.start.IStartSettingsView.IPatientChangedListener;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 
-import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -34,7 +34,6 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	private static final String BUTTON_MEDICPSETTINGS = "Medic Settings";
 	private static final String BUTTON_WIDTH = "120px";
 	private final Navigator navigator;
-	
 	private BeanItemContainer<Patient> patientContainer;
 	private ComboBox selectPatient;
 	private Patient selectedPatient;
@@ -56,8 +55,16 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
+		//Creating a fake Patientlist
+		FakeDataAccess fda = new FakeDataAccess();
+		final ArrayList<Patient> patientList = new ArrayList<Patient>(fda.getPatients());
 		
+		//Combobox for selecting a patient.
+		final ComboBox patientComboBox = new ComboBox("Select Patient");
+		patientComboBox.setImmediate(true);
+
 		patientContainer = new BeanItemContainer<Patient>(Patient.class);
+
 
 		
 	    
@@ -66,33 +73,28 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	    patientContainer.addItem(new Patient(2, "Meyer", "muster"));   
 	    patientContainer.addItem(new Patient(3, "maiyer", "muster"));
 	    
+
 	    
 	    // Create a selection component bound to the container
 	    selectPatient = new ComboBox("Patients", patientContainer);
 	    // from the 'name' property of the bean
-	    selectPatient.setItemCaptionPropertyId("name");
+	    selectPatient.setItemCaptionPropertyId("patientName");
 	    selectPatient.addValueChangeListener(new PatientListener());
-	   
-		// End
+
+		
+		//Putting the patients from the patientlist in the combobox.
+        for (Patient p : patientList) {
+			patientContainer.addItem(p);
+        }
+
 		
 		
-//		FakeDataAccess fda = new FakeDataAccess();
-//		ArrayList<Patient> patientList = new ArrayList<Patient>(fda.getPatients());
-//		
-//		
-//		//Putting the patients from the patientlist in the combobox.		
-//		for (int i = 0; i < patientList.size(); i++){
-//			Patient p = patientList.get(i);
-//			String patientIdNameForename = p.getPatientId() +" "+ p.getName() +","+ p.getForename();
-//			patientComboBox.addItem(patientIdNameForename);	
-//		}
-		
+		selectPatient.setWidth("200px");
 		addComponent(selectPatient);
 		setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
-		//Adding the combobox to the settingsscreen and setting layout.
-//		patientComboBox.setWidth(BUTTON_WIDTH);
-//		setComponentAlignment(patientComboBox, Alignment.MIDDLE_CENTER);
-//	
+
+		
+
 		
 		
 		// Creating the 3 Buttons (Help Settings, Skill Settings and Logout)

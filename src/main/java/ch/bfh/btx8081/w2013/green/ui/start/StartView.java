@@ -107,21 +107,7 @@ public class StartView extends VerticalLayout implements View {
 		buttonLogout.setWidth(BUTTON_WIDTH);
 		addComponent(buttonLogout);
 		setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
-		
-		Button buttonProto = new Button("Prototype",
-				new Button.ClickListener() {
-					private static final long serialVersionUID = -1096188732209266611L;
 
-					@Override
-					public void buttonClick(
-							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo("proto");
-						
-					}
-				});
-		buttonProto.setWidth(BUTTON_WIDTH);
-		addComponent(buttonProto);
-		setComponentAlignment(buttonProto, Alignment.MIDDLE_CENTER);
 	}
 
 	@Override

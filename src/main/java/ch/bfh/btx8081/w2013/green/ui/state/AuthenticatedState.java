@@ -2,7 +2,6 @@ package ch.bfh.btx8081.w2013.green.ui.state;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
-import ch.bfh.btx8081.w2013.green.businesslogic.SettingsUserDataManager;
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.ISettingsDataAccess;
 import ch.bfh.btx8081.w2013.green.data.Model;
@@ -96,7 +95,7 @@ public class AuthenticatedState extends AuthenticationState {
 	@Override
 	protected void entryState() {
 
-		if (LoginManager.getLoginManager().getCurrentUser().isPatient()) {
+		if (super.context.getCurrentUser().getIsPatient()) {
 			loadProtectedUserResources();
 		} else {
 			loadProtectedSettingsResources();
@@ -123,7 +122,6 @@ public class AuthenticatedState extends AuthenticationState {
 	 * loads patient specific data and views.
 	 */
 	private void loadProtectedUserResources() {
-
 
 		Model userModel = new Model();
 		ReminderComponent mc = new ReminderComponent();
@@ -156,15 +154,16 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	private void loadProtectedSettingsResources() {
 
+
         SettingsModel settingsModel = new SettingsModel();
         ISettingsDataAccess dataAccess = new SettingsDataAccess();
+
 
         FakeDataAccess fda = new FakeDataAccess();
         settingsModel.setContacts(fda.getContacts());
         settingsModel.setMedications(fda.getMedications());
 
-        StartSettingsView ssv = new StartSettingsView(
-				navigator);
+        StartSettingsView ssv = new StartSettingsView(navigator);
 		super.navigator.addView(START_SETTINGS_VIEW, ssv);
 		super.navigator.setErrorView(StartSettingsView.class);
 		

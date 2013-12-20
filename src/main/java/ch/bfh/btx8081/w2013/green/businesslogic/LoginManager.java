@@ -23,13 +23,14 @@ public class LoginManager {
 
     private static LoginManager loginManagerInstance = null;
 
+
+	private RegisteredUserDB userDB = new RegisteredUserDB();
+	private String loginUsername = null;
 	private User currentUser = null;
 
     public RegisteredUserDB getUserDB() {
         return userDB;
     }
-
-    private RegisteredUserDB userDB = new RegisteredUserDB();
 
     public static LoginManager getLoginManager() {
 
@@ -53,7 +54,9 @@ public class LoginManager {
      * @return the currentUser
      *      the User initiating the Session
      */
-    public User getCurrentUser() {
+    public User getUserAttribute() {
+    	User currentUser = null;
+    	currentUser = userDB.assignUserAttributes(this.loginUsername);
         return currentUser;
     }
 
@@ -69,12 +72,9 @@ public class LoginManager {
      */
 	public boolean authenticateUserAccess(String loginUsername, String loginPassword) {
 
-        boolean isVerified = userDB.verifyLogin(loginUsername, loginPassword);
-        if (isVerified) {
-            this.currentUser = userDB.getAuthenticatedUser(loginUsername, loginPassword);
-        }
+		this.loginUsername = loginUsername;
+		return userDB.verifyLogin(loginUsername, loginPassword);
 
-		return isVerified;
 
 	}
 }
