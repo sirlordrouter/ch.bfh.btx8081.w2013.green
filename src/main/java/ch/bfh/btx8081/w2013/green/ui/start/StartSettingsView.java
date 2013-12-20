@@ -38,8 +38,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	private BeanItemContainer<Patient> patientContainer;
 	private ComboBox selectPatient;
 	private Patient selectedPatient;
-	private List<IPatientChangedListener> patientChangedListeners = new
-			ArrayList();
+	private List<IPatientChangedListener> patientChangedListeners = new ArrayList();
 
 	/**
 	 * The constructor should first build the main layout, set the composition
@@ -60,6 +59,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 		
 		patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
+		
 	    
 	    // Put some example data in it
 	    patientContainer.addItem(new Patient(1, "Mayer", "muster"));
@@ -72,7 +72,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	    // from the 'name' property of the bean
 	    selectPatient.setItemCaptionPropertyId("name");
 	    selectPatient.addValueChangeListener(new PatientListener());
-	    
+	   
 		// End
 		
 		
