@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.w2013.green.ui.state;
 
-import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
 import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.ISettingsDataAccess;
@@ -152,7 +151,7 @@ public class AuthenticatedState extends AuthenticationState {
 	private void loadProtectedSettingsResources() {
 
 
-        
+
         SettingsModel settingsModel = new SettingsModel();
         ISettingsDataAccess dataAccess = new SettingsDataAccess();
 
@@ -161,7 +160,7 @@ public class AuthenticatedState extends AuthenticationState {
         settingsModel.setMedications(fda.getMedications());
 
         StartSettingsView ssv = new StartSettingsView();
-        StartSettingsPresenter ssp = new StartSettingsPresenter(settingsModel ,navigator, ssv);
+        StartStartSettingsPresenter ssp = new StartStartSettingsPresenter(settingsModel ,navigator, ssv);
 		super.navigator.addView(START_SETTINGS_VIEW, ssv);
 		super.navigator.setErrorView(StartSettingsView.class);
 		super.navigator.navigateTo(START_SETTINGS_VIEW);

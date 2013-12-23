@@ -5,12 +5,10 @@ import java.util.List;
 
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
-import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -20,19 +18,26 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ *
+ *<p>Class Description</p>
+ * @author Jan Wiebe van der Sluis,
+ *
+ * @version 23-12-2013
+ */
 public class StartSettingsView extends VerticalLayout implements View, IStartSettingsView {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final String BUTTON_LOGOUT = "LOGOUT";
-	private static final String BUTTON_SKILLSETTINGS = "Skill Settings";
-	private static final String BUTTON_HELPSETTINGS = "Help Settings";
-	private static final String BUTTON_MEDICPSETTINGS = "Medic Settings";
+	private static final String BUTTON_SKILL_SETTINGS = "Skill Settings";
+	private static final String BUTTON_HELP_SETTINGS = "Help Settings";
+	private static final String BUTTON_MEDIC_SETTINGS = "Medic Settings";
 	private static final String BUTTON_WIDTH = "120px";
 
-    private ISettingsPresenter settingsPresenter = null;
+    private IStartSettingsPresenter settingsPresenter = null;
     private List<Patient> patientList = null;
 
     /**
@@ -49,110 +54,114 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
-		//Creating a fake Patientlist
-		FakeDataAccess fda = new FakeDataAccess();
-		ArrayList<Patient> patientList = new ArrayList<Patient>(fda.getPatients());
-		
-		//Combobox for selecting a patient.
-		final ComboBox patientComboBox = new ComboBox("Select Patient");
-		patientComboBox.setImmediate(true);
+
+        createPatientsComboBox();
+
+        createButtons();
+
+	}
+
+    private void createPatientsComboBox() {
+        //Creating a fake Patientlist
+        FakeDataAccess fda = new FakeDataAccess();
+        ArrayList<Patient> patientList = new ArrayList<Patient>(fda.getPatients());
+
+        //Combobox for selecting a patient.
+        final ComboBox patientComboBox = new ComboBox("Select Patient");
+        patientComboBox.setImmediate(true);
 
         BeanItemContainer<Patient> patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
-	    // Create a selection component bound to the container
+        // Create a selection component bound to the container
         ComboBox selectPatient = new ComboBox("Patients", patientContainer);
-	    // from the 'name' property of the bean
-	    selectPatient.setItemCaptionPropertyId("patientName");
-	    selectPatient.addValueChangeListener(new PatientListener());
+        // from the 'name' property of the bean
+        selectPatient.setItemCaptionPropertyId("patientName");
+        selectPatient.addValueChangeListener(new PatientListener());
 
-		
-		//Putting the patients from the patientlist in the combobox.
+
+        //Putting the patients from the patientlist in the combobox.
         for (Patient p : patientList) {
 			patientContainer.addItem(p);
         }
 
-		selectPatient.setWidth("200px");
-		addComponent(selectPatient);
-		setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
+        selectPatient.setWidth("200px");
+        addComponent(selectPatient);
+        setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
+    }
 
-		// Creating the 3 Buttons (Help Settings, Skill Settings and Logout)
-		// with a Navigator which should navigate to the corresponding view.
-		
-		Button helpSettingsButton = new Button(BUTTON_HELPSETTINGS,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = -5797923866320649518L;
+    private void createButtons() {
+        // Creating the 3 Buttons (Help Settings, Skill Settings and Logout)
+        // with a Navigator which should navigate to the corresponding view.
+        Button helpSettingsButton = new Button(BUTTON_HELP_SETTINGS,
+                new Button.ClickListener() {
+                    private static final long serialVersionUID = -5797923866320649518L;
 
-					@Override
-					public void buttonClick(ClickEvent event) {
-                        settingsPresenter.navigateToHelpSettings();
-					}
-				});
+                    @Override
+                    public void buttonClick(ClickEvent event) {
+                        settingsPresenter.navigateToHelp();
+                    }
+                });
 
-		Button skillSettingsButton = new Button(BUTTON_SKILLSETTINGS,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = 7147554466396214893L;
+        Button skillSettingsButton = new Button(BUTTON_SKILL_SETTINGS,
+                new Button.ClickListener() {
+                    private static final long serialVersionUID = 7147554466396214893L;
 
-					@Override
-					public void buttonClick(ClickEvent event) {
-                        settingsPresenter.navigateToSkillSettings();
-					}
-				});
-		
-		Button medicSettingsButton = new Button(BUTTON_MEDICPSETTINGS,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = 7147554466396214893L;
+                    @Override
+                    public void buttonClick(ClickEvent event) {
+                        settingsPresenter.navigateToSkills();
+                    }
+                });
 
-					@Override
-					public void buttonClick(ClickEvent event) {
-                        settingsPresenter.navigateToMedicSettings();
-					}
-				});
+        Button medicSettingsButton = new Button(BUTTON_MEDIC_SETTINGS,
+                new Button.ClickListener() {
+                    private static final long serialVersionUID = 7147554466396214893L;
 
-		Button logoutButton = new Button(BUTTON_LOGOUT,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = -1096188732209266611L;
+                    @Override
+                    public void buttonClick(ClickEvent event) {
+                        settingsPresenter.navigateToMedic();
+                    }
+                });
 
-					@Override
-					public void buttonClick(
-							com.vaadin.ui.Button.ClickEvent event) {
-                        settingsPresenter.navigateBack();
-					}
-				});
-		
-	
+        Button logoutButton = new Button(BUTTON_LOGOUT,
+                new Button.ClickListener() {
+                    private static final long serialVersionUID = -1096188732209266611L;
 
-		// Adding and aligning the 3 Buttons.
-		//Setting a Description for the buttons which is displayed when flying over the button
-		addComponent(helpSettingsButton);
-		setComponentAlignment(helpSettingsButton, Alignment.MIDDLE_CENTER);
-		helpSettingsButton.setDescription("Set the Help options for the Patient");
-		helpSettingsButton.setWidth(BUTTON_WIDTH);
-		
-		addComponent(medicSettingsButton);
-		setComponentAlignment(medicSettingsButton, Alignment.MIDDLE_CENTER);
-		medicSettingsButton.setDescription("Set the Medication options for the Patient");
-		medicSettingsButton.setWidth(BUTTON_WIDTH);
+                    @Override
+                    public void buttonClick(ClickEvent event) {
+                            settingsPresenter.navigateBack();
+                    }
+                });
 
-		addComponent(skillSettingsButton);
-		setComponentAlignment(skillSettingsButton, Alignment.MIDDLE_CENTER);
-		skillSettingsButton.setDescription("Set the Skill options for the Patient");
-		skillSettingsButton.setWidth(BUTTON_WIDTH);
-		
-		
-		logoutButton.setWidth(BUTTON_WIDTH);
-		addComponent(logoutButton);
-		setComponentAlignment(logoutButton, Alignment.MIDDLE_CENTER);
-		logoutButton.setDescription("You will be logged out");
-		logoutButton.setWidth(BUTTON_WIDTH);
-		
-		// TODO add user code here
-	}
 
-	@Override
+        // Adding and aligning the 3 Buttons.
+        //Setting a Description for the buttons which is displayed when flying over the button
+        addComponent(helpSettingsButton);
+        setComponentAlignment(helpSettingsButton, Alignment.MIDDLE_CENTER);
+        helpSettingsButton.setDescription("Set the Help options for the Patient");
+        helpSettingsButton.setWidth(BUTTON_WIDTH);
+
+        addComponent(medicSettingsButton);
+        setComponentAlignment(medicSettingsButton, Alignment.MIDDLE_CENTER);
+        medicSettingsButton.setDescription("Set the Medication options for the Patient");
+        medicSettingsButton.setWidth(BUTTON_WIDTH);
+
+        addComponent(skillSettingsButton);
+        setComponentAlignment(skillSettingsButton, Alignment.MIDDLE_CENTER);
+        skillSettingsButton.setDescription("Set the Skill options for the Patient");
+        skillSettingsButton.setWidth(BUTTON_WIDTH);
+
+
+        logoutButton.setWidth(BUTTON_WIDTH);
+        addComponent(logoutButton);
+        setComponentAlignment(logoutButton, Alignment.MIDDLE_CENTER);
+        logoutButton.setDescription("You will be logged out");
+        logoutButton.setWidth(BUTTON_WIDTH);
+    }
+
+    @Override
 	public void enter(ViewChangeEvent event) {
 		Notification.show("Welcome to the settings homescreen!");
 	}
-
 
     //Done by Esma
 	private class PatientListener implements Property.ValueChangeListener{
@@ -168,7 +177,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	}
 
     @Override
-    public void addSettingsPresenter(ISettingsPresenter p) {
+    public void addSettingsPresenter(IStartSettingsPresenter p) {
         this.settingsPresenter = p;
     }
 

@@ -16,7 +16,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.VerticalLayout;
 
-public class MedicationSettingsView extends VerticalLayout implements View, IStartSettingsView.ISettingsPresenter.IPatientChangedListener {
+public class MedicationSettingsView extends VerticalLayout implements View, IStartSettingsView.IStartSettingsPresenter.IPatientChangedListener {
 
 	private OptionGroup optionGroup = null;
     private BeanItemContainer<Medication> medications = null;

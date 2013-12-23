@@ -21,13 +21,13 @@ import java.util.ArrayList;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 20-12-2013
  */
-public class StartSettingsPresenter implements IStartSettingsView.ISettingsPresenter {
+public class StartStartSettingsPresenter implements IStartSettingsView.IStartSettingsPresenter {
 
     private final Navigator navigator;
 
     private ArrayList<IPatientChangedListener> patientChangedListeners = new ArrayList<IPatientChangedListener>();
 
-    public StartSettingsPresenter(SettingsModel m, Navigator navigator, IStartSettingsView v) {
+    public StartStartSettingsPresenter(SettingsModel m, Navigator navigator, IStartSettingsView v) {
 
         this.navigator = navigator;
 
@@ -36,7 +36,7 @@ public class StartSettingsPresenter implements IStartSettingsView.ISettingsPrese
     }
 
     @Override
-    public void navigateToHelpSettings() {
+    public void navigateToHelp() {
 
         // TODO Should navigate to the help setting view.
         this.navigator.navigateTo(AuthenticatedState.HELP_SET_VIEW);
@@ -44,7 +44,7 @@ public class StartSettingsPresenter implements IStartSettingsView.ISettingsPrese
     }
 
     @Override
-    public void navigateToSkillSettings() {
+    public void navigateToSkills() {
 
         // TODO Should navigate to the Skill Setting View.
         this.navigator.navigateTo("SKILLSETTINGS");
@@ -52,7 +52,7 @@ public class StartSettingsPresenter implements IStartSettingsView.ISettingsPrese
     }
 
     @Override
-    public void navigateToMedicSettings() {
+    public void navigateToMedic() {
 
         // TODO Should navigate to the Skill Setting View.
         this.navigator.navigateTo(AuthenticatedState.MEDIC_SET_VIEW);
