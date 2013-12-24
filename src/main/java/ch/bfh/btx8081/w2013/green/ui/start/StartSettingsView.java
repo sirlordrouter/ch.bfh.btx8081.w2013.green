@@ -1,22 +1,17 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
-
-import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property;
+import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Berner Fachhochschule</br>

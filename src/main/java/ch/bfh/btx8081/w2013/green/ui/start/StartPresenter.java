@@ -13,14 +13,17 @@ import com.vaadin.navigator.Navigator;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 23-12-2013
  */
-public class StartViewPresenter implements IStartView.IStartViewPresenter {
+public class StartPresenter implements IStartView.IStartViewPresenter {
 
     private Navigator navigator = null;
+    private StartView view = null;
 
-    public StartViewPresenter(Navigator navigator) {
+    public StartPresenter(Navigator navigator, StartView view) {
 
         this.navigator = navigator;
+        this.view = view;
 
+        this.view.addStartViewPresenter(this);
     }
 
 

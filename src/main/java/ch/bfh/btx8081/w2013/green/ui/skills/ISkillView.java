@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.skills;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Skill;
+import ch.bfh.btx8081.w2013.green.ui.IPresenter;
 
 import java.util.List;
 
@@ -18,13 +19,13 @@ import java.util.List;
 public interface ISkillView {
 
 	public void setSkills(List<Skill> skills);
-	public void addListener(ISkillViewListener l);
+	public void addPresenter(ISkillViewPresenter l);
 
     /**
      * The callback interface that must be implemented by the Presenter class
      * to handle the user actions from the view.
      */
-	interface ISkillViewListener {
+	interface ISkillViewPresenter extends IPresenter {
 		void buttonClick(char operation);
 	}
 }

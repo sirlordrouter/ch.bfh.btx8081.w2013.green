@@ -9,7 +9,6 @@ import de.steinwedel.messagebox.ButtonId;
 import de.steinwedel.messagebox.Icon;
 import de.steinwedel.messagebox.MessageBox;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,8 +33,7 @@ public class SkillsView extends CustomComponent
 	private ListSelect listSelectSkills = null;
 	
 	/* Only the presenter registers one listener... */
-    private List<ISkillViewListener> listeners =
-            new ArrayList<ISkillViewListener>();
+    private ISkillViewPresenter presenter = null;
 
 	public SkillsView () {
 		
@@ -57,9 +55,9 @@ public class SkillsView extends CustomComponent
 
 			@Override
 			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-                for (ISkillViewListener listener : listeners) {
-                    listener.buttonClick(event.getButton().getCaption().charAt(0));
-                }
+
+                    presenter.navigateBack();
+
 			}
 		}));
 		
@@ -91,7 +89,6 @@ public class SkillsView extends CustomComponent
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -102,8 +99,8 @@ public class SkillsView extends CustomComponent
 	}
 
 	@Override
-	public void addListener(ISkillViewListener l) {
-		this.listeners.add(l);
+	public void addPresenter(ISkillViewPresenter p) {
+		this.presenter = p;
 	}
 
 }

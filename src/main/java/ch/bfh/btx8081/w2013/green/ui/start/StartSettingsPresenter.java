@@ -21,13 +21,13 @@ import java.util.ArrayList;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 20-12-2013
  */
-public class StartStartSettingsPresenter implements IStartSettingsView.IStartSettingsPresenter {
+public class StartSettingsPresenter implements IStartSettingsView.IStartSettingsPresenter {
 
     private final Navigator navigator;
 
     private ArrayList<IPatientChangedListener> patientChangedListeners = new ArrayList<IPatientChangedListener>();
 
-    public StartStartSettingsPresenter(SettingsModel m, Navigator navigator, IStartSettingsView v) {
+    public StartSettingsPresenter(SettingsModel m, Navigator navigator, IStartSettingsView v) {
 
         this.navigator = navigator;
 

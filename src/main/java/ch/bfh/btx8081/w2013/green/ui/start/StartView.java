@@ -1,18 +1,9 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
-import java.util.List;
-
-import ch.bfh.btx8081.w2013.green.data.entities.Patient;
-import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Select;
 import com.vaadin.ui.VerticalLayout;
 
 /**
