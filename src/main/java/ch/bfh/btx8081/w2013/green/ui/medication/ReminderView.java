@@ -24,14 +24,11 @@ import java.util.List;
  */
 public class ReminderView extends VerticalLayout implements IReminderView {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	/* Only the presenter registers one listener... */
-    private List<IReminderListener> listeners =
-            new ArrayList<IReminderListener>();
+    private List<IReminderPresenter> listeners =
+            new ArrayList<IReminderPresenter>();
 
     private MessageBoxListener mbListener = null;
 
@@ -58,7 +55,7 @@ public class ReminderView extends VerticalLayout implements IReminderView {
     }
 
     @Override
-	public void addListener(IReminderListener l) {
+	public void addReminderPresenter(IReminderPresenter l) {
 		this.listeners.add(l);
 	}
 

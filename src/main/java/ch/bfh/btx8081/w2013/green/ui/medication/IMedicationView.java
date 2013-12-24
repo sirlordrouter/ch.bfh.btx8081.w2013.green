@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+import ch.bfh.btx8081.w2013.green.ui.IPresenter;
 
 import java.util.List;
 
@@ -16,10 +17,10 @@ import java.util.List;
  */
 public interface IMedicationView {
 
-    void addListener(IMedicationViewListener listener);
+    void addListener(IMedicationPresenter presenter);
     void setMedicationList(List<Medication> medications);
 
-    interface IMedicationViewListener {
-        void buttonClick(char c);
+    interface IMedicationPresenter extends IPresenter {
+        void buttonClick(String c);
     }
 }

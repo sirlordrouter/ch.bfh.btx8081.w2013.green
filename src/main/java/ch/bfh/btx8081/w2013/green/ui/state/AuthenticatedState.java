@@ -115,7 +115,7 @@ public class AuthenticatedState extends AuthenticationState {
 	private void loadProtectedUserResources() {
 
 		Model userModel = new Model();
-		ReminderComponent mc = new ReminderComponent();
+		ReminderComponent reminderComponent = new ReminderComponent();
 
 		FakeDataAccess fda = new FakeDataAccess();
 		userModel.setContacts(fda.getContacts());
@@ -136,7 +136,7 @@ public class AuthenticatedState extends AuthenticationState {
 		super.navigator.addView(HELP_VIEW, helpView);
 
 		MedicationView medView = new MedicationView();
-		new MedicationPresenter(medView, userModel, navigator, mc);
+		new MedicationPresenter(medView, userModel, navigator, reminderComponent);
 		super.navigator.addView(MEDIC_VIEW, medView);
 
 	}
@@ -168,7 +168,6 @@ public class AuthenticatedState extends AuthenticationState {
         MedicationSettingsPresenter medicationSettingsPresenter =  new MedicationSettingsPresenter(settingsModel, navigator, medSetView);
         startSettingsPresenter.addPatientChangedListener(medicationSettingsPresenter);
 		super.navigator.addView(MEDIC_SET_VIEW, medSetView);
-
 
 	}
 

@@ -29,6 +29,8 @@ public class HelpSetPresenter implements
 		this.view = v;
 		this.model = m;
 		this.navigator = n;
+
+        this.view.addPresenter(this);
 	}
 
     @Override

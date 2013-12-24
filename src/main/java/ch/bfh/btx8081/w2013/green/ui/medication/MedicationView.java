@@ -8,7 +8,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,32 +22,30 @@ import java.util.List;
  */
 public class MedicationView extends ReminderView implements IMedicationView, View {
 
-	private List<IMedicationViewListener> listeners = new ArrayList<IMedicationViewListener>();
+	private IMedicationPresenter presenter = null;
 	private TextArea area = null;
-    
+    private VerticalLayout vertical = null;
     
     public MedicationView(){
     	super();
 
-    	VerticalLayout vertical = new VerticalLayout ();
+    	this.vertical = new VerticalLayout ();
 
         this.setWidth(MyVaadinUI.APP_WIDTH);
         this.setHeight(MyVaadinUI.APP_HIGHT);
 
-        area = new TextArea();
-        area.setWidth(MyVaadinUI.APP_WIDTH);
-        area.setHeight("380px");
-        vertical.addComponent(area);
+        this.area = new TextArea();
+        this.area.setWidth(MyVaadinUI.APP_WIDTH);
+        this.area.setHeight("380px");
+        this.vertical.addComponent(area);
 
 
-        vertical.addComponent(new Button("Back", new Button.ClickListener() {
+        this.vertical.addComponent(new Button("Back", new Button.ClickListener() {
                     private static final long serialVersionUID = 1L;
 
                     @Override
                     public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-                        for (IMedicationViewListener l : listeners) {
-                            l.buttonClick(event.getButton().getCaption().charAt(0));
-                        }
+                      presenter.navigateBack();
                     }
                 }));
 
@@ -56,8 +53,8 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
     }
 
     @Override
-    public void addListener(IMedicationViewListener listener) {
-        this.listeners.add(listener);
+    public void addListener(IMedicationPresenter presenter) {
+        this.presenter = presenter;
     }
 
 
@@ -69,18 +66,17 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 	@Override
 	public void setMedicationList(
 			List<ch.bfh.btx8081.w2013.green.data.entities.Medication> medications) {
-		area.setReadOnly(false);
+		this.area.setReadOnly(false);
 
         String medlist = "";
 
         for(Medication m : medications) {
             medlist += m.toString() + "\n\n";
-
         }
 
-        area.setValue(medlist);
+        this.area.setValue(medlist);
 
-        area.setReadOnly(true);
+        this.area.setReadOnly(true);
 		
 	}
 }

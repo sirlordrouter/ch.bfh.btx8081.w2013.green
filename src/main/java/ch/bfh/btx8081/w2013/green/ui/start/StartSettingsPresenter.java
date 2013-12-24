@@ -76,7 +76,6 @@ public class StartSettingsPresenter implements IStartSettingsView.IStartSettings
     @Override
     public void navigateBack() {
 
-        this.navigator.navigateTo("");
         ((MyVaadinUI) MyVaadinUI.getCurrent()).logout();
 
     }
