@@ -1,18 +1,9 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
-import java.util.List;
-
-import ch.bfh.btx8081.w2013.green.data.entities.Patient;
-import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
-import com.vaadin.data.Property;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Select;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -28,7 +19,7 @@ import com.vaadin.ui.VerticalLayout;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 04-12-2013
  */
-public class StartView extends VerticalLayout implements View {
+public class StartView extends VerticalLayout implements View, IStartView {
 
 	private static final long serialVersionUID = -1105303206323973784L;
 
@@ -44,77 +35,78 @@ public class StartView extends VerticalLayout implements View {
 	
 	private static final String PATIENT = "PATIENT";
 
+    private IStartViewPresenter presenter = null;
 
-	private final Navigator navigator;
+	public StartView() {
 
-	public StartView(Navigator nav) {
-		this.navigator = nav;
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
-		
-		Button buttonHelp = new Button(BUTTON_HELP, new Button.ClickListener() {
-			private static final long serialVersionUID = -3742574718530257633L;
 
-			@Override
-			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				navigator.navigateTo(AuthenticatedState.HELP_VIEW);
-			}
-		});
-		buttonHelp.setWidth(BUTTON_WIDTH);
-		addComponent(buttonHelp);
-		setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
-
-		Button buttonSkills = new Button(BUTTON_SKILLS,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = -7539174022613115079L;
-
-					@Override
-					public void buttonClick(
-							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo(AuthenticatedState.SKILL_VIEW);
-					}
-				});
-		buttonSkills.setWidth(BUTTON_WIDTH);
-		addComponent(buttonSkills);
-		setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
-
-		Button buttonMedic = new Button(BUTTON_MEDICATION,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = -5170311461467440566L;
-
-					@Override
-					public void buttonClick(
-							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo(AuthenticatedState.MEDIC_VIEW);
-					}
-				});
-		buttonMedic.setWidth(BUTTON_WIDTH);
-		addComponent(buttonMedic);
-		setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
-
-
-		Button buttonLogout = new Button(BUTTON_LOGOUT,
-				new Button.ClickListener() {
-					private static final long serialVersionUID = -1096188732209266611L;
-
-					@Override
-					public void buttonClick(
-							com.vaadin.ui.Button.ClickEvent event) {
-						navigator.navigateTo("");
-						((MyVaadinUI) MyVaadinUI.getCurrent()).logout();
-					}
-				});
-		buttonLogout.setWidth(BUTTON_WIDTH);
-		addComponent(buttonLogout);
-		setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
+        createButtons();
 
 	}
 
-	@Override
+    private void createButtons() {
+
+        Button buttonHelp = new Button(BUTTON_HELP, new Button.ClickListener() {
+            private static final long serialVersionUID = -3742574718530257633L;
+
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+presenter.navigateToHelp();
+            }
+        });
+        buttonHelp.setWidth(BUTTON_WIDTH);
+        addComponent(buttonHelp);
+        setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
+
+        Button buttonSkills = new Button(BUTTON_SKILLS, new Button.ClickListener() {
+                    private static final long serialVersionUID = -7539174022613115079L;
+
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+presenter.navigateToSkills();
+                    }
+                });
+        buttonSkills.setWidth(BUTTON_WIDTH);
+        addComponent(buttonSkills);
+        setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
+
+        Button buttonMedic = new Button(BUTTON_MEDICATION,
+                new Button.ClickListener() {
+                    private static final long serialVersionUID = -5170311461467440566L;
+
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+presenter.navigateToMedic();
+                    }
+                });
+        buttonMedic.setWidth(BUTTON_WIDTH);
+        addComponent(buttonMedic);
+        setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
+
+
+        Button buttonLogout = new Button(BUTTON_LOGOUT,
+                new Button.ClickListener() {
+                    private static final long serialVersionUID = -1096188732209266611L;
+
+                    @Override
+                    public void buttonClick(Button.ClickEvent event) {
+presenter.navigateBack();
+                    }
+                });
+        buttonLogout.setWidth(BUTTON_WIDTH);
+        addComponent(buttonLogout);
+        setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
+    }
+
+    @Override
 	public void enter(ViewChangeEvent event) {
 
 	}
-	
 
-
+    @Override
+    public void addStartViewPresenter(IStartViewPresenter p) {
+        presenter = p;
+    }
 }

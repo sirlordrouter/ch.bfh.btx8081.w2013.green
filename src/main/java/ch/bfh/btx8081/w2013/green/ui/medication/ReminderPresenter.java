@@ -19,7 +19,7 @@ import de.steinwedel.messagebox.MessageBoxListener;
  * @version 03-12-2013
  */
 public class ReminderPresenter implements 
-	MessageBoxListener, IReminderComponentListener, IReminderView.IReminderListener {
+	MessageBoxListener, IReminderComponentListener, IReminderView.IReminderPresenter {
 
     protected IReminderComponent reminder = null;
 	protected IReminderView view = null;
@@ -33,7 +33,7 @@ public class ReminderPresenter implements
 		this.reminder = rm;
 		
 		this.view.setReminderAnswerListener(this);
-		this.view.addListener(this);
+		this.view.addReminderPresenter(this);
 
         for (Medication medics : this.model.getMedications()) {
             reminder.addToSchedule(medics);
@@ -51,15 +51,15 @@ public class ReminderPresenter implements
 			switch (buttonId) {
 			case YES:
                 this.view.showNotification("Happy Congratulations you took your drugs!");
-				//TODO: Happy Congratulations you took your drugs!
+				//TODO: Logging - navigation to Medication View
 				break;
 			case NO:
                 this.view.showNotification("Bad habit, please change it! You have to take your drugs!");
-				//TODO: Bad habit, please change it! You have to take your drugs!
+				//TODO: Logging
 				break;
 			case IGNORE:
                 this.view.showNotification("Later is better hmmmm?");
-				//TODO: Later is better hmmmm?
+				//TODO: Logging - Postpone Timer
 				break;
 			default:
 				break;

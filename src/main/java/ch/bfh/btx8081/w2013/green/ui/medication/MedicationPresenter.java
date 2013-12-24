@@ -4,6 +4,7 @@ import ch.bfh.btx8081.w2013.green.businesslogic.ReminderComponent;
 import ch.bfh.btx8081.w2013.green.data.Model;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import com.vaadin.navigator.Navigator;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
 * Berner Fachhochschule</br>
@@ -15,7 +16,7 @@ import com.vaadin.navigator.Navigator;
 * @author Johannes Gnaegi, gnagj1@bfh.ch
 * @version 09-12-2013
         */
-public class MedicationPresenter extends ReminderPresenter implements IMedicationView.IMedicationViewListener {
+public class MedicationPresenter extends ReminderPresenter implements IMedicationView.IMedicationPresenter {
 
     private Navigator navigator = null;
     private IMedicationView view = null;
@@ -33,16 +34,18 @@ public class MedicationPresenter extends ReminderPresenter implements IMedicatio
 
 
     @Override
-    public void buttonClick(char c) {
+    public void buttonClick(String c) {
 
-        switch (c) {
-            case 'B' :
-                this.navigator.navigateTo(AuthenticatedState.START_VIEW);
-                break;
-            default:
-                break;
-        }
+        throw new NotImplementedException();
+//        switch (c) {
+//            default:
+//                break;
+//        }
     }
 
 
+    @Override
+    public void navigateBack() {
+        this.navigator.navigateTo(AuthenticatedState.START_VIEW);
+    }
 }

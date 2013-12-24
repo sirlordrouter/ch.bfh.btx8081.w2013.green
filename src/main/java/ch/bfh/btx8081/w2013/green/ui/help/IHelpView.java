@@ -1,5 +1,10 @@
 package ch.bfh.btx8081.w2013.green.ui.help;
 
+import ch.bfh.btx8081.w2013.green.data.entities.Contact;
+import ch.bfh.btx8081.w2013.green.ui.IPresenter;
+
+import java.util.List;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
@@ -12,10 +17,10 @@ package ch.bfh.btx8081.w2013.green.ui.help;
  */
 public interface IHelpView {
 
-    void addListener(IHelpViewListener listener);
-    void setMedicationList();
+    void addPresenter(IHelpPresenter presenter);
+    void setContactsList(List<Contact> contactsList);
 
-    interface IHelpViewListener {
+    interface IHelpPresenter extends IPresenter {
         void buttonClick(String caption);
     }
 }
