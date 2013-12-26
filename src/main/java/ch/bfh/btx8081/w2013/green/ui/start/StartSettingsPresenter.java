@@ -25,7 +25,7 @@ public class StartSettingsPresenter implements IStartSettingsView.IStartSettings
 
     private final Navigator navigator;
 
-    private ArrayList<IPatientChangedListener> patientChangedListeners = new ArrayList<IPatientChangedListener>();
+    private ArrayList<IPatientChangedListener> patientChangedListeners = new ArrayList<>();
 
     public StartSettingsPresenter(SettingsModel m, Navigator navigator, IStartSettingsView v) {
 
@@ -76,6 +76,7 @@ public class StartSettingsPresenter implements IStartSettingsView.IStartSettings
     @Override
     public void navigateBack() {
 
+        this.navigator.navigateTo("");
         ((MyVaadinUI) MyVaadinUI.getCurrent()).logout();
 
     }

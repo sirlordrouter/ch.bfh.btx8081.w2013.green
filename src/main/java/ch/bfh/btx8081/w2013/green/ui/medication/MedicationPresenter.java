@@ -19,17 +19,16 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class MedicationPresenter extends ReminderPresenter implements IMedicationView.IMedicationPresenter {
 
     private Navigator navigator = null;
-    private IMedicationView view = null;
 
     public MedicationPresenter (ReminderView v, Model m, Navigator n, ReminderComponent rc) {
 
         super(v,m,rc);
 
         this.navigator = n;
-        this.view = (IMedicationView) v;
+        IMedicationView view = (IMedicationView) v;
 
-        this.view.addListener(this);
-        this.view.setMedicationList(model.getMedications());
+        view.addListener(this);
+        view.setMedicationList(model.getMedications());
     }
 
 

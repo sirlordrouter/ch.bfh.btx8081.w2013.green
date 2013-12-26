@@ -69,7 +69,11 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	public static final String MEDIC_SET_VIEW = "medicSet";
 
-	/**
+
+    private SettingsModel settingsModel = null;
+    ISettingsDataAccess dataAccess = null;
+
+    /**
 	 * Constructor for this state implementation.
 	 * 
 	 * @param ui
@@ -98,10 +102,14 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	@Override
 	protected void exitState() {
-		cleanProtectedResources();
+
+        if (!super.context.getCurrentUser().getIsPatient()) {
+            storeDataPersistent();
+        }
+
 	}
 
-	/**
+    /**
 	 * handles the correct logout and moves to the unauthenticated state.
 	 */
 	@Override
@@ -117,9 +125,10 @@ public class AuthenticatedState extends AuthenticationState {
 		Model userModel = new Model();
 		ReminderComponent reminderComponent = new ReminderComponent();
 
-		FakeDataAccess fda = new FakeDataAccess();
-		userModel.setContacts(fda.getContacts());
-		userModel.setMedications(fda.getMedications());
+        //TODO: Bind right DataAccess
+		IDataAccess userDataAccess = new FakeDataAccess();
+		userModel.setContacts(userDataAccess.getContacts());
+		userModel.setMedications(userDataAccess.getMedications());
 
 		StartView startView = new StartView();
         new StartPresenter(navigator, startView);
@@ -146,15 +155,16 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	private void loadProtectedSettingsResources() {
 
-        SettingsModel settingsModel = new SettingsModel();
-        ISettingsDataAccess dataAccess = new SettingsDataAccess();
+        //TODO: Bind right DataAccess
+        this.dataAccess = new FakeDataAccess();
 
-        FakeDataAccess fda = new FakeDataAccess();
-        settingsModel.setContacts(fda.getContacts());
-        settingsModel.setMedications(fda.getMedications());
+        this.settingsModel = new SettingsModel();
+
+        this.settingsModel.setContacts(dataAccess.getContacts());
+        this.settingsModel.setMedications(dataAccess.getMedications());
 
         StartSettingsView startSettingsView = new StartSettingsView();
-        StartSettingsPresenter startSettingsPresenter = new StartSettingsPresenter(settingsModel ,navigator, startSettingsView);
+        StartSettingsPresenter startSettingsPresenter = new StartSettingsPresenter(settingsModel,navigator, startSettingsView);
 		super.navigator.addView(START_SETTINGS_VIEW, startSettingsView);
 		super.navigator.setErrorView(StartSettingsView.class);
 		super.navigator.navigateTo(START_SETTINGS_VIEW);
@@ -171,16 +181,9 @@ public class AuthenticatedState extends AuthenticationState {
 
 	}
 
-	/**
-	 * The views must be removed due to security issues. Otherwise information
-	 * is accessible through url.
-	 */
-	private void cleanProtectedResources() {
-		super.navigator.removeView(START_VIEW);
-		super.navigator.removeView(SKILL_VIEW);
-		super.navigator.removeView(HELP_VIEW);
-		super.navigator.removeView(MEDIC_VIEW);
+    private void storeDataPersistent() {
 
-		super.navigator.removeView(HELP_SET_VIEW);
-	}
+        this.dataAccess.setPatients(settingsModel.getPatients());
+
+    }
 }

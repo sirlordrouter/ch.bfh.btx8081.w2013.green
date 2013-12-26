@@ -1,10 +1,15 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.data.SettingsModel;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
 import ch.bfh.btx8081.w2013.green.ui.start.IStartSettingsView;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import com.vaadin.navigator.Navigator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Berner Fachhochschule</br>
@@ -51,5 +56,17 @@ public class MedicationSettingsPresenter implements
 
         this.navigator.navigateTo(AuthenticatedState.START_SETTINGS_VIEW);
 
+    }
+
+    @Override
+    public void setPatientsMedication(Set medications) {
+        this.currentPatient.getCustomMedications().clear();
+
+        List<Medication> customMedications = new ArrayList<>();
+        for (Object medication : medications) {
+            customMedications.add((Medication)medication);
+        }
+
+        this.currentPatient.setCustomMedications(customMedications);
     }
 }

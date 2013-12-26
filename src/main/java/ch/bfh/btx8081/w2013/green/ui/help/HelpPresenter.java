@@ -16,17 +16,14 @@ import com.vaadin.navigator.Navigator;
  */
 public class HelpPresenter implements IHelpView.IHelpPresenter{
 
-    private HelpView view = null;
-    private Model model = null;
     private Navigator navigator = null;
 
     public HelpPresenter(HelpView v, Model m, Navigator n) {
 
-        this.view = v;
-        this.model = m;
         this.navigator = n;
 
-        this.view.addPresenter(this);
+        v.addPresenter(this);
+        v.setContactsList(m.getContacts());
     }
 
 

@@ -21,8 +21,6 @@ import com.vaadin.navigator.Navigator;
  */
 public class SkillsPresenter implements ISkillView.ISkillViewPresenter {
 
-	private SkillsView view = null;
-	private Model model = null;
     private Navigator navigator = null;
 
     /**
@@ -35,13 +33,11 @@ public class SkillsPresenter implements ISkillView.ISkillViewPresenter {
      *      a navigator to handle view switch actions
      */
 	public SkillsPresenter(SkillsView v, Model m, Navigator n) {
-	
-		this.view = v;
-		this.model = m;
+
         this.navigator = n;
 		
-		view.addPresenter(this);
-		view.setSkills(model.getSkills());
+		v.addPresenter(this);
+		v.setSkills(m.getSkills());
 	}
 
     /**

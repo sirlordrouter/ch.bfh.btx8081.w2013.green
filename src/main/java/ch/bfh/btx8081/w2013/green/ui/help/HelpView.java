@@ -28,7 +28,6 @@ public class HelpView extends VerticalLayout implements View, IHelpView {
 	private static final long serialVersionUID = 1L;
 	private Navigator navigator = null;
 	private IHelpPresenter presenter = null;
-    private List<Contact> contacts = null;
     private VerticalLayout vertical = null;
 
 	public HelpView() {
@@ -37,9 +36,7 @@ public class HelpView extends VerticalLayout implements View, IHelpView {
 		this.setHeight(MyVaadinUI.APP_HIGHT);
 
 		this.vertical = new VerticalLayout();
-
-        this.contacts = new FakeDataAccess().getContacts();
-        this.setContactsList(contacts);
+        addComponent(vertical);
 
         createButtons();
 
@@ -47,7 +44,7 @@ public class HelpView extends VerticalLayout implements View, IHelpView {
 
     private void createButtons() {
 
-        vertical.addComponent(new Button("Back", new Button.ClickListener() {
+        this.addComponent(new Button("Back", new Button.ClickListener() {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -55,8 +52,6 @@ public class HelpView extends VerticalLayout implements View, IHelpView {
                 presenter.navigateBack();
             }
         }));
-
-        addComponent(vertical);
     }
 
     @Override
@@ -71,9 +66,7 @@ public class HelpView extends VerticalLayout implements View, IHelpView {
     @Override
     public void setContactsList(List<Contact> contactsList) {
 
-        this.contacts = contactsList;
-
-        for (Contact c : this.contacts) {
+        for (Contact c : contactsList) {
             Label l = new Label();
             l.setContentMode(ContentMode.HTML);
             l.setWidth("100px");

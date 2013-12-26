@@ -20,17 +20,17 @@ public class HelpSetPresenter implements
         IHelpSetView.IHelpViewSetPresenter,
         IStartSettingsView.IStartSettingsPresenter.IPatientChangedListener {
 
-	private HelpSetView view = null;
-	private Model model = null;
 	private Navigator navigator = null;
+    private Patient selectedPatient = null;
+    private HelpSetView view = null;
 
 	public HelpSetPresenter(HelpSetView v, Model m, Navigator n) {
 
-		this.view = v;
-		this.model = m;
 		this.navigator = n;
+        this.view = v;
 
-        this.view.addPresenter(this);
+        this.view .addPresenter(this);
+        this.view .setContactsList(m.getContacts());
 	}
 
     @Override
@@ -45,6 +45,7 @@ public class HelpSetPresenter implements
 
     @Override
     public void setSelectedPatient(Patient p) {
-
+        this.selectedPatient = p;
+        //TODO: Set current Patient to view
     }
 }
