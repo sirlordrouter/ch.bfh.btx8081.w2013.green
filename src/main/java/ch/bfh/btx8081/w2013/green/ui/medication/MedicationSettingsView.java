@@ -14,6 +14,7 @@ import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.VerticalLayout;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,6 +29,7 @@ public class MedicationSettingsView
     private BeanItemContainer<Medication> medications = null;
     private IMedicationSettingsPresenter presenter = null;
     private VerticalLayout vertical = null;
+    private MedicationChangedListener medicationChangedListener = new MedicationChangedListener();
 	
 	public MedicationSettingsView() {
 
@@ -43,22 +45,6 @@ public class MedicationSettingsView
         this.optionGroup.setMultiSelect(true);
         this.optionGroup.setImmediate(true);
 
-
-        this.optionGroup.addValueChangeListener(
-                new Property.ValueChangeListener() {
-                    @Override
-                    public void valueChange(ValueChangeEvent event) {
-                        Object item = event.getProperty().getValue();
-
-                        Set selectdItems = (Set)item;
-
-                        System.out.print(item.toString());
-                        presenter.setPatientsMedication(selectdItems);
-                    }
-                }
-        );
-
- 		// optionGroup add listener 
         this.vertical.addComponent(optionGroup);
 
         createButtons();
@@ -92,15 +78,39 @@ public class MedicationSettingsView
     public void setCurrentPatientName(String currentPatientName) {
 
         this.optionGroup.setCaption("Patient: " + currentPatientName);
-        this.markAsDirtyRecursive();
+        //this.markAsDirtyRecursive();
     }
 
 
     @Override
-    public void setCurrentPatientMedication(List<Medication> medicationList) {
+    public void setCurrentPatientMedication(List<Medication> medicationList, List<Medication> customMedicationList) {
+
+        this.optionGroup.removeValueChangeListener(medicationChangedListener);
 
         this.medications.removeAllItems();
-        this.medications.addAll(medicationList);
 
+        for (Medication medication : medicationList) {
+           medications.addItem(medication);
+            for (Medication customMedication : customMedicationList) {
+                if (medication.getMedicationID() == customMedication.getMedicationID()) {
+                    this.optionGroup.select(medication);
+                }
+            }
+        }
+
+        this.optionGroup.setImmediate(true);
+
+        this.optionGroup.addValueChangeListener(medicationChangedListener);
+        this.markAsDirtyRecursive();
+
+    }
+
+    private class MedicationChangedListener implements Property.ValueChangeListener {
+        @Override
+        public void valueChange(ValueChangeEvent event) {
+            Object item = event.getProperty().getValue();
+            Set selectdItems = (Set)item;
+            presenter.setPatientsMedication(selectdItems);
+        }
     }
 }

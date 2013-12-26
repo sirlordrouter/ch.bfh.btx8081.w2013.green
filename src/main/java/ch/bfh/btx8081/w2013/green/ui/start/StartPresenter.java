@@ -16,16 +16,13 @@ import com.vaadin.navigator.Navigator;
 public class StartPresenter implements IStartView.IStartViewPresenter {
 
     private Navigator navigator = null;
-    private StartView view = null;
 
     public StartPresenter(Navigator navigator, StartView view) {
 
         this.navigator = navigator;
-        this.view = view;
 
-        this.view.addStartViewPresenter(this);
+        view.addStartViewPresenter(this);
     }
-
 
     @Override
     public void navigateToHelp() {

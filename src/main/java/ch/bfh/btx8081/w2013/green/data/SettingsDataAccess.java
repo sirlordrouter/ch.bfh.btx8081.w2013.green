@@ -42,7 +42,7 @@ public class SettingsDataAccess implements ISettingsDataAccess {
         try {
 
             dbConnection = DriverManager.getConnection(
-                    "jdbc:hsqldb:file:" + DB_FILE + ";ifexists=true;shutdown=true", "SA", "");
+                    "jdbc:hsqldb:file:../database/DataStorage;ifexists=true;shutdown=true", "SA", "");
 
         } catch (SQLException e) {
             e.printStackTrace();

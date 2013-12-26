@@ -1,5 +1,9 @@
 package ch.bfh.btx8081.w2013.green.data.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -15,8 +19,11 @@ import java.io.Serializable;
  *
  * @version 04-12-2013
  */
+@Entity
 public class Medication implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int medicationID = -1;
 	private String medicationName = null;
 	private int[] dueTimes = new int[3];

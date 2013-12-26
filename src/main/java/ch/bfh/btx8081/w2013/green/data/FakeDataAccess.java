@@ -8,7 +8,7 @@ import ch.bfh.btx8081.w2013.green.data.entities.Skill;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeDataAccess implements ISettingsDataAccess {
+public class FakeDataAccess implements ISettingsDataAccess, IDataAccess {
 
     private List<Patient> patients = new ArrayList<Patient>();
 
@@ -27,10 +27,10 @@ public class FakeDataAccess implements ISettingsDataAccess {
 
         patients = new ArrayList<Patient>();
 
-        Patient p1 = new Patient(1, "Traurig", "Vreni");
-        Patient p2 = new Patient(2, "Sensibel", "Hans");
-        Patient p3 = new Patient(3, "Depro", "Freddy");
-        Patient p4 = new Patient(4, "Borderline", "Meieli");
+        Patient p1 = new Patient(1,1000, "Traurig", "Vreni");
+        Patient p2 = new Patient(2,1010, "Sensibel", "Hans");
+        Patient p3 = new Patient(3,1020, "Depro", "Freddy");
+        Patient p4 = new Patient(4,1030, "Borderline", "Meieli");
 
         p1.setCustomContacts(generateContacts());
         p1.setCustomMedications(generateMedications());
@@ -106,4 +106,41 @@ public class FakeDataAccess implements ISettingsDataAccess {
         return contacts;
     }
 
+    @Override
+    public void setPatients(List<Patient> patientList) {
+
+    }
+
+    @Override
+    public List<Medication> getMedications(int PatientId) {
+        for (Patient patient : patients) {
+            if (patient.getUserId()  == PatientId) {
+                return patient.getCustomMedications();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Skill> getSkills(int PatientId) {
+        for (Patient patient : patients) {
+            if (patient.getUserId()  == PatientId) {
+                return patient.getCustomSkills();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Contact> getContacts(int PatientId) {
+        for (Patient patient : patients) {
+            if (patient.getUserId() == PatientId) {
+                return patient.getCustomContacts();
+            }
+        }
+
+        return null;
+    }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+    <persistence-unit name="family" transaction-type="RESOURCE_LOCAL">
+        <class>ch.bfh.btx8081.w2013.green.data.entities.Contact</class>
+        <class>ch.bfh.btx8081.w2013.green.data.entities.Medication</class>
+        <class>ch.bfh.btx8081.w2013.green.data.entities.Patient</class>
+        <class>ch.bfh.btx8081.w2013.green.data.entities.Skill</class>
+        <class>ch.bfh.btx8081.w2013.green.data.entities.User</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:file:../database/DataStorage;ifexists=true;shutdown=true" />
+            <property name="javax.persistence.jdbc.user" value="SA" />
+            <property name="javax.persistence.jdbc.password" value="" />
+
+            <!-- only use for the first run -->
+            <property name="eclipselink.ddl-generation" value="create-tables" />
+
+            <property name="eclipselink.ddl-generation.output-mode"	value="database" />
+        </properties>
+    </persistence-unit>
+</persistence>

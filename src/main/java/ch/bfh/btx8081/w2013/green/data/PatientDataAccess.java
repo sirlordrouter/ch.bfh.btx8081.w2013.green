@@ -22,17 +22,17 @@ public class PatientDataAccess implements IDataAccess {
 	}
 
     @Override
-    public List<Medication> getMedications() {
+    public List<Medication> getMedications(int PatientId) {
         return null;
     }
 
     @Override
-    public List<Skill> getSkills() {
+    public List<Skill> getSkills(int PatientId) {
         return null;
     }
 
     @Override
-    public List<Contact> getContacts() {
+    public List<Contact> getContacts(int PatientId) {
         return null;
     }
 }

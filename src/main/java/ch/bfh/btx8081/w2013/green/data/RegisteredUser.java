@@ -1,4 +1,10 @@
 package ch.bfh.btx8081.w2013.green.data;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
@@ -9,8 +15,11 @@ package ch.bfh.btx8081.w2013.green.data;
  * @author Corina von Kaenel, vonkc2@bfh.ch
  * @version 08-12-2013
  */
+@Entity
 public class RegisteredUser {
-	
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	private String username = null;
 	private String password = null;

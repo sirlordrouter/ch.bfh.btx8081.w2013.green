@@ -2,7 +2,7 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
-import ch.bfh.btx8081.w2013.green.data.User;
+import ch.bfh.btx8081.w2013.green.data.entities.User;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticationState;
 import ch.bfh.btx8081.w2013.green.ui.state.UnauthenticatedState;
 import com.vaadin.annotations.Push;

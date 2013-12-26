@@ -21,7 +21,7 @@ public interface IMedicationSettingsView  {
     void addPresenter(IMedicationSettingsPresenter presenter);
 
     void setCurrentPatientName(String currentPatientName);
-    void setCurrentPatientMedication(List<Medication> medicationList);
+    void setCurrentPatientMedication(List<Medication> medicationList, List<Medication> customMedicationList);
 
     public interface IMedicationSettingsPresenter extends IPresenter {
 

@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2013.green.data.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +17,22 @@ import java.util.List;
  *
  * @version 11-12-2013
  */
+@Entity
 public class Patient implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int patientId = -1;
+    private int userId = -1;
     private String name = null;
     private String forename = null;
     private String patientName = null;
 
+    @OneToMany
     private List<Medication> customMedications = new ArrayList<Medication>();
+    @OneToMany
     private List<Contact> customContacts = new ArrayList<Contact>();
+    @OneToMany
     private List<Skill> customSkills = new ArrayList<Skill>();
 
 
@@ -35,19 +43,20 @@ public class Patient implements Serializable {
 
     }
 
-    public Patient(int id, String name, String forename) {
+    public Patient(int id, int userId, String name, String forename) {
 
         this.patientId = id;
+        this.userId = userId;
         this.name = name;
         this.forename = forename;
         this.patientName = name + ", " + forename;
 
     }
 
-    public Patient (int id, String name, String forename, List<Medication> customMedications,
+    public Patient (int id, int userId,String name, String forename, List<Medication> customMedications,
                     List<Contact> customContacts, List<Skill> customSkills) {
 
-         this(id, name, forename);
+        this(id, userId, name, forename);
 
         this.customMedications = customMedications;
         this.customContacts = customContacts;
@@ -102,5 +111,13 @@ public class Patient implements Serializable {
 
     public String getPatientName() {
         return patientName;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

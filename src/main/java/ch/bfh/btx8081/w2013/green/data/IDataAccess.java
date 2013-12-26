@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IDataAccess {
 
-    List<Medication> getMedications();
-    List<Skill> getSkills();
-    List<Contact> getContacts();
+    List<Medication> getMedications(int PatientId);
+    List<Skill> getSkills(int PatientId);
+    List<Contact> getContacts(int PatientId);
 }

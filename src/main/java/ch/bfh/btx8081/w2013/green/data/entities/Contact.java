@@ -1,8 +1,15 @@
 package ch.bfh.btx8081.w2013.green.data.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Contact {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int contactId = -1;
     private String profession = null;
     private String name = null;

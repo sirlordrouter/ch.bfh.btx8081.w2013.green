@@ -1,7 +1,7 @@
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
 import ch.bfh.btx8081.w2013.green.data.ISettingsDataAccess;
-import ch.bfh.btx8081.w2013.green.data.User;
+import ch.bfh.btx8081.w2013.green.data.entities.User;
 
 /**
  * Berner Fachhochschule</br>

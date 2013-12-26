@@ -1,4 +1,7 @@
-package ch.bfh.btx8081.w2013.green.data;
+package ch.bfh.btx8081.w2013.green.data.entities;
+
+import javax.persistence.*;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
@@ -14,9 +17,11 @@ package ch.bfh.btx8081.w2013.green.data;
  * @version 17-12-2013
  */
 
+@Entity
 public class User {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
 	private int id = -1;
 	private boolean isPatient = false;
 	private String firstname = null;
@@ -39,6 +44,7 @@ public class User {
 		this.isPatient = isPatient;
 		this.firstname = firstname;
 		this.lastname = lastname;
+
 	}
 	
 	/**

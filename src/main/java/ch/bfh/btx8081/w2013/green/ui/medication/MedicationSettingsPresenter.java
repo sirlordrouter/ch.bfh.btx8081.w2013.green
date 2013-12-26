@@ -45,7 +45,7 @@ public class MedicationSettingsPresenter implements
         this.currentPatient = p;
 
         this.view.setCurrentPatientName(p.getPatientName());
-        this.view.setCurrentPatientMedication(p.getCustomMedications());
+        this.view.setCurrentPatientMedication(model.getMedications(), p.getCustomMedications());
 
         //TODO: Add patientspecific data to view
 

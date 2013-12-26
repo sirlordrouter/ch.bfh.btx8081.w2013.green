@@ -33,7 +33,6 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	private static final String BUTTON_WIDTH = "120px";
 
     private IStartSettingsPresenter settingsPresenter = null;
-    private List<Patient> patientList = null;
 
     /**
 	 * The constructor should first build the main layout, set the composition
@@ -71,6 +70,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
         ComboBox selectPatient = new ComboBox("Patients", patientContainer);
         // from the 'name' property of the bean
         selectPatient.setItemCaptionPropertyId("patientName");
+        selectPatient.setImmediate(true);
         selectPatient.addValueChangeListener(new PatientListener());
 
 
@@ -178,7 +178,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
     @Override
     public void addPatients(List<Patient> patientList) {
-        this.patientList = patientList;
+        List<Patient> patientList1 = patientList;
     }
 
 }
