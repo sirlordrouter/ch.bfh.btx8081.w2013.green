@@ -3,8 +3,8 @@ package ch.bfh.btx8081.w2013.green.ui.medication;
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.ui.IPresenter;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Berner Fachhochschule</br>
@@ -25,7 +25,7 @@ public interface IMedicationSettingsView  {
 
     public interface IMedicationSettingsPresenter extends IPresenter {
 
-        void setPatientsMedication(Set medications);
+        void setPatientsMedication(Collection<Medication> medications);
 
     }
 

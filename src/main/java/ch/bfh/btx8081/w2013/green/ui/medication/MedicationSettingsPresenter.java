@@ -8,8 +8,7 @@ import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import com.vaadin.navigator.Navigator;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.Collection;
 
 /**
  * Berner Fachhochschule</br>
@@ -58,15 +57,14 @@ public class MedicationSettingsPresenter implements
 
     }
 
+
     @Override
-    public void setPatientsMedication(Set medications) {
+    /**
+     * Replaces the medications of the current selected Patient with the given list.
+     */
+    public void setPatientsMedication(Collection<Medication> medications) {
+
         this.currentPatient.getCustomMedications().clear();
-
-        List<Medication> customMedications = new ArrayList<>();
-        for (Object medication : medications) {
-            customMedications.add((Medication)medication);
-        }
-
-        this.currentPatient.setCustomMedications(customMedications);
+        this.currentPatient.setCustomMedications(new ArrayList<>(medications));
     }
 }

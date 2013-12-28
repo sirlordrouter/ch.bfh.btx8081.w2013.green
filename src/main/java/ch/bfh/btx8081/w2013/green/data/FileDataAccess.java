@@ -4,7 +4,6 @@ import ch.bfh.btx8081.w2013.green.data.entities.Contact;
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
 import ch.bfh.btx8081.w2013.green.data.entities.Skill;
-import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -303,7 +302,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         return null;
     }
 
-    
+
 
     @Override
     public void setPatients(List<Patient> aPatientList) {

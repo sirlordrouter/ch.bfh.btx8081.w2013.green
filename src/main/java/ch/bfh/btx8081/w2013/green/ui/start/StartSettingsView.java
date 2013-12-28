@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
-import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -10,7 +9,6 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
