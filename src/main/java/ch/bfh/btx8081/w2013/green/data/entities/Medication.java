@@ -99,4 +99,6 @@ public class Medication implements Serializable {
                 +"Lunch :" + (getDueTimes()[1] == 1 ? "Yes" : "No")+ "\n"
                 +"Dinner :" + (getDueTimes()[2] == 1 ? "Yes" : "No")+ "\n";
     }
+    
+    
 }
