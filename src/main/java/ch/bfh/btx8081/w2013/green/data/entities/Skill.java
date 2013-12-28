@@ -10,7 +10,10 @@ import javax.persistence.Id;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>
+ * A Skill describes a Exercise for a Patient with mental desease.
+ * The patient gets a Skill for difficult situations, to better cope with these situations.
+ * </p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 26-12-2013

@@ -68,10 +68,10 @@ public class ReminderPresenter implements
 	}
 
 	@Override
-	public void pushReminder(Medication medicationName) {
+	public void pushReminder(Medication medication) {
 		synchronized (ReminderPresenter.this) {
-			this.currentMedication = medicationName;
-			this.view.showReminder(medicationName.getMedicationName());
+			this.currentMedication = medication;
+			this.view.showReminder(medication.getMedicationName());
 			
 			//TODO: Remove
 			System.out.println("Medication set!");

@@ -9,11 +9,15 @@ import java.util.*;
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
- * 
- *<p>Manages the rem</p>
+ *
+ *<p>
+ * Manages all the <code>MedicationTask</code> for the medications a patient must take.
+ * As a Medication must be taken, the <code>ReminderComponent</code> pushes this medication to its listener,
+ * so that it can be displayed.
+ * </p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
- * @version 02-12-2013
+ * @version 28-12-2013
  */
 public class ReminderComponent implements IReminderComponent, IReminderComponentListener {
 
@@ -28,6 +32,9 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 	
      private Timer timer = null;
 
+    /**
+     * Constructor creates a new Timer, to which the MedicationTasks are added.
+     */
      public ReminderComponent() {
 
     	 this.timer = new Timer();
@@ -44,6 +51,13 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
     	 return cal.getTime();
      }
 
+    /**
+     *  Adds a new <code>MedicationTask</code> to the timer for each
+     *  time the patient must take the medication. The task is then scheduled once per day.
+     *
+     * @param medication
+     *      Medication to Remind on
+     */
     @Override
      public void addToSchedule(Medication medication) {
     	 int[] dueTimes = medication.getDueTimes();
@@ -61,36 +75,41 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
     	 System.out.println("Timer added!");
      }
 
+    /**
+     * Pushes the Reminder for the Medication to its listener.
+     *
+     * @param medication
+     *      Medication to Remind on
+     */
 	@Override
-	public void pushReminder(Medication medicationName) {
+	public void pushReminder(Medication medication) {
 		
 		synchronized (ReminderComponent.this) {
 			if (this.listener != null) {
-				this.listener.pushReminder(medicationName);
+				this.listener.pushReminder(medication);
             }
 		}
 	}
 
+    /**
+     * Adds a listener for medication reminder
+     *
+     * @param l
+     *      a ReminderComponentListener
+     */
 	@Override
 	public void addListener(IReminderComponentListener l) {
 		this.listener = l;
 	}
 
+    /**
+     * Removes the listener for medication reminder
+     *
+     * @param l
+     *      a ReminderComponentListener
+     */
 	@Override
 	public void removeListener(IReminderComponentListener l) {
 		this.listener = l;
 	}
-     
-//     public void addShortTimer(Medication medication, IReminderComponent listener) {
-//
-//				 timer.schedule(
-//			 				new MedicationTask(medication.getMedicationName(), listener), 
-//			 				getTaskStartTime(DUETIMES[i]), 
-//			 				 FIVE_MINUTES);
-//			}
-//		}	
-//     }
-
-     
-     
 }

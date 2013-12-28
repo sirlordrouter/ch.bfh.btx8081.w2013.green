@@ -50,6 +50,8 @@ public class LoginManager {
 
     /**
      * A getter for the User initiating the Session.
+     * To get the User which is logged in and all releated user attributes,
+     * the User is retrieved with its Username trough the Registered User Database.
      *
      * @return the currentUser
      *      the User initiating the Session

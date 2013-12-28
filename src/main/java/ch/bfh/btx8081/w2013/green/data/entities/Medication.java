@@ -90,6 +90,12 @@ public class Medication implements Serializable {
 		this.dueTimes = dueTimes;
 	}
 
+    /**
+     * Formats the medication information in a human-readable format.
+     *
+     * @return
+     *      medication information
+     */
     @Override
     public String toString() {
         return this.getMedicationName() + "\n"

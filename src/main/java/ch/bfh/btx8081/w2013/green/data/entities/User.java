@@ -80,12 +80,14 @@ public class User {
 	 */
 	public int getId() {
 		return id;
-	}	/**
+	}
+    /**
 	 * @return isPatient
 	 */
 	public boolean getIsPatient() {
 		return isPatient;
-	}	/**
+	}
+    /**
 	 * @return the firstname
 	 */
 	public String getFirstname() {

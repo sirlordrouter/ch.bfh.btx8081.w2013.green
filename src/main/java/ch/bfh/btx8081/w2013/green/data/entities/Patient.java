@@ -13,7 +13,6 @@ import java.util.List;
  *<p>Describes a Patient.</p>
  *
  * @author Esma Dagdas, dagde1@bfh.ch
- * @author Johannes Gnaegi, gnaegj1@bfh.ch
  *
  * @version 11-12-2013
  */
@@ -108,7 +107,12 @@ public class Patient implements Serializable {
         this.customSkills = customSkills;
     }
 
-
+    /**
+     * The full patient name for fast usage. Format "Name,Forename"
+     *
+     * @return
+     *      formatted Person Name
+     */
     public String getPatientName() {
         return patientName;
     }

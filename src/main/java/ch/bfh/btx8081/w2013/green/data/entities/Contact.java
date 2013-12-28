@@ -5,6 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ *
+ *<p>
+ * Describes an Contact for a Patient, which he can contact in difficult situations.
+ * For this reason just a few information is needed, like name & phone number.
+ * </p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 28-12-2013
+ */
 @Entity
 public class Contact {
 
@@ -63,6 +76,13 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Formats the Contact to a HTML String, so that the phone number
+     * can be used with Skype or something similar.
+     *
+     * @return
+     *      HTML String
+     */
     @Override
     public String toString() {
         return

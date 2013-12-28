@@ -16,7 +16,10 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>
+ * class for Retrieving all needed data stored in .txt files.
+ *
+ * </p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 27-12-2013
@@ -31,6 +34,12 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
     private final static String PATIENTS_FILE         = "storage/patients.txt";
     private final static String REGISTERED_USERS_FILE = "storage/registered_users.txt";
 
+    private final static String ENTITY_SEPARATOR = ";";
+    private final static String ID_SEPARATOR = "$";
+    private final static String ID_SPLIT = "\\$";
+    private final static String PLACEHOLDER = "-";
+
+
     private FileInputStream fileInputStream = null;
     private FileOutputStream fileOutputStream = null;
     private List<Medication> medicationList = new ArrayList<>();
@@ -39,17 +48,29 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
     private List<Patient> patientList = new ArrayList<>();
 
 
+    /**
+     * When initation the <code>FileDataAccess</code> all data is loaded from the files.
+     * Medication, Skills and Contacts are not changing and are therefore loaded first.
+     * Patients refer to the other entities and are loaded in the end.
+     */
     public FileDataAccess() {
 
-        ///Users/Johannes/Daten/04_Projekte/04_dev/spielwiese/ch.bfh.btx8081.w2013.green/src/main/webapp
-        File aFile = new File(BASE_PATH + MEDICATIONS_FILE);
+        //Basepath: /Users/Johannes/Daten/04_Projekte/04_dev/spielwiese/ch.bfh.btx8081.w2013.green/src/main/webapp
 
         medicationList = loadMedicationsFromFile();
         skillList = null;
         contactList = loadContactsFromFile();
+
         patientList = loadPatientsFromFile();
     }
 
+    /**
+     * Creates a Reader for the given file.
+     * Execption handling when open the file is handled here.
+     *
+     * @param file a file to open
+     * @return a BufferedReader for the given file.
+     */
     private BufferedReader openFile(String file) {
 
         try {
@@ -64,6 +85,9 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         }
     }
 
+    /**
+     * Closes the Reader to make sure the Files are stored consistently.
+     */
     private void CloseReader() {
         try {
 
@@ -74,6 +98,12 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         }
     }
 
+    /**
+     * Get the Medications for a specific user.
+     *
+     * @param userId of the user
+     * @return a List with his own medications
+     */
     @Override
     public List<Medication> getMedications(int userId) {
         for (Patient patient : patientList) {
@@ -85,6 +115,11 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         return null;
     }
 
+    /**
+     * Get the Skills for a specific user.
+     * @param userId of the user
+     * @return a List with his own Skills
+     */
     @Override
     public List<Skill> getSkills(int userId) {
         for (Patient patient : patientList) {
@@ -96,6 +131,11 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         return null;
     }
 
+    /**
+     * Get the Contacts for a specific user
+     * @param userId of the user
+     * @return a List with his own contacts
+     */
     @Override
     public List<Contact> getContacts(int userId) {
         for (Patient patient : patientList) {
@@ -107,12 +147,21 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         return null;
     }
 
+    /**
+     * Returns the initially loaded patients
+     *
+     * @return list of all patients
+     */
     @Override
     public List<Patient> getPatients() {
         return patientList;
     }
 
 
+    /**
+     * Returns the initially loaded skills
+     * @return list of all available skills
+     */
     @Override
     public List<Skill> getSkills() {
 
@@ -120,17 +169,34 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
     }
 
+    /**
+     * Returns the initally loaded contacts
+     * @return list of all available contacts
+     */
     @Override
     public List<Contact> getContacts() {
         return contactList;
 
     }
 
+    /**
+     * Returns the initally loaded Medications
+     * @return list of all available medications.
+     */
     @Override
     public List<Medication> getMedications() {
         return medicationList;
     }
 
+    /**
+     * loads all patients from a textfile.
+     * for every patient, it must be proved, if there is data for the specific
+     * items (medication, skills, contacts).
+     * In the file are only the ids for these items stored. For each id the item is
+     * retrieved by another method.
+     *
+     * @return a list of all patients stored in the file
+     */
     private List<Patient> loadPatientsFromFile() {
         List<Patient> patients = new ArrayList<>();
 
@@ -140,13 +206,13 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
         try {
             while ((line  = bufferedReader.readLine()) != null) {
-                String[] patient = line.split(";");
+                String[] patient = line.split(ENTITY_SEPARATOR);
 
 
                 List<Medication> customMedications = null;
                 if (!patient[4].equals("-")) {
                     String ids = patient[4];
-                    String[] medicsIds = patient[4].length() == 1 ? new String[] {ids} : ids.split("\\$");
+                    String[] medicsIds = patient[4].length() == 1 ? new String[] {ids} : ids.split(ID_SPLIT);
                     customMedications = new ArrayList<>();
                     for (String medicsId : medicsIds) {
                         int id = Integer.parseInt(medicsId);
@@ -155,8 +221,8 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
                 }
 
                 List<Contact> customContacts = null;
-                if (!patient[5].equals("-")) {
-                    String[] contactsIds = patient[5].length() == 1 ? new String[] {patient[5]} : patient[5].split("\\$");
+                if (!patient[5].equals(PLACEHOLDER)) {
+                    String[] contactsIds = patient[5].length() == 1 ? new String[] {patient[5]} : patient[5].split(ID_SPLIT);
                     customContacts = new ArrayList<>();
                     for (String contactsId : contactsIds) {
                         int id = Integer.parseInt(contactsId);
@@ -165,8 +231,8 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
                 }
 
                 List<Skill> customSkills = null;
-                if (!patient[6].equals("-")) {
-                    String[] skillsIds = patient[6].length() == 1 ? new String[] {patient[6]} : patient[6].split("\\$");
+                if (!patient[6].equals(PLACEHOLDER)) {
+                    String[] skillsIds = patient[6].length() == 1 ? new String[] {patient[6]} : patient[6].split(ID_SPLIT);
                     customSkills = new ArrayList<>();
                     for (String skillsId : skillsIds) {
                         int id = Integer.parseInt(skillsId);
@@ -185,7 +251,6 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
                         customSkills
                 );
                 patients.add(aPatient);
-                System.out.println(aPatient.toString());
             }
 
             CloseReader();
@@ -200,6 +265,11 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         }
     }
 
+    /**
+     * Loads all available medications from the file.
+     *
+     * @return a list with all available medications
+     */
     private List<Medication> loadMedicationsFromFile() {
         List<Medication> medications = new ArrayList<>();
 
@@ -209,15 +279,8 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
         try {
             while ((line  = bufferedReader.readLine()) != null) {
-                String[] medication = line.split(";");
-                
-                String name = medication[0];
-                int id = Integer.parseInt(medication[4]);
-                int morning = Integer.parseInt(medication[1].trim());
-                int noon = Integer.parseInt(medication[2].trim());
-                int evening = Integer.parseInt(medication[3].trim());
-                
-                
+                String[] medication = line.split(ENTITY_SEPARATOR);
+
                 Medication aMedication = new Medication(
                         medication[0],
                         new int[] {
@@ -227,7 +290,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
                         },
                         Integer.parseInt(medication[4].trim()));
                 medications.add(aMedication);
-                System.out.println(aMedication.toString());
+
             }
 
             CloseReader();
@@ -242,6 +305,11 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
     }
 
 
+    /**
+     * Loads all available contacts from the file.
+     *
+     * @return a list with all available contacts
+     */
     private List<Contact> loadContactsFromFile() {
         List<Contact> contacts = new ArrayList<>();
 
@@ -251,10 +319,9 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
         try {
             while ((line  = bufferedReader.readLine()) != null) {
-                String[] contact = line.split(";");
+                String[] contact = line.split(ENTITY_SEPARATOR);
                 Contact aContact = new Contact(Integer.parseInt(contact[0]),contact[1],contact[2],contact[3],contact[4]);
                 contacts.add(aContact);
-                System.out.println(aContact.toString());
             }
 
             CloseReader();
@@ -269,6 +336,11 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
     }
 
 
+    /**
+     * returns the Skill corresponding to the given id.
+     * @param id of a Skill
+     * @return Skill with this id
+     */
     private Skill getSkillById(int id) {
 
         for (Skill skill : skillList) {
@@ -280,6 +352,11 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         return null;
     }
 
+    /**
+     * returns the Contact corresponding to the given id.
+     * @param id of a Contact
+     * @return Contact with this id
+     */
     private Contact getContactById(int id) {
 
         for (Contact contact : contactList) {
@@ -291,6 +368,11 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
         return null;
     }
 
+    /**
+     * returns the Medication corresponding to the given id.
+     * @param id of a Medication
+     * @return Medication with this id
+     */
     private Medication getMediationById(int id) {
 
         for (Medication medication : medicationList) {
@@ -303,7 +385,12 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
     }
 
 
-
+    /**
+     * Stores all patients from a given list to the file.
+     * For each of its items, only the Ids are stored with the patient.
+     *
+     * @param aPatientList the list of all patients with their items.
+     */
     @Override
     public void setPatients(List<Patient> aPatientList) {
 
@@ -323,42 +410,47 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
                 String contacts = "";
                 String skills = "";
 
-                //TODO: if null => - als platzhalter verwenden
+                /**
+                 * for every item it must be defined, if there is any data stored.
+                 * if not, a place holder must be stored.
+                 * Every Id of an item is separated with an $
+                 *
+                 */
 
                 if (patient.getCustomMedications() != null) {
                     for (Medication medication : patient.getCustomMedications()) {
-                        medics += medication.getMedicationID() + "$";
+                        medics += medication.getMedicationID() + ID_SEPARATOR;
                     }
                     medics = medics.substring(0,medics.length()-1);
                 } else {
-                    medics = "-";
+                    medics = PLACEHOLDER;
                 }
 
                 if (patient.getCustomContacts() != null) {
                     for (Contact contact : patient.getCustomContacts()) {
-                        contacts += contact.getContactId() + "$";
+                        contacts += contact.getContactId() + ID_SEPARATOR;
                     }
                     contacts = contacts.substring(0, contacts.length()-1);
                 } else {
-                    contacts = "-";
+                    contacts = PLACEHOLDER;
                 }
 
                 if (patient.getCustomSkills() != null) {
                     for (Skill skill : patient.getCustomSkills()) {
-                        skills += skill.getSkillId() + "$";
+                        skills += skill.getSkillId() + ID_SEPARATOR;
                     }
                     skills = skills.substring(0, skills.length()-1);
                 } else {
-                    skills = "-";
+                    skills = PLACEHOLDER;
                 }
 
                 patientString +=
-                patient.getPatientId() + ";" +
-                patient.getUserId() + ";" +
-                patient.getName() + ";" +
-                patient.getForename() + ";" +
-                medics + ";" +
-                contacts + ";" +
+                patient.getPatientId() + ENTITY_SEPARATOR +
+                patient.getUserId() + ENTITY_SEPARATOR +
+                patient.getName() + ENTITY_SEPARATOR +
+                patient.getForename() + ENTITY_SEPARATOR +
+                medics + ENTITY_SEPARATOR +
+                contacts + ENTITY_SEPARATOR +
                 skills + "\n";
 
 
@@ -367,7 +459,9 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
             printWriter.write(patientString);
             printWriter.close();
             
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
