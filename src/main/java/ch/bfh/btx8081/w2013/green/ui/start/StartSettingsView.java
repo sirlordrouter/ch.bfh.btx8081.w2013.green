@@ -33,6 +33,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	private static final String BUTTON_WIDTH = "120px";
 
     private IStartSettingsPresenter settingsPresenter = null;
+    private BeanItemContainer<Patient> patientContainer = null;
 
     /**
 	 * The constructor should first build the main layout, set the composition
@@ -56,15 +57,9 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	}
 
     private void createPatientsComboBox() {
-        //Creating a fake Patientlist
-        FakeDataAccess fda = new FakeDataAccess();
-        ArrayList<Patient> patientList = new ArrayList<Patient>(fda.getPatients());
 
-        //Combobox for selecting a patient.
-        final ComboBox patientComboBox = new ComboBox("Select Patient");
-        patientComboBox.setImmediate(true);
 
-        BeanItemContainer<Patient> patientContainer = new BeanItemContainer<Patient>(Patient.class);
+        this.patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
         // Create a selection component bound to the container
         ComboBox selectPatient = new ComboBox("Patients", patientContainer);
@@ -72,12 +67,6 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
         selectPatient.setItemCaptionPropertyId("patientName");
         selectPatient.setImmediate(true);
         selectPatient.addValueChangeListener(new PatientListener());
-
-
-        //Putting the patients from the patientlist in the combobox.
-        for (Patient p : patientList) {
-			patientContainer.addItem(p);
-        }
 
         selectPatient.setWidth("200px");
         addComponent(selectPatient);
@@ -178,7 +167,7 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
     @Override
     public void addPatients(List<Patient> patientList) {
-        List<Patient> patientList1 = patientList;
+        patientContainer.addAll(patientList);
     }
 
 }

@@ -78,7 +78,7 @@ public class MedicationSettingsView
     public void setCurrentPatientName(String currentPatientName) {
 
         this.optionGroup.setCaption("Patient: " + currentPatientName);
-        //this.markAsDirtyRecursive();
+        this.markAsDirtyRecursive();
     }
 
 
@@ -91,6 +91,7 @@ public class MedicationSettingsView
 
         for (Medication medication : medicationList) {
            medications.addItem(medication);
+           this.optionGroup.unselect(medication);
             for (Medication customMedication : customMedicationList) {
                 if (medication.getMedicationID() == customMedication.getMedicationID()) {
                     this.optionGroup.select(medication);

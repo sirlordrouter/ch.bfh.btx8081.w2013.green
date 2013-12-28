@@ -128,10 +128,10 @@ public class AuthenticatedState extends AuthenticationState {
         //TODO: Handle what happens if some data is null
 
         //TODO: Bind right DataAccess
-		IDataAccess userDataAccess = new FakeDataAccess();
+		IDataAccess userDataAccess = new FileDataAccess(); //FakeDataAccess();
 		userModel.setContacts(userDataAccess.getContacts(super.context.getCurrentUser().getId()));
 		userModel.setMedications(userDataAccess.getMedications(super.context.getCurrentUser().getId()));
-        userModel.setSkills(userDataAccess.getSkills(super.context.getCurrentUser().getId()));
+        //userModel.setSkills(userDataAccess.getSkills(super.context.getCurrentUser().getId()));
 
 		StartView startView = new StartView();
         new StartPresenter(navigator, startView);
@@ -159,13 +159,14 @@ public class AuthenticatedState extends AuthenticationState {
 	private void loadProtectedSettingsResources() {
 
         //TODO: Bind right DataAccess
-        this.dataAccess = new FakeDataAccess();
+        this.dataAccess = new FileDataAccess(); //FakeDataAccess();
 
         this.settingsModel = new SettingsModel();
 
+        this.settingsModel.setPatients(dataAccess.getPatients());
         this.settingsModel.setContacts(dataAccess.getContacts());
         this.settingsModel.setMedications(dataAccess.getMedications());
-        this.settingsModel.setSkills(dataAccess.getSkills());
+        //this.settingsModel.setSkills(dataAccess.getSkills());
 
         StartSettingsView startSettingsView = new StartSettingsView();
         StartSettingsPresenter startSettingsPresenter = new StartSettingsPresenter(settingsModel,navigator, startSettingsView);
