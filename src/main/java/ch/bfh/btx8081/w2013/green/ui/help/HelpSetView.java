@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
+import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -12,6 +13,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+
 import ch.bfh.btx8081.w2013.green.ui.help.IHelpView;
 
 /**
@@ -48,17 +50,12 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
 
 		// buttonLayout
 		HorizontalLayout buttonLayout = new HorizontalLayout();
-		buttonLayout.addComponent(new Button(BUTTON_BACK,
-				new Button.ClickListener() {
+		buttonLayout.addComponent(new Button(BUTTON_BACK, new Button.ClickListener() {
 					private static final long serialVersionUID = 1L;
 
 					@Override
-					public void buttonClick(
-							com.vaadin.ui.Button.ClickEvent event) {
-						for (IHelpViewSetListener listener : listeners) {
-							listener.buttonClick(event.getButton().getCaption()
-									.charAt(0));
-						}
+					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
+				        navigator.navigateTo(AuthenticatedState.START_SETTINGS_VIEW);
 					}
 				}));
 		vertical.addComponent(buttonLayout);
