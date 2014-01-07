@@ -13,7 +13,7 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  * 
- *<p>Class Description</p>
+ *<p>Holds the Data for a Patient. Skills are generated due to low priority of Skill implementation</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 02-12-2013

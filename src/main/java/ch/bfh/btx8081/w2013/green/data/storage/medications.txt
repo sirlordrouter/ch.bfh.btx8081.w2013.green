@@ -1,4 +1,0 @@
-Dafalgan;1;1;0;1
-Antidepressiva;0;1;0;2
-Tranquillanzium;1;1;1;3
-Antidementivum;0;0;1;4

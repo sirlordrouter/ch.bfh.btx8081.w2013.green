@@ -2,9 +2,7 @@ package ch.bfh.btx8081.w2013.green.ui.start;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br> Modul 8081, HS2013</br>
@@ -31,18 +29,39 @@ public class StartView extends VerticalLayout implements View, IStartView {
 
 	private static final String BUTTON_LOGOUT = "LOGOUT";
 
-	private static final String BUTTON_WIDTH = "120px";
+	private static final String BUTTON_WIDTH = "160px";
+    private static final String BUTTON_HEIGHT = "50px";
 	
 	private static final String PATIENT = "PATIENT";
 
     private IStartViewPresenter presenter = null;
 
+    private VerticalLayout header = new VerticalLayout();
+    private VerticalLayout buttons = new VerticalLayout();
+
 	public StartView() {
+
+        addStyleName("dashboard-view");
 
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
+        setMargin(true);
+        setSpacing(true);
+
+        Label titleLiabel = new Label("HOME SCREEN");
+        titleLiabel.setStyleName("h1");
+        titleLiabel.setHeight("30px");
+        header.addComponent(titleLiabel);
+        header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
 
         createButtons();
+
+        buttons.setMargin(true);
+        buttons.setSpacing(true);
+        addComponent(header);
+        addComponent(buttons);
+        setExpandRatio(header, 0.35f);
+        setExpandRatio(buttons, 0.65f);
 
 	}
 
@@ -57,8 +76,11 @@ presenter.navigateToHelp();
             }
         });
         buttonHelp.setWidth(BUTTON_WIDTH);
-        addComponent(buttonHelp);
-        setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
+        buttonHelp.setHeight(BUTTON_HEIGHT);
+        buttonHelp.addStyleName("icon-cog");
+        buttons.addComponent(buttonHelp);
+        buttons.setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
+
 
         Button buttonSkills = new Button(BUTTON_SKILLS, new Button.ClickListener() {
                     private static final long serialVersionUID = -7539174022613115079L;
@@ -69,8 +91,11 @@ presenter.navigateToSkills();
                     }
                 });
         buttonSkills.setWidth(BUTTON_WIDTH);
-        addComponent(buttonSkills);
-        setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
+        buttonSkills.setHeight(BUTTON_HEIGHT);
+        buttonSkills.addStyleName("icon-cog");
+        buttons.addComponent(buttonSkills);
+        buttons.setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
+
 
         Button buttonMedic = new Button(BUTTON_MEDICATION,
                 new Button.ClickListener() {
@@ -82,8 +107,10 @@ presenter.navigateToMedic();
                     }
                 });
         buttonMedic.setWidth(BUTTON_WIDTH);
-        addComponent(buttonMedic);
-        setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
+        buttonMedic.setHeight(BUTTON_HEIGHT);
+        buttonMedic.addStyleName("icon-cog");
+        buttons. addComponent(buttonMedic);
+        buttons.setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
 
 
         Button buttonLogout = new Button(BUTTON_LOGOUT,
@@ -96,8 +123,11 @@ presenter.navigateBack();
                     }
                 });
         buttonLogout.setWidth(BUTTON_WIDTH);
-        addComponent(buttonLogout);
-        setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
+        buttonLogout.setHeight(BUTTON_HEIGHT);
+        buttonLogout.addStyleName("icon-cancel");
+        buttonLogout.addStyleName("default");
+        buttons.addComponent(buttonLogout);
+        buttons.setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
     }
 
     @Override

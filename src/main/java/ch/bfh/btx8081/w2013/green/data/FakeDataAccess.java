@@ -8,6 +8,16 @@ import ch.bfh.btx8081.w2013.green.data.entities.Skill;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ *
+ *<p>A class that generates Sampledata for the different Usecase Scenarios.</p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 06-01-2014
+ */
 public class FakeDataAccess implements ISettingsDataAccess, IDataAccess {
 
     private List<Patient> patients = new ArrayList<Patient>();

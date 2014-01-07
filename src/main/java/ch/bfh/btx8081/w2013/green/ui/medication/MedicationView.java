@@ -4,9 +4,7 @@ import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 import java.util.List;
 
@@ -15,7 +13,7 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Shows the Medications for a specific Patient.</p>
  *
  * @author Johannes Gnaegi, gnagj1@bfh.ch
  * @version 09-12-2013
@@ -24,32 +22,66 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 
 	private IMedicationPresenter presenter = null;
 	private TextArea area = null;
-    private VerticalLayout vertical = null;
+    private VerticalLayout header = new VerticalLayout();
+    private VerticalLayout medics = new VerticalLayout();
+    private HorizontalLayout navigation = new HorizontalLayout();
     
     public MedicationView(){
     	super();
 
-    	this.vertical = new VerticalLayout ();
+        this.setBaseStyle();
+        this.setTitle();
+        this.createContent();
+        this.createButtons();
 
+        this.addComponent(header);
+        this.addComponent(medics);
+        this.addComponent(navigation);
+
+        this.setExpandRatio(header, 0.2f);
+        this.setExpandRatio(medics, 0.7f);
+        this.setExpandRatio(navigation, 0.1f);
+    }
+
+
+    private void setBaseStyle() {
+        this.addStyleName("dashboard-view");
         this.setWidth(MyVaadinUI.APP_WIDTH);
         this.setHeight(MyVaadinUI.APP_HIGHT);
+        this.setMargin(true);
+        this.setSpacing(true);
+    }
 
+    private void setTitle() {
+        Label titleLiabel = new Label("Medics");
+        titleLiabel.setStyleName("h1");
+        titleLiabel.setHeight("30px");
+        this.header.addComponent(titleLiabel);
+        this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+    }
+
+    private void createContent() {
         this.area = new TextArea();
-        this.area.setWidth(MyVaadinUI.APP_WIDTH);
-        this.area.setHeight("380px");
-        this.vertical.addComponent(area);
+        this.area.setWidth("100%");
+        this.area.setHeight("270px");
+        this.area.setStyleName("dashboard-textarea");
+        this.medics.addComponent(area);
+    }
 
+    private void createButtons() {
+        final Button buttonBack = new Button("Back", new Button.ClickListener() {
+            private static final long serialVersionUID = 1L;
 
-        this.vertical.addComponent(new Button("Back", new Button.ClickListener() {
-                    private static final long serialVersionUID = 1L;
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                presenter.navigateBack();
+            }
+        });
 
-                    @Override
-                    public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-                      presenter.navigateBack();
-                    }
-                }));
+        buttonBack.addStyleName("icon-dashboard");
+        buttonBack.addStyleName("default");
 
-        addComponent(vertical);
+        this.navigation.addComponent(buttonBack);
     }
 
     @Override

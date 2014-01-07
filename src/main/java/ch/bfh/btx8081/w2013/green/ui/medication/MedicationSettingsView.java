@@ -8,9 +8,7 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.OptionGroup;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -30,8 +28,18 @@ public class MedicationSettingsView
 
 	public MedicationSettingsView() {
 
+        addStyleName("dashboard-view");
+
     	this.setWidth(MyVaadinUI.APP_WIDTH);
         this.setHeight(MyVaadinUI.APP_HIGHT);
+        setMargin(true);
+        setSpacing(true);
+
+        Label titleLiabel = new Label("MEDIC SETTINGS");
+        titleLiabel.setStyleName("h1");
+        titleLiabel.setHeight("30px");
+        addComponent(titleLiabel);
+        setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
 
         this.medications = new BeanItemContainer<>(Medication.class);
 
@@ -50,7 +58,7 @@ public class MedicationSettingsView
 	}
 
     private void createButtons() {
-        this.vertical.addComponent(new Button("Back", new Button.ClickListener() {
+        final Button buttonBack = new Button("Back", new Button.ClickListener() {
 
             private static final long serialVersionUID = 1L;
 
@@ -58,7 +66,12 @@ public class MedicationSettingsView
             public void buttonClick(Button.ClickEvent event) {
                 presenter.navigateBack();
             }
-        }));
+        });
+
+        buttonBack.addStyleName("icon-dashboard");
+        buttonBack.addStyleName("default");
+
+        this.vertical.addComponent(buttonBack);
     }
 
     @Override

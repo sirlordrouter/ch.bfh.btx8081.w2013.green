@@ -24,11 +24,12 @@ import java.util.List;
 public class StartSettingsView extends VerticalLayout implements View, IStartSettingsView {
 
 	private static final long serialVersionUID = 1L;
-	private static final String BUTTON_LOGOUT = "LOGOUT";
-	private static final String BUTTON_SKILL_SETTINGS = "Skill Settings";
-	private static final String BUTTON_HELP_SETTINGS = "Help Settings";
-	private static final String BUTTON_MEDIC_SETTINGS = "Medic Settings";
-	private static final String BUTTON_WIDTH = "120px";
+	private static final String BUTTON_LOGOUT = "Logout";
+	private static final String BUTTON_SKILL_SETTINGS = "Skills";
+	private static final String BUTTON_HELP_SETTINGS = "Contacts";
+	private static final String BUTTON_MEDIC_SETTINGS = "Medication";
+	private static final String BUTTON_WIDTH = "160px";
+    private static final String BUTTON_HEIGHT = "50px";
 
     private IStartSettingsPresenter settingsPresenter = null;
     private BeanItemContainer<Patient> patientContainer = null;
@@ -45,8 +46,12 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	 */
 	public StartSettingsView() {
 
+        addStyleName("dashboard-view");
+
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
+        setMargin(true);
+        setSpacing(true);
 
         createPatientsComboBox();
 
@@ -56,11 +61,18 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
     private void createPatientsComboBox() {
 
+        //VerticalLayout header = new VerticalLayout();
+        //header.setHeight("100px");
+        Label titleLiabel = new Label("SETTINGS");
+        titleLiabel.setStyleName("h1");
+        titleLiabel.setHeight("30px");
+        addComponent(titleLiabel);
+        setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
 
         this.patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
         // Create a selection component bound to the container
-        ComboBox selectPatient = new ComboBox("Patients", patientContainer);
+        ComboBox selectPatient = new ComboBox("Select Patient:", patientContainer);
         // from the 'name' property of the bean
         selectPatient.setItemCaptionPropertyId("patientName");
         selectPatient.setImmediate(true);
@@ -69,9 +81,15 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
         selectPatient.setWidth("200px");
         addComponent(selectPatient);
         setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
+        //addComponent(header);
     }
 
     private void createButtons() {
+
+//        VerticalLayout buttonLayout = new VerticalLayout();
+//        buttonLayout.setMargin(true);
+//        buttonLayout.setSpacing(true);
+
         // Creating the 3 Buttons (Help Settings, Skill Settings and Logout)
         // with a Navigator which should navigate to the corresponding view.
         Button helpSettingsButton = new Button(BUTTON_HELP_SETTINGS,
@@ -83,16 +101,18 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
                         settingsPresenter.navigateToHelp();
                     }
                 });
+        helpSettingsButton.addStyleName("icon-cog");
 
-        Button skillSettingsButton = new Button(BUTTON_SKILL_SETTINGS,
-                new Button.ClickListener() {
-                    private static final long serialVersionUID = 7147554466396214893L;
-
-                    @Override
-                    public void buttonClick(ClickEvent event) {
-                        settingsPresenter.navigateToSkills();
-                    }
-                });
+//        Button skillSettingsButton = new Button(BUTTON_SKILL_SETTINGS,
+//                new Button.ClickListener() {
+//                    private static final long serialVersionUID = 7147554466396214893L;
+//
+//                    @Override
+//                    public void buttonClick(ClickEvent event) {
+//                        settingsPresenter.navigateToSkills();
+//                    }
+//                });
+//        skillSettingsButton.addStyleName("icon-cog");
 
         Button medicSettingsButton = new Button(BUTTON_MEDIC_SETTINGS,
                 new Button.ClickListener() {
@@ -103,6 +123,8 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
                         settingsPresenter.navigateToMedic();
                     }
                 });
+        medicSettingsButton.addStyleName("icon-cog");
+
 
         Button logoutButton = new Button(BUTTON_LOGOUT,
                 new Button.ClickListener() {
@@ -113,7 +135,8 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
                             settingsPresenter.navigateBack();
                     }
                 });
-
+        logoutButton.addStyleName("icon-cancel");
+        logoutButton.addStyleName("default");
 
         // Adding and aligning the 3 Buttons.
         //Setting a Description for the buttons which is displayed when flying over the button
@@ -121,23 +144,29 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
         setComponentAlignment(helpSettingsButton, Alignment.MIDDLE_CENTER);
         helpSettingsButton.setDescription("Set the Help options for the Patient");
         helpSettingsButton.setWidth(BUTTON_WIDTH);
+        helpSettingsButton.setHeight(BUTTON_HEIGHT);
 
         addComponent(medicSettingsButton);
         setComponentAlignment(medicSettingsButton, Alignment.MIDDLE_CENTER);
         medicSettingsButton.setDescription("Set the Medication options for the Patient");
         medicSettingsButton.setWidth(BUTTON_WIDTH);
+        medicSettingsButton.setHeight(BUTTON_HEIGHT);
 
-        addComponent(skillSettingsButton);
-        setComponentAlignment(skillSettingsButton, Alignment.MIDDLE_CENTER);
-        skillSettingsButton.setDescription("Set the Skill options for the Patient");
-        skillSettingsButton.setWidth(BUTTON_WIDTH);
-
+//        addComponent(skillSettingsButton);
+//        setComponentAlignment(skillSettingsButton, Alignment.MIDDLE_CENTER);
+//        skillSettingsButton.setDescription("Set the Skill options for the Patient");
+//        skillSettingsButton.setWidth(BUTTON_WIDTH);
+//        skillSettingsButton.setHeight(BUTTON_HEIGHT);
 
         logoutButton.setWidth(BUTTON_WIDTH);
         addComponent(logoutButton);
         setComponentAlignment(logoutButton, Alignment.MIDDLE_CENTER);
         logoutButton.setDescription("You will be logged out");
         logoutButton.setWidth(BUTTON_WIDTH);
+        logoutButton.setHeight(BUTTON_HEIGHT);
+
+        //addComponent(buttonLayout);
+        //setComponentAlignment(buttonLayout,Alignment.MIDDLE_CENTER);
     }
 
     @Override

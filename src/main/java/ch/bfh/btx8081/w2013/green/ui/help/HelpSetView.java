@@ -4,10 +4,7 @@ import ch.bfh.btx8081.w2013.green.data.entities.Contact;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 import java.util.List;
 
@@ -32,8 +29,18 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
 
     public HelpSetView() {
 
+        addStyleName("dashboard-view");
+
 		this.setWidth(MyVaadinUI.APP_WIDTH);
 		this.setHeight(MyVaadinUI.APP_HIGHT);
+        setMargin(true);
+        setSpacing(true);
+
+        Label titleLiabel = new Label("CONTACT SETTINGS");
+        titleLiabel.setStyleName("h1");
+        titleLiabel.setHeight("30px");
+        addComponent(titleLiabel);
+        setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
 
 		this.vertical = new VerticalLayout();
 
@@ -51,7 +58,7 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
     private void createButtons() {
         // buttonLayout
         HorizontalLayout buttonLayout = new HorizontalLayout();
-        buttonLayout.addComponent(new Button(BUTTON_BACK,
+        Button buttonBack = new Button(BUTTON_BACK,
                 new Button.ClickListener() {
                     private static final long serialVersionUID = 1L;
 
@@ -60,7 +67,12 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
                             Button.ClickEvent event) {
                         presenter.navigateBack();
                     }
-                }));
+                });
+
+        buttonBack.addStyleName("icon-dashboard");
+        buttonBack.addStyleName("default");
+        buttonLayout.addComponent(buttonBack);
+
         vertical.addComponent(buttonLayout);
     }
 

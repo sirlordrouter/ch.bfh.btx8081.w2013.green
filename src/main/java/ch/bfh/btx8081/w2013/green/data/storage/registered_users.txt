@@ -1,8 +1,0 @@
-001;a;a;admin;admin;false
-1000;p;p;admin;admin;true	
-0010;dagde1;dagde1;Esma;Dagdas;false
-0011;gnagj1;gnagj1;Johannes;Gnaegi;false
-0012;messv1;messv1;Messerli;Vinzenz;false
-0013;medim1;medim1;Meryam;Medini;false
-0014;vandj2;vandj2;Jan-Wiebe;van der Sluis;false
-0015;vonkc2;vonkc2;Corina;von Kaenel;false

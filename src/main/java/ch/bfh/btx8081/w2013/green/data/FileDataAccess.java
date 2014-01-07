@@ -4,7 +4,6 @@ import ch.bfh.btx8081.w2013.green.data.entities.Contact;
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
 import ch.bfh.btx8081.w2013.green.data.entities.Skill;
-import com.vaadin.server.VaadinService;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
@@ -26,8 +25,6 @@ import java.util.List;
  */
 public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
-    private final static String BASE_PATH = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
-
     private final static String CONTACTS_FILE         = "storage/contacts.txt";
     private final static String SKILLS_FILE           = "storage/skills.txt";
     private final static String MEDICATIONS_FILE      = "storage/medications.txt";
@@ -36,9 +33,8 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
     private final static String ENTITY_SEPARATOR = ";";
     private final static String ID_SEPARATOR = "$";
-    private final static String ID_SPLIT = "\\$";
+    private final static String ID_SPLITTER = "\\$";
     private final static String PLACEHOLDER = "-";
-
 
     private FileInputStream fileInputStream = null;
     private FileOutputStream fileOutputStream = null;
@@ -54,9 +50,6 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      * Patients refer to the other entities and are loaded in the end.
      */
     public FileDataAccess() {
-
-        //Basepath: /Users/Johannes/Daten/04_Projekte/04_dev/spielwiese/ch.bfh.btx8081.w2013.green/src/main/webapp
-
         medicationList = loadMedicationsFromFile();
         skillList = null;
         contactList = loadContactsFromFile();
@@ -212,7 +205,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
                 List<Medication> customMedications = null;
                 if (!patient[4].equals("-")) {
                     String ids = patient[4];
-                    String[] medicsIds = patient[4].length() == 1 ? new String[] {ids} : ids.split(ID_SPLIT);
+                    String[] medicsIds = patient[4].length() == 1 ? new String[] {ids} : ids.split(ID_SPLITTER);
                     customMedications = new ArrayList<>();
                     for (String medicsId : medicsIds) {
                         int id = Integer.parseInt(medicsId);
@@ -222,7 +215,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
                 List<Contact> customContacts = null;
                 if (!patient[5].equals(PLACEHOLDER)) {
-                    String[] contactsIds = patient[5].length() == 1 ? new String[] {patient[5]} : patient[5].split(ID_SPLIT);
+                    String[] contactsIds = patient[5].length() == 1 ? new String[] {patient[5]} : patient[5].split(ID_SPLITTER);
                     customContacts = new ArrayList<>();
                     for (String contactsId : contactsIds) {
                         int id = Integer.parseInt(contactsId);
@@ -232,7 +225,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
                 List<Skill> customSkills = null;
                 if (!patient[6].equals(PLACEHOLDER)) {
-                    String[] skillsIds = patient[6].length() == 1 ? new String[] {patient[6]} : patient[6].split(ID_SPLIT);
+                    String[] skillsIds = patient[6].length() == 1 ? new String[] {patient[6]} : patient[6].split(ID_SPLITTER);
                     customSkills = new ArrayList<>();
                     for (String skillsId : skillsIds) {
                         int id = Integer.parseInt(skillsId);

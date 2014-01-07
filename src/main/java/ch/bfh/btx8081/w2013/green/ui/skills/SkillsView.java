@@ -23,7 +23,7 @@ import java.util.List;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 09-12-2013
  */
-public class SkillsView extends CustomComponent 
+public class SkillsView extends VerticalLayout
 	implements View, ISkillView {
 
     private static final long serialVersionUID = 1L;
@@ -35,56 +35,79 @@ public class SkillsView extends CustomComponent
 	/* Only the presenter registers one listener... */
     private ISkillViewPresenter presenter = null;
 
+    private VerticalLayout header = new VerticalLayout();
+    private VerticalLayout skills = new VerticalLayout();
+    private HorizontalLayout navigation = new HorizontalLayout();
+
 	public SkillsView () {
+
+        addStyleName("dashboard-view");
 		
 		this.setWidth(MyVaadinUI.APP_WIDTH);
 		this.setHeight(MyVaadinUI.APP_HIGHT);
+        setMargin(true);
+        setSpacing(true);
 
-		VerticalLayout vertical = new VerticalLayout();
+        Label titleLiabel = new Label("SKILLS");
+        titleLiabel.setStyleName("h1");
+        titleLiabel.setHeight("30px");
+        header.addComponent(titleLiabel);
+        header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+
 		// listSelectSkills
 		this.listSelectSkills = new ListSelect();
 		
-		this.listSelectSkills.setWidth("340px");
-		listSelectSkills.setHeight("400px");
-		vertical.addComponent(listSelectSkills);
-		
-		HorizontalLayout buttonLayout = new HorizontalLayout();
-		buttonLayout.addComponent(
-			new Button(BUTTON_BACK, new Button.ClickListener() {
-			private static final long serialVersionUID = 1L;
+		this.listSelectSkills.setWidth("100%");
+		listSelectSkills.setHeight("270px");
+		skills.addComponent(listSelectSkills);
 
-			@Override
-			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
+        final Button buttonBack = new Button(BUTTON_BACK, new Button.ClickListener() {
+            private static final long serialVersionUID = 1L;
 
-                    presenter.navigateBack();
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
 
-			}
-		}));
-		
-		buttonLayout.addComponent(
-				new Button("Detail", new Button.ClickListener() {
-				private static final long serialVersionUID = 1L;
+                presenter.navigateBack();
 
-				@Override
-				public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
+            }
+        });
 
-					MessageBox mb = MessageBox.showPlain(
-							Icon.NONE, 
-							"Skill Description",
-							"Sit on the floor and get your \n"+
-							"Phone out of your pocket.\n" +
-							"Awwwww wait you have it already in you Hands\n" +
-							"Don't you?", 
-							ButtonId.YES).setWidth("300px");
-					mb.setButtonWidth("150px");
-					mb.setButtonAlignment(Alignment.BOTTOM_CENTER);
-					
-				}
-			}));
-	
-		vertical.addComponent(buttonLayout);
+        buttonBack.addStyleName("icon-dashboard");
+        buttonBack.addStyleName("default");
 
-		setCompositionRoot(vertical);
+        navigation.addComponent(buttonBack);
+
+        final Button buttonDetail = new Button("Detail", new Button.ClickListener() {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+
+                MessageBox mb = MessageBox.showPlain(
+                        Icon.NONE,
+                        "Skill Description",
+                        "Sit on the floor and get your \n" +
+                                "Phone out of your pocket.\n" +
+                                "Awwwww wait you have it already in you Hands\n" +
+                                "Don't you?",
+                        ButtonId.YES).setWidth("300px");
+                mb.setButtonWidth("150px");
+                mb.setButtonAlignment(Alignment.BOTTOM_CENTER);
+
+            }
+        });
+        navigation.addComponent(buttonDetail);
+        navigation.setMargin(true);
+        navigation.setSpacing(true);
+
+
+        addComponent(header);
+        addComponent(skills);
+        addComponent(navigation);
+
+        setExpandRatio(header, 0.2f);
+        setExpandRatio(skills, 0.7f);
+        setExpandRatio(navigation, 0.1f);
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.event.ShortcutListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickListener;
 
@@ -49,13 +51,31 @@ public class LoginView extends VerticalLayout implements View {
         labels.addStyleName("labels");
         loginPanel.addComponent(labels);
 
+        /*
+        Header with icon and title
+         */
+
+        VerticalLayout header = new VerticalLayout();
+
+        Resource icon = new ThemeResource("img/icon_start3.png");
+        Image image = new Image(null, icon);
+        image.setWidth("70px");
+        header.addComponent(image);
+        header.setComponentAlignment(image, Alignment.BOTTOM_LEFT);
+
         Label title = new Label("My Mental Health");
         title.setSizeUndefined();
         title.addStyleName("h2");
         title.addStyleName("light");
-        labels.addComponent(title);
-        labels.setComponentAlignment(title, Alignment.MIDDLE_LEFT);
+        header.addComponent(title);
+        header.setComponentAlignment(title, Alignment.TOP_LEFT);
 
+        labels.addComponent(header);
+        labels.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
+
+        /*
+        Labels and Textboxes for Logindata
+         */
         VerticalLayout fields = new VerticalLayout();
         fields.setWidth("200px");
         fields.setSpacing(true);
