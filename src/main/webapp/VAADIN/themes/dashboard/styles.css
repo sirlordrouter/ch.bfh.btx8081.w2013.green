@@ -6022,6 +6022,10 @@ body .dashboard.v-app .v-app-loading {
 	position: relative;
 }
 
+.dashboard .dashboard-view .v-csslayout-contacts, .dashboard v-csslayout-layout-panel {
+	padding: 0;
+}
+
 .dashboard .dashboard-view .v-caption {
 	font-weight: 600;
 	font-size: 13px;

@@ -83,31 +83,19 @@ public class HelpView extends BaseView implements View, IHelpView {
 
             CssLayout scrollPane = new CssLayout();
             scrollPane.setSizeFull();
-            scrollPane.setStyleName("layout-panel");
-            scrollPane.setStyleName("contacts");
 
-            GridLayout l = new GridLayout(1,3);
+            scrollPane.addStyleName("contacts");
+            scrollPane.addStyleName("layout-panel");
 
-//            CssLayout contactLayout = new CssLayout();
-//            contactLayout.setWidth("270px");
-//            contactLayout.setHeight("100px");
             Label profession = new Label(c.getProfession());
             Label name = new Label(c.getFullName());
             Label phone = new Label(c.getPhoneNumberHtml());
             phone.setContentMode(ContentMode.HTML);
 
-            l.addComponent(profession,0,0);
-            l.addComponent(name,0,1);
-            l.addComponent(phone,0,2);
-//
-//            contactLayout.addComponent(profession);
-//            contactLayout.addComponent(name);
-//            contactLayout.addComponent(phone);
-//            contactLayout.setStyleName("login-panel");
-//
-//            contacts.addComponent(contactLayout);
-            //t.addItem(c);
-            scrollPane.addComponent(l);
+            scrollPane.addComponent(profession);
+            scrollPane.addComponent(name);
+            scrollPane.addComponent(phone);
+
             contacts.addComponent(scrollPane);
         }
 

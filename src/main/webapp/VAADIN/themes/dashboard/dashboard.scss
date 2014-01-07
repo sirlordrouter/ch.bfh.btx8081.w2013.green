@@ -564,6 +564,13 @@
 		position: relative;
 	}
 	
+	.dashboard-view .v-csslayout-contacts,
+	v-csslayout-layout-panel {
+		padding: 5px;
+		margin: 10px;
+
+	}
+	
 	.dashboard-view .v-caption {
 		font-weight: 600;
 		font-size: 13px;
