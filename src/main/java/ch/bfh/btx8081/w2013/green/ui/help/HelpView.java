@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.help;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Contact;
+import ch.bfh.btx8081.w2013.green.ui.BaseView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -17,46 +18,25 @@ import java.util.List;
  * Berner Fachhochschule</br> Medizininformatik BSc</br>
  * 
  * <p>
- * Class Description
+ * Class for Displaying Contacts which a Patient can call in difficult Situations.
  * </p>
  * 
  * @author group_green
  * @version 29-11-2013
  */
-public class HelpView extends VerticalLayout implements View, IHelpView {
+public class HelpView extends BaseView implements View, IHelpView {
 
 	private static final long serialVersionUID = 1L;
-	private Navigator navigator = null;
 	private IHelpPresenter presenter = null;
-
-    private VerticalLayout header = new VerticalLayout();
-    private VerticalLayout contacts = new VerticalLayout();
-    private HorizontalLayout navigation = new HorizontalLayout();
 
 	public HelpView() {
 
-        addStyleName("dashboard-view");
-
-		this.setWidth(MyVaadinUI.APP_WIDTH);
-		this.setHeight(MyVaadinUI.APP_HIGHT);
-        setMargin(true);
-        setSpacing(true);
-
-        Label titleLiabel = new Label("CONTACTS");
-        titleLiabel.setStyleName("h1");
-        titleLiabel.setHeight("30px");
-        header.addComponent(titleLiabel);
-        header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+        super();
+        super.setTitle("Contacts");
 
         createButtons();
 
-        addComponent(header);
-        addComponent(contacts);
-        addComponent(navigation);
-
-        setExpandRatio(header, 0.3f);
-        setExpandRatio(contacts, 0.6f);
-        setExpandRatio(navigation, 0.1f);
+        super.setLayouts(0.3f,0.6f,0.1f,0);
 	}
 
     private void createButtons() {
@@ -72,8 +52,8 @@ public class HelpView extends VerticalLayout implements View, IHelpView {
 
         buttonBack.addStyleName("icon-dashboard");
         buttonBack.addStyleName("default");
-        navigation.addComponent(buttonBack);
-        navigation.setComponentAlignment(buttonBack, Alignment.MIDDLE_CENTER);
+        super.navigation.addComponent(buttonBack);
+        super.navigation.setComponentAlignment(buttonBack, Alignment.MIDDLE_CENTER);
     }
 
     @Override
@@ -96,13 +76,10 @@ public class HelpView extends VerticalLayout implements View, IHelpView {
             contactLayout.addComponent(name);
             contactLayout.addComponent(phone);
 
-//            Label l = new Label();
-//            l.setContentMode(ContentMode.HTML);
-//            l.setWidth("100px");
-//            l.setValue(c.toString() + "\n\r\n\r");
+            //TODO: HTML Output Phone
 
-            contacts.addComponent(contactLayout);
-            contacts.setComponentAlignment(contactLayout, Alignment.TOP_CENTER);
+            super.content.addComponent(contactLayout);
+            super.content.setComponentAlignment(contactLayout, Alignment.TOP_CENTER);
         }
 
     }

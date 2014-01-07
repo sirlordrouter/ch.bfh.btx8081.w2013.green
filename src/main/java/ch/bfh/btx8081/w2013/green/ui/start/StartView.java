@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.start;
 
+import ch.bfh.btx8081.w2013.green.ui.BaseView;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.*;
@@ -17,7 +18,7 @@ import com.vaadin.ui.*;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 04-12-2013
  */
-public class StartView extends VerticalLayout implements View, IStartView {
+public class StartView extends BaseView implements View, IStartView {
 
 	private static final long serialVersionUID = -1105303206323973784L;
 
@@ -36,34 +37,16 @@ public class StartView extends VerticalLayout implements View, IStartView {
 
     private IStartViewPresenter presenter = null;
 
-    private VerticalLayout header = new VerticalLayout();
-    private VerticalLayout buttons = new VerticalLayout();
-
 	public StartView() {
 
-        this.setStyles();
-        this.setTitle();
+        super();
+        super.setTitle("Home Screen");
+
         this.createButtons();
-        this.setLayouts();
+
+        super.setLayouts(0.35f, 0,0,0.65f);
 
 	}
-
-    private void setStyles() {
-        this.addStyleName("dashboard-view");
-        this.setWidth(MyVaadinUI.APP_WIDTH);
-        this.setHeight(MyVaadinUI.APP_HIGHT);
-        this.setMargin(true);
-        this.setSpacing(true);
-    }
-
-    private void setTitle() {
-        Label titleLiabel = new Label("HOME SCREEN");
-        titleLiabel.setStyleName("h1");
-        titleLiabel.setHeight("30px");
-        this.header.addComponent(titleLiabel);
-        this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
-    }
-
 
     private void createButtons() {
 
@@ -78,8 +61,8 @@ presenter.navigateToHelp();
         buttonHelp.setWidth(BUTTON_WIDTH);
         buttonHelp.setHeight(BUTTON_HEIGHT);
         buttonHelp.addStyleName("icon-cog");
-        buttons.addComponent(buttonHelp);
-        buttons.setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
+        super.verticalNavigation.addComponent(buttonHelp);
+        super.verticalNavigation.setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
 
 
         Button buttonSkills = new Button(BUTTON_SKILLS, new Button.ClickListener() {
@@ -93,8 +76,8 @@ presenter.navigateToSkills();
         buttonSkills.setWidth(BUTTON_WIDTH);
         buttonSkills.setHeight(BUTTON_HEIGHT);
         buttonSkills.addStyleName("icon-cog");
-        buttons.addComponent(buttonSkills);
-        buttons.setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
+        super.verticalNavigation.addComponent(buttonSkills);
+        super.verticalNavigation.setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
 
 
         Button buttonMedic = new Button(BUTTON_MEDICATION,
@@ -109,8 +92,8 @@ presenter.navigateToMedic();
         buttonMedic.setWidth(BUTTON_WIDTH);
         buttonMedic.setHeight(BUTTON_HEIGHT);
         buttonMedic.addStyleName("icon-cog");
-        buttons. addComponent(buttonMedic);
-        buttons.setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
+        super.verticalNavigation. addComponent(buttonMedic);
+        super.verticalNavigation.setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
 
 
         Button buttonLogout = new Button(BUTTON_LOGOUT,
@@ -126,17 +109,8 @@ presenter.navigateBack();
         buttonLogout.setHeight(BUTTON_HEIGHT);
         buttonLogout.addStyleName("icon-cancel");
         buttonLogout.addStyleName("default");
-        buttons.addComponent(buttonLogout);
-        buttons.setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
-    }
-
-    private void setLayouts() {
-        this.buttons.setMargin(true);
-        this.buttons.setSpacing(true);
-        this.addComponent(header);
-        this.addComponent(buttons);
-        this.setExpandRatio(header, 0.35f);
-        this.setExpandRatio(buttons, 0.65f);
+        super.verticalNavigation.addComponent(buttonLogout);
+        super.verticalNavigation.setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
     }
 
     @Override

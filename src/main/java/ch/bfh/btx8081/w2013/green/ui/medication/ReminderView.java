@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
+import ch.bfh.btx8081.w2013.green.ui.BaseView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Notification;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 03-12-2013
  */
-public class ReminderView extends VerticalLayout implements IReminderView {
+public class ReminderView extends BaseView implements IReminderView {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -33,7 +34,7 @@ public class ReminderView extends VerticalLayout implements IReminderView {
     private MessageBoxListener mbListener = null;
 
 	public ReminderView () {
-		
+		super();
 	}
 	
 	@Override

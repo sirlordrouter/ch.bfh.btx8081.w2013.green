@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.green.ui.medication;
 
 
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+import ch.bfh.btx8081.w2013.green.ui.BaseView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class MedicationSettingsView
         extends
-            VerticalLayout
+            BaseView
         implements
             View,
             IMedicationSettingsView {
@@ -25,34 +26,16 @@ public class MedicationSettingsView
     private IMedicationSettingsPresenter presenter = null;
     private MedicationChangedListener medicationChangedListener = new MedicationChangedListener();
 
-    private VerticalLayout header = new VerticalLayout();
-    private VerticalLayout medics = new VerticalLayout();
-    private HorizontalLayout navigation = new HorizontalLayout();
-
 	public MedicationSettingsView() {
 
-        this.setStyles();
-        this.setTitle();
+        super();
+        super.setTitle("Medic Settings");
+
         this.setContent();
         this.createButtons();
-        this.setLayouts();
+
+        super.setLayouts(0.3f,0.6f,0.1f);
 	}
-
-    private void setStyles() {
-        this.addStyleName("dashboard-view");
-        this.setWidth(MyVaadinUI.APP_WIDTH);
-        this.setHeight(MyVaadinUI.APP_HIGHT);
-        this.setMargin(true);
-        this.setSpacing(true);
-    }
-
-    private void setTitle() {
-        Label titleLiabel = new Label("MEDIC SETTINGS");
-        titleLiabel.setStyleName("h1");
-        titleLiabel.setHeight("30px");
-        this.header.addComponent(titleLiabel);
-        this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
-    }
 
     private void setContent() {
         this.medications = new BeanItemContainer<>(Medication.class);
@@ -62,7 +45,7 @@ public class MedicationSettingsView
         this.optionGroup.setMultiSelect(true);
         this.optionGroup.setImmediate(true);
 
-        this.medics.addComponent(optionGroup);
+        super.content.addComponent(optionGroup);
     }
 
 
@@ -80,16 +63,7 @@ public class MedicationSettingsView
         buttonBack.addStyleName("icon-dashboard");
         buttonBack.addStyleName("default");
 
-        this.navigation.addComponent(buttonBack);
-    }
-
-    private void setLayouts() {
-        this.addComponent(header);
-        this.addComponent(medics);
-        this.addComponent(navigation);
-        this.setExpandRatio(header, 0.3f);
-        this.setExpandRatio(medics, 0.6f);
-        this.setExpandRatio(navigation, 0.1f);
+        super.navigation.addComponent(buttonBack);
     }
 
     @Override
@@ -134,7 +108,6 @@ public class MedicationSettingsView
         this.markAsDirtyRecursive();
 
     }
-
 
     private class MedicationChangedListener implements Property.ValueChangeListener {
         @Override

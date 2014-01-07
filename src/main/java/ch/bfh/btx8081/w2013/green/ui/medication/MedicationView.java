@@ -22,44 +22,15 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 
 	private IMedicationPresenter presenter = null;
 	private TextArea area = null;
-    private VerticalLayout header = new VerticalLayout();
-    private VerticalLayout medics = new VerticalLayout();
-    private HorizontalLayout navigation = new HorizontalLayout();
     
     public MedicationView(){
     	super();
+        super.setTitle("Medics");
 
-        this.setBaseStyle();
-        this.setTitle();
         this.createContent();
         this.createButtons();
-        this.setLayout();
-    }
 
-    private void setLayout() {
-        this.addComponent(header);
-        this.addComponent(medics);
-        this.addComponent(navigation);
-        this.setExpandRatio(header, 0.2f);
-        this.setExpandRatio(medics, 0.7f);
-        this.setExpandRatio(navigation, 0.1f);
-    }
-
-
-    private void setBaseStyle() {
-        this.addStyleName("dashboard-view");
-        this.setWidth(MyVaadinUI.APP_WIDTH);
-        this.setHeight(MyVaadinUI.APP_HIGHT);
-        this.setMargin(true);
-        this.setSpacing(true);
-    }
-
-    private void setTitle() {
-        Label titleLiabel = new Label("Medics");
-        titleLiabel.setStyleName("h1");
-        titleLiabel.setHeight("30px");
-        this.header.addComponent(titleLiabel);
-        this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+        super.setLayouts(0.2f, 0.7f, 0.1f, 0);
     }
 
     private void createContent() {
@@ -67,7 +38,7 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         this.area.setWidth("100%");
         this.area.setHeight("270px");
         this.area.setStyleName("dashboard-textarea");
-        this.medics.addComponent(area);
+        super.content.addComponent(area);
     }
 
     private void createButtons() {
@@ -83,7 +54,7 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         buttonBack.addStyleName("icon-dashboard");
         buttonBack.addStyleName("default");
 
-        this.navigation.addComponent(buttonBack);
+        super.navigation.addComponent(buttonBack);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.skills;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Skill;
+import ch.bfh.btx8081.w2013.green.ui.BaseView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -23,7 +24,7 @@ import java.util.List;
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 09-12-2013
  */
-public class SkillsView extends VerticalLayout
+public class SkillsView extends BaseView
 	implements View, ISkillView {
 
     private static final long serialVersionUID = 1L;
@@ -35,32 +36,27 @@ public class SkillsView extends VerticalLayout
 	/* Only the presenter registers one listener... */
     private ISkillViewPresenter presenter = null;
 
-    private VerticalLayout header = new VerticalLayout();
-    private VerticalLayout skills = new VerticalLayout();
-    private HorizontalLayout navigation = new HorizontalLayout();
-
 	public SkillsView () {
 
-        addStyleName("dashboard-view");
-		
-		this.setWidth(MyVaadinUI.APP_WIDTH);
-		this.setHeight(MyVaadinUI.APP_HIGHT);
-        setMargin(true);
-        setSpacing(true);
+        super();
+        super.setTitle("Skills");
 
-        Label titleLiabel = new Label("SKILLS");
-        titleLiabel.setStyleName("h1");
-        titleLiabel.setHeight("30px");
-        header.addComponent(titleLiabel);
-        header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+        this.setContent();
+        this.setButtons();
 
-		// listSelectSkills
-		this.listSelectSkills = new ListSelect();
-		
-		this.listSelectSkills.setWidth("100%");
-		listSelectSkills.setHeight("270px");
-		skills.addComponent(listSelectSkills);
+        super.setLayouts(0.2f, 0.7f, 0.1f,0);
 
+	}
+
+    private void setContent() {
+        this.listSelectSkills = new ListSelect();
+
+        this.listSelectSkills.setWidth("100%");
+        this.listSelectSkills.setHeight("270px");
+        super.content.addComponent(listSelectSkills);
+    }
+
+    private void setButtons() {
         final Button buttonBack = new Button(BUTTON_BACK, new Button.ClickListener() {
             private static final long serialVersionUID = 1L;
 
@@ -75,7 +71,7 @@ public class SkillsView extends VerticalLayout
         buttonBack.addStyleName("icon-dashboard");
         buttonBack.addStyleName("default");
 
-        navigation.addComponent(buttonBack);
+        super.navigation.addComponent(buttonBack);
 
         final Button buttonDetail = new Button("Detail", new Button.ClickListener() {
             private static final long serialVersionUID = 1L;
@@ -96,21 +92,11 @@ public class SkillsView extends VerticalLayout
 
             }
         });
-        navigation.addComponent(buttonDetail);
-        navigation.setMargin(true);
-        navigation.setSpacing(true);
 
+        super.navigation.addComponent(buttonDetail);
+    }
 
-        addComponent(header);
-        addComponent(skills);
-        addComponent(navigation);
-
-        setExpandRatio(header, 0.2f);
-        setExpandRatio(skills, 0.7f);
-        setExpandRatio(navigation, 0.1f);
-	}
-
-	@Override
+    @Override
 	public void enter(ViewChangeEvent event) {
 	}
 
