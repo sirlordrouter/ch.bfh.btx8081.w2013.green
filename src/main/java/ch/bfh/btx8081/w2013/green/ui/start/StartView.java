@@ -3,7 +3,8 @@ package ch.bfh.btx8081.w2013.green.ui.start;
 import ch.bfh.btx8081.w2013.green.ui.BaseView;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br> Modul 8081, HS2013</br>
@@ -44,7 +45,7 @@ public class StartView extends BaseView implements View, IStartView {
 
         this.createButtons();
 
-        super.setLayouts(0.35f, 0,0,0.65f);
+        super.setLayouts(0.35f, 0.65f,0,0);
 
 	}
 
@@ -55,14 +56,14 @@ public class StartView extends BaseView implements View, IStartView {
 
             @Override
             public void buttonClick(Button.ClickEvent event) {
-presenter.navigateToHelp();
+                presenter.navigateToHelp();
             }
         });
         buttonHelp.setWidth(BUTTON_WIDTH);
         buttonHelp.setHeight(BUTTON_HEIGHT);
         buttonHelp.addStyleName("icon-cog");
-        super.verticalNavigation.addComponent(buttonHelp);
-        super.verticalNavigation.setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
+        super.content.addComponent(buttonHelp);
+        super.content.setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
 
 
         Button buttonSkills = new Button(BUTTON_SKILLS, new Button.ClickListener() {
@@ -70,14 +71,14 @@ presenter.navigateToHelp();
 
                     @Override
                     public void buttonClick(Button.ClickEvent event) {
-presenter.navigateToSkills();
+                            presenter.navigateToSkills();
                     }
                 });
         buttonSkills.setWidth(BUTTON_WIDTH);
         buttonSkills.setHeight(BUTTON_HEIGHT);
         buttonSkills.addStyleName("icon-cog");
-        super.verticalNavigation.addComponent(buttonSkills);
-        super.verticalNavigation.setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
+        super.content.addComponent(buttonSkills);
+        super.content.setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
 
 
         Button buttonMedic = new Button(BUTTON_MEDICATION,
@@ -92,8 +93,8 @@ presenter.navigateToMedic();
         buttonMedic.setWidth(BUTTON_WIDTH);
         buttonMedic.setHeight(BUTTON_HEIGHT);
         buttonMedic.addStyleName("icon-cog");
-        super.verticalNavigation. addComponent(buttonMedic);
-        super.verticalNavigation.setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
+        super.content. addComponent(buttonMedic);
+        super.content.setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
 
 
         Button buttonLogout = new Button(BUTTON_LOGOUT,
@@ -109,8 +110,8 @@ presenter.navigateBack();
         buttonLogout.setHeight(BUTTON_HEIGHT);
         buttonLogout.addStyleName("icon-cancel");
         buttonLogout.addStyleName("default");
-        super.verticalNavigation.addComponent(buttonLogout);
-        super.verticalNavigation.setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
+        super.content.addComponent(buttonLogout);
+        super.content.setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
     }
 
     @Override

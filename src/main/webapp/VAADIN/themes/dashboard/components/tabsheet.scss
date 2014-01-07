@@ -1,7 +1,9 @@
 @mixin dashboard-tabsheet {
 	
 	.v-tabsheet {
-		border: 1px solid #d3d6d6;
+		border: 1px solid #5c5c5c;
+		
+		@include box-shadow($outline);
 		@include border-radius(4px);
 	}
 	
@@ -19,7 +21,7 @@
 	}
 	
 	.v-tabsheet-tabcontainer {	
-		background: #e6e7e8;
+		background: #989898;
 		
 		/* TODO mixin */
 		background: -moz-linear-gradient(top, #f5f5f5 0%, #e6e6e7 100%);
@@ -50,6 +52,7 @@
 	.v-tabsheet-tabitem {
 		padding: 0;
 	}
+	
 	.v-tabsheet-tabitem .v-caption {
 		padding: 10px 1.3em;
 	}

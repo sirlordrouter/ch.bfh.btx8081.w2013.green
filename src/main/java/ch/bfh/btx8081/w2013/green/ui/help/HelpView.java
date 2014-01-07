@@ -2,15 +2,11 @@ package ch.bfh.btx8081.w2013.green.ui.help;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Contact;
 import ch.bfh.btx8081.w2013.green.ui.BaseView;
-import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
-import com.vaadin.navigator.Navigator;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.Sizeable;
-import com.vaadin.shared.ui.dd.HorizontalDropLocation;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
-import sun.awt.HorizBagLayout;
 
 import java.util.List;
 
@@ -28,6 +24,7 @@ public class HelpView extends BaseView implements View, IHelpView {
 
 	private static final long serialVersionUID = 1L;
 	private IHelpPresenter presenter = null;
+    private BeanItemContainer contacts = new BeanItemContainer<>(Contact.class);
 
 	public HelpView() {
 
@@ -36,7 +33,7 @@ public class HelpView extends BaseView implements View, IHelpView {
 
         createButtons();
 
-        super.setLayouts(0.3f,0.6f,0.1f,0);
+        super.setLayouts(0.15f,0.75f,0.1f,0);
 	}
 
     private void createButtons() {
@@ -68,19 +65,55 @@ public class HelpView extends BaseView implements View, IHelpView {
     @Override
     public void setContactsList(List<Contact> contactsList) {
 
+
+
+        VerticalLayout contacts = new VerticalLayout();
+        contacts.setMargin(true);
+        contacts.setHeight("300px");
+//
+//        Table t = new Table("Contacts");
+//        t.setWidth("300px");
+//        t.setStyleName("plain");
+//        t.addContainerProperty("Profession", Contact.class, null);
+//        t.addContainerProperty("Name", Contact.class, null);
+//        t.addContainerProperty("PhoneNumber", Contact.class, null);
+
+
         for (Contact c : contactsList) {
 
-            CssLayout contactLayout = new CssLayout();
-            Label name = new Label(c.getName());
-            Label phone = new Label(c.getPhoneNumber());
-            contactLayout.addComponent(name);
-            contactLayout.addComponent(phone);
+            CssLayout scrollPane = new CssLayout();
+            scrollPane.setSizeFull();
+            scrollPane.setStyleName("layout-panel");
+            scrollPane.setStyleName("contacts");
 
-            //TODO: HTML Output Phone
+            GridLayout l = new GridLayout(1,3);
 
-            super.content.addComponent(contactLayout);
-            super.content.setComponentAlignment(contactLayout, Alignment.TOP_CENTER);
+//            CssLayout contactLayout = new CssLayout();
+//            contactLayout.setWidth("270px");
+//            contactLayout.setHeight("100px");
+            Label profession = new Label(c.getProfession());
+            Label name = new Label(c.getFullName());
+            Label phone = new Label(c.getPhoneNumberHtml());
+            phone.setContentMode(ContentMode.HTML);
+
+            l.addComponent(profession,0,0);
+            l.addComponent(name,0,1);
+            l.addComponent(phone,0,2);
+//
+//            contactLayout.addComponent(profession);
+//            contactLayout.addComponent(name);
+//            contactLayout.addComponent(phone);
+//            contactLayout.setStyleName("login-panel");
+//
+//            contacts.addComponent(contactLayout);
+            //t.addItem(c);
+            scrollPane.addComponent(l);
+            contacts.addComponent(scrollPane);
         }
+
+
+        super.content.addComponent(contacts);
+        super.content.setComponentAlignment(contacts, Alignment.TOP_CENTER);
 
     }
 }

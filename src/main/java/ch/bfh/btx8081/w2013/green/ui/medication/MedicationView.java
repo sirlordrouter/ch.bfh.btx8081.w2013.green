@@ -1,10 +1,10 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
-import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.TextArea;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
     
     public MedicationView(){
     	super();
-        super.setTitle("Medics");
+        super.setTitle("MEDICS");
 
         this.createContent();
         this.createButtons();

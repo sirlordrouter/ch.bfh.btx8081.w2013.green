@@ -26,9 +26,11 @@ public class LoginView extends VerticalLayout implements View {
     //TODO: How is Login handled in multiple user Sessions???
     
 	public LoginView() {
+        addStyleName("root");
+
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
-		addStyleName("sidebar");
+		//addStyleName("sidebar");
 		
 		this.initLogin();
 	}

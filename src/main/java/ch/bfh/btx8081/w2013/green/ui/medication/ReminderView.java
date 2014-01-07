@@ -4,7 +4,6 @@ import ch.bfh.btx8081.w2013.green.ui.BaseView;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.VerticalLayout;
 import de.steinwedel.messagebox.ButtonId;
 import de.steinwedel.messagebox.Icon;
 import de.steinwedel.messagebox.MessageBox;

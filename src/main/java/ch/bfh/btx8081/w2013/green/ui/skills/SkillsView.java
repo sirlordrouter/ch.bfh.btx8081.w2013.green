@@ -2,10 +2,11 @@ package ch.bfh.btx8081.w2013.green.ui.skills;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Skill;
 import ch.bfh.btx8081.w2013.green.ui.BaseView;
-import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.ListSelect;
 import de.steinwedel.messagebox.ButtonId;
 import de.steinwedel.messagebox.Icon;
 import de.steinwedel.messagebox.MessageBox;

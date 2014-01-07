@@ -76,6 +76,14 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getFullName( ) {
+        return this.name + ", " + this.forename;
+    };
+
+    public String getPhoneNumberHtml() {
+        return "Phone: " + "<a href=\"tel:" + phoneNumber + "\">Tel: " + phoneNumber + "</a>\n\r";
+    }
+
     /**
      * Formats the Contact to a HTML String, so that the phone number
      * can be used with Skype or something similar.

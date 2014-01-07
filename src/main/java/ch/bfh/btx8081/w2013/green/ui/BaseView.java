@@ -7,7 +7,14 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * Created by Johannes on 07.01.14.
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ *
+ *<p>A base view with all the Layouting functions. Simplyfies the Design of the Application.</p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 07-01-2014
  */
 public class BaseView extends VerticalLayout{
 
@@ -38,6 +45,7 @@ public class BaseView extends VerticalLayout{
         Label titleLiabel = new Label(title);
         titleLiabel.setStyleName("h1");
         titleLiabel.setHeight("30px");
+        titleLiabel.setWidth("305px");
 
         this.header.addComponent(titleLiabel);
         this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
@@ -47,19 +55,27 @@ public class BaseView extends VerticalLayout{
 
         this.content.setMargin(true);
         this.content.setSpacing(true);
-        this.navigation.setMargin(true);
-        this.navigation.setSpacing(true);
-        this.verticalNavigation.setMargin(true);
-        this.verticalNavigation.setSpacing(true);
 
         this.addComponent(header);
         this.addComponent(content);
-        this.addComponent(navigation);
-        this.addComponent(verticalNavigation);
 
         this.setExpandRatio(header, headerRatio);
         this.setExpandRatio(content, contentRatio);
-        this.setExpandRatio(navigation, navigationRatio);
-        this.setExpandRatio(verticalNavigation, verticalNavicationRatio);
+
+        if (navigationRatio == 0) {
+
+            this.verticalNavigation.setMargin(true);
+            this.verticalNavigation.setSpacing(true);
+            this.addComponent(verticalNavigation);
+            this.setExpandRatio(verticalNavigation, verticalNavicationRatio);
+
+        } else {
+
+            this.navigation.setMargin(true);
+            this.navigation.setSpacing(true);
+            this.addComponent(navigation);
+            this.setExpandRatio(navigation, navigationRatio);
+
+        }
     }
 }

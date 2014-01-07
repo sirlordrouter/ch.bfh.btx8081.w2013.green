@@ -3,13 +3,13 @@ package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.ui.BaseView;
-import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.OptionGroup;
 
 import java.util.Collection;
 import java.util.List;
@@ -34,7 +34,7 @@ public class MedicationSettingsView
         this.setContent();
         this.createButtons();
 
-        super.setLayouts(0.3f,0.6f,0.1f);
+        super.setLayouts(0.3f,0.6f,0.1f,0);
 	}
 
     private void setContent() {
