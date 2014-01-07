@@ -34,6 +34,10 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
     private IStartSettingsPresenter settingsPresenter = null;
     private BeanItemContainer<Patient> patientContainer = null;
 
+    private VerticalLayout header = new VerticalLayout();
+    private VerticalLayout patient = new VerticalLayout();
+    private VerticalLayout buttons = new VerticalLayout();
+
     /**
 	 * The constructor should first build the main layout, set the composition
 	 * root and then do any custom initialization.
@@ -46,28 +50,30 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 	 */
 	public StartSettingsView() {
 
-        addStyleName("dashboard-view");
-
-		setWidth(MyVaadinUI.APP_WIDTH);
-		setHeight(MyVaadinUI.APP_HIGHT);
-        setMargin(true);
-        setSpacing(true);
-
-        createPatientsComboBox();
-
-        createButtons();
+        this.setStyles();
+        this.createPatientsComboBox();
+        this.createButtons();
+        setLayouts();
 
 	}
 
+
+    private void setStyles() {
+
+        this.addStyleName("dashboard-view");
+        this.setWidth(MyVaadinUI.APP_WIDTH);
+        this.setHeight(MyVaadinUI.APP_HIGHT);
+        this.setMargin(true);
+        this.setSpacing(true);
+    }
+
     private void createPatientsComboBox() {
 
-        //VerticalLayout header = new VerticalLayout();
-        //header.setHeight("100px");
         Label titleLiabel = new Label("SETTINGS");
         titleLiabel.setStyleName("h1");
         titleLiabel.setHeight("30px");
-        addComponent(titleLiabel);
-        setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+        this.header.addComponent(titleLiabel);
+        this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
 
         this.patientContainer = new BeanItemContainer<Patient>(Patient.class);
 
@@ -79,16 +85,11 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
         selectPatient.addValueChangeListener(new PatientListener());
 
         selectPatient.setWidth("200px");
-        addComponent(selectPatient);
-        setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
-        //addComponent(header);
+        this.patient.addComponent(selectPatient);
+        this.patient.setComponentAlignment(selectPatient, Alignment.MIDDLE_CENTER);
     }
 
     private void createButtons() {
-
-//        VerticalLayout buttonLayout = new VerticalLayout();
-//        buttonLayout.setMargin(true);
-//        buttonLayout.setSpacing(true);
 
         // Creating the 3 Buttons (Help Settings, Skill Settings and Logout)
         // with a Navigator which should navigate to the corresponding view.
@@ -140,14 +141,14 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 
         // Adding and aligning the 3 Buttons.
         //Setting a Description for the buttons which is displayed when flying over the button
-        addComponent(helpSettingsButton);
-        setComponentAlignment(helpSettingsButton, Alignment.MIDDLE_CENTER);
+        this.buttons.addComponent(helpSettingsButton);
+        this.buttons.setComponentAlignment(helpSettingsButton, Alignment.MIDDLE_CENTER);
         helpSettingsButton.setDescription("Set the Help options for the Patient");
         helpSettingsButton.setWidth(BUTTON_WIDTH);
         helpSettingsButton.setHeight(BUTTON_HEIGHT);
 
-        addComponent(medicSettingsButton);
-        setComponentAlignment(medicSettingsButton, Alignment.MIDDLE_CENTER);
+        this.buttons.addComponent(medicSettingsButton);
+        this.buttons.setComponentAlignment(medicSettingsButton, Alignment.MIDDLE_CENTER);
         medicSettingsButton.setDescription("Set the Medication options for the Patient");
         medicSettingsButton.setWidth(BUTTON_WIDTH);
         medicSettingsButton.setHeight(BUTTON_HEIGHT);
@@ -159,14 +160,25 @@ public class StartSettingsView extends VerticalLayout implements View, IStartSet
 //        skillSettingsButton.setHeight(BUTTON_HEIGHT);
 
         logoutButton.setWidth(BUTTON_WIDTH);
-        addComponent(logoutButton);
-        setComponentAlignment(logoutButton, Alignment.MIDDLE_CENTER);
+        this.buttons.addComponent(logoutButton);
+        this.buttons.setComponentAlignment(logoutButton, Alignment.MIDDLE_CENTER);
         logoutButton.setDescription("You will be logged out");
         logoutButton.setWidth(BUTTON_WIDTH);
         logoutButton.setHeight(BUTTON_HEIGHT);
 
         //addComponent(buttonLayout);
         //setComponentAlignment(buttonLayout,Alignment.MIDDLE_CENTER);
+    }
+
+    private void setLayouts() {
+        this.buttons.setMargin(true);
+        this.buttons.setSpacing(true);
+        this.addComponent(header);
+        this.addComponent(patient);
+        this.addComponent(buttons);
+        this.setExpandRatio(header, 0.2f);
+        this.setExpandRatio(patient, 0.2f);
+        this.setExpandRatio(buttons, 0.6f);
     }
 
     @Override

@@ -41,29 +41,29 @@ public class StartView extends VerticalLayout implements View, IStartView {
 
 	public StartView() {
 
-        addStyleName("dashboard-view");
+        this.setStyles();
+        this.setTitle();
+        this.createButtons();
+        this.setLayouts();
 
-		setWidth(MyVaadinUI.APP_WIDTH);
-		setHeight(MyVaadinUI.APP_HIGHT);
-        setMargin(true);
-        setSpacing(true);
+	}
 
+    private void setStyles() {
+        this.addStyleName("dashboard-view");
+        this.setWidth(MyVaadinUI.APP_WIDTH);
+        this.setHeight(MyVaadinUI.APP_HIGHT);
+        this.setMargin(true);
+        this.setSpacing(true);
+    }
+
+    private void setTitle() {
         Label titleLiabel = new Label("HOME SCREEN");
         titleLiabel.setStyleName("h1");
         titleLiabel.setHeight("30px");
-        header.addComponent(titleLiabel);
-        header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+        this.header.addComponent(titleLiabel);
+        this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+    }
 
-        createButtons();
-
-        buttons.setMargin(true);
-        buttons.setSpacing(true);
-        addComponent(header);
-        addComponent(buttons);
-        setExpandRatio(header, 0.35f);
-        setExpandRatio(buttons, 0.65f);
-
-	}
 
     private void createButtons() {
 
@@ -128,6 +128,15 @@ presenter.navigateBack();
         buttonLogout.addStyleName("default");
         buttons.addComponent(buttonLogout);
         buttons.setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);
+    }
+
+    private void setLayouts() {
+        this.buttons.setMargin(true);
+        this.buttons.setSpacing(true);
+        this.addComponent(header);
+        this.addComponent(buttons);
+        this.setExpandRatio(header, 0.35f);
+        this.setExpandRatio(buttons, 0.65f);
     }
 
     @Override

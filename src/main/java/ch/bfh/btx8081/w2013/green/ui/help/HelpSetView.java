@@ -25,35 +25,45 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
 
 	/* Only the presenter registers one listener... */
 	private IHelpViewSetPresenter presenter = null;
-    private VerticalLayout vertical = null;
+
+    private VerticalLayout header = new VerticalLayout();
+    private VerticalLayout contacts = new VerticalLayout();
+    private HorizontalLayout navigation = new HorizontalLayout();
 
     public HelpSetView() {
 
-        addStyleName("dashboard-view");
+        this.setStyles();
+        this.setTitle();
+        this.setContent();
+        this.createButtons();
+        this.setLayouts();
 
-		this.setWidth(MyVaadinUI.APP_WIDTH);
-		this.setHeight(MyVaadinUI.APP_HIGHT);
-        setMargin(true);
-        setSpacing(true);
+	}
 
+    private void setStyles() {
+        this.addStyleName("dashboard-view");
+        this.setWidth(MyVaadinUI.APP_WIDTH);
+        this.setHeight(MyVaadinUI.APP_HIGHT);
+        this.setMargin(true);
+        this.setSpacing(true);
+    }
+
+    private void setTitle() {
         Label titleLiabel = new Label("CONTACT SETTINGS");
         titleLiabel.setStyleName("h1");
         titleLiabel.setHeight("30px");
-        addComponent(titleLiabel);
-        setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+        this.header.addComponent(titleLiabel);
+        this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+    }
 
-		this.vertical = new VerticalLayout();
+    private void setContent() {
+        this.contacts.addComponent(new TextField("Profession"));
+        this.contacts.addComponent(new TextField("Name"));
+        this.contacts.addComponent(new TextField("First Name"));
+        this.contacts.addComponent(new TextField("Phone nb. (office)"));
+        this.contacts.addComponent(new TextField("Phone nb. (home)"));
+    }
 
-		vertical.addComponent(new TextField("Profession"));
-		vertical.addComponent(new TextField("Name"));
-		vertical.addComponent(new TextField("First Name"));
-		vertical.addComponent(new TextField("Phone nb. (office)"));
-		vertical.addComponent(new TextField("Phone nb. (home)"));
-
-        createButtons();
-
-        addComponent(vertical);
-	}
 
     private void createButtons() {
         // buttonLayout
@@ -73,7 +83,18 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
         buttonBack.addStyleName("default");
         buttonLayout.addComponent(buttonBack);
 
-        vertical.addComponent(buttonLayout);
+        this.navigation.addComponent(buttonLayout);
+    }
+
+    private void setLayouts() {
+        this.contacts.setMargin(true);
+        this.contacts.setSpacing(true);
+        this.addComponent(header);
+        this.addComponent(contacts);
+        this.addComponent(navigation);
+        this.setExpandRatio(header, 0.3f);
+        this.setExpandRatio(contacts, 0.6f);
+        this.setExpandRatio(navigation, 0.1f);
     }
 
     @Override

@@ -33,11 +33,13 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         this.setTitle();
         this.createContent();
         this.createButtons();
+        this.setLayout();
+    }
 
+    private void setLayout() {
         this.addComponent(header);
         this.addComponent(medics);
         this.addComponent(navigation);
-
         this.setExpandRatio(header, 0.2f);
         this.setExpandRatio(medics, 0.7f);
         this.setExpandRatio(navigation, 0.1f);

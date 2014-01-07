@@ -23,39 +23,48 @@ public class MedicationSettingsView
 	private OptionGroup optionGroup = null;
     private BeanItemContainer<Medication> medications = null;
     private IMedicationSettingsPresenter presenter = null;
-    private VerticalLayout vertical = null;
     private MedicationChangedListener medicationChangedListener = new MedicationChangedListener();
+
+    private VerticalLayout header = new VerticalLayout();
+    private VerticalLayout medics = new VerticalLayout();
+    private HorizontalLayout navigation = new HorizontalLayout();
 
 	public MedicationSettingsView() {
 
-        addStyleName("dashboard-view");
+        this.setStyles();
+        this.setTitle();
+        this.setContent();
+        this.createButtons();
+        this.setLayouts();
+	}
 
-    	this.setWidth(MyVaadinUI.APP_WIDTH);
+    private void setStyles() {
+        this.addStyleName("dashboard-view");
+        this.setWidth(MyVaadinUI.APP_WIDTH);
         this.setHeight(MyVaadinUI.APP_HIGHT);
-        setMargin(true);
-        setSpacing(true);
+        this.setMargin(true);
+        this.setSpacing(true);
+    }
 
+    private void setTitle() {
         Label titleLiabel = new Label("MEDIC SETTINGS");
         titleLiabel.setStyleName("h1");
         titleLiabel.setHeight("30px");
-        addComponent(titleLiabel);
-        setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+        this.header.addComponent(titleLiabel);
+        this.header.setComponentAlignment(titleLiabel, Alignment.TOP_CENTER);
+    }
 
+    private void setContent() {
         this.medications = new BeanItemContainer<>(Medication.class);
-
-        this.vertical = new VerticalLayout ();
 
         this.optionGroup = new OptionGroup("Patient name", medications);//(selectedPatient.getName());
         this.optionGroup.setItemCaptionPropertyId("medicationName");
         this.optionGroup.setMultiSelect(true);
         this.optionGroup.setImmediate(true);
 
-        this.vertical.addComponent(optionGroup);
+        this.medics.addComponent(optionGroup);
+    }
 
-        createButtons();
-
-        addComponent(vertical);
-	}
 
     private void createButtons() {
         final Button buttonBack = new Button("Back", new Button.ClickListener() {
@@ -71,7 +80,16 @@ public class MedicationSettingsView
         buttonBack.addStyleName("icon-dashboard");
         buttonBack.addStyleName("default");
 
-        this.vertical.addComponent(buttonBack);
+        this.navigation.addComponent(buttonBack);
+    }
+
+    private void setLayouts() {
+        this.addComponent(header);
+        this.addComponent(medics);
+        this.addComponent(navigation);
+        this.setExpandRatio(header, 0.3f);
+        this.setExpandRatio(medics, 0.6f);
+        this.setExpandRatio(navigation, 0.1f);
     }
 
     @Override
