@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.data.util.BeanItemContainer;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
@@ -103,4 +105,7 @@ public class Patient implements Serializable {
     public String getPatientName() {
         return patientName;
     }
-}
+
+
+	}
+

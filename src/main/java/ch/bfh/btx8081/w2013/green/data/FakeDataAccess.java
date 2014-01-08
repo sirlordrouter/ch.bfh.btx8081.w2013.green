@@ -5,8 +5,13 @@ import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.data.entities.Patient;
 import ch.bfh.btx8081.w2013.green.data.entities.Skill;
 
+
+
+
 import java.util.ArrayList;
 import java.util.List;
+
+import com.vaadin.ui.OptionGroup;
 
 public class FakeDataAccess implements ISettingsDataAccess {
 
@@ -71,16 +76,17 @@ public class FakeDataAccess implements ISettingsDataAccess {
 
     private List<Medication> generateMedications() {
         medics = new ArrayList<Medication>();
-
+        
         Medication m1 = new Medication("Dafalgan", new int[]{1,1,0},1);
         Medication m2 = new Medication("Antidepressiva", new int[]{0,1,0},2);
         Medication m3 = new Medication("Tranquillanzium", new int[]{1,1,1},3);
         Medication m4 = new Medication("Antidementivum", new int[]{0,0,1},4);
-
+       
         medics.add(m1);
         medics.add(m2);
         medics.add(m3);
         medics.add(m4);
+      
 
         return medics;
         
