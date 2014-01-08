@@ -11,9 +11,10 @@ import com.vaadin.ui.Button.ClickListener;
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
  * 
- *<p>First View of the Application presented to User to enter his credentials</p>
+ *<p>First View of the Application presented to the User to enter his credentials</p>
  *
  * @author group_green, Johannes Gnaegi
+ * @editor group_green, Corina von Kaenel
  * @version 29-11-2013
  */
 public class LoginView extends VerticalLayout implements View {
@@ -23,7 +24,10 @@ public class LoginView extends VerticalLayout implements View {
 
     //TODO: How is Login handled in multiple user Sessions???
     
-	public LoginView() {
+	/*
+	 * Sets the App's with, hight and sidebar, as well as all the content of the initial View of the App. 
+	 */
+    public LoginView() {
 		setWidth(MyVaadinUI.APP_WIDTH);
 		setHeight(MyVaadinUI.APP_HIGHT);
 		addStyleName("sidebar");
@@ -120,6 +124,9 @@ public class LoginView extends VerticalLayout implements View {
 	}
 	
 	@Override
+	/*
+	 * After a successful login the User shall be presented a welcome Message
+	 */
 	public void enter(ViewChangeEvent event) {
 
 		Notification.show("Welcome to the Mental Health App\nPlease log in!");
