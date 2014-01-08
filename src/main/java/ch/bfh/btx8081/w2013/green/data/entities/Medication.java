@@ -51,7 +51,7 @@ public class Medication implements Serializable {
      *      id of this medication
      */
     public int getMedicationID() {
-        return medicationID;
+        return this.medicationID;
     }
 
 	/**
@@ -101,9 +101,9 @@ public class Medication implements Serializable {
         return this.getMedicationName() + "\n"
                 +"Dosage: ?\n"
                 +"taking:  \n"
-                +"Breakfast :" + (getDueTimes()[0] == 1 ? "Yes" : "No") +"\n"
-                +"Lunch :" + (getDueTimes()[1] == 1 ? "Yes" : "No")+ "\n"
-                +"Dinner :" + (getDueTimes()[2] == 1 ? "Yes" : "No")+ "\n";
+                +"Breakfast :" + (this.getDueTimes()[0] == 1 ? "Yes" : "No") +"\n"
+                +"Lunch :" + (this.getDueTimes()[1] == 1 ? "Yes" : "No")+ "\n"
+                +"Dinner :" + (this.getDueTimes()[2] == 1 ? "Yes" : "No")+ "\n";
     }
     
     

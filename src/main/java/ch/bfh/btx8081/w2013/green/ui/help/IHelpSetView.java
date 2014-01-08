@@ -9,7 +9,7 @@ import java.util.List;
  * Berner Fachhochschule</br> Medizininformatik BSc</br> Modul 8081, HS2013</br>
  * 
  * <p>
- * Class Description
+ * Interface for the View holding the contact persons.
  * </p>
  * 
  * @author Vinzenz Messerli, messv1@bfh.ch

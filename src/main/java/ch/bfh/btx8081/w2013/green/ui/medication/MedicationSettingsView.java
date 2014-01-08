@@ -14,6 +14,19 @@ import com.vaadin.ui.OptionGroup;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ *
+ *<p>
+ *  View for managing the medications for a specific patient.
+ *  Selected Medications are transmitted as a list and attached to the selected user.
+ *</p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 08-01-2014
+ */
 public class MedicationSettingsView
         extends
             BaseView
@@ -40,7 +53,7 @@ public class MedicationSettingsView
     private void setContent() {
         this.medications = new BeanItemContainer<>(Medication.class);
 
-        this.optionGroup = new OptionGroup("Patient name", medications);//(selectedPatient.getName());
+        this.optionGroup = new OptionGroup("Patient name", this.medications);//(selectedPatient.getName());
         this.optionGroup.setItemCaptionPropertyId("medicationName");
         this.optionGroup.setMultiSelect(true);
         this.optionGroup.setImmediate(true);
@@ -88,12 +101,12 @@ public class MedicationSettingsView
     @Override
     public void setCurrentPatientMedication(List<Medication> medicationList, List<Medication> customMedicationList) {
 
-        this.optionGroup.removeValueChangeListener(medicationChangedListener);
+        this.optionGroup.removeValueChangeListener(this.medicationChangedListener);
 
         this.medications.removeAllItems();
 
         for (Medication medication : medicationList) {
-           medications.addItem(medication);
+            this.medications.addItem(medication);
            this.optionGroup.unselect(medication);
             for (Medication customMedication : customMedicationList) {
                 if (medication.getMedicationID() == customMedication.getMedicationID()) {
@@ -104,7 +117,7 @@ public class MedicationSettingsView
 
         this.optionGroup.setImmediate(true);
 
-        this.optionGroup.addValueChangeListener(medicationChangedListener);
+        this.optionGroup.addValueChangeListener(this.medicationChangedListener);
         this.markAsDirtyRecursive();
 
     }

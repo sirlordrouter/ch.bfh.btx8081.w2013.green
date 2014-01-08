@@ -64,12 +64,12 @@ public class MyVaadinUI extends UI
     {
     	
     	boolean isAuthenticated = false;
-    	
-        loginManager = LoginManager.getLoginManager();
-        isAuthenticated = loginManager.authenticateUserAccess(username,password);
+
+        this.loginManager = LoginManager.getLoginManager();
+        isAuthenticated = this.loginManager.authenticateUserAccess(username,password);
 
         if (isAuthenticated) {
-        	currentUser = loginManager.getUserAttribute();
+            this.currentUser = this.loginManager.getUserAttribute();
         	
             this.state.exit();
             this.state.handleLogin();
@@ -88,7 +88,7 @@ public class MyVaadinUI extends UI
     }
 	
 	public User getCurrentUser(){
-		return currentUser;
+		return this.currentUser;
 	}
 
     

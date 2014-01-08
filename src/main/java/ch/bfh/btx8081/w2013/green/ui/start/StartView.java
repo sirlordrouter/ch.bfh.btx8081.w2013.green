@@ -124,6 +124,6 @@ presenter.navigateBack();
 
     @Override
     public void addStartViewPresenter(IStartViewPresenter p) {
-        presenter = p;
+        this.presenter = p;
     }
 }

@@ -21,9 +21,9 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
- * @author Jan Wiebe van der Sluis,
+ *<p>Main Page for the Settings. Allows navigating to the settings views.</p>
  *
+ * @author Jan Wiebe van der Sluis,
  * @version 23-12-2013
  */
 public class StartSettingsView extends BaseView implements View, IStartSettingsView {

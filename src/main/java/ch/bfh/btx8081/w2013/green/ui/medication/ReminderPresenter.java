@@ -13,7 +13,7 @@ import de.steinwedel.messagebox.MessageBoxListener;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  * 
- *<p>Class Description</p>
+ *<p>Presenter for a ReminderView. Pushes Reminder to the view ans listens to the user input on this reminder.</p>
  *
  * @author Johannes Gnaegi, gnagj1@bfh.ch
  * @version 03-12-2013

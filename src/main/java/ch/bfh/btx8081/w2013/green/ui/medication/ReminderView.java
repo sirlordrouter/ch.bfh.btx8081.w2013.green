@@ -17,7 +17,7 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  * 
- *<p>Class Description</p>
+ *<p>Displays Reminder to the user. The Reminder allows user interaction (decision making).</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 03-12-2013
@@ -42,7 +42,7 @@ public class ReminderView extends BaseView implements IReminderView {
 		MessageBox mb = MessageBox.showPlain(
 				Icon.INFO, 
 				"Medication", "Please Take Medication " + medicationName,
-				mbListener, ButtonId.NO, ButtonId.IGNORE, ButtonId.YES).setWidth("300px");
+                this.mbListener, ButtonId.NO, ButtonId.IGNORE, ButtonId.YES).setWidth("300px");
 		mb.setButtonWidth("90px");
 		mb.setButtonAlignment(Alignment.BOTTOM_CENTER);
 		MyVaadinUI.getCurrent().push();

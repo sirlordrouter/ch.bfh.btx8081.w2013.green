@@ -8,7 +8,7 @@ import com.vaadin.navigator.Navigator;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Presneter for the main view of a patient.</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 23-12-2013

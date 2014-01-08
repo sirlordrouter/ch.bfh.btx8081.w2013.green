@@ -50,11 +50,10 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      * Patients refer to the other entities and are loaded in the end.
      */
     public FileDataAccess() {
-        medicationList = loadMedicationsFromFile();
-        skillList = null;
-        contactList = loadContactsFromFile();
-
-        patientList = loadPatientsFromFile();
+        this.medicationList = loadMedicationsFromFile();
+        this.skillList = null;
+        this.contactList = loadContactsFromFile();
+        this.patientList = loadPatientsFromFile();
     }
 
     /**
@@ -68,7 +67,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
         try {
             this.fileInputStream = new FileInputStream(file);
-            DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+            DataInputStream dataInputStream = new DataInputStream(this.fileInputStream);
 
             return new BufferedReader(new InputStreamReader(dataInputStream));
 
@@ -84,7 +83,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
     private void CloseReader() {
         try {
 
-            fileInputStream.close();
+            this.fileInputStream.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -99,7 +98,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      */
     @Override
     public List<Medication> getMedications(int userId) {
-        for (Patient patient : patientList) {
+        for (Patient patient : this.patientList) {
             if (patient.getUserId() == userId) {
                 return patient.getCustomMedications();
             }
@@ -115,7 +114,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      */
     @Override
     public List<Skill> getSkills(int userId) {
-        for (Patient patient : patientList) {
+        for (Patient patient : this.patientList) {
             if (patient.getUserId() == userId) {
                 return patient.getCustomSkills();
             }
@@ -131,7 +130,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      */
     @Override
     public List<Contact> getContacts(int userId) {
-        for (Patient patient : patientList) {
+        for (Patient patient : this.patientList) {
             if (patient.getUserId() == userId) {
                 return patient.getCustomContacts();
             }
@@ -147,7 +146,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      */
     @Override
     public List<Patient> getPatients() {
-        return patientList;
+        return this.patientList;
     }
 
 
@@ -168,7 +167,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      */
     @Override
     public List<Contact> getContacts() {
-        return contactList;
+        return this.contactList;
 
     }
 
@@ -336,7 +335,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      */
     private Skill getSkillById(int id) {
 
-        for (Skill skill : skillList) {
+        for (Skill skill : this.skillList) {
             if (skill.getSkillId() == id) {
                 return  skill;
             }
@@ -352,7 +351,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      */
     private Contact getContactById(int id) {
 
-        for (Contact contact : contactList) {
+        for (Contact contact : this.contactList) {
             if (contact.getContactId() == id) {
                 return contact;
             }
@@ -368,7 +367,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
      */
     private Medication getMediationById(int id) {
 
-        for (Medication medication : medicationList) {
+        for (Medication medication : this.medicationList) {
             if (medication.getMedicationID() == id) {
                 return medication;
             }

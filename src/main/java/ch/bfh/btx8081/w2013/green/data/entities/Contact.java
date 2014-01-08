@@ -41,11 +41,11 @@ public class Contact {
     }
 
     public int getContactId() {
-        return contactId;
+        return this.contactId;
     }
 
     public String getProfession() {
-        return profession;
+        return this.profession;
     }
 
     public void setProfession(String profession) {
@@ -53,7 +53,7 @@ public class Contact {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -61,7 +61,7 @@ public class Contact {
     }
 
     public String getForename() {
-        return forename;
+        return this.forename;
     }
 
     public void setForename(String forename) {
@@ -69,7 +69,7 @@ public class Contact {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -81,7 +81,7 @@ public class Contact {
     };
 
     public String getPhoneNumberHtml() {
-        return "Phone: " + "<a href=\"tel:" + phoneNumber + "\">Tel: " + phoneNumber + "</a>\n\r";
+        return "Phone: " + "<a href=\"tel:" + this.phoneNumber + "\">Tel: " + this.phoneNumber + "</a>\n\r";
     }
 
     /**
@@ -94,8 +94,8 @@ public class Contact {
     @Override
     public String toString() {
         return
-                "Profession: " + profession + "\n\r" +
-                "Name: " + name  + ", " + forename + "\n\r" +
-                "Phone: " + "<a href=\"tel:" + phoneNumber + "\">Tel: " + phoneNumber + "</a>\n\r";
+                "Profession: " + this.profession + "\n\r" +
+                "Name: " + this.name  + ", " + this.forename + "\n\r" +
+                "Phone: " + "<a href=\"tel:" + this.phoneNumber + "\">Tel: " + this.phoneNumber + "</a>\n\r";
     }
 }

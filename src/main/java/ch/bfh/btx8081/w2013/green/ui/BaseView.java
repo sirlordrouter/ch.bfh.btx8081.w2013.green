@@ -25,7 +25,7 @@ public class BaseView extends VerticalLayout{
 
     public BaseView () {
 
-        setBaseStyle();
+        this.setBaseStyle();
 
     }
 

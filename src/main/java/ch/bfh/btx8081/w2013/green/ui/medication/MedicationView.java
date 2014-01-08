@@ -38,7 +38,7 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
         this.area.setWidth("100%");
         this.area.setHeight("270px");
         this.area.setStyleName("dashboard-textarea");
-        super.content.addComponent(area);
+        super.content.addComponent(this.area);
     }
 
     private void createButtons() {

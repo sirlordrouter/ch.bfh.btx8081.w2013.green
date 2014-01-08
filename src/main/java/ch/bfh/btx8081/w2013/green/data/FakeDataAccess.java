@@ -35,7 +35,7 @@ public class FakeDataAccess implements ISettingsDataAccess, IDataAccess {
 
     private List<Patient> generatePatients() {
 
-        patients = new ArrayList<Patient>();
+        this.patients = new ArrayList<Patient>();
 
         Patient p1 = new Patient(1,1000, "Traurig", "Vreni");
         Patient p2 = new Patient(2,1010, "Sensibel", "Hans");
@@ -55,65 +55,65 @@ public class FakeDataAccess implements ISettingsDataAccess, IDataAccess {
         p4.setCustomMedications(generateMedications());
 
 
-        patients.add(p1);
-        patients.add(p2);
-        patients.add(p3);
-        patients.add(p4);
+        this.patients.add(p1);
+        this.patients.add(p2);
+        this.patients.add(p3);
+        this.patients.add(p4);
 
-        return patients;
+        return this.patients;
     }
 
     private List<Contact> generateContacts() {
-        contacts = new ArrayList<Contact>();
+        this.contacts = new ArrayList<Contact>();
 
         Contact c1 = new Contact(1, "Psychologist", "Dr. Lieb", "Fritz", "123 123 12 34");
         Contact c2 = new Contact(1, "Doctor", "Dr. Heil", "Hans", "123 123 12 35");
         Contact c3 = new Contact(1, "Helping Hand", "Help", "Please", "123 123 23 45");
         Contact c4 = new Contact(1, "Professional", "Hilfreich", "Wanda", "123 123 67 89");
 
-        contacts.add(c1);
-        contacts.add(c2);
-        contacts.add(c3);
-        contacts.add(c4);
+        this.contacts.add(c1);
+        this.contacts.add(c2);
+        this.contacts.add(c3);
+        this.contacts.add(c4);
 
-        return contacts;
+        return this.contacts;
     }
 
     private List<Medication> generateMedications() {
-        medics = new ArrayList<Medication>();
+        this.medics = new ArrayList<Medication>();
 
         Medication m1 = new Medication("Dafalgan", new int[]{1,1,0},1);
         Medication m2 = new Medication("Antidepressiva", new int[]{0,1,0},2);
         Medication m3 = new Medication("Tranquillanzium", new int[]{1,1,1},3);
         Medication m4 = new Medication("Antidementivum", new int[]{0,0,1},4);
 
-        medics.add(m1);
-        medics.add(m2);
-        medics.add(m3);
-        medics.add(m4);
+        this.medics.add(m1);
+        this.medics.add(m2);
+        this.medics.add(m3);
+        this.medics.add(m4);
 
-        return medics;
+        return this.medics;
         
     }
 
     @Override
     public List<Patient> getPatients() {
-        return patients;
+        return this.patients;
     }
 
     @Override
     public List<Medication> getMedications() {
-        return medics;
+        return this.medics;
     }
 
     @Override
     public List<Skill> getSkills() {
-        return skills;
+        return this.skills;
     }
 
     @Override
     public List<Contact> getContacts() {
-        return contacts;
+        return this.contacts;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class FakeDataAccess implements ISettingsDataAccess, IDataAccess {
 
     @Override
     public List<Medication> getMedications(int PatientId) {
-        for (Patient patient : patients) {
+        for (Patient patient : this.patients) {
             if (patient.getUserId()  == PatientId) {
                 return patient.getCustomMedications();
             }
@@ -134,7 +134,7 @@ public class FakeDataAccess implements ISettingsDataAccess, IDataAccess {
 
     @Override
     public List<Skill> getSkills(int PatientId) {
-        for (Patient patient : patients) {
+        for (Patient patient : this.patients) {
             if (patient.getUserId()  == PatientId) {
                 return patient.getCustomSkills();
             }
@@ -145,7 +145,7 @@ public class FakeDataAccess implements ISettingsDataAccess, IDataAccess {
 
     @Override
     public List<Contact> getContacts(int PatientId) {
-        for (Patient patient : patients) {
+        for (Patient patient : this.patients) {
             if (patient.getUserId() == PatientId) {
                 return patient.getCustomContacts();
             }

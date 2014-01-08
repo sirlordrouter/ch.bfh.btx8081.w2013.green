@@ -79,24 +79,24 @@ public class User {
 	 * @return the id
 	 */
 	public int getId() {
-		return id;
+		return this.id;
 	}
     /**
 	 * @return isPatient
 	 */
 	public boolean getIsPatient() {
-		return isPatient;
+		return this.isPatient;
 	}
     /**
 	 * @return the firstname
 	 */
 	public String getFirstname() {
-		return firstname;
+		return this.firstname;
 	}
 	/**
 	 * @return the lastname
 	 */
 	public String getLastname() {
-		return lastname;
+		return this.lastname;
 	}
 }

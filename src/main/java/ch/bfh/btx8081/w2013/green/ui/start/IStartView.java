@@ -7,7 +7,7 @@ import ch.bfh.btx8081.w2013.green.ui.IStartPresenter;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Interface for the main page for the patients view. </p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 23-12-2013
@@ -21,13 +21,11 @@ public interface IStartView {
      * Medizininformatik BSc</br>
      * Modul 8081, HS2013</br>
      *
-     *<p>Class Description</p>
+     *<p>callback for the user input of the main page.</p>
      *
      * @author Johannes Gnaegi, gnaegj1@bfh.ch
      * @version 23-12-2013
      */
     public interface IStartViewPresenter extends IStartPresenter {
-
-
     }
 }

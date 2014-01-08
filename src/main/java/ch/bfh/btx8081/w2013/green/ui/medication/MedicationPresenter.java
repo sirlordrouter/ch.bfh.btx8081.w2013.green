@@ -11,7 +11,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 * Medizininformatik BSc</br>
 * Modul 8081, HS2013</br>
 *
-*<p>Class Description</p>
+*<p>Presenter for a patients medication. Provides the data to its corresponding view and listens
+ * to user input. </p>
 *
 * @author Johannes Gnaegi, gnagj1@bfh.ch
 * @version 09-12-2013
@@ -28,18 +29,13 @@ public class MedicationPresenter extends ReminderPresenter implements IMedicatio
         IMedicationView view = (IMedicationView) v;
 
         view.addListener(this);
-        view.setMedicationList(model.getMedications());
+        view.setMedicationList(this.model.getMedications());
     }
 
 
     @Override
     public void buttonClick(String c) {
-
         throw new NotImplementedException();
-//        switch (c) {
-//            default:
-//                break;
-//        }
     }
 
 

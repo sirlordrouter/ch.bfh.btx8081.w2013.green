@@ -69,9 +69,8 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	public static final String MEDIC_SET_VIEW = "medicSet";
 
-
     private SettingsModel settingsModel = null;
-    ISettingsDataAccess dataAccess = null;
+    private ISettingsDataAccess dataAccess = null;
 
     /**
 	 * Constructor for this state implementation.
@@ -91,9 +90,9 @@ public class AuthenticatedState extends AuthenticationState {
 	protected void entryState() {
 
 		if (super.context.getCurrentUser().getIsPatient()) {
-			loadProtectedUserResources();
+			this.loadProtectedUserResources();
 		} else {
-			loadProtectedSettingsResources();
+			this.loadProtectedSettingsResources();
 		}
 	}
 
@@ -104,7 +103,7 @@ public class AuthenticatedState extends AuthenticationState {
 	protected void exitState() {
 
         if (!super.context.getCurrentUser().getIsPatient()) {
-            storeDataPersistent();
+            this.storeDataPersistent();
         }
 
 	}
@@ -114,7 +113,7 @@ public class AuthenticatedState extends AuthenticationState {
 	 */
 	@Override
 	public void handleLogout() {
-		super.context.setState(new UnauthenticatedState(context));
+		super.context.setState(new UnauthenticatedState(super.context));
 	}
 
 	/**
@@ -134,21 +133,21 @@ public class AuthenticatedState extends AuthenticationState {
         //userModel.setSkills(userDataAccess.getSkills(super.context.getCurrentUser().getId()));
 
 		StartView startView = new StartView();
-        new StartPresenter(navigator, startView);
+        new StartPresenter(super.navigator, startView);
 		super.navigator.addView(START_VIEW, startView);
 		super.navigator.navigateTo(START_VIEW);
 		super.navigator.setErrorView(StartView.class);
 
 		SkillsView skillsView = new SkillsView();
-		new SkillsPresenter(skillsView, userModel, navigator);
+		new SkillsPresenter(skillsView, userModel, super.navigator);
 		super.navigator.addView(SKILL_VIEW, skillsView);
 
 		HelpView helpView = new HelpView();
-		new HelpPresenter(helpView, userModel, navigator);
+		new HelpPresenter(helpView, userModel, super.navigator);
 		super.navigator.addView(HELP_VIEW, helpView);
 
 		MedicationView medView = new MedicationView();
-		new MedicationPresenter(medView, userModel, navigator, reminderComponent);
+		new MedicationPresenter(medView, userModel, super.navigator, reminderComponent);
 		super.navigator.addView(MEDIC_VIEW, medView);
 
 	}
@@ -163,24 +162,24 @@ public class AuthenticatedState extends AuthenticationState {
 
         this.settingsModel = new SettingsModel();
 
-        this.settingsModel.setPatients(dataAccess.getPatients());
-        this.settingsModel.setContacts(dataAccess.getContacts());
-        this.settingsModel.setMedications(dataAccess.getMedications());
+        this.settingsModel.setPatients(this.dataAccess.getPatients());
+        this.settingsModel.setContacts(this.dataAccess.getContacts());
+        this.settingsModel.setMedications(this.dataAccess.getMedications());
         //this.settingsModel.setSkills(dataAccess.getSkills());
 
         StartSettingsView startSettingsView = new StartSettingsView();
-        StartSettingsPresenter startSettingsPresenter = new StartSettingsPresenter(settingsModel,navigator, startSettingsView);
+        StartSettingsPresenter startSettingsPresenter = new StartSettingsPresenter(this.settingsModel,super.navigator, startSettingsView);
 		super.navigator.addView(START_SETTINGS_VIEW, startSettingsView);
 		super.navigator.setErrorView(StartSettingsView.class);
 		super.navigator.navigateTo(START_SETTINGS_VIEW);
 
 		HelpSetView helpSetView = new HelpSetView();
-		HelpSetPresenter helpSetPresenter =  new HelpSetPresenter(helpSetView, settingsModel, navigator);
+		HelpSetPresenter helpSetPresenter =  new HelpSetPresenter(helpSetView, this.settingsModel, super.navigator);
         startSettingsPresenter.addPatientChangedListener(helpSetPresenter);
 		super.navigator.addView(HELP_SET_VIEW, helpSetView);
 
 		MedicationSettingsView medSetView = new MedicationSettingsView();
-        MedicationSettingsPresenter medicationSettingsPresenter =  new MedicationSettingsPresenter(settingsModel, navigator, medSetView);
+        MedicationSettingsPresenter medicationSettingsPresenter =  new MedicationSettingsPresenter(this.settingsModel, super.navigator, medSetView);
         startSettingsPresenter.addPatientChangedListener(medicationSettingsPresenter);
 		super.navigator.addView(MEDIC_SET_VIEW, medSetView);
 
@@ -188,7 +187,7 @@ public class AuthenticatedState extends AuthenticationState {
 
     private void storeDataPersistent() {
 
-        this.dataAccess.setPatients(settingsModel.getPatients());
+        this.dataAccess.setPatients(this.settingsModel.getPatients());
 
     }
 }

@@ -58,7 +58,7 @@ public class LoginManager {
      */
     public User getUserAttribute() {
     	User currentUser = null;
-    	currentUser = userDB.assignUserAttributes(this.loginUsername);
+    	currentUser = this.userDB.assignUserAttributes(loginUsername);
         return currentUser;
     }
 
@@ -75,7 +75,7 @@ public class LoginManager {
 	public boolean authenticateUserAccess(String loginUsername, String loginPassword) {
 
 		this.loginUsername = loginUsername;
-		return userDB.verifyLogin(loginUsername, loginPassword);
+		return this.userDB.verifyLogin(loginUsername, loginPassword);
 
 
 	}

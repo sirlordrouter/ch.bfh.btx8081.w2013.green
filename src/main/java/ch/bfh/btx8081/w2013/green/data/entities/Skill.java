@@ -37,11 +37,11 @@ public class Skill {
     }
 
     public int getSkillId() {
-        return skillId;
+        return this.skillId;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -49,7 +49,7 @@ public class Skill {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {

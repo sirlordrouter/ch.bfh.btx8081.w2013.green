@@ -12,7 +12,9 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *</p>
+ * Interface for the Data Providing class for the Settings View.
+ * </p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 26-12-2013
@@ -25,6 +27,4 @@ public interface ISettingsDataAccess {
     List<Contact> getContacts();
 
     void setPatients(List<Patient> patientList);
-
-    //void setContacts(List<Contact> contactList);
 }

@@ -15,7 +15,8 @@ import java.util.Collection;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Presenter for the settings for medication management. Provides the data to the corresponding view and listens
+ * to data input.</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 24-12-2013
@@ -44,7 +45,7 @@ public class MedicationSettingsPresenter implements
         this.currentPatient = p;
 
         this.view.setCurrentPatientName(p.getPatientName());
-        this.view.setCurrentPatientMedication(model.getMedications(), p.getCustomMedications());
+        this.view.setCurrentPatientMedication(this.model.getMedications(), p.getCustomMedications());
 
         //TODO: Add patientspecific data to view
 

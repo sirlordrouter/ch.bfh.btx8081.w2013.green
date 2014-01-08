@@ -57,7 +57,7 @@ public class HelpSetView extends BaseView implements View, IHelpSetView {
         this.dataInputLayout.addComponent(new TextField("First Name"));
         this.dataInputLayout.addComponent(new TextField("Phone nb. (office)"));
         this.dataInputLayout.addComponent(new TextField("Phone nb. (home)"));
-        scrollPanel.setContent(dataInputLayout);
+        scrollPanel.setContent(this.dataInputLayout);
         tabSheet.addTab(scrollPanel, "New");
 
 

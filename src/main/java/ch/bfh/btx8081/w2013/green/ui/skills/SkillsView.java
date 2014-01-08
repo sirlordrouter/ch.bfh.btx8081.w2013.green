@@ -54,7 +54,7 @@ public class SkillsView extends BaseView
 
         this.listSelectSkills.setWidth("100%");
         this.listSelectSkills.setHeight("270px");
-        super.content.addComponent(listSelectSkills);
+        super.content.addComponent(this.listSelectSkills);
     }
 
     private void setButtons() {

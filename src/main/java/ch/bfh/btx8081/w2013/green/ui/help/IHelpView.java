@@ -10,7 +10,7 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Interface for the View holding the contacts for a patient.</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 10-12-2013

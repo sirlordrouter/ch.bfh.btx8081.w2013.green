@@ -10,7 +10,7 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Interface for the view holding the medications of a patient.</p>
  *
  * @author Johannes Gnaegi, gnagj1@bfh.ch
  * @version 09-12-2013

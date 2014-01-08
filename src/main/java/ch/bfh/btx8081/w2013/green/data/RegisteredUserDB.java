@@ -76,7 +76,7 @@ public class RegisteredUserDB {
 	  */
 	 public User assignUserAttributes(String username){
 		 User currentUser = null;
-		 for (RegisteredUser ru :registeredUserList) {
+		 for (RegisteredUser ru : this.registeredUserList) {
 			 if(ru.getUsername().equals(username)) {
                  currentUser = new User();
 				 currentUser.setId(ru.getId());

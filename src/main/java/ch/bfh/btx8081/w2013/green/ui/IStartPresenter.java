@@ -5,7 +5,7 @@ package ch.bfh.btx8081.w2013.green.ui;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Every main view presenter must provide the methods to navigate to a specific entity view.</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 23-12-2013

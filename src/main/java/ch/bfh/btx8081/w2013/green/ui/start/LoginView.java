@@ -21,27 +21,23 @@ import com.vaadin.ui.Button.ClickListener;
 public class LoginView extends VerticalLayout implements View {
 
 	private static final long serialVersionUID = 2033204732401987887L;
-    private VerticalLayout vertical = new VerticalLayout();
 
-    //TODO: How is Login handled in multiple user Sessions???
-    
 	public LoginView() {
-        addStyleName("root");
+        this.addStyleName("root");
 
-		setWidth(MyVaadinUI.APP_WIDTH);
-		setHeight(MyVaadinUI.APP_HIGHT);
-		//addStyleName("sidebar");
+		this.setWidth(MyVaadinUI.APP_WIDTH);
+		this.setHeight(MyVaadinUI.APP_HIGHT);
 		
 		this.initLogin();
 	}
     
 	private void initLogin() {
-		addStyleName("login");
+		this.addStyleName("login");
 
         VerticalLayout loginLayout = new VerticalLayout();
         loginLayout.setSizeFull();
         loginLayout.addStyleName("login-layout");
-        addComponent(loginLayout);
+        this.addComponent(loginLayout);
 
         final CssLayout loginPanel = new CssLayout();
         loginPanel.addStyleName("login-panel");
@@ -128,17 +124,7 @@ public class LoginView extends VerticalLayout implements View {
         loginLayout.addComponent(loginPanel);
         loginLayout.setComponentAlignment(loginPanel, Alignment.MIDDLE_CENTER);
 		
-		addComponent(loginLayout);
-		
-		
-		
-//		vertical.addComponents( title, login, password, btnLogin );
-//		vertical.setComponentAlignment(title, Alignment.MIDDLE_CENTER);
-//		vertical.setComponentAlignment(login, Alignment.MIDDLE_CENTER);
-//		vertical.setComponentAlignment(password, Alignment.MIDDLE_CENTER);
-//		vertical.setComponentAlignment(btnLogin, Alignment.MIDDLE_CENTER);
-//		addComponent(vertical);
-		
+		this.addComponent(loginLayout);
 	}
 	
 	@Override

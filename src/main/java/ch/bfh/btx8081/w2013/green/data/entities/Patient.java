@@ -64,11 +64,11 @@ public class Patient implements Serializable {
     }
 
     public int getPatientId() {
-        return patientId;
+        return this.patientId;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -76,7 +76,7 @@ public class Patient implements Serializable {
     }
 
     public String getForename() {
-        return forename;
+        return this.forename;
     }
 
     public void setForename(String forename) {
@@ -84,7 +84,7 @@ public class Patient implements Serializable {
     }
 
     public List<Medication> getCustomMedications() {
-        return customMedications;
+        return this.customMedications;
     }
 
     public void setCustomMedications(List<Medication> customMedications) {
@@ -92,7 +92,7 @@ public class Patient implements Serializable {
     }
 
     public List<Contact> getCustomContacts() {
-        return customContacts;
+        return this.customContacts;
     }
 
     public void setCustomContacts(List<Contact> customContacts) {
@@ -100,7 +100,7 @@ public class Patient implements Serializable {
     }
 
     public List<Skill> getCustomSkills() {
-        return customSkills;
+        return this.customSkills;
     }
 
     public void setCustomSkills(List<Skill> customSkills) {
@@ -114,11 +114,11 @@ public class Patient implements Serializable {
      *      formatted Person Name
      */
     public String getPatientName() {
-        return patientName;
+        return this.patientName;
     }
 
     public int getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(int userId) {
