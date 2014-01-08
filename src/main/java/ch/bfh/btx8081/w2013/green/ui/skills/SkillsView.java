@@ -29,12 +29,9 @@ public class SkillsView extends BaseView
 	implements View, ISkillView {
 
     private static final long serialVersionUID = 1L;
-
-    public static final String BUTTON_BACK = "Back";
+    private static final String BUTTON_BACK = "Back";
 
 	private ListSelect listSelectSkills = null;
-	
-	/* Only the presenter registers one listener... */
     private ISkillViewPresenter presenter = null;
 
 	public SkillsView () {

@@ -23,7 +23,6 @@ public class ReminderPresenter implements
 
     protected IReminderComponent reminder = null;
 	protected IReminderView view = null;
-
 	protected Model model = null;
 	protected Medication currentMedication = null;
 	

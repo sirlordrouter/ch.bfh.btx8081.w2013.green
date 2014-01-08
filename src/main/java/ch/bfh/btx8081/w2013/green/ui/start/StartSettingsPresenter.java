@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 public class StartSettingsPresenter implements IStartSettingsView.IStartSettingsPresenter {
 
-    private final Navigator navigator;
+    private Navigator navigator = null;
 
     private ArrayList<IPatientChangedListener> patientChangedListeners = new ArrayList<>();
 

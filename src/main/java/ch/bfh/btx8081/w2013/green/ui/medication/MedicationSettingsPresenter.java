@@ -25,10 +25,9 @@ public class MedicationSettingsPresenter implements
         IStartSettingsView.IStartSettingsPresenter.IPatientChangedListener,
         IMedicationSettingsView.IMedicationSettingsPresenter {
 
-    private final SettingsModel model;
-    private final Navigator navigator;
-    private final MedicationSettingsView view;
-
+    private SettingsModel model = null;
+    private Navigator navigator = null;
+    private MedicationSettingsView view = null;
     private Patient currentPatient = null;
 
     public MedicationSettingsPresenter(SettingsModel model, Navigator navigator, MedicationSettingsView view) {

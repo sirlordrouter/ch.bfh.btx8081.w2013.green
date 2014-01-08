@@ -24,8 +24,8 @@ public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int skillId = -1;
-    private String name;
-    private String description;
+    private String name = null;
+    private String description = null;
 
     public Skill() {}
 

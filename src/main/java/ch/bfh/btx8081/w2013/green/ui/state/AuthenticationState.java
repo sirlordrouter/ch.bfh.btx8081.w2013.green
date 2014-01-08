@@ -26,8 +26,8 @@ public abstract class AuthenticationState {
     /**
      * Context for the different states.
      */
-    protected MyVaadinUI context;
-    protected Navigator navigator;
+    protected MyVaadinUI context = null;
+    protected Navigator navigator = null;
 
     protected AuthenticationState(MyVaadinUI ui) {
         this.context = ui;

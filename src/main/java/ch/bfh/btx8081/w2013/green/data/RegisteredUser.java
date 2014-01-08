@@ -20,7 +20,7 @@ public class RegisteredUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-	private int id;
+	private int id = -1;
 	private String username = null;
 	private String password = null;
 	private String firstname = null;

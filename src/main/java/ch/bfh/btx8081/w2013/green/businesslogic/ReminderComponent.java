@@ -29,8 +29,7 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
 	private final static int[] DUE_TIMES = {BREAKFAST, LUNCH_TIME, DINNER};
 	
 	private IReminderComponentListener listener = null;
-	
-     private Timer timer = null;
+    private Timer timer = null;
 
     /**
      * Constructor creates a new Timer, to which the MedicationTasks are added.

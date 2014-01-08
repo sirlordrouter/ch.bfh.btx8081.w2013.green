@@ -26,11 +26,8 @@ public class StartView extends BaseView implements View, IStartView {
 	private static final long serialVersionUID = -1105303206323973784L;
 
 	private static final String BUTTON_HELP = "HELP";
-
 	private static final String BUTTON_SKILLS = "SKILLS";
-
 	private static final String BUTTON_MEDICATION = "MEDICATION";
-
 	private static final String BUTTON_LOGOUT = "LOGOUT";
 
 	private static final String BUTTON_WIDTH = "160px";

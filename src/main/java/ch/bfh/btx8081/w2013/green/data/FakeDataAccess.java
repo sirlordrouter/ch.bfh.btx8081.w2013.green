@@ -21,7 +21,6 @@ import java.util.List;
 public class FakeDataAccess implements ISettingsDataAccess, IDataAccess {
 
     private List<Patient> patients = new ArrayList<Patient>();
-
     private List<Medication> medics = new ArrayList<Medication>();
     private List<Skill> skills = new ArrayList<Skill>();
     private List<Contact> contacts = new ArrayList<Contact>();

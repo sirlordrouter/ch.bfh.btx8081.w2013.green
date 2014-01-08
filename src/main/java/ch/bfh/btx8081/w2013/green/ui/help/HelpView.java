@@ -30,9 +30,7 @@ public class HelpView extends BaseView implements View, IHelpView {
 
         super();
         super.setTitle("Contacts");
-
         this.createButtons();
-
         super.setLayouts(0.15f,0.75f,0.1f,0);
 	}
 

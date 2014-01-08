@@ -38,6 +38,7 @@ public class FileDataAccess implements IDataAccess, ISettingsDataAccess {
 
     private FileInputStream fileInputStream = null;
     private FileOutputStream fileOutputStream = null;
+
     private List<Medication> medicationList = new ArrayList<>();
     private List<Skill> skillList = new ArrayList<>();
     private List<Contact> contactList = new ArrayList<>();
