@@ -7,6 +7,7 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -80,7 +81,7 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
 
         // Creating the 3 Buttons (Help Settings, Skill Settings and Logout)
         // with a Navigator which should navigate to the corresponding view.
-        Button helpSettingsButton = new Button(BUTTON_HELP_SETTINGS,
+        Button helpSettingsButton = new Button("",
                 new Button.ClickListener() {
                     private static final long serialVersionUID = -5797923866320649518L;
 
@@ -89,9 +90,8 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
                         settingsPresenter.navigateToHelp();
                     }
                 });
-        helpSettingsButton.addStyleName("icon-cog");
 
-//        Button skillSettingsButton = new Button(BUTTON_SKILL_SETTINGS,
+//        Button skillSettingsButton = new Button("",
 //                new Button.ClickListener() {
 //                    private static final long serialVersionUID = 7147554466396214893L;
 //
@@ -102,7 +102,7 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
 //                });
 //        skillSettingsButton.addStyleName("icon-cog");
 
-        Button medicSettingsButton = new Button(BUTTON_MEDIC_SETTINGS,
+        Button medicSettingsButton = new Button("",
                 new Button.ClickListener() {
                     private static final long serialVersionUID = 7147554466396214893L;
 
@@ -111,10 +111,9 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
                         settingsPresenter.navigateToMedic();
                     }
                 });
-        medicSettingsButton.addStyleName("icon-cog");
 
 
-        Button logoutButton = new Button(BUTTON_LOGOUT,
+        Button logoutButton = new Button("",
                 new Button.ClickListener() {
                     private static final long serialVersionUID = -1096188732209266611L;
 
@@ -123,7 +122,6 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
                             settingsPresenter.navigateBack();
                     }
                 });
-        logoutButton.addStyleName("icon-cancel");
         logoutButton.addStyleName("default");
 
         // Adding and aligning the 3 Buttons.
@@ -131,18 +129,21 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
         super.verticalNavigation.addComponent(helpSettingsButton);
         super.verticalNavigation.setComponentAlignment(helpSettingsButton, Alignment.MIDDLE_CENTER);
         helpSettingsButton.setDescription("Set the Help options for the Patient");
+        helpSettingsButton.setIcon(new ThemeResource("img/contacgg.png"), BUTTON_HELP_SETTINGS);
         helpSettingsButton.setWidth(BUTTON_WIDTH);
         helpSettingsButton.setHeight(BUTTON_HEIGHT);
 
         super.verticalNavigation.addComponent(medicSettingsButton);
         super.verticalNavigation.setComponentAlignment(medicSettingsButton, Alignment.MIDDLE_CENTER);
         medicSettingsButton.setDescription("Set the Medication options for the Patient");
+        medicSettingsButton.setIcon(new ThemeResource("img/medicine-icon-cog.png"),BUTTON_MEDIC_SETTINGS);
         medicSettingsButton.setWidth(BUTTON_WIDTH);
         medicSettingsButton.setHeight(BUTTON_HEIGHT);
 
 //        addComponent(skillSettingsButton);
 //        setComponentAlignment(skillSettingsButton, Alignment.MIDDLE_CENTER);
 //        skillSettingsButton.setDescription("Set the Skill options for the Patient");
+//         skillSettingsButton.setIcon(new ThemeResource("img/skill2-icon-cog.png"), BUTTON_SKILL_SETTINGS);
 //        skillSettingsButton.setWidth(BUTTON_WIDTH);
 //        skillSettingsButton.setHeight(BUTTON_HEIGHT);
 
@@ -150,6 +151,7 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
         super.verticalNavigation.addComponent(logoutButton);
         super.verticalNavigation.setComponentAlignment(logoutButton, Alignment.MIDDLE_CENTER);
         logoutButton.setDescription("You will be logged out");
+        logoutButton.setIcon(new ThemeResource("img/logout.png"), BUTTON_LOGOUT);
         logoutButton.setWidth(BUTTON_WIDTH);
         logoutButton.setHeight(BUTTON_HEIGHT);
 

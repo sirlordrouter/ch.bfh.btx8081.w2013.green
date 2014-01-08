@@ -568,7 +568,6 @@
 	v-csslayout-layout-panel {
 		padding: 5px;
 		margin: 10px;
-
 	}
 	
 	.dashboard-view .v-caption {
@@ -722,6 +721,10 @@
 		border: 1px solid #5c5c5c;
 		
 		@include box-shadow($outline);
+	}
+	
+	.v-panel.v-has-width > .v-panel-content {
+		
 	}
 
 

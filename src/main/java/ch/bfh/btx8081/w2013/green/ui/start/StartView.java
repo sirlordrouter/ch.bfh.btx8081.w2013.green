@@ -3,6 +3,8 @@ package ch.bfh.btx8081.w2013.green.ui.start;
 import ch.bfh.btx8081.w2013.green.ui.BaseView;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Resource;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 
@@ -51,7 +53,7 @@ public class StartView extends BaseView implements View, IStartView {
 
     private void createButtons() {
 
-        Button buttonHelp = new Button(BUTTON_HELP, new Button.ClickListener() {
+        Button buttonHelp = new Button("", new Button.ClickListener() {
             private static final long serialVersionUID = -3742574718530257633L;
 
             @Override
@@ -61,12 +63,13 @@ public class StartView extends BaseView implements View, IStartView {
         });
         buttonHelp.setWidth(BUTTON_WIDTH);
         buttonHelp.setHeight(BUTTON_HEIGHT);
-        buttonHelp.addStyleName("icon-cog");
+        //Resource icon = new ThemeResource("img/contact.png");
+        buttonHelp.setIcon(new ThemeResource("img/contact.png"), BUTTON_HELP);
         super.content.addComponent(buttonHelp);
         super.content.setComponentAlignment(buttonHelp, Alignment.MIDDLE_CENTER);
 
 
-        Button buttonSkills = new Button(BUTTON_SKILLS, new Button.ClickListener() {
+        Button buttonSkills = new Button("", new Button.ClickListener() {
                     private static final long serialVersionUID = -7539174022613115079L;
 
                     @Override
@@ -76,12 +79,12 @@ public class StartView extends BaseView implements View, IStartView {
                 });
         buttonSkills.setWidth(BUTTON_WIDTH);
         buttonSkills.setHeight(BUTTON_HEIGHT);
-        buttonSkills.addStyleName("icon-cog");
+        buttonSkills.setIcon(new ThemeResource("img/skill2-icon.png"), BUTTON_SKILLS);
         super.content.addComponent(buttonSkills);
         super.content.setComponentAlignment(buttonSkills, Alignment.MIDDLE_CENTER);
 
 
-        Button buttonMedic = new Button(BUTTON_MEDICATION,
+        Button buttonMedic = new Button("",
                 new Button.ClickListener() {
                     private static final long serialVersionUID = -5170311461467440566L;
 
@@ -92,12 +95,12 @@ presenter.navigateToMedic();
                 });
         buttonMedic.setWidth(BUTTON_WIDTH);
         buttonMedic.setHeight(BUTTON_HEIGHT);
-        buttonMedic.addStyleName("icon-cog");
+        buttonMedic.setIcon(new ThemeResource("img/medicine-icon.png"), BUTTON_MEDICATION);
         super.content. addComponent(buttonMedic);
         super.content.setComponentAlignment(buttonMedic, Alignment.MIDDLE_CENTER);
 
 
-        Button buttonLogout = new Button(BUTTON_LOGOUT,
+        Button buttonLogout = new Button("",
                 new Button.ClickListener() {
                     private static final long serialVersionUID = -1096188732209266611L;
 
@@ -108,7 +111,7 @@ presenter.navigateBack();
                 });
         buttonLogout.setWidth(BUTTON_WIDTH);
         buttonLogout.setHeight(BUTTON_HEIGHT);
-        buttonLogout.addStyleName("icon-cancel");
+        buttonLogout.setIcon(new ThemeResource("img/logout.png"), BUTTON_LOGOUT);
         buttonLogout.addStyleName("default");
         super.content.addComponent(buttonLogout);
         super.content.setComponentAlignment(buttonLogout, Alignment.MIDDLE_CENTER);

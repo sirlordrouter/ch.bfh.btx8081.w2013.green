@@ -66,11 +66,17 @@ public class HelpView extends BaseView implements View, IHelpView {
     public void setContactsList(List<Contact> contactsList) {
 
 
+        Panel p = new Panel();
+        p.setHeight("300px");
+        p.setWidth("100%");
+        p.setStyleName("dashboard-panel");
+        p.addStyleName("contacts-panel");
 
         VerticalLayout contacts = new VerticalLayout();
         contacts.setMargin(true);
-        contacts.setHeight("300px");
+        contacts.setWidth("210px");
 //
+
 //        Table t = new Table("Contacts");
 //        t.setWidth("300px");
 //        t.setStyleName("plain");
@@ -82,7 +88,7 @@ public class HelpView extends BaseView implements View, IHelpView {
         for (Contact c : contactsList) {
 
             CssLayout scrollPane = new CssLayout();
-            scrollPane.setSizeFull();
+            scrollPane.setWidth("190px");
 
             scrollPane.addStyleName("contacts");
             scrollPane.addStyleName("layout-panel");
@@ -99,9 +105,10 @@ public class HelpView extends BaseView implements View, IHelpView {
             contacts.addComponent(scrollPane);
         }
 
+        p.setContent(contacts);
 
-        super.content.addComponent(contacts);
-        super.content.setComponentAlignment(contacts, Alignment.TOP_CENTER);
+        super.content.addComponent(p);
+        super.content.setComponentAlignment(p, Alignment.TOP_CENTER);
 
     }
 }

@@ -1,0 +1,26 @@
+@mixin dashboard-panel {
+
+	.v-panel {
+	
+		//border: 1px solid #5c5c5c;		
+		//@include box-shadow($outline);
+		
+	}
+	
+	.v-panel-content {
+		margin: 10px 10px 20px 10px;
+	}
+	
+	.contacts-panel {
+		
+		border: 1px solid #bababa;
+		
+		@include box-shadow($outline);
+		
+	}
+	
+	.contacts-panel.v-has-width > .v-panel-content-contacts-panel {
+		width: 95%;
+	}
+	
+}
