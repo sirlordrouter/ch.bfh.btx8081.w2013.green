@@ -3,6 +3,7 @@ package ch.bfh.btx8081.w2013.green.ui.help;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.bfh.btx8081.w2013.green.ui.skills.ISkillView.ISkillViewListener;
 import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 
@@ -15,6 +16,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 import ch.bfh.btx8081.w2013.green.ui.help.IHelpView;
+import ch.bfh.btx8081.w2013.green.ui.medication.IMedicationView.IMedicationViewListener;
 
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br>
@@ -33,7 +35,7 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
 	public static final String BUTTON_BACK = "Back";
 
 	/* Only the presenter registers one listener... */
-	private final List<IHelpViewSetListener> listeners = new ArrayList<IHelpViewSetListener>();
+	private final List<IHelpSetViewListener> listeners = new ArrayList<IHelpSetViewListener>();
 
 	public HelpSetView(Navigator nav) {
 		this.navigator = nav;
@@ -54,8 +56,15 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
 					private static final long serialVersionUID = 1L;
 
 					@Override
+/*
 					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
 				        navigator.navigateTo(AuthenticatedState.START_SETTINGS_VIEW);
+					}
+*/
+					public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
+		                for (IHelpSetViewListener listener : listeners) {
+		                    listener.buttonClick(event.getButton().getCaption().charAt(0));
+		                }
 					}
 				}));
 		vertical.addComponent(buttonLayout);
@@ -70,14 +79,8 @@ public class HelpSetView extends VerticalLayout implements View, IHelpSetView {
 	}
 
 	@Override
-	public void addListener(IHelpViewSetListener l) {
+	public void addListener(IHelpSetViewListener l) {
 		this.listeners.add(l);
-
-	}
-
-	@Override
-	public void setMedicationList() {
-		// TODO Auto-generated method stub
 
 	}
 
