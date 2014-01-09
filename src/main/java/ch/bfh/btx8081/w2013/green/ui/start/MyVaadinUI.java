@@ -20,7 +20,8 @@ import javax.servlet.annotation.WebServlet;
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
  * 
- *<p>Class Description</p>
+ *<p>The main Entry point for the Application. Provides the functions for Authentication and
+ * switches state according to authenticated state.</p>
  *
  * @author group_green, Johannes Gnaegi
  * @version 29-11-2013
@@ -36,7 +37,6 @@ public class MyVaadinUI extends UI
     //Different States of Authentication implemented using the State Pattern
     private AuthenticationState state = null;
     private User currentUser = null;
-    private LoginManager loginManager = null;
 
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false,
@@ -55,21 +55,38 @@ public class MyVaadinUI extends UI
         setState(new UnauthenticatedState(this));
     }
 
+    /**
+     * Sets a new State to the application.
+     *
+     * @param state
+     *       a State
+     */
     public void setState(AuthenticationState state) {
         this.state = state;
         this.state.entry();
     }
 
+    /**
+     * Starts Authenticationprocess and initiates state switching according to
+     * the login process.
+     *
+     * @param username
+     *  a username
+     * @param password
+     *   password
+     * @throws Exception
+     *  if login is not successful
+     */
     public void authenticate(String username, String password) throws Exception
     {
     	
     	boolean isAuthenticated = false;
 
-        this.loginManager = LoginManager.getLoginManager();
-        isAuthenticated = this.loginManager.authenticateUserAccess(username,password);
+        LoginManager loginManager = LoginManager.getLoginManager();
+        isAuthenticated = loginManager.authenticateUserAccess(username, password);
 
         if (isAuthenticated) {
-            this.currentUser = this.loginManager.getUserAttribute();
+            this.currentUser = loginManager.getUserAttribute();
         	
             this.state.exit();
             this.state.handleLogin();
@@ -78,15 +95,19 @@ public class MyVaadinUI extends UI
             throw new Exception("Login failed!");
         }
     }
-    
- 
 
 	public void logout() {
         this.state.exit();
     	this.state.handleLogout();
     	Notification.show("You have been logged out!");
     }
-	
+
+    /**
+     * Gets the user which is authenticated.
+     *
+     * @return
+     *  current User
+     */
 	public User getCurrentUser(){
 		return this.currentUser;
 	}

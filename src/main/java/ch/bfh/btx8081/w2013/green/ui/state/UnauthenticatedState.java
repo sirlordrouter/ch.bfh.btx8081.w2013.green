@@ -11,7 +11,7 @@ import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
  *<p>Class describes the unathenticated State of the Application</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
- * @version 07-12-2013
+ * @version 07-12-2013s
  */
 public class UnauthenticatedState extends AuthenticationState {
 
