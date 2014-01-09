@@ -75,10 +75,9 @@ public class RegisteredUserDB {
 	  * return true if the loginUsername and loginPassword exist in DB
 	  */
 	 public User assignUserAttributes(String username){
-		 User currentUser = null;
+		 User currentUser = new User();
 		 for (RegisteredUser ru : this.registeredUserList) {
 			 if(ru.getUsername().equals(username)) {
-                 currentUser = new User();
 				 currentUser.setId(ru.getId());
 				 currentUser.setIsPatient(ru.getIsPatient());
 				 currentUser.setFirstname(ru.getFirstname());

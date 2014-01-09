@@ -48,4 +48,5 @@ public class HelpSetPresenter implements
         this.selectedPatient = p;
         //TODO: Set current Patient to view
     }
+
 }

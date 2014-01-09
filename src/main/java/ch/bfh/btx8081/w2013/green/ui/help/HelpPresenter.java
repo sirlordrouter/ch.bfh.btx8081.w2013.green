@@ -9,10 +9,14 @@ import com.vaadin.navigator.Navigator;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Describes the Presenter class for the Presenter view.
+ * This class handles all user interaction from the view and binds no data to
+ * the view. It implements the IHelpPresenter
+ * Interface to get the user interaction from the view. The different Button-Actions must
+ * be handled by switch.</p>
  *
- * @author Johannes Gnaegi, gnaegj1@bfh.ch
- * @version 10-12-2013
+ * @author Messerli Vinzenz, messv1@bfh.ch
+ * @version 09-12-2013
  */
 public class HelpPresenter implements IHelpView.IHelpPresenter{
 
@@ -32,8 +36,13 @@ public class HelpPresenter implements IHelpView.IHelpPresenter{
 
     }
 
+    /**
+     * Handles the user interactions from the view.
+     */
     @Override
     public void navigateBack() {
         this.navigator.navigateTo(AuthenticatedState.START_VIEW);
     }
+
+
 }

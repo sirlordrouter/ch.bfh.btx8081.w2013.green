@@ -13,9 +13,10 @@ import com.vaadin.ui.Button.ClickListener;
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
  * 
- *<p>First View of the Application presented to User to enter his credentials</p>
+ *<p>First View of the Application presented to the User to enter his credentials</p>
  *
  * @author group_green, Johannes Gnaegi
+ * @editor group_green, Corina von Kaenel
  * @version 29-11-2013
  */
 public class LoginView extends VerticalLayout implements View {
@@ -128,6 +129,9 @@ public class LoginView extends VerticalLayout implements View {
 	}
 	
 	@Override
+	/*
+	 * After a successful login the User shall be presented a welcome Message
+	 */
 	public void enter(ViewChangeEvent event) {
 
 		Notification.show("Welcome to the Mental Health App\nPlease log in!");

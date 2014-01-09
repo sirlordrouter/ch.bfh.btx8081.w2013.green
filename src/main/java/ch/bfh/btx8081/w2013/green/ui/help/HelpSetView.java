@@ -8,6 +8,7 @@ import com.vaadin.ui.*;
 
 import java.util.List;
 
+
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br>
  * 
@@ -39,7 +40,6 @@ public class HelpSetView extends BaseView implements View, IHelpSetView {
 
         super.setLayouts(0.15f, 0.75f, 0.1f, 0);
 	}
-
 
     private void setContent() {
 
@@ -99,7 +99,5 @@ public class HelpSetView extends BaseView implements View, IHelpSetView {
     public void setContactsList(List<Contact> contactsList) {
 
     }
-
-
 }
 
