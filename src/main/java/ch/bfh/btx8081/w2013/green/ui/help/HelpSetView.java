@@ -1,7 +1,9 @@
 package ch.bfh.btx8081.w2013.green.ui.help;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Contact;
+import ch.bfh.btx8081.w2013.green.data.entities.Medication;
 import ch.bfh.btx8081.w2013.green.ui.BaseView;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.*;
@@ -29,6 +31,8 @@ public class HelpSetView extends BaseView implements View, IHelpSetView {
 	private IHelpViewSetPresenter presenter = null;
 
     private VerticalLayout dataInputLayout = new VerticalLayout();
+    private OptionGroup optionGroup = null;
+    private BeanItemContainer<Contact> contacts = null;
 
     public HelpSetView() {
 
@@ -47,7 +51,15 @@ public class HelpSetView extends BaseView implements View, IHelpSetView {
         tabSheet.setStyleName("dashboard-tabsheet");
         tabSheet.setHeight("300px");
 
-        tabSheet.addTab(new VerticalLayout(), "Contacts");
+        VerticalLayout v = new VerticalLayout();
+
+        this.contacts = new BeanItemContainer<>(Contact.class);
+        this.optionGroup = new OptionGroup("", this.contacts);//(selectedPatient.getName());
+        this.optionGroup.setItemCaptionPropertyId("fullName");
+        this.optionGroup.setMultiSelect(true);
+        this.optionGroup.setImmediate(true);
+        v.addComponent(this.optionGroup);
+        tabSheet.addTab(v,"Contacts");
 
         Panel scrollPanel = new Panel();
         scrollPanel.setStyleName("dashboard-panel");
@@ -59,7 +71,6 @@ public class HelpSetView extends BaseView implements View, IHelpSetView {
         this.dataInputLayout.addComponent(new TextField("Phone nb. (home)"));
         scrollPanel.setContent(this.dataInputLayout);
         tabSheet.addTab(scrollPanel, "New");
-
 
 
         super.content.addComponent(tabSheet);
@@ -97,7 +108,7 @@ public class HelpSetView extends BaseView implements View, IHelpSetView {
 
     @Override
     public void setContactsList(List<Contact> contactsList) {
-
+        this.contacts.addAll(contactsList);
     }
 }
 
