@@ -14,6 +14,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Notification;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -182,6 +183,7 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
 
     @Override
     public void addPatients(List<Patient> patientList) {
+        Collections.sort(patientList);
         this.patientContainer.addAll(patientList);
     }
 

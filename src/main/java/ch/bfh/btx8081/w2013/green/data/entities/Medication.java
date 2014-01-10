@@ -20,7 +20,7 @@ import java.io.Serializable;
  * @version 04-12-2013
  */
 @Entity
-public class Medication implements Serializable {
+public class Medication implements Serializable, Comparable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -105,6 +105,11 @@ public class Medication implements Serializable {
                 +"Lunch :" + (this.getDueTimes()[1] == 1 ? "Yes" : "No")+ "\n"
                 +"Dinner :" + (this.getDueTimes()[2] == 1 ? "Yes" : "No")+ "\n";
     }
-    
-    
+
+
+    @Override
+    public int compareTo(Object o) {
+        Medication m = (Medication) o;
+        return this.getMedicationName().compareTo(m.getMedicationName());
+    }
 }

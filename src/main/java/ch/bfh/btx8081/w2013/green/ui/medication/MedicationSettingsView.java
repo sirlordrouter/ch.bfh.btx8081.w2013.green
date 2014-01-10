@@ -12,6 +12,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.OptionGroup;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -101,12 +102,13 @@ public class MedicationSettingsView
     @Override
     public void setCurrentPatientMedication(List<Medication> medicationList, List<Medication> customMedicationList) {
 
+        Collections.sort(medicationList);
+
         this.optionGroup.removeValueChangeListener(this.medicationChangedListener);
 
         this.medications.removeAllItems();
-
         for (Medication medication : medicationList) {
-            this.medications.addItem(medication);
+           this.medications.addItem(medication);
            this.optionGroup.unselect(medication);
             for (Medication customMedication : customMedicationList) {
                 if (medication.getMedicationID() == customMedication.getMedicationID()) {

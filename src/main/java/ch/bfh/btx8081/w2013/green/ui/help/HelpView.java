@@ -8,6 +8,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -82,6 +83,7 @@ public class HelpView extends BaseView implements View, IHelpView {
 //        t.addContainerProperty("Name", Contact.class, null);
 //        t.addContainerProperty("PhoneNumber", Contact.class, null);
 
+        Collections.sort(contactsList);
 
         for (Contact c : contactsList) {
 

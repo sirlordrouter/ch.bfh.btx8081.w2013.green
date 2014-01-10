@@ -17,7 +17,7 @@ import java.util.List;
  * @version 11-12-2013
  */
 @Entity
-public class Patient implements Serializable {
+public class Patient implements Serializable, Comparable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -123,5 +123,11 @@ public class Patient implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Patient p = (Patient) o;
+        return this.getName().compareTo(p.getName());
     }
 }

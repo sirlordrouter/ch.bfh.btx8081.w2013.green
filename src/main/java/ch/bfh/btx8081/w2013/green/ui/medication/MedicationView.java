@@ -6,6 +6,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.TextArea;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -72,7 +73,7 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 	public void setMedicationList(
 			List<ch.bfh.btx8081.w2013.green.data.entities.Medication> medications) {
 		this.area.setReadOnly(false);
-
+        Collections.sort(medications);
         String medlist = "";
 
         for(Medication m : medications) {

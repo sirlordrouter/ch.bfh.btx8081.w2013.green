@@ -19,7 +19,7 @@ import javax.persistence.Id;
  * @version 28-12-2013
  */
 @Entity
-public class Contact {
+public class Contact implements Comparable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -97,5 +97,18 @@ public class Contact {
                 "Profession: " + this.profession + "\n\r" +
                 "Name: " + this.name  + ", " + this.forename + "\n\r" +
                 "Phone: " + "<a href=\"tel:" + this.phoneNumber + "\">Tel: " + this.phoneNumber + "</a>\n\r";
+    }
+
+    /**
+     * Sorts the Contact by its Name
+     * @param o
+     *  another Contact
+     * @return
+     *
+     */
+    @Override
+    public int compareTo(Object o) {
+        Contact c = (Contact) o;
+        return this.getName().compareTo(((Contact) o).getName());
     }
 }
