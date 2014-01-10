@@ -1,10 +1,9 @@
 package ch.bfh.btx8081.w2013.green.data.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.vaadin.data.util.BeanItemContainer;
 
 /**
  * Berner Fachhochschule</br>
@@ -14,19 +13,25 @@ import com.vaadin.data.util.BeanItemContainer;
  *<p>Describes a Patient.</p>
  *
  * @author Esma Dagdas, dagde1@bfh.ch
- * @author Johannes Gnaegi, gnaegj1@bfh.ch
  *
  * @version 11-12-2013
  */
-public class Patient implements Serializable {
+@Entity
+public class Patient implements Serializable, Comparable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int patientId = -1;
+    private int userId = -1;
     private String name = null;
     private String forename = null;
     private String patientName = null;
 
+    @OneToMany
     private List<Medication> customMedications = new ArrayList<Medication>();
+    @OneToMany
     private List<Contact> customContacts = new ArrayList<Contact>();
+    @OneToMany
     private List<Skill> customSkills = new ArrayList<Skill>();
 
 
@@ -37,19 +42,20 @@ public class Patient implements Serializable {
 
     }
 
-    public Patient(int id, String name, String forename) {
+    public Patient(int id, int userId, String name, String forename) {
 
         this.patientId = id;
+        this.userId = userId;
         this.name = name;
         this.forename = forename;
         this.patientName = name + ", " + forename;
 
     }
 
-    public Patient (int id, String name, String forename, List<Medication> customMedications,
+    public Patient (int id, int userId,String name, String forename, List<Medication> customMedications,
                     List<Contact> customContacts, List<Skill> customSkills) {
 
-         this(id, name, forename);
+        this(id, userId, name, forename);
 
         this.customMedications = customMedications;
         this.customContacts = customContacts;
@@ -58,11 +64,11 @@ public class Patient implements Serializable {
     }
 
     public int getPatientId() {
-        return patientId;
+        return this.patientId;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -70,7 +76,7 @@ public class Patient implements Serializable {
     }
 
     public String getForename() {
-        return forename;
+        return this.forename;
     }
 
     public void setForename(String forename) {
@@ -78,7 +84,7 @@ public class Patient implements Serializable {
     }
 
     public List<Medication> getCustomMedications() {
-        return customMedications;
+        return this.customMedications;
     }
 
     public void setCustomMedications(List<Medication> customMedications) {
@@ -86,7 +92,7 @@ public class Patient implements Serializable {
     }
 
     public List<Contact> getCustomContacts() {
-        return customContacts;
+        return this.customContacts;
     }
 
     public void setCustomContacts(List<Contact> customContacts) {
@@ -94,18 +100,34 @@ public class Patient implements Serializable {
     }
 
     public List<Skill> getCustomSkills() {
-        return customSkills;
+        return this.customSkills;
     }
 
     public void setCustomSkills(List<Skill> customSkills) {
         this.customSkills = customSkills;
     }
 
-
+    /**
+     * The full patient name for fast usage. Format "Name,Forename"
+     *
+     * @return
+     *      formatted Person Name
+     */
     public String getPatientName() {
-        return patientName;
+        return this.patientName;
     }
 
+    public int getUserId() {
+        return this.userId;
+    }
 
-	}
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
+    @Override
+    public int compareTo(Object o) {
+        Patient p = (Patient) o;
+        return this.getName().compareTo(p.getName());
+    }
+}

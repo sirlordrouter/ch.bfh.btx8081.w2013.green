@@ -1,8 +1,28 @@
 package ch.bfh.btx8081.w2013.green.data.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class Contact {
+/**
+ * Berner Fachhochschule</br>
+ * Medizininformatik BSc</br>
+ * Modul 8081, HS2013</br>
+ *
+ *<p>
+ * Describes an Contact for a Patient, which he can contact in difficult situations.
+ * For this reason just a few information is needed, like name & phone number.
+ * </p>
+ *
+ * @author Johannes Gnaegi, gnaegj1@bfh.ch
+ * @version 28-12-2013
+ */
+@Entity
+public class Contact implements Comparable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int contactId = -1;
     private String profession = null;
     private String name = null;
@@ -21,11 +41,11 @@ public class Contact {
     }
 
     public int getContactId() {
-        return contactId;
+        return this.contactId;
     }
 
     public String getProfession() {
-        return profession;
+        return this.profession;
     }
 
     public void setProfession(String profession) {
@@ -33,7 +53,7 @@ public class Contact {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -41,7 +61,7 @@ public class Contact {
     }
 
     public String getForename() {
-        return forename;
+        return this.forename;
     }
 
     public void setForename(String forename) {
@@ -49,18 +69,46 @@ public class Contact {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getFullName( ) {
+        return this.name + ", " + this.forename;
+    };
+
+    public String getPhoneNumberHtml() {
+        return "Phone: " + "<a href=\"tel:" + this.phoneNumber + "\">Tel: " + this.phoneNumber + "</a>\n\r";
+    }
+
+    /**
+     * Formats the Contact to a HTML String, so that the phone number
+     * can be used with Skype or something similar.
+     *
+     * @return
+     *      HTML String
+     */
     @Override
     public String toString() {
         return
-                "Profession: " + profession + "\n\r" +
-                "Name: " + name  + ", " + forename + "\n\r" +
-                "Phone: " + "<a href=\"tel:" + phoneNumber + "\">Tel: " + phoneNumber + "</a>\n\r";
+                "Profession: " + this.profession + "\n\r" +
+                "Name: " + this.name  + ", " + this.forename + "\n\r" +
+                "Phone: " + "<a href=\"tel:" + this.phoneNumber + "\">Tel: " + this.phoneNumber + "</a>\n\r";
+    }
+
+    /**
+     * Sorts the Contact by its Name
+     * @param o
+     *  another Contact
+     * @return
+     *
+     */
+    @Override
+    public int compareTo(Object o) {
+        Contact c = (Contact) o;
+        return this.getName().compareTo(((Contact) o).getName());
     }
 }

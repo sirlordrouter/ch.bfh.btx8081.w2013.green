@@ -4429,11 +4429,23 @@ body .dashboard.v-app .v-app-loading {
 }
 
 .dashboard .v-label.h1 {
-	font-size: 36px;
+	-webkit-animation: fade-in 160ms ease-out;
+	-moz-animation: fade-in 160ms ease-out;
+	-ms-animation: fade-in 160ms ease-out;
+	-o-animation: fade-in 160ms ease-out;
+	animation: fade-in 160ms ease-out;
+	opacity: 1;
+	font-size: 55px;
 	line-height: 1;
-	font-weight: 300;
+	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
-	letter-spacing: -0.05em;
+	letter-spacing: 0.1em;
+	margin-left: 5px;
+	position: relative;
+	left: 0;
+	-webkit-animation: move-right 300ms ease-in-out;
+	-moz-animation: move-right 700ms ease-out;
+	-o-animation: move-right 500ms ease-out;
 }
 
 .dashboard .v-label.h2 {
@@ -4752,7 +4764,10 @@ body .dashboard.v-app .v-app-loading {
 }
 
 .dashboard .v-tabsheet {
-	border: 1px solid #d3d6d6;
+	border: 1px solid #5c5c5c;
+	-webkit-box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
+	-moz-box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
+	box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
@@ -4771,7 +4786,7 @@ body .dashboard.v-app .v-app-loading {
 }
 
 .dashboard .v-tabsheet-tabcontainer {
-	background: #e6e7e8;
+	background: #989898;
 	background: -moz-linear-gradient(top, #f5f5f5 0%, #e6e6e7 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #e6e6e7));
 	background: -webkit-linear-gradient(top, #f5f5f5 0%, #e6e6e7 100%);
@@ -5010,6 +5025,21 @@ body .dashboard.v-app .v-app-loading {
 .dashboard .v-window .footer {
 	background: #eee;
 	border-top: 1px solid #e0e0e0;
+}
+
+.dashboard .v-panel-content {
+	margin: 10px 10px 20px 10px;
+}
+
+.dashboard .contacts-panel {
+	border: 1px solid #bababa;
+	-webkit-box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
+	-moz-box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
+	box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
+}
+
+.dashboard .contacts-panel.v-has-width > .v-panel-content-contacts-panel {
+	width: 95%;
 }
 
 .dashboard .schedule {
@@ -5621,7 +5651,7 @@ body .dashboard.v-app .v-app-loading {
 }
 
 .dashboard .sidebar {
-	background: #414243 url(img/sidebar-gradient.png) repeat-y top right;
+	background: #414243;
 	position: relative;
 	left: 0;
 	-webkit-animation: move-right 300ms ease-in-out;
@@ -6003,15 +6033,18 @@ body .dashboard.v-app .v-app-loading {
 	position: relative;
 }
 
+.dashboard .dashboard-view .v-csslayout-contacts, .dashboard v-csslayout-layout-panel {
+	padding: 5px;
+	margin: 10px;
+}
+
 .dashboard .dashboard-view .v-caption {
 	font-weight: 600;
 	font-size: 13px;
 	color: #349aff;
 	text-transform: uppercase;
-	padding: 0 20px;
 	line-height: 38px;
 	border-bottom: 1px solid #eee;
-	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -6067,7 +6100,7 @@ body .dashboard.v-app .v-app-loading {
 	font-size: 16px;
 }
 
-.dashboard .dashboard-view .toolbar .notifications.unread .v-button-caption {
+.dashboard .dashboard-view .toolbar .notifications.un .v-button-caption {
 	display: block;
 	position: absolute;
 	top: 2px;
@@ -6140,4 +6173,12 @@ body .dashboard.v-app .v-app-loading {
 
 .dashboard .edit-dashboard .v-formlayout .v-formlayout-captioncell {
 	vertical-align: middle;
+}
+
+.dashboard input.v-textfield-readonly, .dashboard textarea.v-textarea-readonly {
+	background: white;
+	border: 1px solid #5c5c5c;
+	-webkit-box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
+	-moz-box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
+	box-shadow: 0 0 0 2px rgba(49, 50, 51, 0.07);
 }

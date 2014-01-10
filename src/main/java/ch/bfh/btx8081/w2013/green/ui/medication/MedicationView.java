@@ -1,15 +1,12 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
-import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
-import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TextArea;
-import com.vaadin.ui.VerticalLayout;
-import java.util.ArrayList;
+
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,48 +14,53 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Shows the Medications for a specific Patient.</p>
  *
  * @author Johannes Gnaegi, gnagj1@bfh.ch
  * @version 09-12-2013
  */
 public class MedicationView extends ReminderView implements IMedicationView, View {
 
-	private List<IMedicationViewListener> listeners = new ArrayList<IMedicationViewListener>();
+	private IMedicationPresenter presenter = null;
 	private TextArea area = null;
-    
     
     public MedicationView(){
     	super();
+        super.setTitle("MEDICS");
 
-    	VerticalLayout vertical = new VerticalLayout ();
+        this.createContent();
+        this.createButtons();
 
-        this.setWidth(MyVaadinUI.APP_WIDTH);
-        this.setHeight(MyVaadinUI.APP_HIGHT);
+        super.setLayouts(0.2f, 0.7f, 0.1f, 0);
+    }
 
-        area = new TextArea();
-        area.setWidth(MyVaadinUI.APP_WIDTH);
-        area.setHeight("380px");
-        vertical.addComponent(area);
+    private void createContent() {
+        this.area = new TextArea();
+        this.area.setWidth("100%");
+        this.area.setHeight("270px");
+        this.area.setStyleName("dashboard-textarea");
+        super.content.addComponent(this.area);
+    }
 
+    private void createButtons() {
+        final Button buttonBack = new Button("Back", new Button.ClickListener() {
+            private static final long serialVersionUID = 1L;
 
-        vertical.addComponent(new Button("Back", new Button.ClickListener() {
-                    private static final long serialVersionUID = 1L;
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                presenter.navigateBack();
+            }
+        });
 
-                    @Override
-                    public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-                        for (IMedicationViewListener l : listeners) {
-                            l.buttonClick(event.getButton().getCaption().charAt(0));
-                        }
-                    }
-                }));
+        buttonBack.addStyleName("icon-dashboard");
+        buttonBack.addStyleName("default");
 
-        addComponent(vertical);
+        super.navigation.addComponent(buttonBack);
     }
 
     @Override
-    public void addListener(IMedicationViewListener listener) {
-        this.listeners.add(listener);
+    public void addListener(IMedicationPresenter presenter) {
+        this.presenter = presenter;
     }
 
 
@@ -70,18 +72,17 @@ public class MedicationView extends ReminderView implements IMedicationView, Vie
 	@Override
 	public void setMedicationList(
 			List<ch.bfh.btx8081.w2013.green.data.entities.Medication> medications) {
-		area.setReadOnly(false);
-
+		this.area.setReadOnly(false);
+        Collections.sort(medications);
         String medlist = "";
 
         for(Medication m : medications) {
             medlist += m.toString() + "\n\n";
-
         }
 
-        area.setValue(medlist);
+        this.area.setValue(medlist);
 
-        area.setReadOnly(true);
+        this.area.setReadOnly(true);
 		
 	}
 }

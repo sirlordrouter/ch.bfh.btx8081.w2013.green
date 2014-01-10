@@ -13,17 +13,16 @@ import de.steinwedel.messagebox.MessageBoxListener;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  * 
- *<p>Class Description</p>
+ *<p>Presenter for a ReminderView. Pushes Reminder to the view ans listens to the user input on this reminder.</p>
  *
  * @author Johannes Gnaegi, gnagj1@bfh.ch
  * @version 03-12-2013
  */
 public class ReminderPresenter implements 
-	MessageBoxListener, IReminderComponentListener, IReminderView.IReminderListener {
+	MessageBoxListener, IReminderComponentListener, IReminderView.IReminderPresenter {
 
     protected IReminderComponent reminder = null;
 	protected IReminderView view = null;
-
 	protected Model model = null;
 	protected Medication currentMedication = null;
 	
@@ -33,7 +32,7 @@ public class ReminderPresenter implements
 		this.reminder = rm;
 		
 		this.view.setReminderAnswerListener(this);
-		this.view.addListener(this);
+		this.view.addReminderPresenter(this);
 
         for (Medication medics : this.model.getMedications()) {
             reminder.addToSchedule(medics);
@@ -51,15 +50,15 @@ public class ReminderPresenter implements
 			switch (buttonId) {
 			case YES:
                 this.view.showNotification("Happy Congratulations you took your drugs!");
-				//TODO: Happy Congratulations you took your drugs!
+				//TODO: Logging - navigation to Medication View
 				break;
 			case NO:
                 this.view.showNotification("Bad habit, please change it! You have to take your drugs!");
-				//TODO: Bad habit, please change it! You have to take your drugs!
+				//TODO: Logging
 				break;
 			case IGNORE:
                 this.view.showNotification("Later is better hmmmm?");
-				//TODO: Later is better hmmmm?
+				//TODO: Logging - Postpone Timer
 				break;
 			default:
 				break;
@@ -68,10 +67,10 @@ public class ReminderPresenter implements
 	}
 
 	@Override
-	public void pushReminder(Medication medicationName) {
+	public void pushReminder(Medication medication) {
 		synchronized (ReminderPresenter.this) {
-			this.currentMedication = medicationName;
-			this.view.showReminder(medicationName.getMedicationName());
+			this.currentMedication = medication;
+			this.view.showReminder(medication.getMedicationName());
 			
 			//TODO: Remove
 			System.out.println("Medication set!");

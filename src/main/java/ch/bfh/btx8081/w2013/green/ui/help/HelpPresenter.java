@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.help;
 
 import ch.bfh.btx8081.w2013.green.data.Model;
+import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import com.vaadin.navigator.Navigator;
 
 /**
@@ -8,21 +9,40 @@ import com.vaadin.navigator.Navigator;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Describes the Presenter class for the Presenter view.
+ * This class handles all user interaction from the view and binds no data to
+ * the view. It implements the IHelpPresenter
+ * Interface to get the user interaction from the view. The different Button-Actions must
+ * be handled by switch.</p>
  *
- * @author Johannes Gnaegi, gnaegj1@bfh.ch
- * @version 10-12-2013
+ * @author Messerli Vinzenz, messv1@bfh.ch
+ * @version 09-12-2013
  */
-public class HelpPresenter {
+public class HelpPresenter implements IHelpView.IHelpPresenter{
 
-    private HelpView view = null;
-    private Model model = null;
     private Navigator navigator = null;
 
     public HelpPresenter(HelpView v, Model m, Navigator n) {
 
-        this.view = v;
-        this.model = m;
         this.navigator = n;
+
+        v.addPresenter(this);
+        v.setContactsList(m.getContacts());
     }
+
+
+    @Override
+    public void buttonClick(String caption) {
+
+    }
+
+    /**
+     * Handles the user interactions from the view.
+     */
+    @Override
+    public void navigateBack() {
+        this.navigator.navigateTo(AuthenticatedState.START_VIEW);
+    }
+
+
 }

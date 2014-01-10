@@ -1,82 +1,114 @@
 package ch.bfh.btx8081.w2013.green.ui.help;
 
-import ch.bfh.btx8081.w2013.green.data.FakeDataAccess;
 import ch.bfh.btx8081.w2013.green.data.entities.Contact;
-import ch.bfh.btx8081.w2013.green.ui.start.MyVaadinUI;
-import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
-import com.vaadin.navigator.Navigator;
+import ch.bfh.btx8081.w2013.green.ui.BaseView;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br>
  * 
  * <p>
- * Class Description
+ * Class for Displaying Contacts which a Patient can call in difficult Situations.
  * </p>
  * 
  * @author group_green
  * @version 29-11-2013
  */
-public class HelpView extends VerticalLayout implements View, IHelpView {
+public class HelpView extends BaseView implements View, IHelpView {
 
 	private static final long serialVersionUID = 1L;
-	private Navigator navigator = null;
-	private final List<IHelpViewListener> listeners = new ArrayList<IHelpViewListener>();
+	private IHelpPresenter presenter = null;
+    private BeanItemContainer contacts = new BeanItemContainer<>(Contact.class);
 
-	public HelpView(Navigator nav) {
-		this.navigator = nav;
+	public HelpView() {
 
-		setWidth(MyVaadinUI.APP_WIDTH);
-		setHeight(MyVaadinUI.APP_HIGHT);
+        super();
+        super.setTitle("Contacts");
+        this.createButtons();
+        super.setLayouts(0.15f,0.75f,0.1f,0);
+	}
 
-		VerticalLayout vertical = new VerticalLayout();
+    private void createButtons() {
 
-        FakeDataAccess fda = new FakeDataAccess();
+        final Button buttonBack = new Button("Back", new Button.ClickListener() {
+            private static final long serialVersionUID = 1L;
 
-		String contacts = "";
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                presenter.navigateBack();
+            }
+        });
 
-        for (Contact c : fda.getContacts()) {
-            Label l = new Label();
-            l.setContentMode(ContentMode.HTML);
-            l.setWidth("100px");
-            l.setValue(c.toString() + "\n\r\n\r");
+        buttonBack.addStyleName("icon-dashboard");
+        buttonBack.addStyleName("default");
+        super.navigation.addComponent(buttonBack);
+        super.navigation.setComponentAlignment(buttonBack, Alignment.MIDDLE_CENTER);
+    }
 
-            vertical.addComponent(l);
+    @Override
+	public void enter(ViewChangeEvent event) {
+	}
+
+	@Override
+	public void addPresenter(IHelpPresenter listener) {
+		this.presenter = listener;
+	}
+
+    @Override
+    public void setContactsList(List<Contact> contactsList) {
+
+
+        Panel p = new Panel();
+        p.setHeight("300px");
+        p.setWidth("100%");
+        p.setStyleName("dashboard-panel");
+        p.addStyleName("contacts-panel");
+
+        VerticalLayout contacts = new VerticalLayout();
+        contacts.setMargin(true);
+        contacts.setWidth("210px");
+//
+
+//        Table t = new Table("Contacts");
+//        t.setWidth("300px");
+//        t.setStyleName("plain");
+//        t.addContainerProperty("Profession", Contact.class, null);
+//        t.addContainerProperty("Name", Contact.class, null);
+//        t.addContainerProperty("PhoneNumber", Contact.class, null);
+
+        Collections.sort(contactsList);
+
+        for (Contact c : contactsList) {
+
+            CssLayout scrollPane = new CssLayout();
+            scrollPane.setWidth("190px");
+
+            scrollPane.addStyleName("contacts");
+            scrollPane.addStyleName("layout-panel");
+
+            Label profession = new Label(c.getProfession());
+            Label name = new Label(c.getFullName());
+            Label phone = new Label(c.getPhoneNumberHtml());
+            phone.setContentMode(ContentMode.HTML);
+
+            scrollPane.addComponent(profession);
+            scrollPane.addComponent(name);
+            scrollPane.addComponent(phone);
+
+            contacts.addComponent(scrollPane);
         }
 
-		vertical.addComponent(new Button("Back", new Button.ClickListener() {
-			private static final long serialVersionUID = 1L;
+        p.setContent(contacts);
 
-			@Override
-			public void buttonClick(com.vaadin.ui.Button.ClickEvent event) {
-				navigator.navigateTo(AuthenticatedState.START_VIEW);
-			}
-		}));
+        super.content.addComponent(p);
+        super.content.setComponentAlignment(p, Alignment.TOP_CENTER);
 
-		addComponent(vertical);
-
-	}
-
-	@Override
-	public void enter(ViewChangeEvent event) {
-		View view = event.getNewView();
-	}
-
-	@Override
-	public void addListener(IHelpViewListener listener) {
-		listeners.add(listener);
-	}
-
-	@Override
-	public void setMedicationList() {
-
-	}
+    }
 }

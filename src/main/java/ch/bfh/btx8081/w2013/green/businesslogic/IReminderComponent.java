@@ -60,6 +60,13 @@ public interface IReminderComponent {
 	 * @version 04-12-2013
 	 */
 	interface IReminderComponentListener {
-		void pushReminder(Medication medicationName);
+
+        /**
+         * Method to call when the ReminderComponent has a Medication which the Patient should take.
+         *
+         * @param medication
+         *      Medication to remind on.
+         */
+		void pushReminder(Medication medication);
 	}
 }

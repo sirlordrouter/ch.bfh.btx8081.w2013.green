@@ -21,6 +21,7 @@
 @import "components/label.scss";
 @import "components/table.scss";
 @import "components/window.scss";
+@import "components/panel.scss";
 
 @import "views/schedule.scss";
 @import "views/sales.scss";
@@ -29,6 +30,9 @@
 
 
 @mixin dashboard {
+
+	$outline: 0 0 0 2px rgba(49,50,51,.07);
+
 	
 	@include base;
 	
@@ -43,11 +47,14 @@
 	@include dashboard-tabsheet;
 	@include dashboard-textfield;
 	@include dashboard-window;
+	@include dashboard-panel;
 	
 	@include dashboard-schedule-view;
 	@include dashboard-sales-view;
 	@include dashboard-reports-view;
 	@include dashboard-transactions-view;
+	
+	
 
 
 	.v-view {
@@ -145,9 +152,9 @@
 		opacity: 1;
 	}
 	
-	
+	//EDIT
 	.sidebar {
-		background: #414243 url(img/sidebar-gradient.png) repeat-y top right;
+		background: #414243; //url(img/sidebar-gradient.png) repeat-y top right;
 		@include move-right;
 		-webkit-user-select: none;
 		-moz-user-select: none;
@@ -557,16 +564,22 @@
 		position: relative;
 	}
 	
+	.dashboard-view .v-csslayout-contacts,
+	v-csslayout-layout-panel {
+		padding: 5px;
+		margin: 10px;
+	}
+	
 	.dashboard-view .v-caption {
 		font-weight: 600;
 		font-size: 13px;
 		color: #349aff;
 		text-transform: uppercase;
-		padding: 0 20px;
+		//padding: 0 20px;
 		line-height: 38px;
 		border-bottom: 1px solid #eee;
 		
-		position: absolute;
+		//position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -602,6 +615,7 @@
 		background: #fffdf2 url(img/notes-bg.png) repeat;
 		color: #545145;
 	}
+
 	
 	.dashboard-view .notes .v-textarea:focus {
 		outline: none;
@@ -623,7 +637,7 @@
 		font-size: 16px;
 	}
 	
-	.dashboard-view .toolbar .notifications.unread .v-button-caption {
+	.dashboard-view .toolbar .notifications.un .v-button-caption {
 		display: block;
 		position: absolute;
 		top: 2px;
@@ -700,5 +714,18 @@
 			vertical-align: middle;
 		}
 	}
+	
+	input.v-textfield-readonly, 
+	textarea.v-textarea-readonly {
+		background: white;
+		border: 1px solid #5c5c5c;
+		
+		@include box-shadow($outline);
+	}
+	
+	.v-panel.v-has-width > .v-panel-content {
+		
+	}
+
 
 }

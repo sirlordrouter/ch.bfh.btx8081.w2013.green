@@ -1,7 +1,7 @@
 package ch.bfh.btx8081.w2013.green.businesslogic;
 
 import ch.bfh.btx8081.w2013.green.data.RegisteredUserDB;
-import ch.bfh.btx8081.w2013.green.data.User;
+import ch.bfh.btx8081.w2013.green.data.entities.User;
 
 /**
  * Berner Fachhochschule</br>
@@ -50,13 +50,15 @@ public class LoginManager {
 
     /**
      * A getter for the User initiating the Session.
+     * To get the User which is logged in and all releated user attributes,
+     * the User is retrieved with its Username trough the Registered User Database.
      *
      * @return the currentUser
      *      the User initiating the Session
      */
     public User getUserAttribute() {
     	User currentUser = null;
-    	currentUser = userDB.assignUserAttributes(this.loginUsername);
+    	currentUser = this.userDB.assignUserAttributes(loginUsername);
         return currentUser;
     }
 
@@ -73,7 +75,7 @@ public class LoginManager {
 	public boolean authenticateUserAccess(String loginUsername, String loginPassword) {
 
 		this.loginUsername = loginUsername;
-		return userDB.verifyLogin(loginUsername, loginPassword);
+		return this.userDB.verifyLogin(loginUsername, loginPassword);
 
 
 	}

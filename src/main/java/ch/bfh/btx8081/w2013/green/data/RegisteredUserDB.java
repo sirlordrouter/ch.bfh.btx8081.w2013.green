@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2013.green.data;
 
+import ch.bfh.btx8081.w2013.green.data.entities.User;
+
 import java.util.ArrayList;
 
 /**
@@ -27,9 +29,18 @@ public class RegisteredUserDB {
 	private RegisteredUser medim1 = new RegisteredUser(0013, "medim1","medim1", "Meryam", "Medini", false);
 	private RegisteredUser vandj2 = new RegisteredUser(0014, "vandj2","vandj2", "Jan-Wiebe", "van der Sluis", false);
 	private RegisteredUser vonkc2 = new RegisteredUser(0015,"vonkc2","vonkc2", "Corina", "von Kaenel", false);
+    //Patient Logins
+//    1;1000;Traurig;Vreni;3;1$2$3$4;-
+//            2;1010;Sensibel;Hans;2$4;3$4;-
+//            3;1020;Depro;Freddy;1;2;-
+//            4;1030;Borderline;Meieli;1$4;1;-
+    private RegisteredUser t = new RegisteredUser(1010, "t","t","Vreni", "Traurig",true);
+    private RegisteredUser s = new RegisteredUser(1020, "s","s","Hans", "Sensibel",true);
+    private RegisteredUser d = new RegisteredUser(1030, "d","d","Freddy", "Depro",true);
+    private RegisteredUser b = new RegisteredUser(1040, "b","b","Meieli", "Borderline",true);
 
 	 public RegisteredUserDB(){
-		 
+		 //add admins & testusers
 		 this.registeredUserList.add( patient);
          this.registeredUserList.add( admin );
          this.registeredUserList.add( dagde1 );
@@ -38,6 +49,12 @@ public class RegisteredUserDB {
          this.registeredUserList.add( gnagj1 ) ;
          this.registeredUserList.add( vandj2 );
          this.registeredUserList.add( vonkc2 );
+
+         //add patients
+         this.registeredUserList.add( t );
+         this.registeredUserList.add( s ) ;
+         this.registeredUserList.add( d );
+         this.registeredUserList.add( b );
 	}
 	
 	 /*
@@ -73,10 +90,9 @@ public class RegisteredUserDB {
 	  * return true if the loginUsername and loginPassword exist in DB
 	  */
 	 public User assignUserAttributes(String username){
-		 User currentUser = null;
-		 for (RegisteredUser ru :registeredUserList) {
+		 User currentUser = new User();
+		 for (RegisteredUser ru : this.registeredUserList) {
 			 if(ru.getUsername().equals(username)) {
-                 currentUser = new User();
 				 currentUser.setId(ru.getId());
 				 currentUser.setIsPatient(ru.getIsPatient());
 				 currentUser.setFirstname(ru.getFirstname());

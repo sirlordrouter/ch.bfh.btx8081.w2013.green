@@ -112,6 +112,14 @@
 	-o-animation: move-right 500ms ease-out;
 }
 
+@mixin move-left {
+	position: relative;
+	left: 0;
+	-webkit-animation: move-left 300ms ease-in-out;
+	-moz-animation: move-left 700ms ease-out;
+	-o-animation: move-left 500ms ease-out;
+}
+
 @mixin reveal {
 	opacity: 1;
 	-webkit-animation: reveal 100ms ease-in-out;

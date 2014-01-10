@@ -13,7 +13,7 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  * 
- *<p>Class Description</p>
+ *<p>Holds the Data for a Patient. Skills are generated due to low priority of Skill implementation</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 02-12-2013
@@ -32,30 +32,27 @@ public class Model{
 			this.skills.add( new Skill(i, "My own Skill " + i, "DO this for " + i + "Times"));
 		}
 
-		//medications.add(new Medication("Dafalgan", new int[]{1,1,0}));
-		this.medications.add(new Medication("Psychopharmaka 1", new int[]{0,0,1}, 1));
-		//medications.add(new Medication("Anti-Bipolar", new int[]{0,1,0}));
 	}
 
-	public final List<Skill> getSkills() {
+	public List<Skill> getSkills() {
 		return skills;
 	}
 
-    public final void setSkills(List<Skill> skills) {
+    public void setSkills(List<Skill> skills) {
 		this.skills = skills;
 	}
 
 	/**
 	 * @return the medications
 	 */
-    public final List<Medication> getMedications() {
+    public List<Medication> getMedications() {
 		return this.medications;
 	}
 
 	/**
 	 * @param medications the medications to set
 	 */
-    public final void setMedications(List<Medication> medications) {
+    public void setMedications(List<Medication> medications) {
 		this.medications = medications;
 	}
 
@@ -65,7 +62,7 @@ public class Model{
      * @return
      *      a list of contacts
      */
-    public final List<Contact> getContacts() {
+    public List<Contact> getContacts() {
         return contacts;
     }
 
@@ -75,7 +72,7 @@ public class Model{
      * @param contacts
      *  a list of contacts
      */
-    public final void setContacts(List<Contact> contacts) {
+    public  void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
     }
 }

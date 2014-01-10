@@ -1,4 +1,10 @@
-package ch.bfh.btx8081.w2013.green.data;
+package ch.bfh.btx8081.w2013.green.data.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Berner Fachhochschule</br>
  * Medizininformatik BSc</br>
@@ -14,9 +20,11 @@ package ch.bfh.btx8081.w2013.green.data;
  * @version 17-12-2013
  */
 
+@Entity
 public class User {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
 	private int id = -1;
 	private boolean isPatient = false;
 	private String firstname = null;
@@ -39,6 +47,7 @@ public class User {
 		this.isPatient = isPatient;
 		this.firstname = firstname;
 		this.lastname = lastname;
+
 	}
 	
 	/**
@@ -70,22 +79,24 @@ public class User {
 	 * @return the id
 	 */
 	public int getId() {
-		return id;
-	}	/**
+		return this.id;
+	}
+    /**
 	 * @return isPatient
 	 */
 	public boolean getIsPatient() {
-		return isPatient;
-	}	/**
+		return this.isPatient;
+	}
+    /**
 	 * @return the firstname
 	 */
 	public String getFirstname() {
-		return firstname;
+		return this.firstname;
 	}
 	/**
 	 * @return the lastname
 	 */
 	public String getLastname() {
-		return lastname;
+		return this.lastname;
 	}
 }

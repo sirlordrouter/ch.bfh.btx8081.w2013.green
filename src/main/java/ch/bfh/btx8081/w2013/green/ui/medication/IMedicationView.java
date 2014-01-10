@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.green.ui.medication;
 
 import ch.bfh.btx8081.w2013.green.data.entities.Medication;
+import ch.bfh.btx8081.w2013.green.ui.IPresenter;
 
 import java.util.List;
 
@@ -9,17 +10,17 @@ import java.util.List;
  * Medizininformatik BSc</br>
  * Modul 8081, HS2013</br>
  *
- *<p>Class Description</p>
+ *<p>Interface for the view holding the medications of a patient.</p>
  *
  * @author Johannes Gnaegi, gnagj1@bfh.ch
  * @version 09-12-2013
  */
 public interface IMedicationView {
 
-    void addListener(IMedicationViewListener listener);
+    void addListener(IMedicationPresenter presenter);
     void setMedicationList(List<Medication> medications);
 
-    interface IMedicationViewListener {
-        void buttonClick(char c);
+    interface IMedicationPresenter extends IPresenter {
+        void buttonClick(String c);
     }
 }

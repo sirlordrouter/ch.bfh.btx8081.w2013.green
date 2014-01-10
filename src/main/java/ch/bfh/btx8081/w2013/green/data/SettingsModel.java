@@ -25,7 +25,7 @@ public class SettingsModel extends Model {
     }
 
     public List<Patient> getPatients() {
-        return patients;
+        return this.patients;
     }
 
     public void setPatients(List<Patient> patients) {

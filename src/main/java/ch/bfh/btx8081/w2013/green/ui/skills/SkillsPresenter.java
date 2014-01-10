@@ -1,7 +1,6 @@
 package ch.bfh.btx8081.w2013.green.ui.skills;
 
 import ch.bfh.btx8081.w2013.green.data.Model;
-import ch.bfh.btx8081.w2013.green.ui.skills.ISkillView.ISkillViewListener;
 import ch.bfh.btx8081.w2013.green.ui.state.AuthenticatedState;
 import com.vaadin.navigator.Navigator;
 
@@ -13,17 +12,15 @@ import com.vaadin.navigator.Navigator;
  *<p>Describes the Presenter class for the Presenter view.
  * This class handles all user interaction from the view and binds no data to
  * the view. It implements the
- * {@link ch.bfh.btx8081.w2013.green.ui.skills.ISkillView.ISkillViewListener ISkillViewListener }
+ * {@link ch.bfh.btx8081.w2013.green.ui.skills.ISkillView.ISkillViewPresenter ISkillViewPresenter }
  * Interface to get the user interaction from the view. The different Button-Actions must
  * be handled by switch.</p>
  *
  * @author Johannes Gnaegi, gnaegj1@bfh.ch
  * @version 09-12-2013
  */
-public class SkillsPresenter implements ISkillViewListener {
+public class SkillsPresenter implements ISkillView.ISkillViewPresenter {
 
-	private SkillsView view = null;
-	private Model model = null;
     private Navigator navigator = null;
 
     /**
@@ -36,13 +33,11 @@ public class SkillsPresenter implements ISkillViewListener {
      *      a navigator to handle view switch actions
      */
 	public SkillsPresenter(SkillsView v, Model m, Navigator n) {
-	
-		this.view = v;
-		this.model = m;
+
         this.navigator = n;
 		
-		view.addListener(this);
-		view.setSkills(model.getSkills());
+		v.addPresenter(this);
+		v.setSkills(m.getSkills());
 	}
 
     /**
@@ -61,6 +56,10 @@ public class SkillsPresenter implements ISkillViewListener {
                 break;
         }
 	}
-	
-	
+
+
+    @Override
+    public void navigateBack() {
+        this.navigator.navigateTo(AuthenticatedState.START_VIEW);
+    }
 }

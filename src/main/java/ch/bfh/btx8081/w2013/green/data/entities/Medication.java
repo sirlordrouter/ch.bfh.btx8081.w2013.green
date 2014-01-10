@@ -1,5 +1,9 @@
 package ch.bfh.btx8081.w2013.green.data.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -15,8 +19,11 @@ import java.io.Serializable;
  *
  * @version 04-12-2013
  */
-public class Medication implements Serializable {
+@Entity
+public class Medication implements Serializable, Comparable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int medicationID = -1;
 	private String medicationName = null;
 	private int[] dueTimes = new int[3];
@@ -44,7 +51,7 @@ public class Medication implements Serializable {
      *      id of this medication
      */
     public int getMedicationID() {
-        return medicationID;
+        return this.medicationID;
     }
 
 	/**
@@ -83,15 +90,26 @@ public class Medication implements Serializable {
 		this.dueTimes = dueTimes;
 	}
 
+    /**
+     * Formats the medication information in a human-readable format.
+     *
+     * @return
+     *      medication information
+     */
     @Override
     public String toString() {
         return this.getMedicationName() + "\n"
                 +"Dosage: ?\n"
                 +"taking:  \n"
-                +"Breakfast :" + (getDueTimes()[0] == 1 ? "Yes" : "No") +"\n"
-                +"Lunch :" + (getDueTimes()[1] == 1 ? "Yes" : "No")+ "\n"
-                +"Dinner :" + (getDueTimes()[2] == 1 ? "Yes" : "No")+ "\n";
+                +"Breakfast :" + (this.getDueTimes()[0] == 1 ? "Yes" : "No") +"\n"
+                +"Lunch :" + (this.getDueTimes()[1] == 1 ? "Yes" : "No")+ "\n"
+                +"Dinner :" + (this.getDueTimes()[2] == 1 ? "Yes" : "No")+ "\n";
     }
-    
-    
+
+
+    @Override
+    public int compareTo(Object o) {
+        Medication m = (Medication) o;
+        return this.getMedicationName().compareTo(m.getMedicationName());
+    }
 }
