@@ -4440,7 +4440,7 @@ body .dashboard.v-app .v-app-loading {
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
 	letter-spacing: 0.1em;
-	margin-left: -45px;
+	margin-left: 5px;
 	position: relative;
 	left: 0;
 	-webkit-animation: move-right 300ms ease-in-out;

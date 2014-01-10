@@ -159,7 +159,7 @@ public class StartSettingsView extends BaseView implements View, IStartSettingsV
 
     @Override
 	public void enter(ViewChangeEvent event) {
-		Notification.show("Welcome to the settings homescreen!");
+
 	}
 
     //Done by Esma

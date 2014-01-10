@@ -13,6 +13,7 @@ import ch.bfh.btx8081.w2013.green.ui.medication.MedicationView;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsPresenter;
 import ch.bfh.btx8081.w2013.green.ui.skills.SkillsView;
 import ch.bfh.btx8081.w2013.green.ui.start.*;
+import com.vaadin.ui.Notification;
 
 /**
  * Berner Fachhochschule</br> Medizininformatik BSc</br> Modul 8081, HS2013</br>
@@ -91,9 +92,12 @@ public class AuthenticatedState extends AuthenticationState {
 
 		if (super.context.getCurrentUser().getIsPatient()) {
 			this.loadProtectedUserResources();
+
 		} else {
 			this.loadProtectedSettingsResources();
 		}
+        Notification.show("Welcome " + super.context.getCurrentUser().getFirstname());
+
 	}
 
 	/**
