@@ -1,6 +1,10 @@
 
 package ch.bfh.btx8081.w2013.green.ui.start;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.btx8081.w2013.green.businesslogic.LoginManager;
@@ -86,8 +90,9 @@ public class MyVaadinUI extends UI
     {
     	// the boolean is only true if the entered username and password exist in the DB
     	boolean isAuthenticated = false;
-
-        LoginManager loginManager = LoginManager.getLoginManager();
+    	// TODO encrypt password: String encryptedPassword = encryptPassword(password);
+    	
+        LoginManager loginManager = new LoginManager();
         isAuthenticated = loginManager.authenticateUserAccess(username, password);
 
         if (isAuthenticated) {
@@ -120,7 +125,30 @@ public class MyVaadinUI extends UI
 		return this.currentUser;
 	}
 
-    
+	/*
+	 * encrypts the password and returns the encrypted password
+	 */
+    private String encryptPassword (String password){
+    	
+    	MessageDigest m = null;
+		try {
+			m = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO 
+			e.printStackTrace();
+		}
+    	m.reset();
+    	m.update(password.getBytes());
+    	byte[] digest = m.digest();
+    	BigInteger bigInt = new BigInteger(1,digest);
+    	String encryptedPassword = bigInt.toString(16);
+    	//  to zero pad it if you actually want the full 32 chars.
+    	while(encryptedPassword.length() < 32 ){
+    	  encryptedPassword = "0"+encryptedPassword;
+    	}
+    	
+    	return encryptedPassword;
+    }
     
 
 }
