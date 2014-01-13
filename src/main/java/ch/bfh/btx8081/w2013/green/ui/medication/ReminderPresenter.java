@@ -35,7 +35,14 @@ public class ReminderPresenter implements
 		this.view.addReminderPresenter(this);
 
         for (Medication medics : this.model.getMedications()) {
-            reminder.addToSchedule(medics);
+            this.reminder.addToSchedule(medics);
+
+            //HACK: Reminder gets fired to much otherwise. No Solution found yet.
+            try {
+                Thread.sleep(500l);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         //Add the listener to the reminder after added all the medications.

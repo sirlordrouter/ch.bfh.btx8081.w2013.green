@@ -21,16 +21,18 @@ import java.util.*;
  */
 public class ReminderComponent implements IReminderComponent, IReminderComponentListener {
 
+
 	private final static long ONCE_PER_DAY = 1000 * 60 * 60 * 24;
 	private final static long FIVE_MINUTES = 1000*60*5;
 	private final static int BREAKFAST = 7;
 	private final static int LUNCH_TIME = 12;
 	private final static int DINNER = 19;
+    private final static int MARKED = 1;
 	private final static int[] DUE_TIMES = {BREAKFAST, LUNCH_TIME, DINNER};
 	
 	private IReminderComponentListener listener = null;
     private Timer timer = null;
-
+    private List<Medication> timedMedications = new ArrayList<>();
     /**
      * Constructor creates a new Timer, to which the MedicationTasks are added.
      */
@@ -59,19 +61,22 @@ public class ReminderComponent implements IReminderComponent, IReminderComponent
      */
     @Override
      public void addToSchedule(Medication medication) {
-    	 int[] dueTimes = medication.getDueTimes();
 
-    	 for (int i = 0; i < dueTimes.length; i++) {
-			if (dueTimes[i] == 1) {
-				 this.timer.scheduleAtFixedRate(
-			 				new MedicationTask(medication, this), 
-			 				getTaskStartTime(DUE_TIMES[i]),
-                         FIVE_MINUTES);
-			}
-		}	
-    	 
-    	 //TODO: Remove
-    	 System.out.println("Timer added!");
+        synchronized (ReminderComponent.this) {
+        if(!timedMedications.contains(medication)) {
+            timedMedications.add(medication);
+             int[] dueTimes = medication.getDueTimes();
+
+             for (int i = 0; i < dueTimes.length; i++) {
+                if (dueTimes[i] == MARKED) {
+                     this.timer.scheduleAtFixedRate(
+                                new MedicationTask(medication, this),
+                                getTaskStartTime(DUE_TIMES[i]),
+                             FIVE_MINUTES);
+                }
+            }
+        }
+        }
      }
 
     /**
