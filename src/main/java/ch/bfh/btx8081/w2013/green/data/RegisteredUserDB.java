@@ -31,9 +31,9 @@ public class RegisteredUserDB {
 	private RegisteredUser vonkc2 = new RegisteredUser(0015,"vonkc2","vonkc2", "Corina", "von Kaenel", false);
     //Patient Logins
 //    1;1000;Traurig;Vreni;3;1$2$3$4;-
-//            2;1010;Sensibel;Hans;2$4;3$4;-
-//            3;1020;Depro;Freddy;1;2;-
-//            4;1030;Borderline;Meieli;1$4;1;-
+//    2;1010;Sensibel;Hans;2$4;3$4;-
+//    3;1020;Depro;Freddy;1;2;-
+//    4;1030;Borderline;Meieli;1$4;1;-
     private RegisteredUser t = new RegisteredUser(1010, "t","t","Vreni", "Traurig",true);
     private RegisteredUser s = new RegisteredUser(1020, "s","s","Hans", "Sensibel",true);
     private RegisteredUser d = new RegisteredUser(1030, "d","d","Freddy", "Depro",true);

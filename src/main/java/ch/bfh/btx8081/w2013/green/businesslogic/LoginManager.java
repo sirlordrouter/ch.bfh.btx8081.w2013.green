@@ -26,26 +26,23 @@ public class LoginManager {
 
 	private RegisteredUserDB userDB = new RegisteredUserDB();
 	private String loginUsername = null;
-	private User currentUser = null;
 
-    public RegisteredUserDB getUserDB() {
-        return userDB;
-    }
-
-    public static LoginManager getLoginManager() {
-
-        if(loginManagerInstance == null) {
+	// ToDo Delete singleton as it will lead to problems for multiple sessions
+	/*
+	 * public static LoginManager getLoginManager() {
+	 *  if(loginManagerInstance == null) {
             loginManagerInstance = new LoginManager();
         }
 
         return loginManagerInstance;
     }
+	 */
+       
 
     /**
-     * Constructor for the LoginManager.
-     *
+     * Constructor for the LoginManager
      */
-    private LoginManager () {
+    public LoginManager () {
     }
 
     /**
